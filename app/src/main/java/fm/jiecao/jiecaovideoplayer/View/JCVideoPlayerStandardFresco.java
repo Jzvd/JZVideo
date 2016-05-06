@@ -1,39 +1,44 @@
-package fm.jiecao.jcvideoplayer_lib;
+package fm.jiecao.jiecaovideoplayer.View;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fm.jiecao.jcvideoplayer_lib.JCBuriedPointStandard;
+import fm.jiecao.jcvideoplayer_lib.JCMediaManager;
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+import fm.jiecao.jiecaovideoplayer.R;
+
 /**
  * Created by Nathen
- * On 2016/04/18 16:15
+ * On 2016/05/01 22:59
  */
-public class JCVideoPlayerStandard extends JCVideoPlayer {
+public class JCVideoPlayerStandardFresco extends JCVideoPlayer {
 
     protected ImageView ivBack;
     protected ProgressBar pbBottom, pbLoading;
     protected TextView tvTitle;
-    public ImageView ivThumb;
+    public SimpleDraweeView ivThumb;
     protected ImageView ivCover;
 
     private static Timer mDismissControlViewTimer;
     private static JCBuriedPointStandard jc_BuriedPointStandard;
 
-    public JCVideoPlayerStandard(Context context) {
+    public JCVideoPlayerStandardFresco(Context context) {
         super(context);
     }
 
-    public JCVideoPlayerStandard(Context context, AttributeSet attrs) {
+    public JCVideoPlayerStandardFresco(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -43,7 +48,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
         pbBottom = (ProgressBar) findViewById(R.id.bottom_progressbar);
         tvTitle = (TextView) findViewById(R.id.title);
         ivBack = (ImageView) findViewById(R.id.back);
-        ivThumb = (ImageView) findViewById(R.id.thumb);
+        ivThumb = (SimpleDraweeView) findViewById(R.id.thumb);
         ivCover = (ImageView) findViewById(R.id.cover);
         pbLoading = (ProgressBar) findViewById(R.id.loading);
 
@@ -54,7 +59,6 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
     @Override
     public void setUp(String url, Object... objects) {
-        if (objects.length == 0) return;
         super.setUp(url, objects);
         tvTitle.setText(objects[0].toString());
         if (IF_CURRENT_IS_FULLSCREEN) {
@@ -67,7 +71,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
 
     @Override
     public int getLayoutId() {
-        return R.layout.jc_layout_standard;
+        return R.layout.jc_layout_standard_fresco;
     }
 
     @Override
@@ -76,6 +80,7 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
         switch (CURRENT_STATE) {
             case CURRENT_STATE_NORMAL:
                 changeUiToNormal();
+                cancelDismissControlViewTimer();
                 break;
             case CURRENT_STATE_PREPAREING:
                 changeUiToShowUiPrepareing();
@@ -113,10 +118,6 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
         super.onClick(v);
         int i = v.getId();
         if (i == R.id.thumb) {
-            if (TextUtils.isEmpty(url)) {
-                Toast.makeText(getContext(), "No url", Toast.LENGTH_SHORT).show();
-                return;
-            }
             if (CURRENT_STATE == CURRENT_STATE_NORMAL) {
                 if (jc_BuriedPointStandard != null) {
                     jc_BuriedPointStandard.onClickStartThumb(url, objects);
@@ -306,9 +307,4 @@ public class JCVideoPlayerStandard extends JCVideoPlayer {
         JCVideoPlayer.setJcBuriedPoint(jcBuriedPointStandard);
     }
 
-    @Override
-    public void onCompletion() {
-        super.onCompletion();
-        cancelDismissControlViewTimer();
-    }
 }
