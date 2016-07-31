@@ -17,25 +17,25 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
  * Created by Nathen
  * On 2016/02/07 01:01
  */
-public class ListViewpagerActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class ActivityListViewViewpager extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_viewpager);
+        setContentView(R.layout.activity_listview_viewpager);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("ListViewPagerDemo");
+        getSupportActionBar().setTitle("ViewPagerAndListView");
 
         List<View> listViews = new ArrayList<>();
         ListView listView1 = (ListView) getLayoutInflater().inflate(R.layout.layout_list, null);
         ListView listView2 = (ListView) getLayoutInflater().inflate(R.layout.layout_list, null);
         ListView listView3 = (ListView) getLayoutInflater().inflate(R.layout.layout_list, null);
 
-        listView1.setAdapter(new VideoListAdapter(this));
-        listView2.setAdapter(new VideoListAdapter(this));
-        listView3.setAdapter(new VideoListAdapter(this));
+        listView1.setAdapter(new AdapterVideoList(this));
+        listView2.setAdapter(new AdapterVideoList(this));
+        listView3.setAdapter(new AdapterVideoList(this));
 
         listViews.add(listView1);
         listViews.add(listView2);
@@ -98,6 +98,14 @@ public class ListViewpagerActivity extends AppCompatActivity implements ViewPage
             ((ViewPager) view).addView(viewLists.get(position), 0);
             return viewLists.get(position);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override

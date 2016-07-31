@@ -1,7 +1,6 @@
-package fm.jiecao.jiecaovideoplayer.View;
+package fm.jiecao.jiecaovideoplayer.CustomView;
 
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -36,7 +35,7 @@ public class JCVideoPlayerStandardShowShareButtonAfterFullscreen extends JCVideo
 
     @Override
     public int getLayoutId() {
-        return R.layout.jc_layout_standard_with_share_button;
+        return R.layout.layout_standard_with_share_button;
     }
 
     @Override
@@ -48,12 +47,24 @@ public class JCVideoPlayerStandardShowShareButtonAfterFullscreen extends JCVideo
     }
 
     @Override
-    protected void setStateAndUi(int state) {
-        super.setStateAndUi(state);
-        if (mIfCurrentIsFullscreen) {
-            shareButton.setVisibility(View.VISIBLE);
-        } else {
-            shareButton.setVisibility(View.INVISIBLE);
+    public boolean setUp(String url, int screen, Object... objects) {
+        if (super.setUp(url, screen, objects)) {
+            if (mCurrentScreen == SCREEN_WINDOW_FULLSCREEN) {
+                shareButton.setVisibility(View.VISIBLE);
+            } else {
+                shareButton.setVisibility(View.INVISIBLE);
+            }
+            return true;
         }
+        return false;
     }
+//    @Override
+//    public void setUiWitStateAndScreen(int state) {
+//        super.setUiWitStateAndScreen(state);
+//        if (mIfCurrentIsFullscreen) {
+//            shareButton.setVisibility(View.VISIBLE);
+//        } else {
+//            shareButton.setVisibility(View.INVISIBLE);
+//        }
+//    }
 }

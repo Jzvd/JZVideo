@@ -20,18 +20,18 @@ import fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard;
  * Created by Nathen
  * On 2016/05/23 21:34
  */
-public class MultiHolderActivity extends AppCompatActivity {
+public class ActivityListViewMultiHolder extends AppCompatActivity {
     ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_listview_content);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("MultiHolderDemo");
+        getSupportActionBar().setTitle("MultiHolderListView");
 
 
         listView = (ListView) findViewById(R.id.listview);
@@ -42,7 +42,7 @@ public class MultiHolderActivity extends AppCompatActivity {
     public class VideoListAdapter extends BaseAdapter {
 
         int[] videoIndexs = {0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1};//1 = jcvd, 0 = textView
-        Context context;
+        Context        context;
         LayoutInflater mInflater;
 
         public VideoListAdapter(Context context) {
@@ -83,11 +83,14 @@ public class MultiHolderActivity extends AppCompatActivity {
                     viewHolder.jcVideoPlayer = (JCVideoPlayerStandard) convertView.findViewById(R.id.videoplayer);
                     convertView.setTag(viewHolder);
                 }
-                viewHolder.jcVideoPlayer.setUp(
-                        "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4",
+
+                boolean setUp = viewHolder.jcVideoPlayer.setUp(
+                        "http://gslb.miaopai.com/stream/ed5HCfnhovu3tyIQAiv60Q__.mp4", JCVideoPlayer.SCREEN_LAYOUT_LIST,
                         "嫂子上车");
-                ImageLoader.getInstance().displayImage("http://img4.jiecaojingxuan.com/2016/3/14/2204a578-609b-440e-8af7-a0ee17ff3aee.jpg",
-                        viewHolder.jcVideoPlayer.thumbImageView);
+                if (setUp) {
+                    ImageLoader.getInstance().displayImage("http://img4.jiecaojingxuan.com/2016/3/14/2204a578-609b-440e-8af7-a0ee17ff3aee.jpg",
+                            viewHolder.jcVideoPlayer.thumbImageView);
+                }
             } else {
 
                 TextViewHolder textViewHolder;
@@ -112,6 +115,14 @@ public class MultiHolderActivity extends AppCompatActivity {
         class TextViewHolder {
             TextView textView;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override

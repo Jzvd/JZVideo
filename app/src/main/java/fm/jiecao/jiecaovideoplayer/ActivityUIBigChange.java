@@ -1,31 +1,35 @@
 package fm.jiecao.jiecaovideoplayer;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
 
 /**
- * Created by Nathen
- * On 2016/02/06 19:12
+ * Created by Nathen on 16/7/31.
  */
-public class ListActivity extends AppCompatActivity {
-    ListView listView;
-
+public class ActivityUIBigChange extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("ListDemo");
+        getSupportActionBar().setTitle("BigChangeUI");
+        setContentView(R.layout.activity_ui_big_change);
 
-        listView = (ListView) findViewById(R.id.listview);
-        listView.setAdapter(new VideoListAdapter(this));
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
     }
 
     @Override

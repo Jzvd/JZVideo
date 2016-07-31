@@ -1,4 +1,4 @@
-package fm.jiecao.jiecaovideoplayer.View;
+package fm.jiecao.jiecaovideoplayer.CustomView;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -20,9 +20,9 @@ public class JCVideoPlayerStandardShowTitleAfterFullscreen extends JCVideoPlayer
     }
 
     @Override
-    public boolean setUp(String url, Object... objects) {
-        if (super.setUp(url, objects)) {
-            if (mIfCurrentIsFullscreen) {
+    public boolean setUp(String url, int screen, Object... objects) {
+        if (super.setUp(url, screen, objects)) {
+            if (mCurrentScreen == SCREEN_WINDOW_FULLSCREEN) {
                 titleTextView.setVisibility(View.VISIBLE);
             } else {
                 titleTextView.setVisibility(View.INVISIBLE);
