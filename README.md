@@ -17,11 +17,11 @@ Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微
 
 #### [找点事做挣饺子币](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%89%BE%E7%82%B9%E4%BA%8B%E5%81%9A%EF%BC%8C%E6%8C%A3%E7%82%B9%E9%A5%BA%E5%AD%90%E5%B8%81)
 
-#### 购买咨询服务送饺子币。
+#### [购买咨询服务送饺子币](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E8%B4%AD%E4%B9%B0%E5%92%A8%E8%AF%A2%E6%9C%8D%E5%8A%A1%E9%80%81%E9%A5%BA%E5%AD%90%E5%B8%81)
 
 群主每天定期整理回答issue的提问，如果需要随时随地的微信沟通，每个礼拜300元人民币购买群主7*24小时的一对一咨询服务，回答各种饺子的使用问题，提高集成效率。送8000个JZT。
 
-## 主要特点
+## 项目功能
 
 1. 可以完全自定义UI和任何功能
 2. 一行代码切换播放引擎，支持的视频格式和协议取决于播放引擎，[android.media.MediaPlayer](https://developer.android.com/guide/topics/media/media-formats.html) [ijkplayer](https://github.com/Bilibili/ijkplayer)
