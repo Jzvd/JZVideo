@@ -9,6 +9,10 @@ android {
         targetSdkVersion 28
         versionCode 93
         versionName "7.0.5"
+        ndk {
+            // add support lib
+            abiFilters 'armeabi-v7a' //, 'arm64-v8a'//, "mips"  //,'armeabi''x86',, 'x86_64',
+        }
     }
     signingConfigs {
         releaseConfig {
