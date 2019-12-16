@@ -211,6 +211,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
+    //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
+    private long  lastClickTime = 0;
+    private long  doubleTime = 500;
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         float x = event.getX();
@@ -227,6 +231,13 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     mChangeVolume = false;
                     mChangePosition = false;
                     mChangeBrightness = false;
+
+                    //process doublClick
+                    long currentTimeMillis = System.currentTimeMillis();
+                    if (currentTimeMillis - lastClickTime < doubleTime) {
+                        startButton.performClick();
+                    }
+                    lastClickTime = currentTimeMillis;
                     break;
                 case MotionEvent.ACTION_MOVE:
                     Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
