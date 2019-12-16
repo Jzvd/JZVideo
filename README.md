@@ -13,7 +13,7 @@
 
 Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微信:lipanhelloworld，QQ:1066666651，[Telegram](https://t.me/jiaozitoken)
 
-为了增加项目质量，促进项目进度，调用社群力量，方便社群管理，推出基于以太坊erc-20的数字通证[JiaoZiToken(JZT)(饺子Token)](https://github.com/lipangit/JZT)，通俗点理解，谁给饺子视频播放器写代码、出主意、解决用户问题、活跃社群关系、关注项目进展，就给谁饺子Token。将来会让项目更加丰富，更加精致，必定大有可为。
+为了增加项目质量，促进项目进度，调用社群力量，方便社群管理，推出基于以太坊ERC-20的数字通证[JiaoZiToken(JZT)(饺子Token)](https://github.com/JZVD/JZT)，必定大有可为。
 
 #### [找点事做挣饺子币](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%89%BE%E7%82%B9%E4%BA%8B%E5%81%9A%EF%BC%8C%E6%8C%A3%E7%82%B9%E9%A5%BA%E5%AD%90%E5%B8%81)
 
