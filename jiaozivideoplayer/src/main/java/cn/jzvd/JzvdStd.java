@@ -28,7 +28,6 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.Date;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -180,9 +179,9 @@ public class JzvdStd extends Jzvd {
 
 
     //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
-    private long  lastClickTime = 0;
-    private long  doubleTime = 200;
-    private ArrayDeque<Runnable> delayTask=new ArrayDeque<>();
+    private long lastClickTime = 0;
+    private long doubleTime = 200;
+    private ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -202,34 +201,25 @@ public class JzvdStd extends Jzvd {
                     }
 
                     //加上延时是为了判断点击是否是双击之一，双击不执行这个逻辑
-                    Runnable task=new Runnable() {
-                        @Override
-                        public void run() {
-                            if (!mChangePosition && !mChangeVolume) {
-                                onClickUiToggle();
-                            }
+                    Runnable task = () -> {
+                        if (!mChangePosition && !mChangeVolume) {
+                            onClickUiToggle();
                         }
                     };
-                    v.postDelayed(task,doubleTime+20);
+                    v.postDelayed(task, doubleTime + 20);
                     delayTask.add(task);
-                    while (delayTask.size()>2){
+                    while (delayTask.size() > 2) {
                         delayTask.pollFirst();
                     }
 
-                    //process doublClick
                     long currentTimeMillis = System.currentTimeMillis();
                     if (currentTimeMillis - lastClickTime < doubleTime) {
-                        for(Runnable taskItem:delayTask){
+                        for (Runnable taskItem : delayTask) {
                             v.removeCallbacks(taskItem);
                         }
-
-                        if (state == STATE_PLAYING) {
-                            Log.d(TAG, "pauseVideo [" + this.hashCode() + "] ");
-                            mediaInterface.pause();
-                            onStatePause();
-                        } else if (state == STATE_PAUSE) {
-                            mediaInterface.start();
-                            onStatePlaying();
+                        if (state == STATE_PLAYING || state == STATE_PAUSE) {
+                            Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
+                            startButton.performClick();
                         }
                     }
                     lastClickTime = currentTimeMillis;
