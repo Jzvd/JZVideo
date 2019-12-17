@@ -227,6 +227,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     mChangeVolume = false;
                     mChangePosition = false;
                     mChangeBrightness = false;
+
                     break;
                 case MotionEvent.ACTION_MOVE:
                     Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
