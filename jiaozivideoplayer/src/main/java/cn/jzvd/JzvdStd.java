@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,7 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayDeque;
 import java.util.Date;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -175,6 +178,12 @@ public class JzvdStd extends Jzvd {
         mRetryLayout.setVisibility(View.GONE);
     }
 
+
+    //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
+    private long  lastClickTime = 0;
+    private long  doubleTime = 200;
+    private ArrayDeque<Runnable> delayTask=new ArrayDeque<>();
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
@@ -191,9 +200,39 @@ public class JzvdStd extends Jzvd {
                         int progress = (int) (mSeekTimePosition * 100 / (duration == 0 ? 1 : duration));
                         bottomProgressBar.setProgress(progress);
                     }
-                    if (!mChangePosition && !mChangeVolume) {
-                        onClickUiToggle();
+
+                    //加上延时是为了判断点击是否是双击之一，双击不执行这个逻辑
+                    Runnable task=new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!mChangePosition && !mChangeVolume) {
+                                onClickUiToggle();
+                            }
+                        }
+                    };
+                    v.postDelayed(task,doubleTime+20);
+                    delayTask.add(task);
+                    while (delayTask.size()>2){
+                        delayTask.pollFirst();
                     }
+
+                    //process doublClick
+                    long currentTimeMillis = System.currentTimeMillis();
+                    if (currentTimeMillis - lastClickTime < doubleTime) {
+                        for(Runnable taskItem:delayTask){
+                            v.removeCallbacks(taskItem);
+                        }
+
+                        if (state == STATE_PLAYING) {
+                            Log.d(TAG, "pauseVideo [" + this.hashCode() + "] ");
+                            mediaInterface.pause();
+                            onStatePause();
+                        } else if (state == STATE_PAUSE) {
+                            mediaInterface.start();
+                            onStatePlaying();
+                        }
+                    }
+                    lastClickTime = currentTimeMillis;
                     break;
             }
         } else if (id == R.id.bottom_seek_progress) {
