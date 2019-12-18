@@ -11,7 +11,7 @@
 
 ## 置顶消息：
 
-Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微信:lipanhelloworld，QQ:1066666651，[Telegram](https://t.me/jiaozitoken)
+Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微信:lipanhelloworld，QQ:1066666651，[Telegram](https://t.me/jiaozitoken)，[Weibo](http://weibo.com/2342820395/profile?topnav=1&wvr=6&is_all=1)，[公众号文章](https://github.com/lipangit/JiaoZiVideoPlayer/wiki/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0)
 
 为了增加项目质量，促进项目进度，调用社群力量，方便社群管理，推出基于以太坊ERC-20的数字通证[JiaoZiToken(JZT)(饺子Token)](https://github.com/JZVD/JZT)，必定大有可为。
 
@@ -35,41 +35,17 @@ Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微
 12. demo中添加视频缓存的例子
 13. 倍速播放
 
-## 必读
+## 文档
 
-#### 首先
-
-1. 通读ReadMe
-2. 下载安装demo apk [jiaozivideoplayer-7.0.5.apk](https://github.com/lipangit/JiaoZiVideoPlayer/releases/download/v7.0.5/jiaozivideoplayer-7.0.5.apk)，各个页面都进入一次，各个按钮点一次
-3. 下载调试develop分支，有针对性的通过效果找到实现的源码
-4. 继承JzvdStd，实现自己的需求
-
-#### 必读文章
-
-- [入门文档 1](https://juejin.im/entry/5cb838b5518825186d65430a)
-- [入门文档 2](https://shimo.im/docs/xj5F85W1gqEEBXRJ)
-- [Wiki](https://github.com/lipangit/JiaoZiVideoPlayer/wiki)，很久没更新了
-- [English Wiki](https://github.com/felipetorres/VideoPlayer-Wiki)
-- [Weibo](http://weibo.com/2342820395/profile?topnav=1&wvr=6&is_all=1)
-
-- [公众号文章](https://github.com/lipangit/JiaoZiVideoPlayer/wiki/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0)
-
-#### 参与项目必读
-
-- [加入我们](https://github.com/lipangit/JiaoZiVideoPlayer/wiki/加入我们)
-- [未解决问题](https://github.com/lipangit/JiaoZiVideoPlayer/wiki/未解决问题)，群主解决不了的，需要大家帮助的问题
+1.[文档 - API]()，下载安装demo apk [jiaozivideoplayer-7.0.5.apk](https://github.com/lipangit/JiaoZiVideoPlayer/releases/download/v7.0.5/jiaozivideoplayer-7.0.5.apk)，仔细过一遍demo
+2.[文档 - 自定义Jzvd]()，继承JzvdStd实现自己的播放器
+3.[文档 - 自定义播放内核]()，测试哪个播放内核适合自己的项目
 
 ## 效果
 
 ![Demo Screenshot][1]
 
-## 使用
-
-即便是自定义UI，或者对Library有过修改，把自定义的逻辑写到继承JzvdStd的类中，然后依然通过如下骤调用播放器。
-
-#### 注意：
-1.7.0版本之后要在JzvdStd外面包一层Layout
-2.如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
+## QuickStart
 
 1.添加类库
 ```gradle
@@ -132,10 +108,16 @@ protected void onPause() {
 -keep interface tv.danmaku.ijk.media.player.** { *; }
 ```
 
+即便是自定义UI，或者对Library有过修改，依然要通过上述步骤使用播放器。
+
+## 注意：
+1.7.0版本之后要在JzvdStd外面包一层Layout
+2.如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
+
 
 ## License MIT
 
-Copyright (c) 2015-2019 李盼
+Copyright (c) 2015-2020 李盼
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
