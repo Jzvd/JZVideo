@@ -386,6 +386,12 @@ public class JzvdStd extends Jzvd {
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         super.onStopTrackingTouch(seekBar);
+        if (state == STATE_PREPARING) {
+            loadingProgressBar.setVisibility(View.VISIBLE);
+        }else{
+            loadingProgressBar.setVisibility(View.GONE);
+        }
+
         startDismissControlViewTimer();
     }
 
