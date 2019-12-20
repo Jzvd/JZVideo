@@ -221,13 +221,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                 case MotionEvent.ACTION_DOWN:
                     Log.i(TAG, "onTouch surfaceContainer actionDown [" + this.hashCode() + "] ");
                     mTouchingProgressBar = true;
-
                     mDownX = x;
                     mDownY = y;
                     mChangeVolume = false;
                     mChangePosition = false;
                     mChangeBrightness = false;
-
                     break;
                 case MotionEvent.ACTION_MOVE:
                     Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
@@ -309,6 +307,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     }
                     break;
                 case MotionEvent.ACTION_UP:
+                    Log.d("cxx","爷");
                     Log.i(TAG, "onTouch surfaceContainer actionUp [" + this.hashCode() + "] ");
                     mTouchingProgressBar = false;
                     dismissProgressDialog();

@@ -46,6 +46,5 @@ public class JzvdStdAutoCompleteAfterFullscreen extends JzvdStd {
         } else {
             super.onAutoCompletion();
         }
-
     }
 }

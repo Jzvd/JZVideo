@@ -193,6 +193,7 @@ public class JzvdStd extends Jzvd {
                 case MotionEvent.ACTION_MOVE:
                     break;
                 case MotionEvent.ACTION_UP:
+                    Log.d("cxx","父");
                     startDismissControlViewTimer();
                     if (mChangePosition) {
                         long duration = getDuration();
