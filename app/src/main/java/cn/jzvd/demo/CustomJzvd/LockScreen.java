@@ -49,7 +49,6 @@ public class LockScreen extends JzvdStd {
                 if (screen == SCREEN_FULLSCREEN && isLockScreen) {
                     //&& Math.abs(Math.abs(event.getX() - starX)) > ViewConfiguration.get(getContext()).getScaledTouchSlop()  && Math.abs(Math.abs(event.getY() - startY)) > ViewConfiguration.get(getContext()).getScaledTouchSlop()
                     if (event.getX() == starX || event.getY() == startY) {
-                        Log.d("cxx", "fff");
                         startDismissControlViewTimer();
                         onClickUiToggle();
                         bottomProgressBar.setVisibility(VISIBLE);

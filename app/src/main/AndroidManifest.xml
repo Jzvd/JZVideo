@@ -18,6 +18,11 @@
             android:name=".ActivityMain"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".LockScreenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

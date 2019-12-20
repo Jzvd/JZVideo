@@ -127,7 +127,6 @@
             android:src="@drawable/jz_click_back_selector" />
 
 
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -142,15 +141,7 @@
             android:maxLines="2"
             android:textColor="#ffffff"
             android:textSize="18sp" />
-        <ImageView
-            android:id="@+id/lock"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_centerInParent="true"
 
-            android:visibility="gone"
-            android:scaleType="centerInside"
-            android:src="@drawable/lock" />
 
         <LinearLayout
             android:id="@+id/battery_time_layout"
@@ -220,6 +211,16 @@
         android:textColor="#ffffff"
         android:textSize="12sp"
         android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/lock"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/unlock"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/retry_layout"
