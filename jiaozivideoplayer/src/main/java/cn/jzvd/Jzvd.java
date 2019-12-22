@@ -227,6 +227,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     mChangeVolume = false;
                     mChangePosition = false;
                     mChangeBrightness = false;
+
                     break;
                 case MotionEvent.ACTION_MOVE:
                     Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
@@ -350,6 +351,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             preloading = false;
         }
         if (jzDataSource.getCurrentUrl().toString().toLowerCase().contains("mp3") ||
+                jzDataSource.getCurrentUrl().toString().toLowerCase().contains("wma") ||
+                jzDataSource.getCurrentUrl().toString().toLowerCase().contains("aac") ||
+                jzDataSource.getCurrentUrl().toString().toLowerCase().contains("m4a") ||
                 jzDataSource.getCurrentUrl().toString().toLowerCase().contains("wav")) {
             onStatePlaying();
         }
