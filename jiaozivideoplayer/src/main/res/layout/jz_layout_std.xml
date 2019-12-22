@@ -20,7 +20,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:background="#000000"
-        android:scaleType="fitCenter" />
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/layout_bottom"
