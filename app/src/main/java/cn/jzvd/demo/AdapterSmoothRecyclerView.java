@@ -1,12 +1,7 @@
 package cn.jzvd.demo;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +20,11 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
     public static final String TAG = "AdapterSmoothRecyclerView";
     int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     private Context context;
+    private OnVideoClick onVideoClick;
+
+    public void setOnVideoClick(OnVideoClick onVideoClick) {
+        this.onVideoClick = onVideoClick;
+    }
 
     public AdapterSmoothRecyclerView(Context context) {
         this.context = context;
@@ -46,13 +46,7 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
         holder.jzvdStd.setClickUi(new JzvdStdRv.ClickUi() {
             @Override
             public void onClickUiToggle() {
-                JzvdStdRv.setCurrentJzvd(holder.jzvdStd);
-                ViewCompat.setTransitionName(holder.container, "videoView");
-                Activity activity = (Activity) holder.itemView.getContext();
-                Intent intent = new Intent(activity, ActivityListViewDetail.class);
-                // 这里指定了共享的视图元素
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, holder.container, "videoView");
-                ActivityCompat.startActivity(activity, intent, options.toBundle());
+                if(onVideoClick!=null)onVideoClick.videoClick(holder.container,position);
                 holder.jzvdStd.setClickUi(null);
             }
         });
@@ -85,6 +79,10 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
             jzvdStd = itemView.findViewById(R.id.videoplayer);
             container = itemView.findViewById(R.id.surface_container);
         }
+    }
+
+    public interface OnVideoClick{
+        void videoClick(View view,int position);
     }
 
 }
