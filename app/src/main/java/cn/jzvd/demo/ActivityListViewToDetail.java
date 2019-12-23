@@ -1,18 +1,21 @@
 package cn.jzvd.demo;
 
 import android.annotation.TargetApi;
-import android.graphics.Matrix;
-import android.graphics.RectF;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.SharedElementCallback;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.List;
 
 import cn.jzvd.Jzvd;
 
@@ -32,23 +35,32 @@ public class ActivityListViewToDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setTitle("ActivityListViewToDetail");
         setContentView(R.layout.activity_recyclerview_content);
-
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapterVideoList = new AdapterSmoothRecyclerView(this);
         recyclerView.setAdapter(adapterVideoList);
-        setExitSharedElementCallback(new TransitionCallBack() {
+        adapterVideoList.setOnVideoClick(new AdapterSmoothRecyclerView.OnVideoClick() {
+            @Override
+            public void videoClick(View container, int position) {
+                ViewCompat.setTransitionName(container, "videoView");
+                Intent intent = new Intent(ActivityListViewToDetail.this, ActivityListViewDetail.class);
+                // 这里指定了共享的视图元素
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityListViewToDetail.this, container, "videoView");
+                ActivityCompat.startActivity(ActivityListViewToDetail.this, intent, options.toBundle());
+            }
         });
+        setExitSharedElementCallback(new TransitionCallBack());
+
     }
 
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public class TransitionCallBack extends SharedElementCallback {
-
         @Override
-        public Parcelable onCaptureSharedElementSnapshot(View sharedElement, Matrix viewToGlobalMatrix, RectF screenBounds) {
-            sharedElement.setAlpha(1);
-            return super.onCaptureSharedElementSnapshot(sharedElement, viewToGlobalMatrix, screenBounds);
+        public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
+            super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
+            //保证动画执行完毕再去添加视频到列表，解决闪屏问题
+            adapterVideoList.notifyDataSetChanged();
         }
     }
 
@@ -73,8 +85,8 @@ public class ActivityListViewToDetail extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        adapterVideoList.notifyDataSetChanged();
+    protected void onDestroy() {
+        super.onDestroy();
+        Jzvd.releaseAllVideos();
     }
 }

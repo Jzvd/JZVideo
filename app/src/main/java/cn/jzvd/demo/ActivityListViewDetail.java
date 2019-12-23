@@ -3,13 +3,10 @@ package cn.jzvd.demo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
@@ -33,11 +30,11 @@ public class ActivityListViewDetail extends AppCompatActivity {
         container = findViewById(R.id.surface_container);
         ViewParent parent = JzvdStdRv.CURRENT_JZVD.getParent();
         if (parent != null) {
-            ((ViewGroup) parent).removeAllViews();
+            ((ViewGroup) parent).removeView(JzvdStdRv.CURRENT_JZVD);
         }
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        container.addView(JzvdStdRv.CURRENT_JZVD,params);
+        container.addView(JzvdStdRv.CURRENT_JZVD, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
     }
 
     @Override
@@ -49,11 +46,6 @@ public class ActivityListViewDetail extends AppCompatActivity {
     }
 
     @Override
-    public void supportFinishAfterTransition() {
-        super.supportFinishAfterTransition();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -62,5 +54,6 @@ public class ActivityListViewDetail extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }
