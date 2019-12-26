@@ -3,7 +3,6 @@ package cn.jzvd.demo;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.FrameLayout;
 import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
+import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
 import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
 
 public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoothRecyclerView.MyViewHolder> {
@@ -41,28 +41,42 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
     @SuppressLint("LongLogTag")
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Log.i(TAG, "onBindViewHolder [" + holder.jzvdStd.hashCode() + "] position=" + position);
-
-        holder.jzvdStd.setClickUi(new JzvdStdRv.ClickUi() {
-            @Override
-            public void onClickUiToggle() {
-                if(onVideoClick!=null)onVideoClick.videoClick(holder.container,position);
-                holder.jzvdStd.setClickUi(null);
-            }
-        });
-        if (holder.container.getChildCount() == 0) {
+        JzvdStdRv jzvdStdRv;
+        if (JzvdStdRv.CURRENT_JZVD != null && AutoPlayUtils.positionInList == position) {
             ViewParent parent = JzvdStdRv.CURRENT_JZVD.getParent();
             if (parent != null) {
                 ((ViewGroup) parent).removeView(JzvdStdRv.CURRENT_JZVD);
             }
             holder.container.addView(JzvdStdRv.CURRENT_JZVD, new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        }else {
-            holder.jzvdStd.setUp(
+            jzvdStdRv = (JzvdStdRv) JzvdStdRv.CURRENT_JZVD;
+        } else {
+            jzvdStdRv = new JzvdStdRv(holder.container.getContext());
+            holder.container.addView(jzvdStdRv,
+                    new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT));
+            jzvdStdRv.setUp(
                     VideoConstant.videoUrls[0][position],
                     VideoConstant.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-            Glide.with(holder.jzvdStd.getContext()).load(VideoConstant.videoThumbs[0][position]).into(holder.jzvdStd.thumbImageView);
+            Glide.with(holder.container.getContext()).load(VideoConstant.videoThumbs[0][position])
+                    .into(jzvdStdRv.thumbImageView);
         }
+        jzvdStdRv.setId(R.id.jzvdplayer);
+        jzvdStdRv.setAtList(true);
+        jzvdStdRv.setClickUi(new JzvdStdRv.ClickUi() {
+            @Override
+            public void onClickUiToggle() {
+                if (onVideoClick != null) onVideoClick.videoClick(holder.container, position);
+                AutoPlayUtils.positionInList = position;
+                jzvdStdRv.setAtList(false);
+                jzvdStdRv.setClickUi(null);
+            }
+
+            @Override
+            public void onClickStart() {
+                AutoPlayUtils.positionInList = position;
+            }
+        });
     }
 
     @Override
@@ -71,18 +85,16 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        JzvdStdRv jzvdStd;
         FrameLayout container;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            jzvdStd = itemView.findViewById(R.id.videoplayer);
             container = itemView.findViewById(R.id.surface_container);
         }
     }
 
-    public interface OnVideoClick{
-        void videoClick(View view,int position);
+    public interface OnVideoClick {
+        void videoClick(View view, int position);
     }
 
 }

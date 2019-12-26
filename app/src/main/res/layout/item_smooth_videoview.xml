@@ -5,15 +5,10 @@
     android:orientation="vertical">
 
     <FrameLayout
+        android:background="#000000"
         android:id="@+id/surface_container"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <cn.jzvd.demo.CustomJzvd.JzvdStdRv
-            android:id="@+id/videoplayer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        android:layout_height="200dp" />
 
 
 </LinearLayout>

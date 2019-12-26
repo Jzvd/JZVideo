@@ -18,6 +18,7 @@ import android.view.View;
 import java.util.List;
 
 import cn.jzvd.Jzvd;
+import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
 
 /**
  * 列表平滑进入详情页
@@ -36,7 +37,8 @@ public class ActivityListViewToDetail extends AppCompatActivity {
         getSupportActionBar().setTitle("ActivityListViewToDetail");
         setContentView(R.layout.activity_recyclerview_content);
         recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayoutManager);
         adapterVideoList = new AdapterSmoothRecyclerView(this);
         recyclerView.setAdapter(adapterVideoList);
         adapterVideoList.setOnVideoClick(new AdapterSmoothRecyclerView.OnVideoClick() {
@@ -47,6 +49,15 @@ public class ActivityListViewToDetail extends AppCompatActivity {
                 // 这里指定了共享的视图元素
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityListViewToDetail.this, container, "videoView");
                 ActivityCompat.startActivity(ActivityListViewToDetail.this, intent, options.toBundle());
+            }
+        });
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy != 0) {
+                    AutoPlayUtils.onScrollReleaseAllVideos(mLayoutManager.findFirstVisibleItemPosition(), mLayoutManager.findLastVisibleItemPosition(), 0.2f);
+                }
             }
         });
         setExitSharedElementCallback(new TransitionCallBack());
@@ -87,6 +98,7 @@ public class ActivityListViewToDetail extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AutoPlayUtils.positionInList = -1;
         Jzvd.releaseAllVideos();
     }
 }
