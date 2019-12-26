@@ -8,6 +8,7 @@ import cn.jzvd.JzvdStd;
 
 public class JzvdStdRv extends JzvdStd {
     private ClickUi clickUi;
+    private boolean isAtList;
 
     public void setClickUi(ClickUi clickUi) {
         this.clickUi = clickUi;
@@ -21,8 +22,18 @@ public class JzvdStdRv extends JzvdStd {
         super(context, attrs);
     }
 
+    public boolean isAtList() {
+        return isAtList;
+    }
+
+    public void setAtList(boolean atList) {
+        isAtList = atList;
+        if (isAtList) bottomContainer.setVisibility(GONE);
+    }
+
     @Override
     public void onClick(View v) {
+        if (isAtList) bottomContainer.setVisibility(GONE);
         if (v.getId() == cn.jzvd.R.id.surface_container &&
                 (state == STATE_PLAYING ||
                         state == STATE_PAUSE)) {
@@ -32,13 +43,15 @@ public class JzvdStdRv extends JzvdStd {
     }
 
     @Override
-    public void onClickUiToggle() {
-        bottomContainer.setVisibility(View.GONE);
-        super.onClickUiToggle();
+    public void startVideo() {
+        super.startVideo();
+        if (clickUi != null) clickUi.onClickStart();
     }
 
     public interface ClickUi {
         void onClickUiToggle();
+
+        void onClickStart();
     }
 
 }
