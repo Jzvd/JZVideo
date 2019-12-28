@@ -3,7 +3,6 @@ package cn.jzvd.demo;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,7 @@ import com.bumptech.glide.Glide;
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
 import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
+import cn.jzvd.demo.CustomJzvd.ViewAttr;
 
 public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoothRecyclerView.MyViewHolder> {
 
@@ -52,13 +52,12 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             jzvdStdRv = (JzvdStdRv) JzvdStdRv.CURRENT_JZVD;
         } else {
-            Log.d(TAG, "onBindViewHolder: " + holder.container.getChildCount());
             if (holder.container.getChildCount() == 0) {
                 jzvdStdRv = new JzvdStdRv(holder.container.getContext());
                 holder.container.addView(jzvdStdRv,
                         new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.MATCH_PARENT));
-            }else {
+            } else {
                 jzvdStdRv = (JzvdStdRv) holder.container.getChildAt(0);
             }
             jzvdStdRv.setUp(
@@ -72,9 +71,14 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
         jzvdStdRv.setClickUi(new JzvdStdRv.ClickUi() {
             @Override
             public void onClickUiToggle() {
-                if (onVideoClick != null) onVideoClick.videoClick(holder.container, position);
                 AutoPlayUtils.positionInList = position;
                 jzvdStdRv.setAtList(false);
+                ViewAttr attr = new ViewAttr();
+                int[] location = new int[2];
+                holder.container.getLocationOnScreen(location);
+                attr.setX(location[0]);
+                attr.setY(location[1]);
+                if (onVideoClick != null) onVideoClick.videoClick(attr, position);
                 jzvdStdRv.setClickUi(null);
             }
 
@@ -100,7 +104,7 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
     }
 
     public interface OnVideoClick {
-        void videoClick(View view, int position);
+        void videoClick(ViewAttr viewAttr, int position);
     }
 
 }
