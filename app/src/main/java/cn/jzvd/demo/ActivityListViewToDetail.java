@@ -1,25 +1,20 @@
 package cn.jzvd.demo;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.app.SharedElementCallback;
-import android.support.v4.view.ViewCompat;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.MenuItem;
-import android.view.View;
-
-import java.util.List;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
+import cn.jzvd.demo.CustomJzvd.ViewAttr;
 
 /**
  * 列表平滑进入详情页
@@ -27,8 +22,9 @@ import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
 public class ActivityListViewToDetail extends AppCompatActivity {
     RecyclerView recyclerView;
     AdapterSmoothRecyclerView adapterVideoList;
+    private static final String TAG = "ActivityListViewToDetai";
+    public static ActivityListViewToDetail activityListViewToDetail;
 
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,19 +33,19 @@ public class ActivityListViewToDetail extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setTitle("ActivityListViewToDetail");
         setContentView(R.layout.activity_recyclerview_content);
+        activityListViewToDetail = this;
         recyclerView = findViewById(R.id.recyclerview);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         adapterVideoList = new AdapterSmoothRecyclerView(this);
         recyclerView.setAdapter(adapterVideoList);
         adapterVideoList.setOnVideoClick(new AdapterSmoothRecyclerView.OnVideoClick() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
-            public void videoClick(View container, int position) {
-                ViewCompat.setTransitionName(container, "videoView");
+            public void videoClick(ViewAttr viewAttr, int position) {
                 Intent intent = new Intent(ActivityListViewToDetail.this, ActivityListViewDetail.class);
-                // 这里指定了共享的视图元素
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(ActivityListViewToDetail.this, container, "videoView");
-                ActivityCompat.startActivity(ActivityListViewToDetail.this, intent, options.toBundle());
+                intent.putExtra("attr", viewAttr);
+                startActivity(intent);
             }
         });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -69,21 +65,13 @@ public class ActivityListViewToDetail extends AppCompatActivity {
                 }
             }
         });
-        setExitSharedElementCallback(new TransitionCallBack());
-
+        ((SimpleItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
     }
 
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public class TransitionCallBack extends SharedElementCallback {
-        @Override
-        public void onSharedElementEnd(List<String> sharedElementNames, List<View> sharedElements, List<View> sharedElementSnapshots) {
-            super.onSharedElementEnd(sharedElementNames, sharedElements, sharedElementSnapshots);
-            //保证动画执行完毕再去添加视频到列表，解决闪屏问题
-            adapterVideoList.notifyDataSetChanged();
-        }
+    public void animateFinish(){
+        adapterVideoList.notifyDataSetChanged();
     }
-
 
     @Override
     public void onBackPressed() {
