@@ -95,6 +95,7 @@ public class ActivityListViewToDetail extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        activityListViewToDetail = null;
         AutoPlayUtils.positionInList = -1;
         Jzvd.releaseAllVideos();
     }
