@@ -3,6 +3,7 @@ package cn.jzvd.demo;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,10 +52,15 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             jzvdStdRv = (JzvdStdRv) JzvdStdRv.CURRENT_JZVD;
         } else {
-            jzvdStdRv = new JzvdStdRv(holder.container.getContext());
-            holder.container.addView(jzvdStdRv,
-                    new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT));
+            Log.d(TAG, "onBindViewHolder: " + holder.container.getChildCount());
+            if (holder.container.getChildCount() == 0) {
+                jzvdStdRv = new JzvdStdRv(holder.container.getContext());
+                holder.container.addView(jzvdStdRv,
+                        new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.MATCH_PARENT));
+            }else {
+                jzvdStdRv = (JzvdStdRv) holder.container.getChildAt(0);
+            }
             jzvdStdRv.setUp(
                     VideoConstant.videoUrls[0][position],
                     VideoConstant.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
