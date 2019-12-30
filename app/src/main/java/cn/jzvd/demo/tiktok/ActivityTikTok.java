@@ -31,11 +31,6 @@ public class ActivityTikTok extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("TikTokRecyclerView");
 
         setContentView(R.layout.activity_tiktok);
         rvTiktok = findViewById(R.id.rv_tiktok);
