@@ -18,13 +18,13 @@ public class AutoPlayUtils {
      * @param firstVisiblePosition
      * @param lastVisiblePosition
      */
-    public static void onScrollPlayVideo(RecyclerView recyclerView, int firstVisiblePosition, int lastVisiblePosition) {
+    public static void onScrollPlayVideo(RecyclerView recyclerView,int jzvdId, int firstVisiblePosition, int lastVisiblePosition) {
         if (JZUtils.isWifiConnected(recyclerView.getContext())) {
             for (int i = 0; i <= lastVisiblePosition - firstVisiblePosition; i++) {
                 View child = recyclerView.getChildAt(i);
-                View view = child.findViewById(R.id.jzvdplayer);
-                if (view != null && view instanceof JzvdStdRv) {
-                    JzvdStdRv player = (JzvdStdRv) view;
+                View view = child.findViewById(jzvdId);
+                if (view != null && view instanceof Jzvd) {
+                    Jzvd player = (Jzvd) view;
                     if (getViewVisiblePercent(player) == 1f) {
                         if (positionInList != i + firstVisiblePosition) {
                             player.startButton.performClick();

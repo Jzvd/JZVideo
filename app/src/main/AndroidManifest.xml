@@ -106,6 +106,10 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentWindow" />
+        <activity
+            android:name=".ActivityListViewAutoPlay"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -55,4 +55,9 @@ public class ActivityListView extends AppCompatActivity {
     public void clickListSmoothToDetail(View view) {
         startActivity(new Intent(ActivityListView.this, ActivityListViewToDetail.class));
     }
+
+    public void clickListAutoPlay(View view) {
+        startActivity(new Intent(ActivityListView.this, ActivityListViewAutoPlay.class));
+    }
+
 }
