@@ -24,7 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ActivityDirectPlay"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -93,13 +92,16 @@
             android:name=".ActivityApiExtendsNormal"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ActivityPreloading"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 
-
+        <activity android:name=".tiktok.ActivityTikTok"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/jz_activity_fullscreen"
+            ></activity>
     </application>
 
 </manifest>
