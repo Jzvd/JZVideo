@@ -68,7 +68,6 @@ public class JzvdStd extends Jzvd {
     protected ProgressBar mDialogBrightnessProgressBar;
     protected TextView mDialogBrightnessTextView;
 
-
     public JzvdStd(Context context) {
         super(context);
     }
@@ -105,6 +104,8 @@ public class JzvdStd extends Jzvd {
         super.setUp(jzDataSource, screen, mediaInterfaceClass);
         titleTextView.setText(jzDataSource.title);
         setScreen(screen);
+        NetWorkHelper.registerNetworkStatusChangedListener(getApplicationContext(), onNetworkStatusChangedListener);
+
     }
 
     public void changeStartButtonSize(int size) {
@@ -366,14 +367,28 @@ public class JzvdStd extends Jzvd {
         builder.setMessage(getResources().getString(R.string.tips_not_wifi));
         builder.setPositiveButton(getResources().getString(R.string.tips_not_wifi_confirm), (dialog, which) -> {
             dialog.dismiss();
-            startVideo();
             WIFI_TIP_DIALOG_SHOWED = true;
+            if (state == STATE_PAUSE) {
+                startButton.performClick();
+            }else {
+                startVideo();
+            }
+
         });
         builder.setNegativeButton(getResources().getString(R.string.tips_not_wifi_cancel), (dialog, which) -> {
             dialog.dismiss();
+            releaseAllVideos();
             clearFloatScreen();
         });
-        builder.setOnCancelListener(DialogInterface::dismiss);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+                releaseAllVideos();
+                clearFloatScreen();
+            }
+        });
+
         builder.create().show();
     }
 
@@ -798,6 +813,7 @@ public class JzvdStd extends Jzvd {
         if (clarityPopWindow != null) {
             clarityPopWindow.dismiss();
         }
+        NetWorkHelper.unregisterNetworkStatusChangedListener(getApplicationContext(), onNetworkStatusChangedListener);
     }
 
     public void dissmissControlView() {
@@ -843,4 +859,26 @@ public class JzvdStd extends Jzvd {
             }
         }
     };
+
+    public NetWorkHelper.OnNetworkStatusChangedListener onNetworkStatusChangedListener = new NetWorkHelper.OnNetworkStatusChangedListener() {
+        @Override
+        public void onDisconnected() {
+        }
+
+        @Override
+        public void onConnected(NetWorkHelper.NetworkType networkType) {
+            switch (networkType) {
+                case NETWORK_2G:
+                case NETWORK_3G:
+                case NETWORK_4G:
+                    if (!WIFI_TIP_DIALOG_SHOWED && state == STATE_PLAYING) {
+                        startButton.performClick();
+                        showWifiDialog();
+                    }
+                    break;
+            }
+        }
+    };
+
+
 }
