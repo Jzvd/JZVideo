@@ -528,7 +528,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             e.printStackTrace();
         }
         addTextureView();
-
         mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         JZUtils.scanForActivity(getContext()).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -911,6 +910,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             }
         }
     };
+
+
 
     public static void goOnPlayOnResume() {
         if (CURRENT_JZVD != null) {
