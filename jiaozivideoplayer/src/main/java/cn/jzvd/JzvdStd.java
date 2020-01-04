@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -67,7 +68,7 @@ public class JzvdStd extends Jzvd {
     protected Dialog mBrightnessDialog;
     protected ProgressBar mDialogBrightnessProgressBar;
     protected TextView mDialogBrightnessTextView;
-
+    private boolean mIsWifi;
 
     public JzvdStd(Context context) {
         super(context);
@@ -158,6 +159,12 @@ public class JzvdStd extends Jzvd {
         changeUiToComplete();
         cancelDismissControlViewTimer();
         bottomProgressBar.setProgress(100);
+    }
+
+    @Override
+    public void startVideo() {
+        super.startVideo();
+        registerWifiListener(getApplicationContext());
     }
 
     @Override
@@ -366,14 +373,28 @@ public class JzvdStd extends Jzvd {
         builder.setMessage(getResources().getString(R.string.tips_not_wifi));
         builder.setPositiveButton(getResources().getString(R.string.tips_not_wifi_confirm), (dialog, which) -> {
             dialog.dismiss();
-            startVideo();
             WIFI_TIP_DIALOG_SHOWED = true;
+            if (state == STATE_PAUSE) {
+                startButton.performClick();
+            } else {
+                startVideo();
+            }
+
         });
         builder.setNegativeButton(getResources().getString(R.string.tips_not_wifi_cancel), (dialog, which) -> {
             dialog.dismiss();
+            releaseAllVideos();
             clearFloatScreen();
         });
-        builder.setOnCancelListener(DialogInterface::dismiss);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+                releaseAllVideos();
+                clearFloatScreen();
+            }
+        });
+
         builder.create().show();
     }
 
@@ -798,6 +819,7 @@ public class JzvdStd extends Jzvd {
         if (clarityPopWindow != null) {
             clarityPopWindow.dismiss();
         }
+        unregisterWifiListener(getApplicationContext());
     }
 
     public void dissmissControlView() {
@@ -843,4 +865,32 @@ public class JzvdStd extends Jzvd {
             }
         }
     };
+
+    private void registerWifiListener(Context context) {
+        if (context == null) return;
+        mIsWifi = JZUtils.isWifiConnected(context);
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        context.registerReceiver(wifiReceiver, intentFilter);
+    }
+
+    private void unregisterWifiListener(Context context) {
+        if (context == null) return;
+        context.unregisterReceiver(wifiReceiver);
+    }
+
+    private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+                boolean isWifi = JZUtils.isWifiConnected(context);
+                if (mIsWifi == isWifi) return;
+                mIsWifi = isWifi;
+                if (!mIsWifi && !WIFI_TIP_DIALOG_SHOWED && state == STATE_PLAYING) {
+                    startButton.performClick();
+                    showWifiDialog();
+                }
+            }
+        }
+    };
+
 }
