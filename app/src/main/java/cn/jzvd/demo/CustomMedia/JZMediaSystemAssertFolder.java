@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.Surface;
 
 import cn.jzvd.JZMediaInterface;
@@ -193,6 +194,7 @@ public class JZMediaSystemAssertFolder extends JZMediaInterface implements Media
 
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+        Log.i("GD", "======= onSurfaceTextureAvailable =======");
         if (SAVED_SURFACE == null) {
             SAVED_SURFACE = surface;
             prepare();
