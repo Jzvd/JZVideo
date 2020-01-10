@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.MenuItem;
+import android.view.Window;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
@@ -27,11 +28,7 @@ public class ActivityListViewToDetail extends AppCompatActivity {
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("ActivityListViewToDetail");
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_recyclerview_content);
         activityListViewToDetail = this;
         recyclerView = findViewById(R.id.recyclerview);
@@ -49,14 +46,6 @@ public class ActivityListViewToDetail extends AppCompatActivity {
             }
         });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    AutoPlayUtils.onScrollPlayVideo(recyclerView,R.id.jzvdplayer, mLayoutManager.findFirstVisibleItemPosition(), mLayoutManager.findLastVisibleItemPosition());
-                }
-            }
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.MyJzvdStd;
+import cn.jzvd.demo.tiktok.ActivityTikTok;
 
 /**
  * Created by Nathen on 16/7/22.
@@ -62,6 +63,10 @@ public class ActivityMain extends AppCompatActivity {
 
     public void clickWebView(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityWebView.class));
+    }
+
+    public void clickTikTok(View view) {
+        ActivityTikTok.openActivity(ActivityMain.this);
     }
 
 }
