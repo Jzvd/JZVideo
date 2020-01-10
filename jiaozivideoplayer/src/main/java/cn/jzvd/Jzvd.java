@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -444,6 +445,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         mediaInterface.release();
         JZUtils.scanForActivity(getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         JZUtils.saveProgress(getContext(), jzDataSource.getCurrentUrl(), 0);
+
+        setCurrentJzvd(null);
+        if(screen == SCREEN_FULLSCREEN) {
+            gotoScreenNormal();
+        }
     }
 
     /**
