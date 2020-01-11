@@ -69,4 +69,8 @@ public class ActivityMain extends AppCompatActivity {
         ActivityTikTok.openActivity(ActivityMain.this);
     }
 
+    public void clickLocal(View view) {
+        startActivity(new Intent(ActivityMain.this, ActivityLocalSource.class));
+    }
+
 }
