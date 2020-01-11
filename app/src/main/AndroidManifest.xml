@@ -102,6 +102,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/jz_activity_fullscreen"
             ></activity>
+        <activity
+            android:name=".ActivityLocalSource"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
