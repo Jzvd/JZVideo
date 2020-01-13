@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.Surface;
 
 import cn.jzvd.JZMediaInterface;
@@ -138,11 +139,7 @@ public class JZMediaSystemAssertFolder extends JZMediaInterface implements Media
 
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
-        mediaPlayer.start();
-        if (jzvd.jzDataSource.getCurrentUrl().toString().toLowerCase().contains("mp3") ||
-                jzvd.jzDataSource.getCurrentUrl().toString().toLowerCase().contains("wav")) {
-            handler.post(() -> jzvd.onPrepared());
-        }
+        handler.post(() -> jzvd.onPrepared());//如果是mp3音频，走这里
     }
 
     @Override
@@ -193,6 +190,7 @@ public class JZMediaSystemAssertFolder extends JZMediaInterface implements Media
 
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+        Log.i("GD", "======= onSurfaceTextureAvailable =======");
         if (SAVED_SURFACE == null) {
             SAVED_SURFACE = surface;
             prepare();

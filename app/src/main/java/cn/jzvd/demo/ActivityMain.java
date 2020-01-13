@@ -70,6 +70,7 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     public void clickLocal(View view) {
-        startActivity(new Intent(ActivityMain.this, ActivityLocal.class));
+        startActivity(new Intent(ActivityMain.this, ActivityLocalSource.class));
     }
+
 }
