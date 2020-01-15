@@ -8,7 +8,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -105,6 +104,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected int mGestureDownVolume;
     protected float mGestureDownBrightness;
     protected long mSeekTimePosition;
+    private Context jzvdContext;
 
     public Jzvd(Context context) {
         super(context);
@@ -447,7 +447,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         JZUtils.saveProgress(getContext(), jzDataSource.getCurrentUrl(), 0);
 
         setCurrentJzvd(null);
-        if(screen == SCREEN_FULLSCREEN) {
+        if (screen == SCREEN_FULLSCREEN) {
             gotoScreenNormal();
         }
     }
@@ -745,24 +745,25 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void gotoScreenFullscreen() {
+        jzvdContext = ((ViewGroup) getParent()).getContext();
         ViewGroup vg = (ViewGroup) getParent();
         vg.removeView(this);
         cloneAJzvd(vg);
         CONTAINER_LIST.add(vg);
-        vg = (ViewGroup) (JZUtils.scanForActivity(getContext())).getWindow().getDecorView();//和他也没有关系
+        vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();//和他也没有关系
         vg.addView(this, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         setScreenFullscreen();
-        JZUtils.hideStatusBar(getContext());
-        JZUtils.setRequestedOrientation(getContext(), FULLSCREEN_ORIENTATION);
-        JZUtils.hideSystemUI(getContext());//华为手机和有虚拟键的手机全屏时可隐藏虚拟键 issue:1326
+        JZUtils.hideStatusBar(jzvdContext);
+        JZUtils.setRequestedOrientation(jzvdContext, FULLSCREEN_ORIENTATION);
+        JZUtils.hideSystemUI(jzvdContext);//华为手机和有虚拟键的手机全屏时可隐藏虚拟键 issue:1326
 
     }
 
     public void gotoScreenNormal() {//goback本质上是goto
         gobakFullscreenTime = System.currentTimeMillis();//退出全屏
-        ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(getContext())).getWindow().getDecorView();
+        ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
         CONTAINER_LIST.getLast().removeAllViews();
         CONTAINER_LIST.getLast().addView(this, new FrameLayout.LayoutParams(
@@ -770,9 +771,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         CONTAINER_LIST.pop();
 
         setScreenNormal();//这块可以放到jzvd中
-        JZUtils.showStatusBar(getContext());
-        JZUtils.setRequestedOrientation(getContext(), NORMAL_ORIENTATION);
-        JZUtils.showSystemUI(getContext());
+        JZUtils.showStatusBar(jzvdContext);
+        JZUtils.setRequestedOrientation(jzvdContext, NORMAL_ORIENTATION);
+        JZUtils.showSystemUI(jzvdContext);
     }
 
     public void setScreenNormal() {//TODO 这块不对呀，还需要改进，设置flag之后要设置ui，不设置ui这么写没意义呀
