@@ -91,6 +91,7 @@
                 android:layout_marginBottom="8dp"
                 android:onClick="clickLocal"
                 android:text="LOCAL VIDEO" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
