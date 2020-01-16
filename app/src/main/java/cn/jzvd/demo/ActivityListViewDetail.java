@@ -1,18 +1,20 @@
 package cn.jzvd.demo;
 
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.ViewTreeObserver;
+import android.view.animation.AlphaAnimation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
 import cn.jzvd.demo.CustomJzvd.ViewAttr;
@@ -23,48 +25,52 @@ import cn.jzvd.demo.CustomJzvd.ViewAttr;
 public class ActivityListViewDetail extends AppCompatActivity {
     private LinearLayout llContent;
     private FrameLayout container;
-    private TextView tvTitle;
     private ViewAttr attr;
-    public final long DURATION = 400;
-    private ObjectAnimator bgAnimator;
+    public final long DURATION = 300;
+    private ViewAttr currentAttr;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        JZUtils.hideSystemUI(this);
+        JZUtils.hideStatusBar(this);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_listview_detail);
         attr = getIntent().getParcelableExtra("attr");
         llContent = findViewById(R.id.ll_content);
-        tvTitle = findViewById(R.id.tv_title);
         container = findViewById(R.id.surface_container);
 
-        llContent.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        container.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
-                llContent.getViewTreeObserver().removeOnPreDrawListener(this);
-                int[] l = new int[2];
-                llContent.getLocationOnScreen(l);
-                llContent.setTranslationY(attr.getY() - l[1] - (container.getMeasuredHeight() - attr.getHeight()) / 2 - tvTitle.getMeasuredHeight());
-                container.setScaleX(attr.getWidth() / (float) container.getMeasuredWidth());
-                container.setScaleY(attr.getHeight() / (float) container.getMeasuredHeight());
-                tvTitle.setAlpha(0);
-                llContent.animate().translationY(0).setDuration(DURATION);
-                tvTitle.animate().alpha(1f).setDuration(DURATION);
-                container.animate().scaleX(1f).scaleY(1f).setDuration(DURATION);
                 ViewParent parent = JzvdStdRv.CURRENT_JZVD.getParent();
                 if (parent != null) {
                     ((ViewGroup) parent).removeView(JzvdStdRv.CURRENT_JZVD);
                 }
                 container.addView(JzvdStdRv.CURRENT_JZVD, new FrameLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                container.getViewTreeObserver().removeOnPreDrawListener(this);
+                currentAttr = new ViewAttr();
+                int[] location = new int[2];
+                container.getLocationInWindow(location);
+                currentAttr.setX(location[0]);
+                currentAttr.setY(location[1]);
+                currentAttr.setWidth(container.getMeasuredWidth());
+                currentAttr.setHeight(container.getMeasuredHeight());
+                new ViewMoveHelper(container, attr, currentAttr, DURATION).startAnim();
+
+                AlphaAnimation animation = new AlphaAnimation(0, 1);
+                animation.setDuration(DURATION);
+                llContent.setAnimation(animation);
+                animation.start();
                 return true;
             }
         });
-        bgAnimator = ObjectAnimator.ofInt(llContent, "backgroundColor", 0x00000000, 0xff000000);
-        bgAnimator.setEvaluator(new ArgbEvaluator());
-        bgAnimator.setDuration(DURATION);
-        bgAnimator.start();
 
+        AdapterComment adapterComment = new AdapterComment();
+        RecyclerView recyclerView = findViewById(R.id.rv_comment);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapterComment);
     }
 
     @Override
@@ -73,7 +79,6 @@ public class ActivityListViewDetail extends AppCompatActivity {
             return;
         }
         backAnimation();
-        //super.onBackPressed();
     }
 
     @Override
@@ -86,21 +91,19 @@ public class ActivityListViewDetail extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void backAnimation() {
-        final int[] location = new int[2];
-        llContent.getLocationOnScreen(location);
-        tvTitle.animate().alpha(0f).setDuration(DURATION);
-        container.animate().translationY(attr.getY() - location[1] - (container.getHeight() - attr.getHeight()) / 2 - attr.getHeight()).setDuration(DURATION);
-        bgAnimator.reverse();
-        tvTitle.postDelayed(new Runnable() {
+        new ViewMoveHelper(container, currentAttr, attr, DURATION).startAnim();
+        llContent.setVisibility(View.GONE);
+        container.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //should better try other method
                 ActivityListViewToDetail.activityListViewToDetail.animateFinish();
                 finish();
+                overridePendingTransition(0,0);
             }
         }, DURATION);
-    }
 
+    }
 
 }

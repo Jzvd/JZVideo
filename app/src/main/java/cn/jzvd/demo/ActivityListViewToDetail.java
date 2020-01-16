@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.ViewGroup;
 
+import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.AutoPlayUtils;
 import cn.jzvd.demo.CustomJzvd.ViewAttr;
@@ -23,6 +25,8 @@ public class ActivityListViewToDetail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+        JZUtils.hideSystemUI(this);
+        JZUtils.hideStatusBar(this);
         Jzvd.TOOL_BAR_EXIST = false;
         setContentView(R.layout.activity_recyclerview_content);
         activityListViewToDetail = this;
@@ -33,10 +37,11 @@ public class ActivityListViewToDetail extends AppCompatActivity {
         recyclerView.setAdapter(adapterVideoList);
         adapterVideoList.setOnVideoClick(new AdapterSmoothRecyclerView.OnVideoClick() {
             @Override
-            public void videoClick(ViewAttr viewAttr, int position) {
+            public void videoClick(ViewGroup focusView, ViewAttr viewAttr, int position) {
                 Intent intent = new Intent(ActivityListViewToDetail.this, ActivityListViewDetail.class);
                 intent.putExtra("attr", viewAttr);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -51,9 +56,10 @@ public class ActivityListViewToDetail extends AppCompatActivity {
     }
 
 
-    public void animateFinish(){
+    public void animateFinish() {
         adapterVideoList.notifyDataSetChanged();
     }
+
 
     @Override
     public void onBackPressed() {
