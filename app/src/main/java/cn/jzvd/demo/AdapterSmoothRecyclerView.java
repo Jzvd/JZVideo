@@ -1,6 +1,5 @@
 package cn.jzvd.demo;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +38,7 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
         return holder;
     }
 
-    @SuppressLint("LongLogTag")
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         JzvdStdRv jzvdStdRv;
@@ -48,6 +47,7 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
             if (parent != null) {
                 ((ViewGroup) parent).removeView(JzvdStdRv.CURRENT_JZVD);
             }
+            holder.container.removeAllViews();
             holder.container.addView(JzvdStdRv.CURRENT_JZVD, new FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             jzvdStdRv = (JzvdStdRv) JzvdStdRv.CURRENT_JZVD;
@@ -75,10 +75,12 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
                 jzvdStdRv.setAtList(false);
                 ViewAttr attr = new ViewAttr();
                 int[] location = new int[2];
-                holder.container.getLocationOnScreen(location);
+                holder.container.getLocationInWindow(location);
                 attr.setX(location[0]);
                 attr.setY(location[1]);
-                if (onVideoClick != null) onVideoClick.videoClick(attr, position);
+                attr.setWidth(holder.container.getMeasuredWidth());
+                attr.setHeight(holder.container.getMeasuredHeight());
+                if (onVideoClick != null) onVideoClick.videoClick(holder.container,attr, position);
                 jzvdStdRv.setClickUi(null);
             }
 
@@ -104,7 +106,7 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
     }
 
     public interface OnVideoClick {
-        void videoClick(ViewAttr viewAttr, int position);
+        void videoClick(ViewGroup focusView,ViewAttr viewAttr, int position);
     }
 
 }
