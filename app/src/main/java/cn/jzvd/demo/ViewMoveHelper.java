@@ -10,13 +10,21 @@ import cn.jzvd.demo.CustomJzvd.ViewAttr;
 
 /**
  * 视图平移动画工具类
+ *
+ * @author Liberations
  */
 public class ViewMoveHelper {
-    private ViewGroup targetView;//目标布局
-    private ViewAttr fromViewInfo;//起始view坐标
-    private ViewAttr toViewInfo;//目标view坐标
-    private long duration;//动画时长
+    private ViewGroup targetView;
+    private ViewAttr fromViewInfo;
+    private ViewAttr toViewInfo;
+    private long duration;
 
+    /**
+     * @param targetView   目标布局
+     * @param fromViewInfo 起始view坐标信息
+     * @param toViewInfo   目标view坐标信息
+     * @param duration     动画时长
+     */
     public ViewMoveHelper(ViewGroup targetView, ViewAttr fromViewInfo, ViewAttr toViewInfo, long duration) {
         this.targetView = targetView;
         this.fromViewInfo = fromViewInfo;

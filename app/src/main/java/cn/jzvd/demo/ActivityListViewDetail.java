@@ -20,7 +20,7 @@ import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
 import cn.jzvd.demo.CustomJzvd.ViewAttr;
 
 /**
- * 列表平滑进入详情页
+ * @author Liberations
  */
 public class ActivityListViewDetail extends AppCompatActivity {
     private LinearLayout llContent;
@@ -43,13 +43,13 @@ public class ActivityListViewDetail extends AppCompatActivity {
         container.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
+                container.getViewTreeObserver().removeOnPreDrawListener(this);
                 ViewParent parent = JzvdStdRv.CURRENT_JZVD.getParent();
                 if (parent != null) {
                     ((ViewGroup) parent).removeView(JzvdStdRv.CURRENT_JZVD);
                 }
                 container.addView(JzvdStdRv.CURRENT_JZVD, new FrameLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                container.getViewTreeObserver().removeOnPreDrawListener(this);
                 currentAttr = new ViewAttr();
                 int[] location = new int[2];
                 container.getLocationInWindow(location);
@@ -82,6 +82,12 @@ public class ActivityListViewDetail extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -100,10 +106,11 @@ public class ActivityListViewDetail extends AppCompatActivity {
             public void run() {
                 ActivityListViewToDetail.activityListViewToDetail.animateFinish();
                 finish();
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
             }
         }, DURATION);
 
     }
+
 
 }
