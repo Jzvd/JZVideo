@@ -81,11 +81,11 @@ public class ActivityListViewDetail extends AppCompatActivity {
         backAnimation();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Jzvd.releaseAllVideos();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Jzvd.releaseAllVideos();
+//    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
