@@ -96,12 +96,26 @@
             android:name=".ActivityPreloading"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-
-        <activity android:name=".tiktok.ActivityTikTok"
+        <activity
+            android:name=".tiktok.ActivityTikTok"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/jz_activity_fullscreen"
-            ></activity>
+            android:theme="@style/jz_activity_fullscreen"></activity>
+
+        <activity
+            android:name=".ActivityListViewToDetail"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityListViewDetail"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentWindow" />
+        <activity
+            android:name=".ActivityListViewAutoPlay"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

@@ -3,11 +3,8 @@ package cn.jzvd.demo.CustomJzvd;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import cn.jzvd.JzvdStd;
-import cn.jzvd.demo.R;
 
 public class JzvdStdTikTok extends JzvdStd {
     public JzvdStdTikTok(Context context) {
