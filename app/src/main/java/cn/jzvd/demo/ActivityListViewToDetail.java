@@ -16,6 +16,10 @@ import cn.jzvd.demo.CustomJzvd.ViewAttr;
 
 /**
  * 列表平滑进入详情页
+ * <p>1.获取当前播放的JZVD添加到详情页中
+ * <p>2.获取列表中JZVD的坐标，宽高，获取详情页JZVD坐标，宽高，借助ViewMoveHelper实现平移{@link ViewMoveHelper}
+ *
+ * @author Liberations
  */
 public class ActivityListViewToDetail extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -38,7 +42,8 @@ public class ActivityListViewToDetail extends AppCompatActivity {
         adapterVideoList.setOnVideoClick(new AdapterSmoothRecyclerView.OnVideoClick() {
             @Override
             public void videoClick(ViewGroup focusView, ViewAttr viewAttr, int position) {
-                Intent intent = new Intent(ActivityListViewToDetail.this, ActivityListViewDetail.class);
+                Intent intent = new Intent(ActivityListViewToDetail.this,
+                        ActivityListViewDetail.class);
                 intent.putExtra("attr", viewAttr);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
@@ -49,7 +54,8 @@ public class ActivityListViewToDetail extends AppCompatActivity {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (dy != 0) {
-                    AutoPlayUtils.onScrollReleaseAllVideos(mLayoutManager.findFirstVisibleItemPosition(), mLayoutManager.findLastVisibleItemPosition(), 0.2f);
+                    AutoPlayUtils.onScrollReleaseAllVideos(mLayoutManager.findFirstVisibleItemPosition(),
+                            mLayoutManager.findLastVisibleItemPosition(), 0.2f);
                 }
             }
         });
