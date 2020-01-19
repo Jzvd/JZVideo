@@ -50,7 +50,7 @@ public class JZMediaSystemAssertFolder extends JZMediaInterface implements Media
                 mediaPlayer.setOnVideoSizeChangedListener(JZMediaSystemAssertFolder.this);
 
                 //two lines are different
-                AssetFileDescriptor assetFileDescriptor = (AssetFileDescriptor) jzvd.jzDataSource.getCurrentUrl();
+                AssetFileDescriptor assetFileDescriptor = jzvd.getContext().getAssets().openFd(jzvd.jzDataSource.getCurrentUrl().toString());
                 mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
 
                 mediaPlayer.prepareAsync();
