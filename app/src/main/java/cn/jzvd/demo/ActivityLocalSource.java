@@ -28,8 +28,8 @@ import cn.jzvd.demo.CustomMedia.JZMediaSystemAssertFolder;
  */
 public class ActivityLocalSource extends AppCompatActivity {
 
-    private JzvdStd mJzvdStd;
-    private JzvdStdAssert mJzvdStd2;
+    private JzvdStd jzvdLocalPath;
+    private JzvdStdAssert jzvdAssertPath;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,19 +38,18 @@ public class ActivityLocalSource extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("Local");
+        getSupportActionBar().setTitle("LocalVideo");
         setContentView(R.layout.local_source);
-        mJzvdStd = findViewById(cn.jzvd.demo.R.id.jz_video);
-        mJzvdStd2 = findViewById(cn.jzvd.demo.R.id.jz_video2);
+        jzvdLocalPath = findViewById(cn.jzvd.demo.R.id.lcoal_path);
+        jzvdAssertPath = findViewById(cn.jzvd.demo.R.id.assert_path);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             verifyStoragePermissions();
-        }else{
+        } else {
             cpAssertVideoToLocalPath();
             initAssetVideo();
         }
     }
-
 
     @Override
     protected void onPause() {
@@ -94,7 +93,7 @@ public class ActivityLocalSource extends AppCompatActivity {
             myInput.close();
             myOutput.close();
 
-            mJzvdStd.setUp(path,"Local");
+            jzvdLocalPath.setUp(path, "Play Local Video");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,13 +104,12 @@ public class ActivityLocalSource extends AppCompatActivity {
         JZDataSource jzDataSource = null;
         try {
             jzDataSource = new JZDataSource(getAssets().openFd("local_video.mp4"));
-            jzDataSource.title = "Asset";
+            jzDataSource.title = "Play Assert Video";
         } catch (IOException e) {
             e.printStackTrace();
         }
-        mJzvdStd2.setUp(jzDataSource, JzvdStd.SCREEN_NORMAL, JZMediaSystemAssertFolder.class);
+        jzvdAssertPath.setUp(jzDataSource, JzvdStd.SCREEN_NORMAL, JZMediaSystemAssertFolder.class);
     }
-
 
 
     public void verifyStoragePermissions() {
@@ -121,7 +119,7 @@ public class ActivityLocalSource extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{
                         "android.permission.READ_EXTERNAL_STORAGE",
                         "android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
-            }else{
+            } else {
                 cpAssertVideoToLocalPath();
                 initAssetVideo();
             }
@@ -134,8 +132,8 @@ public class ActivityLocalSource extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 1){
-            if(grantResults.length > 0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 cpAssertVideoToLocalPath();
                 initAssetVideo();
             }
