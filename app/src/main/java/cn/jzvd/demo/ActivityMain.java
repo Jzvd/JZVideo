@@ -65,10 +65,6 @@ public class ActivityMain extends AppCompatActivity {
         startActivity(new Intent(ActivityMain.this, ActivityWebView.class));
     }
 
-    public void clickTikTok(View view) {
-        ActivityTikTok.openActivity(ActivityMain.this);
-    }
-
     public void clickLocal(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityLocalSource.class));
     }
