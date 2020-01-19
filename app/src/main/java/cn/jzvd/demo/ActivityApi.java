@@ -22,6 +22,7 @@ import java.io.OutputStream;
 import java.util.LinkedHashMap;
 
 import cn.jzvd.JZDataSource;
+import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
@@ -59,7 +60,7 @@ public class ActivityApi extends AppCompatActivity {
 //        mJzvdStd.seekToInAdvance = 20000;
 //        Jzvd.SAVE_PROGRESS = false;//把这些注释的代码放到按钮上，让它可操作可见。
 
-        /** Play video in local path, eg:record by system camera **/
+        /** Play video in local localVideoPath, eg:record by system camera **/
 //        cpAssertVideoToLocalPath();
 //        mJzvdStd.setUp(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/local_video.mp4"
 //                , "饺子不信", Jzvd.SCREEN_NORMAL);
@@ -80,7 +81,7 @@ public class ActivityApi extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(mSensorEventListener);
-        Jzvd.clearSavedProgress(this, null);
+        JZUtils.clearSavedProgress(this, null);
         //home back
         Jzvd.goOnPlayOnPause();
     }

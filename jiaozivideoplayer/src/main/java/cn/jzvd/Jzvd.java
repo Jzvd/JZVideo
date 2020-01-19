@@ -999,10 +999,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         CURRENT_JZVD = jzvd;
     }
 
-    public static void clearSavedProgress(Context context, String url) {
-        JZUtils.clearSavedProgress(context, url);
-    }
-
     public static void setTextureViewRotation(int rotation) {
         if (CURRENT_JZVD != null && CURRENT_JZVD.textureView != null) {
             CURRENT_JZVD.textureView.setRotation(rotation);
