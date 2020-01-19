@@ -1,7 +1,5 @@
 package cn.jzvd.demo.tiktok;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.OrientationHelper;
@@ -20,13 +18,8 @@ public class ActivityTikTok extends AppCompatActivity {
     private RecyclerView rvTiktok;
     private AdapterTikTokRecyclerView mAdapter;
     private ViewPagerLayoutManager mViewPagerLayoutManager;
-    private JzvdStdTikTok mVideoPlayer;
     private int mCurrentPosition = -1;
 
-    public static void openActivity(Context context) {
-        Intent intent = new Intent(context, ActivityTikTok.class);
-        context.startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
