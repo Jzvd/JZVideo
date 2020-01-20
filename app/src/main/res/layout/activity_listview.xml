@@ -50,7 +50,7 @@
         android:layout_gravity="center_horizontal"
         android:onClick="clickListAutoPlay"
         android:text="ListAutoPlay" />
-    
+
     <Button
         android:id="@+id/btn_tiktok"
         android:layout_width="match_parent"
