@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
+import cn.jzvd.demo.tiktok.ActivityTikTok;
+
 /**
  * Created by Nathen on 16/7/31.
  */
@@ -51,4 +53,17 @@ public class ActivityListView extends AppCompatActivity {
     public void clickRecyclerView(View view) {
         startActivity(new Intent(ActivityListView.this, ActivityListViewRecyclerView.class));
     }
+
+    public void clickListSmoothToDetail(View view) {
+        startActivity(new Intent(ActivityListView.this, ActivityListViewToDetail.class));
+    }
+
+    public void clickListAutoPlay(View view) {
+        startActivity(new Intent(ActivityListView.this, ActivityListViewAutoPlay.class));
+    }
+
+    public void clickTikTok(View view) {
+        startActivity(new Intent(ActivityListView.this, ActivityTikTok.class));
+    }
+
 }

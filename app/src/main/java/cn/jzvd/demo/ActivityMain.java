@@ -64,4 +64,8 @@ public class ActivityMain extends AppCompatActivity {
         startActivity(new Intent(ActivityMain.this, ActivityWebView.class));
     }
 
+    public void clickLocal(View view) {
+        startActivity(new Intent(ActivityMain.this, ActivityLocalVideo.class));
+    }
+
 }
