@@ -25,12 +25,12 @@ uploadArchives {
                 packaging 'aar'
                 // optionally artifactId can be defined here
                 description 'android videoplayer videoview 安卓视频播放器 全屏 播放器列表全屏 仿今日头条UI'
-                url 'https://github.com/lipangit/jiaozivideoplayer'
+                url 'https://github.com/Jzvd/JiaoZiVideoPlayer'
 
                 scm {
-                    connection 'https://github.com/lipangit/jiaozivideoplayer'
-                    developerConnection 'https://github.com/lipangit/jiaozivideoplayer'
-                    url 'https://github.com/lipangit/jiaozivideoplayer'
+                    connection 'https://github.com/Jzvd/JiaoZiVideoPlayer'
+                    developerConnection 'https://github.com/Jzvd/JiaoZiVideoPlayer'
+                    url 'https://github.com/Jzvd/JiaoZiVideoPlayer'
                 }
 
                 licenses {
