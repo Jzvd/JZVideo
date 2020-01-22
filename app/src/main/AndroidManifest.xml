@@ -100,7 +100,7 @@
             android:name=".tiktok.ActivityTikTok"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/jz_activity_fullscreen"></activity>
+            android:theme="@style/jz_activity_fullscreen"/>
 
         <activity
             android:name=".ActivityListViewToDetail"
