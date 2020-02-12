@@ -45,7 +45,7 @@ Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微
 
 ![Demo Screenshot][1]
 
-![img](https://hbimg.huabanimg.com/357d23d074c2954d568d1a6f86a5be09d190a45116e95-0jh9Pg_fw658)
+![img](https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif)
 
 ## QuickStart
 
