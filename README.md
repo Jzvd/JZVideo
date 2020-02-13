@@ -43,9 +43,9 @@ Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微
 
 ## 效果
 
-![Demo Screenshot][1]
+![Demo Screenshot][https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg]
 
-![img](https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif)
+![Demo Gif](https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif)
 
 ## QuickStart
 
@@ -127,4 +127,3 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[1]: https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg
