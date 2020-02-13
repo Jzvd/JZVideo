@@ -43,9 +43,9 @@ Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微
 
 ## 效果
 
-![Demo Screenshot][https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg]
+<img src="https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg" width="90%">
 
-![Demo Gif](https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif)
+<img src="https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif" width="90%">
 
 ## QuickStart
 
