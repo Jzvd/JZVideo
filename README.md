@@ -113,8 +113,8 @@ protected void onPause() {
 即便是自定义UI，或者对Library有过修改，依然要通过上述步骤使用播放器。
 
 ## 注意：
-1.7.0版本之后要在JzvdStd外面包一层Layout
-2.如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
+1. 7.0版本之后要在JzvdStd外面包一层Layout
+2. 如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
 
 
 ## License MIT
