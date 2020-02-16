@@ -2,17 +2,17 @@ package cn.jzvd.demo.tiktok;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 
 import cn.jzvd.JZDataSource;
 import cn.jzvd.Jzvd;
-import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdTikTok;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.VideoConstant;
