@@ -2,7 +2,6 @@ package cn.jzvd.demo.CustomMedia;
 
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Surface;
@@ -16,7 +15,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkTimedText;
 
 /**
- *
  * Created by Nathen on 2017/11/18.
  */
 
@@ -115,6 +113,7 @@ public class JZMediaIjk extends JZMediaInterface implements IMediaPlayer.OnPrepa
 
     @Override
     public long getDuration() {
+        if (ijkMediaPlayer == null) return 0;
         return ijkMediaPlayer.getDuration();
     }
 
