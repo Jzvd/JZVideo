@@ -170,4 +170,8 @@ public class ActivityApi extends AppCompatActivity {
     public void clickPreloading(View view) {
         startActivity(new Intent(ActivityApi.this, ActivityPreloading.class));
     }
+
+    public void clickScreenRotate(View view) {
+        startActivity(new Intent(ActivityApi.this, ActivityScreenRotate.class));
+    }
 }
