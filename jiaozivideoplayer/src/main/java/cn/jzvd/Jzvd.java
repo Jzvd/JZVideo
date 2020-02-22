@@ -76,6 +76,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public int positionInList = -1;//很想干掉它
     public int videoRotation = 0;
     protected long gobakFullscreenTime = 0;//这个应该重写一下，刷新列表，新增列表的刷新，不打断播放，应该是个flag
+    protected long gotoFullscreenTime = 0;
 
     public int seekToManulPosition = -1;
     public long seekToInAdvance = 0;
@@ -159,7 +160,13 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void setUp(JZDataSource jzDataSource, int screen, Class mediaInterfaceClass) {
-        if ((System.currentTimeMillis() - gobakFullscreenTime) < 200) return;
+        if ((System.currentTimeMillis() - gobakFullscreenTime) < 200) {
+            return;
+        }
+
+        if ((System.currentTimeMillis() - gotoFullscreenTime) < 200) {
+            return;
+        }
 
         this.jzDataSource = jzDataSource;
         this.screen = screen;
@@ -744,12 +751,14 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void gotoScreenFullscreen() {
+        gotoFullscreenTime = System.currentTimeMillis();
         jzvdContext = ((ViewGroup) getParent()).getContext();
         ViewGroup vg = (ViewGroup) getParent();
         vg.removeView(this);
         cloneAJzvd(vg);
         CONTAINER_LIST.add(vg);
-        vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();//和他也没有关系
+        vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
+
         vg.addView(this, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
@@ -917,7 +926,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             }
         }
     };
-
 
 
     public static void goOnPlayOnResume() {
