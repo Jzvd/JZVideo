@@ -103,6 +103,15 @@ public class JzvdStd extends Jzvd {
     }
 
     public void setUp(JZDataSource jzDataSource, int screen, Class mediaInterfaceClass) {
+        if ((System.currentTimeMillis() - gobakFullscreenTime) < 200) {
+            return;
+        }
+
+        if ((System.currentTimeMillis() - gotoFullscreenTime) < 200) {
+            return;
+        }
+
+
         super.setUp(jzDataSource, screen, mediaInterfaceClass);
         titleTextView.setText(jzDataSource.title);
         setScreen(screen);
