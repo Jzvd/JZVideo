@@ -160,13 +160,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void setUp(JZDataSource jzDataSource, int screen, Class mediaInterfaceClass) {
-        if ((System.currentTimeMillis() - gobakFullscreenTime) < 200) {
-            return;
-        }
 
-        if ((System.currentTimeMillis() - gotoFullscreenTime) < 200) {
-            return;
-        }
 
         this.jzDataSource = jzDataSource;
         this.screen = screen;
