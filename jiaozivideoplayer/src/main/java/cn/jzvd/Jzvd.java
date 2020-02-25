@@ -447,9 +447,13 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         JZUtils.scanForActivity(getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         JZUtils.saveProgress(getContext(), jzDataSource.getCurrentUrl(), 0);
 
-        setCurrentJzvd(null);
         if (screen == SCREEN_FULLSCREEN) {
-            gotoScreenNormal();
+            if (CONTAINER_LIST.size() == 0) {
+                clearFloatScreen();//直接进入全屏
+            } else {
+                setCurrentJzvd(null);
+                gotoScreenNormal();
+            }
         }
     }
 
