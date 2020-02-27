@@ -143,6 +143,11 @@ public class JzvdStd extends Jzvd {
         changeUiToPreparing();
     }
 
+    public void onStatePreparingPlaying() {
+        super.onStatePreparingPlaying();
+        changeUIToPreparingPlaying();
+    }
+
     @Override
     public void onStatePlaying() {
         super.onStatePlaying();
@@ -524,10 +529,6 @@ public class JzvdStd extends Jzvd {
     public void changeUiToNormal() {
         switch (screen) {
             case SCREEN_NORMAL:
-                setAllControlsVisiblity(View.VISIBLE, View.INVISIBLE, View.VISIBLE,
-                        View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.INVISIBLE);
-                updateStartImage();
-                break;
             case SCREEN_FULLSCREEN:
                 setAllControlsVisiblity(View.VISIBLE, View.INVISIBLE, View.VISIBLE,
                         View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.INVISIBLE);
@@ -549,16 +550,24 @@ public class JzvdStd extends Jzvd {
             case SCREEN_TINY:
                 break;
         }
+    }
 
+    public void changeUIToPreparingPlaying() {
+        switch (screen) {
+            case SCREEN_NORMAL:
+            case SCREEN_FULLSCREEN:
+                setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.INVISIBLE,
+                        View.VISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                updateStartImage();
+                break;
+            case SCREEN_TINY:
+                break;
+        }
     }
 
     public void changeUiToPlayingShow() {
         switch (screen) {
             case SCREEN_NORMAL:
-                setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
-                        View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
-                updateStartImage();
-                break;
             case SCREEN_FULLSCREEN:
                 setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
@@ -573,9 +582,6 @@ public class JzvdStd extends Jzvd {
     public void changeUiToPlayingClear() {
         switch (screen) {
             case SCREEN_NORMAL:
-                setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
-                        View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
-                break;
             case SCREEN_FULLSCREEN:
                 setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
@@ -589,10 +595,6 @@ public class JzvdStd extends Jzvd {
     public void changeUiToPauseShow() {
         switch (screen) {
             case SCREEN_NORMAL:
-                setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
-                        View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
-                updateStartImage();
-                break;
             case SCREEN_FULLSCREEN:
                 setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
@@ -606,9 +608,6 @@ public class JzvdStd extends Jzvd {
     public void changeUiToPauseClear() {
         switch (screen) {
             case SCREEN_NORMAL:
-                setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
-                        View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
-                break;
             case SCREEN_FULLSCREEN:
                 setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
@@ -622,10 +621,6 @@ public class JzvdStd extends Jzvd {
     public void changeUiToComplete() {
         switch (screen) {
             case SCREEN_NORMAL:
-                setAllControlsVisiblity(View.VISIBLE, View.INVISIBLE, View.VISIBLE,
-                        View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.INVISIBLE);
-                updateStartImage();
-                break;
             case SCREEN_FULLSCREEN:
                 setAllControlsVisiblity(View.VISIBLE, View.INVISIBLE, View.VISIBLE,
                         View.INVISIBLE, View.VISIBLE, View.INVISIBLE, View.INVISIBLE);
