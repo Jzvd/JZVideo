@@ -46,12 +46,12 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static final int STATE_NORMAL = 0;
     public static final int STATE_PREPARING = 1;
     public static final int STATE_PREPARING_CHANGING_URL = 2;
-    public static final int CURRENT_STATE_PLAYING_BUFFERING_START = 8;
-    public static final int STATE_PREPARED = 3;
-    public static final int STATE_PLAYING = 4;
-    public static final int STATE_PAUSE = 5;
-    public static final int STATE_AUTO_COMPLETE = 6;
-    public static final int STATE_ERROR = 7;
+    public static final int STATE_PREPARING_PLAYING = 3;
+    public static final int STATE_PREPARED = 4;
+    public static final int STATE_PLAYING = 5;
+    public static final int STATE_PAUSE = 6;
+    public static final int STATE_AUTO_COMPLETE = 7;
+    public static final int STATE_ERROR = 8;
 
     public static final int VIDEO_IMAGE_DISPLAY_TYPE_ADAPTER = 0;//DEFAULT
     public static final int VIDEO_IMAGE_DISPLAY_TYPE_FILL_PARENT = 1;
@@ -348,7 +348,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public void onStatePreparingPlaying() {
         Log.i(TAG, "onStatePreparingPlaying " + " [" + this.hashCode() + "] ");
-        state = CURRENT_STATE_PLAYING_BUFFERING_START;
+        state = STATE_PREPARING_PLAYING;
     }
 
     public void onPrepared() {
@@ -436,7 +436,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
             Log.d(TAG, "fdsfda MEDIA_INFO_BUFFERING_START");
             backUpBufferState = state;
-            setState(CURRENT_STATE_PLAYING_BUFFERING_START);
+            setState(STATE_PREPARING_PLAYING);
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END) {
             Log.d(TAG, "fdsafda MEDIA_INFO_BUFFERING_END");
             if (backUpBufferState != -1) {
@@ -510,7 +510,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             case STATE_PREPARING:
                 onStatePreparing();
                 break;
-            case CURRENT_STATE_PLAYING_BUFFERING_START:
+            case STATE_PREPARING_PLAYING:
                 onStatePreparingPlaying();
                 break;
             case STATE_PREPARING_CHANGING_URL:
@@ -695,8 +695,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public long getCurrentPositionWhenPlaying() {
         long position = 0;
-        if (state == STATE_PLAYING ||
-                state == STATE_PAUSE) {
+        if (state == STATE_PLAYING || state == STATE_PAUSE || state == STATE_PREPARING_PLAYING) {
             try {
                 position = mediaInterface.getCurrentPosition();
             } catch (IllegalStateException e) {
@@ -911,7 +910,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public class ProgressTimerTask extends TimerTask {
         @Override
         public void run() {
-            if (state == STATE_PLAYING || state == STATE_PAUSE) {
+            if (state == STATE_PLAYING || state == STATE_PAUSE || state == STATE_PREPARING_PLAYING) {
 //                Log.v(TAG, "onProgressUpdate " + "[" + this.hashCode() + "] ");
                 post(() -> {
                     long position = getCurrentPositionWhenPlaying();
