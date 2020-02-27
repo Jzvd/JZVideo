@@ -46,6 +46,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static final int STATE_NORMAL = 0;
     public static final int STATE_PREPARING = 1;
     public static final int STATE_PREPARING_CHANGING_URL = 2;
+    public static final int CURRENT_STATE_PLAYING_BUFFERING_START = 8;
     public static final int STATE_PREPARED = 3;
     public static final int STATE_PLAYING = 4;
     public static final int STATE_PAUSE = 5;
@@ -345,6 +346,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         resetProgressAndTime();
     }
 
+    public void onStatePreparingPlaying() {
+        Log.i(TAG, "onStatePreparingPlaying " + " [" + this.hashCode() + "] ");
+        state = CURRENT_STATE_PLAYING_BUFFERING_START;
+    }
+
     public void onPrepared() {
         Log.i(TAG, "onPrepared " + " [" + this.hashCode() + "] ");
         state = STATE_PREPARED;
@@ -417,12 +423,25 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         currentTimeTextView.setText(totalTimeTextView.getText());
     }
 
+    public static int backUpBufferState = -1;
+
     public void onInfo(int what, int extra) {
         Log.d(TAG, "onInfo what - " + what + " extra - " + extra);
         if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+            Log.d(TAG, "MEDIA_INFO_VIDEO_RENDERING_START");
             if (state == Jzvd.STATE_PREPARED
                     || state == Jzvd.STATE_PREPARING_CHANGING_URL) {
                 onStatePlaying();//真正的prepared，本质上这是进入playing状态。
+            }
+        } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
+            Log.d(TAG, "fdsfda MEDIA_INFO_BUFFERING_START");
+            backUpBufferState = state;
+            setState(CURRENT_STATE_PLAYING_BUFFERING_START);
+        } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END) {
+            Log.d(TAG, "fdsafda MEDIA_INFO_BUFFERING_END");
+            if (backUpBufferState != -1) {
+                setState(backUpBufferState);
+                backUpBufferState = -1;
             }
         }
     }
@@ -490,6 +509,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                 break;
             case STATE_PREPARING:
                 onStatePreparing();
+                break;
+            case CURRENT_STATE_PLAYING_BUFFERING_START:
+                onStatePreparingPlaying();
                 break;
             case STATE_PREPARING_CHANGING_URL:
                 changeUrl(urlMapIndex, seekToInAdvance);
