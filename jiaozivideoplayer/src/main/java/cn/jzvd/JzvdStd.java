@@ -44,7 +44,7 @@ public class JzvdStd extends Jzvd {
     public ImageView backButton;
     public ProgressBar bottomProgressBar, loadingProgressBar;
     public TextView titleTextView;
-    public ImageView thumbImageView;
+    public ImageView posterImageView;
     public ImageView tinyBackImageView;
     public LinearLayout batteryTimeLayout;
     public ImageView batteryLevel;
@@ -84,7 +84,7 @@ public class JzvdStd extends Jzvd {
         bottomProgressBar = findViewById(R.id.bottom_progress);
         titleTextView = findViewById(R.id.title);
         backButton = findViewById(R.id.back);
-        thumbImageView = findViewById(R.id.thumb);
+        posterImageView = findViewById(R.id.poster);
         loadingProgressBar = findViewById(R.id.loading);
         tinyBackImageView = findViewById(R.id.back_tiny);
         batteryLevel = findViewById(R.id.battery_level);
@@ -94,7 +94,7 @@ public class JzvdStd extends Jzvd {
         mRetryBtn = findViewById(R.id.retry_btn);
         mRetryLayout = findViewById(R.id.retry_layout);
 
-        thumbImageView.setOnClickListener(this);
+        posterImageView.setOnClickListener(this);
         backButton.setOnClickListener(this);
         tinyBackImageView.setOnClickListener(this);
         clarity.setOnClickListener(this);
@@ -242,7 +242,7 @@ public class JzvdStd extends Jzvd {
     public void onClick(View v) {
         super.onClick(v);
         int i = v.getId();
-        if (i == R.id.thumb) {
+        if (i == R.id.poster) {
             if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
                 Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
                 return;
@@ -626,12 +626,12 @@ public class JzvdStd extends Jzvd {
     }
 
     public void setAllControlsVisiblity(int topCon, int bottomCon, int startBtn, int loadingPro,
-                                        int thumbImg, int bottomPro, int retryLayout) {
+                                        int posterImg, int bottomPro, int retryLayout) {
         topContainer.setVisibility(topCon);
         bottomContainer.setVisibility(bottomCon);
         startButton.setVisibility(startBtn);
         loadingProgressBar.setVisibility(loadingPro);
-        thumbImageView.setVisibility(thumbImg);
+        posterImageView.setVisibility(posterImg);
         bottomProgressBar.setVisibility(bottomPro);
         mRetryLayout.setVisibility(retryLayout);
     }

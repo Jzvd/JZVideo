@@ -36,7 +36,7 @@ public class FragmentDemo extends Fragment {
         listView.setAdapter(new AdapterListView(getActivity(),
                 VideoConstant.videoUrls[index],
                 VideoConstant.videoTitles[index],
-                VideoConstant.videoThumbs[index]));
+                VideoConstant.videoposters[index]));
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

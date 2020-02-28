@@ -133,7 +133,7 @@ public class ActivityTinyWindowRecycleViewMultiHolder extends AppCompatActivity 
                         VideoConstant.videoUrls[0][position],
                         VideoConstant.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
                 videoHolder.jzvdStd.positionInList = position;
-                Glide.with(ActivityTinyWindowRecycleViewMultiHolder.this).load(VideoConstant.videoThumbs[0][position]).into(videoHolder.jzvdStd.thumbImageView);
+                Glide.with(ActivityTinyWindowRecycleViewMultiHolder.this).load(VideoConstant.videoposters[0][position]).into(videoHolder.jzvdStd.posterImageView);
             }
         }
 
