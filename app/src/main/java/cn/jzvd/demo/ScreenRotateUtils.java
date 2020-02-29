@@ -25,6 +25,7 @@ public class ScreenRotateUtils {
     private OrientationSensorListener listener;
     private OrientationChangeListener changeListener;
     private Sensor sensor;
+    public static float orientationDirection;
     private static int DATA_X = 0;
     private static int DATA_Y = 1;
     private static int DATA_Z = 2;
@@ -33,7 +34,7 @@ public class ScreenRotateUtils {
 
     public ScreenRotateUtils(Context context) {
         sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        sensor = sm.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         listener = new OrientationSensorListener(mHandler);
     }
 
@@ -77,6 +78,7 @@ public class ScreenRotateUtils {
             float[] values = event.values;
             int orientation = ORIENTATION_UNKNOWN;
             float x = -values[DATA_X];
+            orientationDirection=-x;
             float y = -values[DATA_Y];
             float z = -values[DATA_Z];
             float magnitude = x * x + y * y;
@@ -113,7 +115,8 @@ public class ScreenRotateUtils {
                 if (!isOpenSensor) {
                     return;
                 }
-                rotateHandler.obtainMessage(888, orientation, 0).sendToTarget();
+//                rotateHandler.obtainMessage(888, orientation, 0).sendToTarget();
+                changeListener.orientationChange(orientation);
             }
         }
 
@@ -131,7 +134,7 @@ public class ScreenRotateUtils {
      */
     void start(Activity activity) {
         mActivity = activity;
-        sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_UI);
+        sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
