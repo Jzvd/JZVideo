@@ -354,6 +354,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public void onStatePreparingChangeUrl() {
         Log.i(TAG, "onStatePreparingChangeUrl " + " [" + this.hashCode() + "] ");
         state = STATE_PREPARING_CHANGE_URL;
+
+        releaseAllVideos();
+        startVideo();
     }
 
     public void onPrepared() {
@@ -503,11 +506,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (mediaInterface != null) mediaInterface.release();
     }
 
-    public void setState(int state) {
-        setState(state, 0, 0);
-    }
-
-    public void setState(int state, int urlMapIndex, int seekToInAdvance) {//后面两个参数干嘛的
+    public void setState(int state) {//后面两个参数干嘛的
         switch (state) {
             case STATE_NORMAL:
                 onStateNormal();
@@ -519,7 +518,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                 onStatePreparingPlaying();
                 break;
             case STATE_PREPARING_CHANGE_URL:
-                changeUrl(urlMapIndex, seekToInAdvance);
+                onStatePreparingChangeUrl();
                 break;
             case STATE_PLAYING:
                 onStatePlaying();
@@ -571,31 +570,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         JZUtils.scanForActivity(getContext()).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         onStatePreparing();
-    }
-
-    public void changeUrl(String url, String title, long seekToInAdvance) {
-        changeUrl(new JZDataSource(url, title), seekToInAdvance);
-    }
-
-    public void changeUrl(int urlMapIndex, long seekToInAdvance) {
-        state = STATE_PREPARING_CHANGE_URL;
-        this.seekToInAdvance = seekToInAdvance;
-        jzDataSource.currentUrlIndex = urlMapIndex;
-//        mediaInterface.setSurface(null);
-//        mediaInterface.release();
-//        mediaInterface.prepare();
-
-        releaseAllVideos();
-        startVideo();
-    }
-
-    public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
-        state = STATE_PREPARING_CHANGE_URL;
-        this.seekToInAdvance = seekToInAdvance;
-        this.jzDataSource = jzDataSource;//这几段代码有重复
-
-        releaseAllVideos();
-        startVideo();
     }
 
     @Override
