@@ -186,24 +186,6 @@ public class JzvdStd extends Jzvd {
         registerWifiListener(getApplicationContext());
     }
 
-    @Override
-    public void changeUrl(int urlMapIndex, long seekToInAdvance) {
-        super.changeUrl(urlMapIndex, seekToInAdvance);
-        startButton.setVisibility(INVISIBLE);
-        replayTextView.setVisibility(View.GONE);
-        mRetryLayout.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
-        super.changeUrl(jzDataSource, seekToInAdvance);
-        titleTextView.setText(jzDataSource.title);
-        startButton.setVisibility(INVISIBLE);
-        replayTextView.setVisibility(View.GONE);
-        mRetryLayout.setVisibility(View.GONE);
-    }
-
-
     //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
     private long lastClickTime = 0;
     private long doubleTime = 200;
@@ -297,7 +279,11 @@ public class JzvdStd extends Jzvd {
 
             OnClickListener mQualityListener = v1 -> {
                 int index = (int) v1.getTag();
-                changeUrl(index, getCurrentPositionWhenPlaying());
+
+                this.seekToInAdvance = getCurrentPositionWhenPlaying();
+                jzDataSource.currentUrlIndex = index;
+                onStatePreparingChangeUrl();
+
                 clarity.setText(jzDataSource.getCurrentKey().toString());
                 for (int j = 0; j < layout.getChildCount(); j++) {//设置点击之后的颜色
                     if (j == jzDataSource.currentUrlIndex) {
@@ -574,7 +560,7 @@ public class JzvdStd extends Jzvd {
         switch (screen) {
             case SCREEN_NORMAL:
             case SCREEN_FULLSCREEN:
-                setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.INVISIBLE,
+                setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                         View.VISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
                 updateStartImage();
                 break;
