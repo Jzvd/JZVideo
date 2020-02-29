@@ -357,6 +357,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
         releaseAllVideos();
         startVideo();
+
+//        mediaInterface.prepare();
     }
 
     public void onPrepared() {
@@ -439,14 +441,14 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             Log.d(TAG, "MEDIA_INFO_VIDEO_RENDERING_START");
             if (state == Jzvd.STATE_PREPARED
                     || state == Jzvd.STATE_PREPARING_CHANGE_URL) {
-                onStatePlaying();//真正的prepared，本质上这是进入playing状态。
+                onStatePlaying();//开始渲染图像，真正进入playing状态
             }
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
-            Log.d(TAG, "fdsfda MEDIA_INFO_BUFFERING_START");
+            Log.d(TAG, "MEDIA_INFO_BUFFERING_START");
             backUpBufferState = state;
             setState(STATE_PREPARING_PLAYING);
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END) {
-            Log.d(TAG, "fdsafda MEDIA_INFO_BUFFERING_END");
+            Log.d(TAG, "MEDIA_INFO_BUFFERING_END");
             if (backUpBufferState != -1) {
                 setState(backUpBufferState);
                 backUpBufferState = -1;
@@ -506,7 +508,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (mediaInterface != null) mediaInterface.release();
     }
 
-    public void setState(int state) {//后面两个参数干嘛的
+    /**
+     * 里面的的onState...()其实就是setState...()，因为要可以被复写，所以参考Activity的onCreate(),onState..()的方式看着舒服一些，老铁们有何高见。
+     * @param state
+     */
+    public void setState(int state) {
         switch (state) {
             case STATE_NORMAL:
                 onStateNormal();
