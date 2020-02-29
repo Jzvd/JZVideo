@@ -45,7 +45,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static final int STATE_IDLE = -1;
     public static final int STATE_NORMAL = 0;
     public static final int STATE_PREPARING = 1;
-    public static final int STATE_PREPARING_CHANGING_URL = 2;
+    public static final int STATE_PREPARING_CHANGE_URL = 2;
     public static final int STATE_PREPARING_PLAYING = 3;
     public static final int STATE_PREPARED = 4;
     public static final int STATE_PLAYING = 5;
@@ -351,6 +351,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         state = STATE_PREPARING_PLAYING;
     }
 
+    public void onStatePreparingChangeUrl() {
+        Log.i(TAG, "onStatePreparingChangeUrl " + " [" + this.hashCode() + "] ");
+        state = STATE_PREPARING_CHANGE_URL;
+    }
+
     public void onPrepared() {
         Log.i(TAG, "onPrepared " + " [" + this.hashCode() + "] ");
         state = STATE_PREPARED;
@@ -430,7 +435,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
             Log.d(TAG, "MEDIA_INFO_VIDEO_RENDERING_START");
             if (state == Jzvd.STATE_PREPARED
-                    || state == Jzvd.STATE_PREPARING_CHANGING_URL) {
+                    || state == Jzvd.STATE_PREPARING_CHANGE_URL) {
                 onStatePlaying();//真正的prepared，本质上这是进入playing状态。
             }
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
@@ -513,7 +518,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             case STATE_PREPARING_PLAYING:
                 onStatePreparingPlaying();
                 break;
-            case STATE_PREPARING_CHANGING_URL:
+            case STATE_PREPARING_CHANGE_URL:
                 changeUrl(urlMapIndex, seekToInAdvance);
                 break;
             case STATE_PLAYING:
@@ -573,7 +578,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void changeUrl(int urlMapIndex, long seekToInAdvance) {
-        state = STATE_PREPARING_CHANGING_URL;
+        state = STATE_PREPARING_CHANGE_URL;
         this.seekToInAdvance = seekToInAdvance;
         jzDataSource.currentUrlIndex = urlMapIndex;
 //        mediaInterface.setSurface(null);
@@ -585,7 +590,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
-        state = STATE_PREPARING_CHANGING_URL;
+        state = STATE_PREPARING_CHANGE_URL;
         this.seekToInAdvance = seekToInAdvance;
         this.jzDataSource = jzDataSource;//这几段代码有重复
 

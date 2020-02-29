@@ -148,6 +148,11 @@ public class JzvdStd extends Jzvd {
         changeUIToPreparingPlaying();
     }
 
+    public void onStatePreparingChangeUrl() {
+        super.onStatePreparingChangeUrl();
+        changeUIToPreparingChangeUrl();
+    }
+
     @Override
     public void onStatePlaying() {
         super.onStatePlaying();
@@ -553,6 +558,19 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUIToPreparingPlaying() {
+        switch (screen) {
+            case SCREEN_NORMAL:
+            case SCREEN_FULLSCREEN:
+                setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.INVISIBLE,
+                        View.VISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                updateStartImage();
+                break;
+            case SCREEN_TINY:
+                break;
+        }
+    }
+
+    public void changeUIToPreparingChangeUrl() {
         switch (screen) {
             case SCREEN_NORMAL:
             case SCREEN_FULLSCREEN:
