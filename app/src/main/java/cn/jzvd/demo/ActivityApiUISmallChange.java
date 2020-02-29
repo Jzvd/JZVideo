@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen;
+import cn.jzvd.demo.CustomJzvd.JzvdStdLockScreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdMp3;
 import cn.jzvd.demo.CustomJzvd.JzvdStdShowShareButtonAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdShowTextureViewAfterAutoComplete;
@@ -28,6 +29,7 @@ public class ActivityApiUISmallChange extends AppCompatActivity {
     JzvdStdVolumeAfterFullscreen jzvdStdVolumeAfterFullscreen;
     JzvdStdMp3 jzvdStdMp3;
     JzvdStdSpeed jzvdStdSpeed;
+    JzvdStdLockScreen lockScreen;
 
     JzvdStd jzvdStd_1_1, jzvdStd_16_9;
 
@@ -40,6 +42,13 @@ public class ActivityApiUISmallChange extends AppCompatActivity {
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setTitle("SmallChangeUI");
         setContentView(R.layout.activity_ui_small_change);
+
+
+        lockScreen = findViewById(R.id.lock_screen);
+        lockScreen.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
+                , "饺子快长大");
+        Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(lockScreen.thumbImageView);
+
 
         jzvdStdWithShareButton = findViewById(R.id.custom_videoplayer_standard_with_share_button);
         jzvdStdWithShareButton.setUp(VideoConstant.videoUrlList[3], "饺子想呼吸", Jzvd.SCREEN_NORMAL);

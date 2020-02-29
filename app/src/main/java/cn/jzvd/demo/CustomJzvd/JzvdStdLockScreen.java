@@ -17,16 +17,16 @@ import cn.jzvd.demo.R;
 /**
  * 这里是不改源码得情况下
  */
-public class LockScreen extends JzvdStd {
+public class JzvdStdLockScreen extends JzvdStd {
     private boolean isLockScreen;
     private ImageView lockIv;
     float starX, startY;
 
-    public LockScreen(Context context) {
+    public JzvdStdLockScreen(Context context) {
         super(context);
     }
 
-    public LockScreen(Context context, AttributeSet attrs) {
+    public JzvdStdLockScreen(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -154,8 +154,8 @@ public class LockScreen extends JzvdStd {
                         lockIv.setBackgroundResource(R.mipmap.unlock);
                         topContainer.setVisibility(VISIBLE);
                         bottomContainer.setVisibility(VISIBLE);
+                        bottomProgressBar.setVisibility(GONE);
                         startButton.setVisibility(VISIBLE);
-
                     }
                 }
                 break;
