@@ -35,7 +35,7 @@ public class ScreenRotateUtils {
     public ScreenRotateUtils(Context context) {
         sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         sensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        listener = new OrientationSensorListener(mHandler);
+        listener = new OrientationSensorListener();
     }
 
     public static ScreenRotateUtils getInstance(Context context) {
@@ -44,19 +44,6 @@ public class ScreenRotateUtils {
         }
         return instance;
     }
-
-    private Handler mHandler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            if (msg.what == 888) {
-                int orientation = msg.arg1;
-                /**
-                 * 根据手机屏幕的朝向角度，来设置内容的横竖屏，并且记录状态
-                 */
-                changeListener.orientationChange(orientation);
-            }
-        }
-    };
 
     void setOrientationChangeListener(OrientationChangeListener changeListener) {
         this.changeListener = changeListener;
@@ -67,11 +54,6 @@ public class ScreenRotateUtils {
     }
 
     class OrientationSensorListener implements SensorEventListener {
-        private Handler rotateHandler;
-
-        public OrientationSensorListener(Handler rotateHandler) {
-            this.rotateHandler = rotateHandler;
-        }
 
         @Override
         public void onSensorChanged(SensorEvent event) {
@@ -115,7 +97,6 @@ public class ScreenRotateUtils {
                 if (!isOpenSensor) {
                     return;
                 }
-//                rotateHandler.obtainMessage(888, orientation, 0).sendToTarget();
                 changeListener.orientationChange(orientation);
             }
         }
