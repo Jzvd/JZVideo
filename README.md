@@ -2,7 +2,7 @@
 --
 <p align="center">
 <a href="http://developer.android.com/index.html"><img src="https://img.shields.io/badge/platform-android-green.svg"></a>
-<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.2.0%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.2.0-green.svg"></a>
+<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.2.1%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.2.1-green.svg"></a>
 <a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
 <a href="https://android-arsenal.com/details/1/3269"><img src="https://img.shields.io/badge/Android%20Arsenal-jiaozivideoplayer-green.svg?style=true"></a>
 </p>
@@ -37,19 +37,21 @@ Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，微
 
 ## 文档
 
-- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装demo[jiaozivideoplayer-7.2.0.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.2.0/jiaozivideoplayer-7.2.0.apk)，仔细过一遍demo
+- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装demo[jiaozivideoplayer-7.2.1.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.2.1/jiaozivideoplayer-7.2.1.apk)，仔细过一遍demo
 - [文档 - 自定义Jzvd](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89Jzvd)，继承JzvdStd实现自己的播放器
 - [文档 - 自定义播放内核](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%86%85%E6%A0%B8)，测试哪个播放内核适合自己的项目
 
 ## 效果
 
-![Demo Screenshot][1]
+<img src="https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg" width="90%">
+
+<img src="https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif" width="90%">
 
 ## QuickStart
 
 1.添加类库
 ```gradle
-compile 'cn.jzvd:jiaozivideoplayer:7.2.0'
+compile 'cn.jzvd:jiaozivideoplayer:7.2.1'
 ```
 
 2.添加布局
@@ -111,8 +113,8 @@ protected void onPause() {
 即便是自定义UI，或者对Library有过修改，依然要通过上述步骤使用播放器。
 
 ## 注意：
-1.7.0版本之后要在JzvdStd外面包一层Layout
-2.如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
+1. 7.0版本之后要在JzvdStd外面包一层Layout
+2. 如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
 
 
 ## License MIT
@@ -125,4 +127,3 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-[1]: https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg
