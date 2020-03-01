@@ -8,9 +8,10 @@ import android.media.PlaybackParams;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.Surface;
+
+import androidx.annotation.RequiresApi;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.Jzvd;
@@ -168,7 +169,7 @@ public class JZMediaSystemAssertFolder extends JZMediaInterface implements Media
         handler.post(() -> {
             if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
                 if (jzvd.state == Jzvd.STATE_PREPARING
-                        || jzvd.state == Jzvd.STATE_PREPARING_CHANGING_URL) {
+                        || jzvd.state == Jzvd.STATE_PREPARING_CHANGE_URL) {
                     jzvd.onPrepared();
                 }
             } else {

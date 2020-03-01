@@ -100,7 +100,7 @@
             android:name=".tiktok.ActivityTikTok"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
-            android:theme="@style/jz_activity_fullscreen"/>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <activity
             android:name=".ActivityListViewToDetail"
@@ -118,6 +118,10 @@
 
         <activity
             android:name=".ActivityLocalVideo"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".ActivityScreenRotate"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>

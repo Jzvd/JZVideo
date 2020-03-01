@@ -1,11 +1,14 @@
 package cn.jzvd.demo.tiktok;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdTikTok;
@@ -24,6 +27,9 @@ public class ActivityTikTok extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_tiktok);
         rvTiktok = findViewById(R.id.rv_tiktok);

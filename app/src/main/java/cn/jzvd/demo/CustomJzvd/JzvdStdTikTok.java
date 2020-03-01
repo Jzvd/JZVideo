@@ -3,6 +3,7 @@ package cn.jzvd.demo.CustomJzvd;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.ImageView;
 
 import cn.jzvd.JzvdStd;
 
@@ -21,6 +22,7 @@ public class JzvdStdTikTok extends JzvdStd {
         bottomContainer.setVisibility(GONE);
         topContainer.setVisibility(GONE);
         bottomProgressBar.setVisibility(VISIBLE);
+        thumbImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
     }
 
 

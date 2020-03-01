@@ -6,9 +6,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -168,5 +169,9 @@ public class ActivityApi extends AppCompatActivity {
 
     public void clickPreloading(View view) {
         startActivity(new Intent(ActivityApi.this, ActivityPreloading.class));
+    }
+
+    public void clickScreenRotate(View view) {
+        startActivity(new Intent(ActivityApi.this, ActivityScreenRotate.class));
     }
 }
