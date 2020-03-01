@@ -99,8 +99,7 @@
         <activity
             android:name=".tiktok.ActivityTikTok"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ActivityListViewToDetail"
