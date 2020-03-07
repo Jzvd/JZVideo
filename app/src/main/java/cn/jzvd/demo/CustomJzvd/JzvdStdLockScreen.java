@@ -63,47 +63,46 @@ public class JzvdStdLockScreen extends JzvdStd {
 
 
     @Override
-    public void changeUiToPlayingShow() {
-        super.changeUiToPlayingShow();
-        if (screen == SCREEN_FULLSCREEN) {
-            bottomProgressBar.setVisibility(GONE);
-            if (isLockScreen) {
-                topContainer.setVisibility(GONE);
-                bottomContainer.setVisibility(GONE);
-                startButton.setVisibility(GONE);
-
-            } else {
-                topContainer.setVisibility(VISIBLE);
-                bottomContainer.setVisibility(VISIBLE);
-                startButton.setVisibility(VISIBLE);
-            }
-        }
-    }
-
-    @Override
     public void init(Context context) {
         super.init(context);
         lockIv = findViewById(R.id.lock);
         lockIv.setOnClickListener(this);
     }
 
-    @Override
-    public void changeUiToPlayingClear() {
-        super.changeUiToPlayingClear();
-        if (screen == SCREEN_FULLSCREEN) {
-            bottomProgressBar.setVisibility(GONE);
-        }
-    }
+
 
     @Override
     public void onClickUiToggle() {
         super.onClickUiToggle();
         if (screen == SCREEN_FULLSCREEN) {
-            if (lockIv.getVisibility() == VISIBLE) {
-                lockIv.setVisibility(View.GONE);
+            if (!isLockScreen) {
+                if (bottomContainer.getVisibility() == View.VISIBLE) {
+                    lockIv.setVisibility(View.VISIBLE);
+                } else {
+                    lockIv.setVisibility(View.GONE);
+                }
             } else {
-                lockIv.setVisibility(View.VISIBLE);
+                if ((int) lockIv.getTag() == 1) {
+                    bottomProgressBar.setVisibility(GONE);
+                    if (lockIv.getVisibility() == View.GONE) {
+                        lockIv.setVisibility(View.VISIBLE);
+                    } else {
+                        lockIv.setVisibility(View.GONE);
+                    }
+
+                }
             }
+
+        }
+    }
+
+    @Override
+    public void changeUiToPauseShow() {
+        super.changeUiToPauseShow();
+        if (isLockScreen) {
+            bottomContainer.setVisibility(GONE);
+            topContainer.setVisibility(GONE);
+            startButton.setVisibility(GONE);
         }
     }
 
@@ -126,6 +125,33 @@ public class JzvdStdLockScreen extends JzvdStd {
     }
 
     @Override
+    public void changeUiToPlayingShow() {
+        super.changeUiToPlayingShow();
+        if (screen == SCREEN_FULLSCREEN) {
+            bottomProgressBar.setVisibility(GONE);
+            if (isLockScreen) {
+                topContainer.setVisibility(GONE);
+                bottomContainer.setVisibility(GONE);
+                startButton.setVisibility(GONE);
+            } else {
+                topContainer.setVisibility(VISIBLE);
+                bottomContainer.setVisibility(VISIBLE);
+                startButton.setVisibility(VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void changeUiToPlayingClear() {
+        super.changeUiToPlayingClear();
+        if (screen == SCREEN_FULLSCREEN) {
+            bottomProgressBar.setVisibility(GONE);
+            lockIv.setVisibility(View.GONE);
+        }
+    }
+
+
+    @Override
     public void setScreenNormal() {
         super.setScreenNormal();
         lockIv.setVisibility(View.GONE);
@@ -143,6 +169,7 @@ public class JzvdStdLockScreen extends JzvdStd {
         switch (v.getId()) {
             case R.id.lock:
                 if (screen == SCREEN_FULLSCREEN) {
+                    lockIv.setTag(1);
                     if (!isLockScreen) {
                         isLockScreen = true;
                         JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -152,9 +179,9 @@ public class JzvdStdLockScreen extends JzvdStd {
                         JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
                         isLockScreen = false;
                         lockIv.setBackgroundResource(R.mipmap.unlock);
-                        topContainer.setVisibility(VISIBLE);
                         bottomContainer.setVisibility(VISIBLE);
                         bottomProgressBar.setVisibility(GONE);
+                        topContainer.setVisibility(VISIBLE);
                         startButton.setVisibility(VISIBLE);
                     }
                 }
