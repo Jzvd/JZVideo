@@ -214,8 +214,8 @@
 
     <ImageView
         android:id="@+id/lock"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="80dp"
         android:scaleType="centerInside"
