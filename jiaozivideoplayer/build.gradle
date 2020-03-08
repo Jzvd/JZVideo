@@ -1,19 +1,20 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 94
-        versionName "7.1.0"
+        targetSdkVersion 29
+        versionCode 96
+        versionName "7.2.1"
     }
 
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
     lintOptions {
         abortOnError false
     }
@@ -22,7 +23,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-    compileOnly 'com.android.support:appcompat-v7:28.0.0'
+    compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
 
-apply from: '../gradle/maven_push.gradle'
+apply from: '../gradle/build_upload.gradle'

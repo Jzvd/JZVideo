@@ -2,9 +2,10 @@ package cn.jzvd.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
@@ -62,6 +63,10 @@ public class ActivityMain extends AppCompatActivity {
 
     public void clickWebView(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityWebView.class));
+    }
+
+    public void clickLocal(View view) {
+        startActivity(new Intent(ActivityMain.this, ActivityLocalVideo.class));
     }
 
 }

@@ -23,10 +23,19 @@ public class JzvdStdShowTitleAfterFullscreen extends JzvdStd {
     @Override
     public void setUp(JZDataSource jzDataSource, int screen) {
         super.setUp(jzDataSource, screen);
-        if (this.screen == SCREEN_FULLSCREEN) {
-            titleTextView.setVisibility(View.VISIBLE);
-        } else {
-            titleTextView.setVisibility(View.INVISIBLE);
-        }
+        titleTextView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void gotoScreenFullscreen() {
+        super.gotoScreenFullscreen();
+        titleTextView.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void gotoScreenNormal() {
+        super.gotoScreenNormal();
+        titleTextView.setVisibility(View.INVISIBLE);
     }
 }
