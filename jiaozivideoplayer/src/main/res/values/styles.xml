@@ -13,4 +13,5 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
+
 </resources>

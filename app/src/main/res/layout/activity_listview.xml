@@ -36,4 +36,26 @@
         android:layout_gravity="center_horizontal"
         android:onClick="clickRecyclerView"
         android:text="Recyleview" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="clickListSmoothToDetail"
+        android:text="ListSmoothToDetail" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="clickListAutoPlay"
+        android:text="ListAutoPlay" />
+
+    <Button
+        android:id="@+id/btn_tiktok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="clickTikTok"
+        android:text="TikTok" />
 </LinearLayout>
