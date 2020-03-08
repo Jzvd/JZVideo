@@ -52,6 +52,18 @@ public class VideoConstant {
                             "http://jzvd.nathen.cn/d525f756aabf4b0588c2152fb94e07f5/d9f59bef829a472a9ca066620d9b871a-5287d2089db37e62345123a1be272f8b.mp4",
                             "http://jzvd.nathen.cn/6e2fdec45dfa44a6802e95f8e4bc3280/a6a5273ac4244333923991be0583ffc7-5287d2089db37e62345123a1be272f8b.mp4",
                             "http://jzvd.nathen.cn/22b4de0e2b1245959c5baa77fe0bf14e/896a137559084b7eb879f5441faff20d-5287d2089db37e62345123a1be272f8b.mp4"
+                    },
+                    {//tiktok
+                            "http://jzvd.nathen.cn/video/1137e480-170bac9c523-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/e0bd348-170bac9c3b8-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/7bf938c-170bac9c18a-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/2f03c005-170bac9abac-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/47788f38-170bac9ab8a-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/2d6ffe8f-170bac9ab87-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/633e0ce-170bac9ab65-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/2d6ffe8f-170bac9ab87-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/51f7552c-170bac98718-0007-1823-c86-de200.mp4",
+                            "http://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4"
                     }
             };
 
@@ -80,6 +92,18 @@ public class VideoConstant {
                             "http://jzvd-pic.nathen.cn/jzvd-pic/d6d3a520-b183-4867-8746-5b6aba6c1724.png",
                             "http://jzvd-pic.nathen.cn/jzvd-pic/caa3dade-5744-486d-a1b7-9780aebb9eb5.jpg",
                             "http://jzvd-pic.nathen.cn/jzvd-pic/2c3e62bb-6a32-4fb0-a1d5-d1260ad436a4.png"
+                    },
+                    {
+                            "http://jzvd.nathen.cn/snapshot/5f1bf07d953d4e50989e99cb45ba6b5d00002.jpg",
+                            "http://jzvd.nathen.cn/snapshot/c0d873f60f664bf6a90c9a69bdf52be900002.jpg",
+                            "http://jzvd.nathen.cn/snapshot/c8598fcf365542a28be332c19d666ec600002.jpg",
+                            "http://jzvd.nathen.cn/snapshot/f2e9d9cb796f420faa0903a28800660e00001.jpg",
+                            "http://jzvd.nathen.cn/snapshot/b3bb3dd69c804993bbd155225b873bdf00002.jpg",
+                            "http://jzvd.nathen.cn/snapshot/43902ca792e84b1b8bee65e28a75177200001.jpg",
+                            "http://jzvd.nathen.cn/snapshot/e027c24371d84a6296d824dc7a7d0aa600002.jpg",
+                            "http://jzvd.nathen.cn/snapshot/c904a0e5627f4a48982c7d09c5dc79ec00001.jpg",
+                            "http://jzvd.nathen.cn/snapshot/b6eacc0aae6049afbcf7cb9365c7694200002.jpg",
+                            "http://jzvd.nathen.cn/snapshot/717f9195bac04ea589692a3143aa04b400002.jpg"
                     }
             };
 
