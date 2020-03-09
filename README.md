@@ -47,7 +47,7 @@
 
 <img src="https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg" width="90%">
 
-<img src="https://user-images.githubusercontent.com/2038071/74347293-da19d200-4deb-11ea-865d-c6415f934d2f.gif" width="90%">
+<img src="https://user-images.githubusercontent.com/2038071/76214561-f6245e00-6247-11ea-85bb-da35ede45463.gif" width="90%">
 
 ## QuickStart
 
