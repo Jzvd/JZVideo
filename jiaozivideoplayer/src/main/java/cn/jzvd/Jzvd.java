@@ -937,7 +937,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     /**
      * 增加准备状态逻辑
      */
-    public void goOnPlayOnResume() {
+    public static void goOnPlayOnResume() {
         if (CURRENT_JZVD != null) {
             if (CURRENT_JZVD.state == Jzvd.STATE_PAUSE) {
                 if (ON_PLAY_PAUSE_TMP_STATE == STATE_PAUSE) {
@@ -959,7 +959,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     /**
      * 增加准备状态逻辑
      */
-    public void goOnPlayOnPause() {
+    public static void goOnPlayOnPause() {
         if (CURRENT_JZVD != null) {
             if (CURRENT_JZVD.state == Jzvd.STATE_AUTO_COMPLETE ||
                     CURRENT_JZVD.state == Jzvd.STATE_NORMAL ||
@@ -968,7 +968,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING){
                 //准备状态暂停的逻辑
                 Jzvd.setCurrentJzvd(CURRENT_JZVD);
-                state = STATE_PREPARING;
+                CURRENT_JZVD.state = STATE_PREPARING;
             }else {
                 ON_PLAY_PAUSE_TMP_STATE = CURRENT_JZVD.state;
                 CURRENT_JZVD.onStatePause();
