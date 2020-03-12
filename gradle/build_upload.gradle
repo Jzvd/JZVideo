@@ -1,0 +1,50 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+signing {
+    required { false }
+    sign configurations.archives
+}
+
+group = "cn.jzvd"
+archivesBaseName = "jiaozivideoplayer"
+version = "7.2.1"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: uri('build/buildUpload'))
+
+            pom.project {
+                name 'jiaozivideoplayer'
+                packaging 'aar'
+            }
+        }
+    }
+}
+
+task androidJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    options {
+        encoding = "UTF-8"
+    }
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+    classifier = 'javadoc'
+    from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
