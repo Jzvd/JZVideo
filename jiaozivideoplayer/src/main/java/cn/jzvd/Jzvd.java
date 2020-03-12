@@ -934,8 +934,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     };
 
-
-    public static void goOnPlayOnResume() {
+    /**
+     * 增加准备状态逻辑
+     */
+    public void goOnPlayOnResume() {
         if (CURRENT_JZVD != null) {
             if (CURRENT_JZVD.state == Jzvd.STATE_PAUSE) {
                 if (ON_PLAY_PAUSE_TMP_STATE == STATE_PAUSE) {
@@ -946,24 +948,66 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     CURRENT_JZVD.mediaInterface.start();
                 }
                 ON_PLAY_PAUSE_TMP_STATE = 0;
+            }else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING){
+                //准备状态暂停后的
+                CURRENT_JZVD.startVideo();
+//                CURRENT_JZVD.mediaInterface.start();
             }
         }
     }
 
-    public static void goOnPlayOnPause() {
+    /**
+     * 增加准备状态逻辑
+     */
+    public void goOnPlayOnPause() {
         if (CURRENT_JZVD != null) {
             if (CURRENT_JZVD.state == Jzvd.STATE_AUTO_COMPLETE ||
                     CURRENT_JZVD.state == Jzvd.STATE_NORMAL ||
-                    CURRENT_JZVD.state == Jzvd.STATE_PREPARING ||
                     CURRENT_JZVD.state == Jzvd.STATE_ERROR) {
                 Jzvd.releaseAllVideos();
-            } else {
+            } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING){
+                //准备状态暂停的逻辑
+                Jzvd.setCurrentJzvd(CURRENT_JZVD);
+                state = STATE_PREPARING;
+            }else {
                 ON_PLAY_PAUSE_TMP_STATE = CURRENT_JZVD.state;
                 CURRENT_JZVD.onStatePause();
                 CURRENT_JZVD.mediaInterface.pause();
             }
         }
     }
+
+
+
+//    public static void goOnPlayOnResume() {
+//        if (CURRENT_JZVD != null) {
+//            if (CURRENT_JZVD.state == Jzvd.STATE_PAUSE) {
+//                if (ON_PLAY_PAUSE_TMP_STATE == STATE_PAUSE) {
+//                    CURRENT_JZVD.onStatePause();
+//                    CURRENT_JZVD.mediaInterface.pause();
+//                } else {
+//                    CURRENT_JZVD.onStatePlaying();
+//                    CURRENT_JZVD.mediaInterface.start();
+//                }
+//                ON_PLAY_PAUSE_TMP_STATE = 0;
+//            }
+//        }
+//    }
+//
+//    public static void goOnPlayOnPause() {
+//        if (CURRENT_JZVD != null) {
+//            if (CURRENT_JZVD.state == Jzvd.STATE_AUTO_COMPLETE ||
+//                    CURRENT_JZVD.state == Jzvd.STATE_NORMAL ||
+//                    CURRENT_JZVD.state == Jzvd.STATE_PREPARING ||
+//                    CURRENT_JZVD.state == Jzvd.STATE_ERROR) {
+//                Jzvd.releaseAllVideos();
+//            } else {
+//                ON_PLAY_PAUSE_TMP_STATE = CURRENT_JZVD.state;
+//                CURRENT_JZVD.onStatePause();
+//                CURRENT_JZVD.mediaInterface.pause();
+//            }
+//        }
+//    }
 
     public static void startFullscreenDirectly(Context context, Class _class, String url, String title) {
         startFullscreenDirectly(context, _class, new JZDataSource(url, title));
