@@ -510,6 +510,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     /**
      * 里面的的onState...()其实就是setState...()，因为要可以被复写，所以参考Activity的onCreate(),onState..()的方式看着舒服一些，老铁们有何高见。
+     *
      * @param state
      */
     public void setState(int state) {
@@ -948,7 +949,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     CURRENT_JZVD.mediaInterface.start();
                 }
                 ON_PLAY_PAUSE_TMP_STATE = 0;
-            }else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING){
+            } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING) {
                 //准备状态暂停后的
                 CURRENT_JZVD.startVideo();
 //                CURRENT_JZVD.mediaInterface.start();
@@ -965,49 +966,17 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     CURRENT_JZVD.state == Jzvd.STATE_NORMAL ||
                     CURRENT_JZVD.state == Jzvd.STATE_ERROR) {
                 Jzvd.releaseAllVideos();
-            } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING){
+            } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING) {
                 //准备状态暂停的逻辑
                 Jzvd.setCurrentJzvd(CURRENT_JZVD);
                 CURRENT_JZVD.state = STATE_PREPARING;
-            }else {
+            } else {
                 ON_PLAY_PAUSE_TMP_STATE = CURRENT_JZVD.state;
                 CURRENT_JZVD.onStatePause();
                 CURRENT_JZVD.mediaInterface.pause();
             }
         }
     }
-
-
-
-//    public static void goOnPlayOnResume() {
-//        if (CURRENT_JZVD != null) {
-//            if (CURRENT_JZVD.state == Jzvd.STATE_PAUSE) {
-//                if (ON_PLAY_PAUSE_TMP_STATE == STATE_PAUSE) {
-//                    CURRENT_JZVD.onStatePause();
-//                    CURRENT_JZVD.mediaInterface.pause();
-//                } else {
-//                    CURRENT_JZVD.onStatePlaying();
-//                    CURRENT_JZVD.mediaInterface.start();
-//                }
-//                ON_PLAY_PAUSE_TMP_STATE = 0;
-//            }
-//        }
-//    }
-//
-//    public static void goOnPlayOnPause() {
-//        if (CURRENT_JZVD != null) {
-//            if (CURRENT_JZVD.state == Jzvd.STATE_AUTO_COMPLETE ||
-//                    CURRENT_JZVD.state == Jzvd.STATE_NORMAL ||
-//                    CURRENT_JZVD.state == Jzvd.STATE_PREPARING ||
-//                    CURRENT_JZVD.state == Jzvd.STATE_ERROR) {
-//                Jzvd.releaseAllVideos();
-//            } else {
-//                ON_PLAY_PAUSE_TMP_STATE = CURRENT_JZVD.state;
-//                CURRENT_JZVD.onStatePause();
-//                CURRENT_JZVD.mediaInterface.pause();
-//            }
-//        }
-//    }
 
     public static void startFullscreenDirectly(Context context, Class _class, String url, String title) {
         startFullscreenDirectly(context, _class, new JZDataSource(url, title));
