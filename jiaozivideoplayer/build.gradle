@@ -14,6 +14,7 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
     lintOptions {
         abortOnError false
     }
@@ -25,4 +26,4 @@ dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
 
-apply from: '../gradle/maven_push.gradle'
+apply from: '../gradle/build_upload.gradle'
