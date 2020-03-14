@@ -57,7 +57,7 @@ public class ActivityApi extends AppCompatActivity {
         jzDataSource.headerMap.put("key", "value");//header
         mJzvdStd.setUp(jzDataSource
                 , JzvdStd.SCREEN_NORMAL);
-        Glide.with(this).load(VideoConstant.videoThumbList[0]).into(mJzvdStd.thumbImageView);
+        Glide.with(this).load(VideoConstant.videoPosterList[0]).into(mJzvdStd.posterImageView);
 //        mJzvdStd.seekToInAdvance = 20000;
 //        Jzvd.SAVE_PROGRESS = false;//把这些注释的代码放到按钮上，让它可操作可见。
 

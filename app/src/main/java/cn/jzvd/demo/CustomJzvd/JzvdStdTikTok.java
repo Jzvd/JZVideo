@@ -24,7 +24,7 @@ public class JzvdStdTikTok extends JzvdStd {
         bottomContainer.setVisibility(GONE);
         topContainer.setVisibility(GONE);
         bottomProgressBar.setVisibility(GONE);
-        thumbImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        posterImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
     }
 
 
@@ -38,12 +38,12 @@ public class JzvdStdTikTok extends JzvdStd {
 
     @Override
     public void setAllControlsVisiblity(int topCon, int bottomCon, int startBtn, int loadingPro,
-                                        int thumbImg, int bottomPro, int retryLayout) {
+                                        int posterImg, int bottomPro, int retryLayout) {
         topContainer.setVisibility(topCon);
         bottomContainer.setVisibility(bottomCon);
         startButton.setVisibility(startBtn);
         loadingProgressBar.setVisibility(loadingPro);
-        thumbImageView.setVisibility(thumbImg);
+        posterImageView.setVisibility(posterImg);
         bottomProgressBar.setVisibility(GONE);
         mRetryLayout.setVisibility(retryLayout);
     }
