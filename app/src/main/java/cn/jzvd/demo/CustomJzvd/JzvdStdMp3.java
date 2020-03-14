@@ -27,7 +27,7 @@ public class JzvdStdMp3 extends JzvdStd {
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == cn.jzvd.R.id.thumb &&
+        if (v.getId() == cn.jzvd.R.id.poster &&
                 (state == STATE_PLAYING ||
                         state == STATE_PAUSE)) {
             onClickUiToggle();
@@ -52,26 +52,26 @@ public class JzvdStdMp3 extends JzvdStd {
     @Override
     public void changeUiToPlayingShow() {
         super.changeUiToPlayingShow();
-        thumbImageView.setVisibility(View.VISIBLE);
+        posterImageView.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void changeUiToPlayingClear() {
         super.changeUiToPlayingClear();
-        thumbImageView.setVisibility(View.VISIBLE);
+        posterImageView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void changeUiToPauseShow() {
         super.changeUiToPauseShow();
-        thumbImageView.setVisibility(View.VISIBLE);
+        posterImageView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void changeUiToPauseClear() {
         super.changeUiToPauseClear();
-        thumbImageView.setVisibility(View.VISIBLE);
+        posterImageView.setVisibility(View.VISIBLE);
     }
 
     @Override

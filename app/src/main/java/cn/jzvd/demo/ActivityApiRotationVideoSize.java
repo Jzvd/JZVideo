@@ -34,8 +34,8 @@ public class ActivityApiRotationVideoSize extends AppCompatActivity {
         myJzvdStd.setUp(VideoConstant.videoUrls[0][7], VideoConstant.videoTitles[0][7]
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
-                .load(VideoConstant.videoThumbs[0][7])
-                .into(myJzvdStd.thumbImageView);
+                .load(VideoConstant.videoPosters[0][7])
+                .into(myJzvdStd.posterImageView);
         // The Point IS 或者这样写也可以
 //        myJzvdStd.videoRotation = 180;
     }

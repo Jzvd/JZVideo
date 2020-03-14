@@ -41,7 +41,7 @@ public class AdapterRecyclerViewTiny extends RecyclerView.Adapter<AdapterRecycle
         holder.jzvdStd.setUp(
                 VideoConstant.videoUrls[0][position],
                 VideoConstant.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(VideoConstant.videoThumbs[0][position]).into(holder.jzvdStd.thumbImageView);
+        Glide.with(holder.jzvdStd.getContext()).load(VideoConstant.videoPosters[0][position]).into(holder.jzvdStd.posterImageView);
     }
 
     @Override

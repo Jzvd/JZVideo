@@ -16,7 +16,7 @@ public class VideoConstant {
                     "http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
             };
 
-    public static String[] videoThumbList =
+    public static String[] videoPosterList =
             {
                     "http://jzvd-pic.nathen.cn/jzvd-pic/00b026e7-b830-4994-bc87-38f4033806a6.jpg",
                     "http://jzvd-pic.nathen.cn/jzvd-pic/1d935cc5-a1e7-4779-bdfa-20fd7a60724c.jpg",
@@ -66,6 +66,7 @@ public class VideoConstant {
                             "http://jzvd.nathen.cn/video/2a101070-170bad88892-0007-1823-c86-de200.mp4"
                     }
             };
+
     public static String[] ssVideos = {
             //0
             "http://jzvd.nathen.cn/video/4542c17b-170c25a8e14-0007-1823-c86-de200.mp4",
@@ -196,7 +197,8 @@ public class VideoConstant {
             "http://jzvd.nathen.cn/snapshot/c9a2dbd1b997417687312741d2efe62300005.jpg",
             "http://jzvd.nathen.cn/snapshot/f92487e92d6a4d3faad2d60375416c5200005.jpg"
     };
-    public static String[][] videoThumbs =
+
+    public static String[][] videoPosters =
             {
                     {
                             "http://jzvd-pic.nathen.cn/jzvd-pic/bd7ffc84-8407-4037-a078-7d922ce0fb0f.jpg",

@@ -35,7 +35,7 @@ public class ActivityListViewNormal extends AppCompatActivity {
         listView.setAdapter(new AdapterListView(this,
                 VideoConstant.videoUrls[0],
                 VideoConstant.videoTitles[0],
-                VideoConstant.videoThumbs[0]));
+                VideoConstant.videoPosters[0]));
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override

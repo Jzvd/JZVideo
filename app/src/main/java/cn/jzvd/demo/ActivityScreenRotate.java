@@ -29,8 +29,8 @@ public class ActivityScreenRotate extends AppCompatActivity implements ScreenRot
         mJzvdStd.setUp(VideoConstant.videoUrlList[0], "饺子不信"
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
-                .load(VideoConstant.videoThumbList[0])
-                .into(mJzvdStd.thumbImageView);
+                .load(VideoConstant.videoPosterList[0])
+                .into(mJzvdStd.posterImageView);
         ScreenRotateUtils.getInstance(this.getApplicationContext()).setOrientationChangeListener(this);
     }
 

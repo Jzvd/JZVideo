@@ -23,13 +23,13 @@ public class AdapterListView extends BaseAdapter {
 
     String[] videoUrls;
     String[] videoTitles;
-    String[] videoThumbs;
+    String[] videoposters;
 
-    public AdapterListView(Context context, String[] videoUrls, String[] videoTitles, String[] videoThumbs) {
+    public AdapterListView(Context context, String[] videoUrls, String[] videoTitles, String[] videoposters) {
         this.context = context;
         this.videoUrls = videoUrls;
         this.videoTitles = videoTitles;
-        this.videoThumbs = videoThumbs;
+        this.videoposters = videoposters;
     }
 
     @Override
@@ -64,8 +64,8 @@ public class AdapterListView extends BaseAdapter {
                 videoUrls[position],
                 videoTitles[position], Jzvd.SCREEN_NORMAL);
         Glide.with(convertView.getContext())
-                .load(videoThumbs[position])
-                .into(viewHolder.jzvdStd.thumbImageView);
+                .load(videoposters[position])
+                .into(viewHolder.jzvdStd.posterImageView);
         viewHolder.jzvdStd.positionInList = position;
         return convertView;
     }

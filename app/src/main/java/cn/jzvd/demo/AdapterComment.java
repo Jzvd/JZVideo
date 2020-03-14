@@ -24,7 +24,7 @@ public class AdapterComment extends RecyclerView.Adapter<AdapterComment.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Glide.with(holder.ivHead.getContext()).load(VideoConstant.videoThumbs[0][position])
+        Glide.with(holder.ivHead.getContext()).load(VideoConstant.videoPosters[0][position])
                 .into(holder.ivHead);
         holder.tvName.setText(VideoConstant.videoTitles[0][position]);
         holder.tvContent.setText(VideoConstant.videoTitles[0][position]);

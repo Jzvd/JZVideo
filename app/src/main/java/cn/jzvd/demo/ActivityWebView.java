@@ -74,8 +74,8 @@ public class ActivityWebView extends AppCompatActivity {
                     jzvdStd.setUp(VideoConstant.videoUrlList[1], "饺子骑大马",
                             Jzvd.SCREEN_NORMAL);
                     Glide.with(ActivityWebView.this)
-                            .load(VideoConstant.videoThumbList[1])
-                            .into(jzvdStd.thumbImageView);
+                            .load(VideoConstant.videoPosterList[1])
+                            .into(jzvdStd.posterImageView);
                     ViewGroup.LayoutParams ll = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(ll);
                     layoutParams.y = JZUtils.dip2px(ActivityWebView.this, top);
@@ -91,8 +91,8 @@ public class ActivityWebView extends AppCompatActivity {
                     jzvdStd.setUp(VideoConstant.videoUrlList[2], "饺子失态了",
                             Jzvd.SCREEN_NORMAL);
                     Glide.with(ActivityWebView.this)
-                            .load(VideoConstant.videoThumbList[2])
-                            .into(jzvdStd.thumbImageView);
+                            .load(VideoConstant.videoPosterList[2])
+                            .into(jzvdStd.posterImageView);
                     ViewGroup.LayoutParams ll = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(ll);
                     layoutParams.y = JZUtils.dip2px(ActivityWebView.this, top);
