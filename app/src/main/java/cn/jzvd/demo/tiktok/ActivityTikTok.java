@@ -72,7 +72,7 @@ public class ActivityTikTok extends AppCompatActivity {
             @Override
             public void onChildViewDetachedFromWindow(View view) {
                 Jzvd jzvd = view.findViewById(R.id.videoplayer);
-                if (jzvd != null && Jzvd.CURRENT_JZVD != null &&
+                if (jzvd != null && Jzvd.CURRENT_JZVD != null && jzvd.jzDataSource!=null&&
                         jzvd.jzDataSource.containsTheUrl(Jzvd.CURRENT_JZVD.jzDataSource.getCurrentUrl())) {
                     if (Jzvd.CURRENT_JZVD != null && Jzvd.CURRENT_JZVD.screen != Jzvd.SCREEN_FULLSCREEN) {
                         Jzvd.releaseAllVideos();

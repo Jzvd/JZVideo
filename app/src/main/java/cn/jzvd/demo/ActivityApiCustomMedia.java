@@ -42,7 +42,7 @@ public class ActivityApiCustomMedia extends AppCompatActivity {
 
         Glide.with(this)
                 .load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png")
-                .into(jzvdStd.thumbImageView);
+                .into(jzvdStd.posterImageView);
 
     }
 

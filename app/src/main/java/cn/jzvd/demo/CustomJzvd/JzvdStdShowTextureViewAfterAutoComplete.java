@@ -22,7 +22,7 @@ public class JzvdStdShowTextureViewAfterAutoComplete extends JzvdStd {
     @Override
     public void onAutoCompletion() {
         super.onAutoCompletion();
-        thumbImageView.setVisibility(View.GONE);
+        posterImageView.setVisibility(View.GONE);
     }
 
 }

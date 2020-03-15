@@ -6,14 +6,15 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 96
-        versionName "7.2.1"
+        versionCode 97
+        versionName "7.2.2"
     }
 
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
+
     lintOptions {
         abortOnError false
     }
@@ -25,4 +26,4 @@ dependencies {
     compileOnly 'androidx.appcompat:appcompat:1.1.0'
 }
 
-apply from: '../gradle/maven_push.gradle'
+apply from: '../gradle/build_upload.gradle'
