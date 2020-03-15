@@ -37,7 +37,7 @@ public class ActivityTinyWindow extends AppCompatActivity {
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
                 .load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png")
-                .into(jzvdStdTinyWindow.thumbImageView);
+                .into(jzvdStdTinyWindow.posterImageView);
 
     }
 

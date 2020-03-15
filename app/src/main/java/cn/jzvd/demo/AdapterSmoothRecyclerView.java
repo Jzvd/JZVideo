@@ -64,8 +64,8 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
             jzvdStdRv.setUp(
                     VideoConstant.videoUrls[0][position],
                     VideoConstant.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-            Glide.with(holder.container.getContext()).load(VideoConstant.videoThumbs[0][position])
-                    .into(jzvdStdRv.thumbImageView);
+            Glide.with(holder.container.getContext()).load(VideoConstant.videoPosters[0][position])
+                    .into(jzvdStdRv.posterImageView);
         }
         jzvdStdRv.setId(R.id.jzvdplayer);
         jzvdStdRv.setAtList(true);

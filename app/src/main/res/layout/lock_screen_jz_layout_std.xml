@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    android:descendantFocusability="blocksDescendants">
+    android:descendantFocusability="afterDescendants">
 
     <FrameLayout
         android:id="@+id/surface_container"
@@ -19,8 +19,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:adjustViewBounds="true"
         android:background="#000000"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/layout_bottom"
@@ -105,38 +106,42 @@
     <RelativeLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/jz_title_bg"
-        android:gravity="center_vertical">
+        android:paddingStart="10dp"
+        android:paddingLeft="10dp">
 
         <ImageView
             android:id="@+id/back"
-            android:layout_width="23dp"
-            android:layout_height="match_parent"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:paddingStart="12dp"
-            android:paddingLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:padding="3dp"
             android:scaleType="centerInside"
             android:src="@drawable/jz_click_back_selector" />
 
+
         <TextView
             android:id="@+id/title"
-            android:layout_width="257dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_toLeftOf="@+id/battery_time_layout"
             android:layout_toEndOf="@+id/back"
             android:layout_toRightOf="@+id/back"
             android:ellipsize="end"
             android:maxLines="2"
             android:textColor="#ffffff"
             android:textSize="18sp" />
+
 
         <LinearLayout
             android:id="@+id/battery_time_layout"
@@ -148,7 +153,8 @@
             android:layout_marginEnd="14dp"
             android:layout_marginRight="14dp"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/battery_level"
@@ -167,19 +173,6 @@
                 android:textColor="#ffffffff"
                 android:textSize="12.0sp" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tv_speed"
-            android:layout_width="42dp"
-            android:layout_height="60dp"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="13dp"
-            android:layout_marginRight="13dp"
-            android:layout_toStartOf="@+id/battery_time_layout"
-            android:layout_toLeftOf="@+id/battery_time_layout"
-            android:gravity="center"
-            android:text="倍速"
-            android:textColor="#ffffffff" />
     </RelativeLayout>
 
     <ProgressBar
@@ -219,6 +212,16 @@
         android:textSize="12sp"
         android:visibility="invisible" />
 
+    <ImageView
+        android:id="@+id/lock"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="80dp"
+        android:scaleType="centerInside"
+        android:background="@mipmap/unlock"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/retry_layout"
         android:layout_width="wrap_content"
@@ -226,7 +229,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
 
         <TextView
             android:layout_width="wrap_content"

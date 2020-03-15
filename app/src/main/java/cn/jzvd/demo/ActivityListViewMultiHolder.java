@@ -134,8 +134,8 @@ public class ActivityListViewMultiHolder extends AppCompatActivity {
                         VideoConstant.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
                 viewHolder.jzvdStd.positionInList = position;
                 Glide.with(ActivityListViewMultiHolder.this)
-                        .load(VideoConstant.videoThumbs[0][position])
-                        .into(viewHolder.jzvdStd.thumbImageView);
+                        .load(VideoConstant.videoPosters[0][position])
+                        .into(viewHolder.jzvdStd.posterImageView);
             } else {
                 TextViewHolder textViewHolder;
                 if (convertView != null && convertView.getTag() != null && convertView.getTag() instanceof TextViewHolder) {

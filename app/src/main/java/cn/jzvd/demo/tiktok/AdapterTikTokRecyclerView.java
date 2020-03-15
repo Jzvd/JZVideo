@@ -40,11 +40,11 @@ public class AdapterTikTokRecyclerView extends RecyclerView.Adapter<AdapterTikTo
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Log.i(TAG, "onBindViewHolder [" + holder.jzvdStd.hashCode() + "] position=" + position);
 
-        JZDataSource jzDataSource = new JZDataSource(VideoConstant.videoUrls[0][position],
+        JZDataSource jzDataSource = new JZDataSource(VideoConstant.videoUrls[3][position],
                 VideoConstant.videoTitles[0][position]);
         jzDataSource.looping = true;
         holder.jzvdStd.setUp(jzDataSource,Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(VideoConstant.videoThumbs[0][position]).into(holder.jzvdStd.thumbImageView);
+        Glide.with(holder.jzvdStd.getContext()).load(VideoConstant.videoPosters[0][position]).into(holder.jzvdStd.posterImageView);
     }
 
     @Override
