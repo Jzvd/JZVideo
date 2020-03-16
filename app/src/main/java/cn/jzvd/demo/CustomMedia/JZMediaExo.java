@@ -38,6 +38,7 @@ import com.google.android.exoplayer2.video.VideoListener;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.Jzvd;
+import cn.jzvd.demo.BigUIChangeAG.AGVideo;
 import cn.jzvd.demo.R;
 
 /**
@@ -139,10 +140,19 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
 
     @Override
     public void seekTo(long time) {
+        if (simpleExoPlayer==null){
+            return;
+        }
         if (time != previousSeek) {
+            if (time >= simpleExoPlayer.getBufferedPosition()) {
+                if (jzvd instanceof AGVideo) {
+                    ((AGVideo) jzvd).showProgress();
+                }
+            }
             simpleExoPlayer.seekTo(time);
             previousSeek = time;
             jzvd.seekToInAdvance = time;
+
         }
     }
 
@@ -217,6 +227,9 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
                 }
                 break;
                 case Player.STATE_BUFFERING: {
+                    if (jzvd instanceof AGVideo) {
+                        ((AGVideo) jzvd).showProgress();
+                    }
                     handler.post(callback);
                 }
                 break;
