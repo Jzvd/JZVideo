@@ -45,11 +45,11 @@ public class ScreenRotateUtils {
         return instance;
     }
 
-    void setOrientationChangeListener(OrientationChangeListener changeListener) {
+    public void setOrientationChangeListener(OrientationChangeListener changeListener) {
         this.changeListener = changeListener;
     }
 
-    interface OrientationChangeListener {
+    public interface OrientationChangeListener {
         void orientationChange(int orientation);
     }
 
@@ -113,7 +113,7 @@ public class ScreenRotateUtils {
      *
      * @param activity
      */
-    void start(Activity activity) {
+    public void start(Activity activity) {
         mActivity = activity;
         sm.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
@@ -121,7 +121,7 @@ public class ScreenRotateUtils {
     /**
      * 注销监听
      */
-    void stop() {
+    public void stop() {
         sm.unregisterListener(listener);
         mActivity = null;  // 防止内存泄漏
     }
