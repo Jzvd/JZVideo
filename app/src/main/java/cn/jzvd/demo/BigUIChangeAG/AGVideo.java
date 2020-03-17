@@ -331,6 +331,12 @@ public class AGVideo extends JzvdStd {
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
         showProgress();
         super.changeUrl(jzDataSource, seekToInAdvance);
+        //切换播放地址之后继续以1倍速播放
+        if (jzDataSource.objects == null) {
+            Object[] object = {1};
+            jzDataSource.objects = object;
+        }
+        speedChange(1.0f);
     }
 
     @Override

@@ -22,7 +22,7 @@ import cn.jzvd.demo.R;
 import cn.jzvd.demo.ScreenRotateUtils;
 
 public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVideo.JzVideoListener, ScreenRotateUtils.OrientationChangeListener
-,VideoSpeedPopup.SpeedChangeListener{
+,VideoSpeedPopup.SpeedChangeListener,VideoEpisodePopup.EpisodeClickListener{
     private AGVideo mPlayer;
     private JZDataSource mJzDataSource;
     private List<AGEpsodeEntity> episodeList;
@@ -30,6 +30,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
     private int playingNum=0;
     //倍数弹窗
     private VideoSpeedPopup videoSpeedPopup;
+    private VideoEpisodePopup videoEpisodePopup;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -214,12 +215,12 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
      * 关闭倍速播放弹窗和选集弹窗
      */
     private void dismissSpeedPopAndEpisodePop() {
-//        if (speedPopup != null) {
-//            speedPopup.dismissWithOutAnimate();
-//        }
-//        if (episodePopup != null) {
-//            episodePopup.dismissWithOutAnimate();
-//        }
+        if (videoSpeedPopup != null) {
+            videoSpeedPopup.dismiss();
+        }
+        if (videoEpisodePopup != null) {
+            videoEpisodePopup.dismiss();
+        }
     }
 
     /**
@@ -279,7 +280,12 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
 
     @Override
     public void selectPartsClick() {
-
+        if (videoEpisodePopup == null) {
+            videoEpisodePopup = new VideoEpisodePopup(this, episodeList);
+            videoEpisodePopup.setEpisondeClickListener(this);
+        }
+        videoEpisodePopup.setPlayNum(1);
+        videoEpisodePopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT,0,0);
     }
 
     @Override
@@ -306,6 +312,13 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         changeSpeed(speed);
     }
 
+    @Override
+    public void onEpisodeClickListener(AGEpsodeEntity entity, int position) {
+        TabLayout.Tab tab=episodes.getTabAt(position);
+        if (tab!=null){
+            tab.select();
+        }
+    }
     private void initVideoData(){
         episodeList=new ArrayList<>();
         episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/QSeTc4nj/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第01集"));

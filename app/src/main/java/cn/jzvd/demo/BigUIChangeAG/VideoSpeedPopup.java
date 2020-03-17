@@ -86,7 +86,6 @@ public class VideoSpeedPopup extends PopupWindow implements View.OnClickListener
                     speedChangeListener.speedChange(2f);
                     break;
             }
-            dismiss();
         }
     }
 
