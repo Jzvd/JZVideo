@@ -280,9 +280,11 @@ public class JzvdStd extends Jzvd {
             OnClickListener mQualityListener = v1 -> {
                 int index = (int) v1.getTag();
 
-                this.seekToInAdvance = getCurrentPositionWhenPlaying();
+//                this.seekToInAdvance = getCurrentPositionWhenPlaying();
                 jzDataSource.currentUrlIndex = index;
-                onStatePreparingChangeUrl();
+//                onStatePreparingChangeUrl();
+
+                changeUrl(jzDataSource, getCurrentPositionWhenPlaying());
 
                 clarity.setText(jzDataSource.getCurrentKey().toString());
                 for (int j = 0; j < layout.getChildCount(); j++) {//设置点击之后的颜色

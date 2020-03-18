@@ -146,8 +146,8 @@ public class ActivityApi extends AppCompatActivity {
     }
 
     public void clickBigChange(View view) {
-        Toast.makeText(ActivityApi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(ActivityApi.this, ActivityApiUIBigChange.class));
+//        Toast.makeText(ActivityApi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(ActivityApi.this, ActivityApiUIBigChange.class));
     }
 
     public void clickOrientation(View view) {

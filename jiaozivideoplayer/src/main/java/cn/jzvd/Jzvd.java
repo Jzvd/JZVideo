@@ -29,6 +29,8 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.sql.DataSource;
+
 /**
  * Created by Nathen on 16/7/30.
  */
@@ -359,6 +361,12 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         startVideo();
 
 //        mediaInterface.prepare();
+    }
+
+    public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
+        this.jzDataSource = jzDataSource;
+        this.seekToInAdvance = seekToInAdvance;
+        onStatePreparingChangeUrl();
     }
 
     public void onPrepared() {
