@@ -692,7 +692,7 @@ public class AGVideo extends JzvdStd {
 
 
     public void startDismissLockViewTimer() {
-        cancelDismissControlViewTimer();
+        cancelDismissLockViewTimer();
         mDismissLockViewTimer = new Timer();
         mDismissLockViewTimerTask = new DismissLockViewTimerTask();
         mDismissLockViewTimer.schedule(mDismissLockViewTimerTask, 2500);
