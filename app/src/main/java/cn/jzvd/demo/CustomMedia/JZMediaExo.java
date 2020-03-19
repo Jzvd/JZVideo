@@ -288,6 +288,8 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
     public void setSurface(Surface surface) {
         if (simpleExoPlayer!=null){
             simpleExoPlayer.setVideoSurface(surface);
+        }else {
+            Log.e("AGVideo","simpleExoPlayer为空");
         }
     }
 
