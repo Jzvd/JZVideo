@@ -43,8 +43,8 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
 
     private void initView(){
         episodes = findViewById(R.id.video_episodes);
-        initEpisodesTablayout();
         mPlayer=findViewById(R.id.ag_player);
+        initEpisodesTablayout();
         mPlayer.setJzVideoListener(this);
         mJzDataSource = new JZDataSource(episodeList.get(0).getVideoUrl(), episodeList.get(0).getVideoName());
         mPlayer.setUp(mJzDataSource
@@ -100,6 +100,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+        isNext(episodes.getSelectedTabPosition());
     }
 
 
@@ -107,6 +108,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
 
     @Override
     protected void onResume() {
+        Jzvd.goOnPlayOnResume();
         super.onResume();
         ScreenRotateUtils.getInstance(this).start(this);
     }
@@ -123,12 +125,13 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
     protected void onPause() {
         super.onPause();
         ScreenRotateUtils.getInstance(this).stop();
-        Jzvd.releaseAllVideos();
+        Jzvd.goOnPlayOnPause();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Jzvd.releaseAllVideos();
         ScreenRotateUtils.getInstance(this.getApplicationContext()).setOrientationChangeListener(null);
     }
 
@@ -248,7 +251,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
 
 
     @Override
-    public void nextClick(int type) {
+    public void nextClick() {
         int position = episodes.getSelectedTabPosition() + 1;
         AGEpsodeEntity entity=episodeList.get(position);
         mJzDataSource=new JZDataSource(entity.getVideoUrl(),entity.getVideoName());
@@ -273,10 +276,6 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         Toast.makeText(this, "投屏", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void fullscreenClick() {
-
-    }
 
     @Override
     public void selectPartsClick() {
@@ -297,15 +296,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         videoSpeedPopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT,0,0);
     }
 
-    @Override
-    public void lockClick(boolean isLock) {
 
-    }
-
-    @Override
-    public void notNetWorkRetry() {
-
-    }
 
     @Override
     public void speedChange(float speed) {
