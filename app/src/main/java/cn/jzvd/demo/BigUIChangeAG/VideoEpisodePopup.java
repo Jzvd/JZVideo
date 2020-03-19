@@ -2,21 +2,29 @@ package cn.jzvd.demo.BigUIChangeAG;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.DpOrPxUtils;
 
 public class VideoEpisodePopup extends PopupWindow {
+    private static final int COMPLETED = 0;
     private Context mC;
+    private LinearLayout main;
     private LayoutInflater inflater;
     private View contentView;
     private RecyclerView episodeRecycler;
@@ -27,7 +35,8 @@ public class VideoEpisodePopup extends PopupWindow {
      * 当前正在播放的集数
      */
     private int playNum = 0;
-
+    private Timer mDismissTimer;
+    protected DismissTimerTask mDismissTimerTask;
     public EpisodeClickListener getEpisondeClickListener() {
         return episondeClickListener;
     }
@@ -49,6 +58,7 @@ public class VideoEpisodePopup extends PopupWindow {
         setOutsideTouchable(true);
         //不设置该属性，弹窗于屏幕边框会有缝隙并且背景不是半透明
         setBackgroundDrawable(new BitmapDrawable());
+        main=contentView.findViewById(R.id.video_main);
         episodeRecycler = contentView.findViewById(R.id.video_episode);
         episodeRecycler.setLayoutManager(new GridLayoutManager(context, 5));
         episodeAdapter = new VideoEpisodeAdapter(mC,episodeList);
@@ -68,9 +78,35 @@ public class VideoEpisodePopup extends PopupWindow {
                 playNum = position + 1;
                 episodeList.get(playNum - 1).setPlay(true);
                 episodeAdapter.notifyDataSetChanged();
-//                dismiss();
             }
         });
+
+        main.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                startDismissTimer();
+                return false;
+            }
+        });
+        episodeRecycler.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                startDismissTimer();
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void showAtLocation(View parent, int gravity, int x, int y) {
+        super.showAtLocation(parent, gravity, x, y);
+        startDismissTimer();
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        cancelDismissTimer();
     }
 
     public void setPlayNum(int playNum) {
@@ -84,6 +120,23 @@ public class VideoEpisodePopup extends PopupWindow {
         }
     }
 
+    public void startDismissTimer() {
+        cancelDismissTimer();
+        mDismissTimer = new Timer();
+        mDismissTimerTask = new DismissTimerTask();
+        mDismissTimer.schedule(mDismissTimerTask, 2500);
+    }
+
+    public void cancelDismissTimer() {
+        if (mDismissTimer != null) {
+            mDismissTimer.cancel();
+        }
+        if (mDismissTimerTask != null) {
+            mDismissTimerTask.cancel();
+        }
+
+    }
+
 
     public interface EpisodeClickListener {
         /**
@@ -93,4 +146,24 @@ public class VideoEpisodePopup extends PopupWindow {
          */
         void onEpisodeClickListener(AGEpsodeEntity entity, int position);
     }
+
+    public class DismissTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+            Message message = new Message();
+            message.what = COMPLETED;
+            handler.sendMessage(message);
+        }
+    }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == COMPLETED) {
+                dismiss();
+
+            }
+        }
+    };
 }

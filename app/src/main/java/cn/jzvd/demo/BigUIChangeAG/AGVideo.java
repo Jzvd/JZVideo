@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -36,19 +37,19 @@ public class AGVideo extends JzvdStd {
     private RelativeLayout videoPlayControlLayout;
     private ImageView screenIV, quickRetreat, fastForward, start_bottom, next_bottom;
     private CheckBox lock;
-    private TextView tvSpeed, tvSelectPart;
+    private TextView tvSpeed, tvSelectPart,next_set;
     private LinearLayout startLayout;
     //无网络布局
-    private ConstraintLayout notNetWorkLayout;
-    private TextView retryButton;
     private LoadingView loadingView;
 
     //是否锁屏状态
     private boolean isLock = false;
     //是否有下一集
     private boolean isNext;
-    private Timer mDismissLockViewTimer;
+    private int nextTimerDate=3;
+    private Timer mDismissLockViewTimer,mDismissNextViewTimer;
     protected DismissLockViewTimerTask mDismissLockViewTimerTask;
+    private DismissNextViewTimerTask mDismissNextViewTimerTask;
 
     public AGVideo(Context context) {
         super(context);
@@ -74,9 +75,6 @@ public class AGVideo extends JzvdStd {
     @Override
     public void init(Context context) {
         super.init(context);
-        //无网络布局
-        notNetWorkLayout = findViewById(R.id.player_notNetWork_layout);
-        retryButton = findViewById(R.id.player_notNetWork_retry);
         loadingView = findViewById(R.id.player_newLoading);
 
         videoPlayControlLayout = findViewById(R.id.video_control_layout);
@@ -89,8 +87,9 @@ public class AGVideo extends JzvdStd {
         start_bottom = findViewById(R.id.start_bottom);
         next_bottom = findViewById(R.id.next_bottom);
         lock = findViewById(R.id.lock);
+        next_set = findViewById(R.id.next_set);
 
-        retryButton.setOnClickListener(this);
+        next_set.setOnClickListener(this);
         replayTextView.setOnClickListener(this);
         tvSpeed.setOnClickListener(this);
         tvSelectPart.setOnClickListener(this);
@@ -103,9 +102,6 @@ public class AGVideo extends JzvdStd {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isLock = isChecked;
-                if (jzVideoListener != null) {
-                    jzVideoListener.lockClick(isChecked);
-                }
                 if (isChecked) {
                     //锁屏按钮单独延迟隐藏
                     goneLock();
@@ -120,9 +116,6 @@ public class AGVideo extends JzvdStd {
                 }
             }
         });
-        if (!isHaveNetWork()) {
-            showNotNetWorkLayout();
-        }
     }
 
     private void cancelGoneLock() {
@@ -246,6 +239,25 @@ public class AGVideo extends JzvdStd {
                 addTextureView();
                 onStatePreparing();
                 break;
+
+            case R.id.replay_text:
+                if (state == STATE_AUTO_COMPLETE) {
+                    replayTextView.setVisibility(View.GONE);
+                    next_set.setVisibility(View.GONE);
+                    //点击重播，取消下一集倒计时
+                    dismissNextView();
+                    cancelDismissNextViewTimer();
+                    resetProgressAndTime();
+                    mediaInterface.seekTo(0);
+                }
+                break;
+            case R.id.next_set:
+                dismissNextView();
+                cancelDismissNextViewTimer();
+                if (jzVideoListener != null) {
+                    jzVideoListener.nextClick();
+                }
+                break;
             case R.id.back:
             case R.id.top_back:
                 if (jzVideoListener != null) {
@@ -264,7 +276,7 @@ public class AGVideo extends JzvdStd {
                 break;
             case R.id.next_bottom:
                 if (jzVideoListener != null) {
-                    jzVideoListener.nextClick(1);
+                    jzVideoListener.nextClick();
                 }
                 break;
             case R.id.start_bottom:
@@ -323,9 +335,6 @@ public class AGVideo extends JzvdStd {
                 } else {
                     gotoScreenFullscreen();
                 }
-                if (jzVideoListener != null) {
-                    jzVideoListener.fullscreenClick();
-                }
                 break;
             case R.id.screen:
                 if (jzVideoListener != null) {
@@ -338,14 +347,16 @@ public class AGVideo extends JzvdStd {
 
     @Override
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
+        next_set.setVisibility(GONE);
         showProgress();
         super.changeUrl(jzDataSource, seekToInAdvance);
-        //切换播放地址之后继续以1倍速播放
+//        //切换播放地址之后继续以1倍速播放
         if (jzDataSource.objects == null) {
             Object[] object = {1};
             jzDataSource.objects = object;
         }
         speedChange(1.0f);
+        resetProgressAndTime();
     }
 
     @Override
@@ -382,14 +393,6 @@ public class AGVideo extends JzvdStd {
         }
     }
 
-    @Override
-    public void startVideo() {
-        if (isHaveNetWork()) {
-            super.startVideo();
-        } else {
-            showNotNetWorkLayout();
-        }
-    }
 
     @Override
     public void changeUiToPreparing() {
@@ -409,9 +412,10 @@ public class AGVideo extends JzvdStd {
 
     }
 
+
     @Override
     public void updateStartImage() {
-        super.updateStartImage();
+        Log.e("AGVideo","state:"+state);
         if (state == STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
             startButton.setImageResource(R.mipmap.btn_movie_suspend);
@@ -429,8 +433,10 @@ public class AGVideo extends JzvdStd {
         } else if (state == STATE_AUTO_COMPLETE) {
             //视频播放完成状态
             startButton.setVisibility(View.GONE);
-//            startButton.setImageResource(R.drawable.jz_click_replay_selector);
             replayTextView.setVisibility(VISIBLE);
+            if (isNext) {
+                next_set.setVisibility(VISIBLE);
+            }
             fastForward.setVisibility(GONE);
             quickRetreat.setVisibility(GONE);
         } else {
@@ -481,6 +487,28 @@ public class AGVideo extends JzvdStd {
         super.onStatePlaying();
         titleTextView.setVisibility(VISIBLE);
         screenIV.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void onAutoCompletion() {
+        Runtime.getRuntime().gc();
+        Log.i(TAG, "onAutoCompletion " + " [" + this.hashCode() + "] ");
+        cancelProgressTimer();
+        dismissBrightnessDialog();
+        dismissProgressDialog();
+        dismissVolumeDialog();
+        onStateAutoComplete();
+        JZUtils.scanForActivity(getContext()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        JZUtils.saveProgress(getContext(), jzDataSource.getCurrentUrl(), 0);
+        cancelDismissControlViewTimer();
+    }
+
+    @Override
+    public void onStateAutoComplete() {
+        super.onStateAutoComplete();
+        if (isNext){
+            startDismissNextViewTimer();
+        }
     }
 
     @Override
@@ -553,6 +581,24 @@ public class AGVideo extends JzvdStd {
                 setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
                 lock.setVisibility(View.INVISIBLE);
+                break;
+            case SCREEN_TINY:
+                break;
+        }
+    }
+
+    @Override
+    public void changeUiToComplete() {
+        switch (screen) {
+            case SCREEN_NORMAL:
+                setAllControlsVisiblity(View.VISIBLE, View.INVISIBLE, View.VISIBLE,
+                        View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                updateStartImage();
+                break;
+            case SCREEN_FULLSCREEN:
+                setAllControlsVisiblity(View.VISIBLE, View.INVISIBLE, View.VISIBLE,
+                        View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
+                updateStartImage();
                 break;
             case SCREEN_TINY:
                 break;
@@ -639,28 +685,6 @@ public class AGVideo extends JzvdStd {
         return true;
     }
 
-    /**
-     * 展示无网络布局
-     */
-    private void showNotNetWorkLayout() {
-        if (notNetWorkLayout != null) {
-            notNetWorkLayout.setVisibility(VISIBLE);
-        }
-        if (loadingView != null) {
-            loadingView.setVisibility(GONE);
-        }
-    }
-
-
-    /**
-     * 隐藏无网络布局
-     */
-    private void hideNotWorkLayout() {
-        if (notNetWorkLayout == null) {
-            return;
-        }
-        notNetWorkLayout.setVisibility(GONE);
-    }
 
     /**
      * 点击播放下一集时设置按钮状态
@@ -699,9 +723,28 @@ public class AGVideo extends JzvdStd {
         }
     }
 
+    public class DismissNextViewTimerTask extends TimerTask{
+
+        @Override
+        public void run() {
+            post(()->{
+                if (nextTimerDate<=0){
+                    dismissNextView();
+                    cancelDismissNextViewTimer();
+                    if (jzVideoListener != null) {
+                        jzVideoListener.nextClick();
+                    }
+                }else {
+                    next_set.setText(nextTimerDate + "秒后播放下一集");
+                    nextTimerDate--;
+                }
+            });
+        }
+    }
+
 
     public void startDismissLockViewTimer() {
-        cancelDismissControlViewTimer();
+        cancelDismissLockViewTimer();
         mDismissLockViewTimer = new Timer();
         mDismissLockViewTimerTask = new DismissLockViewTimerTask();
         mDismissLockViewTimer.schedule(mDismissLockViewTimerTask, 2500);
@@ -717,6 +760,28 @@ public class AGVideo extends JzvdStd {
 
     }
 
+    public void startDismissNextViewTimer() {
+        cancelDismissLockViewTimer();
+        nextTimerDate=3;
+        mDismissNextViewTimer = new Timer();
+        mDismissNextViewTimerTask = new DismissNextViewTimerTask();
+        mDismissNextViewTimer.schedule(mDismissNextViewTimerTask, 0,1000);
+    }
+
+    public void cancelDismissNextViewTimer() {
+        if (mDismissNextViewTimer != null) {
+            mDismissNextViewTimer.cancel();
+        }
+        if (mDismissNextViewTimerTask != null) {
+            mDismissNextViewTimerTask.cancel();
+        }
+    }
+
+    private void dismissNextView(){
+        replayTextView.setVisibility(GONE);
+        next_set.setVisibility(View.GONE);
+    }
+
     /**
      * 改变倍数之后
      */
@@ -730,25 +795,15 @@ public class AGVideo extends JzvdStd {
 
     public interface JzVideoListener {
 
-        void nextClick(int type);
+        void nextClick();
 
         void backClick();
 
         void throwingScreenClick();
 
-        void fullscreenClick();
-
         void selectPartsClick();
 
         void speedClick();
-
-        void lockClick(boolean isLock);
-
-
-        /**
-         * 无网络时重试
-         */
-        void notNetWorkRetry();
 
     }
 }

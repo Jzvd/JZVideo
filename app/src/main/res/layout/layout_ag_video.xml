@@ -271,48 +271,70 @@
                     android:visibility="gone" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/replay_text"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/start_layout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="6dp"
-            android:text="@string/replay"
-            android:textColor="#ffffff"
-            android:textSize="12sp"
-            android:visibility="invisible" />
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
 
-        <LinearLayout
-                android:id="@+id/retry_layout"
+            <TextView
+                android:id="@+id/replay_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/start_layout"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:layout_marginTop="6dp"
+                android:text="再次观看"
+                android:background="@drawable/bg_video_button"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:visibility="invisible" />
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="视频加载失败"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                android:id="@+id/next_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="3秒后播放下一集"
+                android:background="@drawable/bg_video_button"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/retry_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
             <TextView
-                    android:id="@+id/retry_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/retry_bg"
-                    android:paddingLeft="9dp"
-                    android:paddingTop="4dp"
-                    android:paddingRight="9dp"
-                    android:paddingBottom="4dp"
-                    android:text="点击重试"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/video_loading_failed"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/retry_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/retry_bg"
+                android:paddingLeft="9dp"
+                android:paddingTop="4dp"
+                android:paddingRight="9dp"
+                android:paddingBottom="4dp"
+                android:text="@string/click_to_restart"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
         </LinearLayout>
 
 
