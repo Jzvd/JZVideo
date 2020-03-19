@@ -113,7 +113,12 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
             simpleExoPlayer.setPlayWhenReady(true);
             callback = new onBufferingUpdate();
 
-            simpleExoPlayer.setVideoSurface(new Surface(jzvd.textureView.getSurfaceTexture()));
+            if (jzvd.textureView != null) {
+                SurfaceTexture surfaceTexture=jzvd.textureView.getSurfaceTexture();
+                if (surfaceTexture!=null){
+                    simpleExoPlayer.setVideoSurface(new Surface(surfaceTexture));
+                }
+            }
         });
 
     }
@@ -281,7 +286,11 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
 
     @Override
     public void setSurface(Surface surface) {
-        simpleExoPlayer.setVideoSurface(surface);
+        if (simpleExoPlayer!=null){
+            simpleExoPlayer.setVideoSurface(surface);
+        }else {
+            Log.e("AGVideo","simpleExoPlayer为空");
+        }
     }
 
     @Override
