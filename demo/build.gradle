@@ -48,7 +48,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.android.support:design:29.+'
-    implementation project(':jiaozivideoplayer')
+    implementation project(':library')
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
     implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
