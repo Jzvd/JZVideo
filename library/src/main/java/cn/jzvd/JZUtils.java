@@ -12,9 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ContextThemeWrapper;
-
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -73,25 +70,25 @@ public class JZUtils {
         return null;
     }
 
-    /**
-     * Get AppCompatActivity from context
-     *
-     * @param context context
-     * @return AppCompatActivity if it's not null
-     */
-    public static AppCompatActivity getAppCompActivity(Context context) {
-        if (context == null) return null;
-        if (context instanceof AppCompatActivity) {
-            return (AppCompatActivity) context;
-        } else if (context instanceof ContextThemeWrapper) {
-            return getAppCompActivity(((ContextThemeWrapper) context).getBaseContext());
-        }
-        return null;
-    }
+//    /**
+//     * Get AppCompatActivity from context
+//     *
+//     * @param context context
+//     * @return AppCompatActivity if it's not null
+//     */
+//    public static AppCompatActivity getAppCompActivity(Context context) {
+//        if (context == null) return null;
+//        if (context instanceof AppCompatActivity) {
+//            return (AppCompatActivity) context;
+//        } else if (context instanceof ContextThemeWrapper) {
+//            return getAppCompActivity(((ContextThemeWrapper) context).getBaseContext());
+//        }
+//        return null;
+//    }
 
     public static void setRequestedOrientation(Context context, int orientation) {
-        if (JZUtils.getAppCompActivity(context) != null) {
-            JZUtils.getAppCompActivity(context).setRequestedOrientation(
+        if (JZUtils.scanForActivity(context) != null) {
+            JZUtils.scanForActivity(context).setRequestedOrientation(
                     orientation);
         } else {
             JZUtils.scanForActivity(context).setRequestedOrientation(
@@ -100,8 +97,8 @@ public class JZUtils {
     }
 
     public static Window getWindow(Context context) {
-        if (JZUtils.getAppCompActivity(context) != null) {
-            return JZUtils.getAppCompActivity(context).getWindow();
+        if (JZUtils.scanForActivity(context) != null) {
+            return JZUtils.scanForActivity(context).getWindow();
         } else {
             return JZUtils.scanForActivity(context).getWindow();
         }

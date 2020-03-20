@@ -4,12 +4,9 @@ import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
-import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Surface;
-
-import androidx.annotation.RequiresApi;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -127,12 +124,13 @@ public class JZMediaSystem extends JZMediaInterface implements MediaPlayer.OnPre
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void setSpeed(float speed) {
-        PlaybackParams pp = mediaPlayer.getPlaybackParams();
-        pp.setSpeed(speed);
-        mediaPlayer.setPlaybackParams(pp);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            PlaybackParams pp = mediaPlayer.getPlaybackParams();
+            pp.setSpeed(speed);
+            mediaPlayer.setPlaybackParams(pp);
+        }
     }
 
     @Override
