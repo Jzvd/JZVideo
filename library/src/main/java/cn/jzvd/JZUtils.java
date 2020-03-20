@@ -70,22 +70,6 @@ public class JZUtils {
         return null;
     }
 
-//    /**
-//     * Get AppCompatActivity from context
-//     *
-//     * @param context context
-//     * @return AppCompatActivity if it's not null
-//     */
-//    public static AppCompatActivity getAppCompActivity(Context context) {
-//        if (context == null) return null;
-//        if (context instanceof AppCompatActivity) {
-//            return (AppCompatActivity) context;
-//        } else if (context instanceof ContextThemeWrapper) {
-//            return getAppCompActivity(((ContextThemeWrapper) context).getBaseContext());
-//        }
-//        return null;
-//    }
-
     public static void setRequestedOrientation(Context context, int orientation) {
         if (JZUtils.scanForActivity(context) != null) {
             JZUtils.scanForActivity(context).setRequestedOrientation(
