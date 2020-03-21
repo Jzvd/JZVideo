@@ -95,7 +95,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:onClick="clickScreenRotate"
-                android:text="ScreenRotate" />
+                android:text="Screen Rotate" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
