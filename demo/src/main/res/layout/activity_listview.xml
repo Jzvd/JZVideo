@@ -42,14 +42,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickListSmoothToDetail"
-        android:text="ListSmoothToDetail" />
+        android:text="List Smooth To Detail" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickListAutoPlay"
-        android:text="ListAutoPlay" />
+        android:text="List Auto Play" />
 
     <Button
         android:id="@+id/btn_tiktok"
