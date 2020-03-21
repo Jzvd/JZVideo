@@ -80,17 +80,17 @@ public class JzvdStdTikTok extends JzvdStd {
     public void updateStartImage() {
         if (state == STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.drawable.ic_play_tiktok);
+            startButton.setImageResource(R.mipmap.tiktok_play_tiktok);
             replayTextView.setVisibility(GONE);
         } else if (state == STATE_ERROR) {
             startButton.setVisibility(INVISIBLE);
             replayTextView.setVisibility(GONE);
         } else if (state == STATE_AUTO_COMPLETE) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.drawable.ic_play_tiktok);
+            startButton.setImageResource(R.mipmap.tiktok_play_tiktok);
             replayTextView.setVisibility(VISIBLE);
         } else {
-            startButton.setImageResource(R.drawable.ic_play_tiktok);
+            startButton.setImageResource(R.mipmap.tiktok_play_tiktok);
             replayTextView.setVisibility(GONE);
         }
     }

@@ -44,7 +44,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:padding="5dp"
-                    android:src="@mipmap/player_ag_btn_movie_play_bottom" />
+                    android:src="@mipmap/ag_btn_movie_play_bottom" />
 
             <ImageView
                     android:id="@+id/next_bottom"
@@ -52,7 +52,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="5dp"
                     android:padding="5dp"
-                    android:src="@mipmap/player_ag_btn_movie_next" />
+                    android:src="@mipmap/ag_btn_movie_next" />
 
             <TextView
                     android:id="@+id/current"
@@ -167,7 +167,7 @@
                 android:layout_alignParentTop="true"
                 android:padding="11dp"
                 android:scaleType="centerInside"
-                android:src="@mipmap/player_ag_nav_return_1" />
+                android:src="@mipmap/ag_nav_return_1" />
             <TextView
                     android:id="@+id/title"
                     android:layout_width="0dp"
@@ -191,7 +191,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginRight="10dp"
                     android:padding="5dp"
-                    android:src="@mipmap/icon_throwing_screen"
+                    android:src="@mipmap/ag_throwing_screen"
                     android:visibility="gone" />
 
 
@@ -251,7 +251,7 @@
                     android:id="@+id/quick_retreat"
                     android:layout_width="@dimen/jz_start_button_w_h_normal"
                     android:layout_height="@dimen/jz_start_button_w_h_normal"
-                    android:src="@mipmap/player_ag_btn_back_off_15s"
+                    android:src="@mipmap/ag_btn_back_off_15s"
                     android:visibility="gone" />
 
             <ImageView
@@ -260,14 +260,14 @@
                     android:layout_height="@dimen/jz_start_button_w_h_normal"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:src="@mipmap/player_ag_btn_movie_play"
+                    android:src="@mipmap/ag_btn_movie_play"
                     android:visibility="gone" />
 
             <ImageView
                     android:id="@+id/fast_forward"
                     android:layout_width="@dimen/jz_start_button_w_h_normal"
                     android:layout_height="@dimen/jz_start_button_w_h_normal"
-                    android:src="@mipmap/player_ag_btn_fast_forward_15s"
+                    android:src="@mipmap/ag_btn_fast_forward_15s"
                     android:visibility="gone" />
         </LinearLayout>
 
@@ -327,7 +327,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/retry_bg"
+                android:background="@drawable/jz_retry"
                 android:paddingLeft="9dp"
                 android:paddingTop="4dp"
                 android:paddingRight="9dp"
