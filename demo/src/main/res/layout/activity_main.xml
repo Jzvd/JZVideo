@@ -26,7 +26,6 @@
 
 
             <Button
-                android:id="@+id/api"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -35,7 +34,6 @@
                 android:text="Api" />
 
             <Button
-                android:id="@+id/listview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -44,8 +42,6 @@
                 android:text="ListView" />
 
             <Button
-                android:id="@+id/tiny_window"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -63,7 +59,6 @@
                 android:text="Direct Play" />
 
             <Button
-                android:id="@+id/webview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -72,7 +67,6 @@
                 android:text="WebView" />
 
             <Button
-                android:id="@+id/local"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -80,6 +74,15 @@
                 android:layout_marginBottom="8dp"
                 android:onClick="clickLocal"
                 android:text="LOCAL VIDEO" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="clickCustomAgVideo"
+                android:text="Custom Ag Video !!" />
 
         </LinearLayout>
     </ScrollView>
