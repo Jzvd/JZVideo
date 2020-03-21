@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
+import cn.jzvd.demo.BigUIChangeAG.ActivityApiUIBigChangeAG;
 import cn.jzvd.demo.CustomJzvd.MyJzvdStd;
 
 /**
@@ -67,6 +68,10 @@ public class ActivityMain extends AppCompatActivity {
 
     public void clickLocal(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityLocalVideo.class));
+    }
+
+    public void clickCustomAgVideo(View view) {
+        startActivity(new Intent(ActivityMain.this, ActivityApiUIBigChangeAG.class));
     }
 
 }
