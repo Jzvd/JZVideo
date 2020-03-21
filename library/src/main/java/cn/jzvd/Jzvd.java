@@ -518,6 +518,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     /**
      * 里面的的onState...()其实就是setState...()，因为要可以被复写，所以参考Activity的onCreate(),onState..()的方式看着舒服一些，老铁们有何高见。
+     * @param state stateId
      */
     public void setState(int state) {
         switch (state) {
