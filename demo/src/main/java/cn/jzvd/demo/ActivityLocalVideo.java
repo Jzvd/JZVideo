@@ -44,10 +44,10 @@ public class ActivityLocalVideo extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setTitle("PlayLocalVideo");
-        setContentView(R.layout.local_video);
+        setContentView(R.layout.activity_local_video);
         jzvdLocalPath = findViewById(cn.jzvd.demo.R.id.lcoal_path);
         jzvdAssertPath = findViewById(cn.jzvd.demo.R.id.assert_path);
-        localVideoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/local_video.mp4";
+        localVideoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/activity_local_video.mp4";
 
         //checkPermission
         int permission = ActivityCompat.checkSelfPermission(this, "android.permission.WRITE_EXTERNAL_STORAGE");

@@ -1,7 +1,6 @@
 package cn.jzvd.demo.BigUIChangeAG;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,14 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.jzvd.JZDataSource;
 import cn.jzvd.JZUtils;
-import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.NetworkUtils;
@@ -418,8 +414,8 @@ public class AGVideo extends JzvdStd {
         Log.e("AGVideo","state:"+state);
         if (state == STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.mipmap.btn_movie_suspend);
-            start_bottom.setImageResource(R.mipmap.btn_movie_stop_bottom);
+            startButton.setImageResource(R.mipmap.ag_btn_movie_suspend);
+            start_bottom.setImageResource(R.mipmap.ag_btn_movie_stop_bottom);
             fastForward.setVisibility(VISIBLE);
             quickRetreat.setVisibility(VISIBLE);
             replayTextView.setVisibility(GONE);
@@ -440,8 +436,8 @@ public class AGVideo extends JzvdStd {
             fastForward.setVisibility(GONE);
             quickRetreat.setVisibility(GONE);
         } else {
-            startButton.setImageResource(R.mipmap.btn_movie_play);
-            start_bottom.setImageResource(R.mipmap.btn_movie_play_bottom);
+            startButton.setImageResource(R.mipmap.ag_btn_movie_play);
+            start_bottom.setImageResource(R.mipmap.ag_btn_movie_play_bottom);
             replayTextView.setVisibility(GONE);
             fastForward.setVisibility(GONE);
             quickRetreat.setVisibility(GONE);
@@ -694,10 +690,10 @@ public class AGVideo extends JzvdStd {
     public void changeNextBottonUi(boolean isNext) {
         this.isNext = isNext;
         if (isNext) {
-            next_bottom.setImageResource(R.mipmap.btn_movie_next);
+            next_bottom.setImageResource(R.mipmap.ag_btn_movie_next);
             next_bottom.setClickable(true);
         } else {
-            next_bottom.setImageResource(R.mipmap.btn_movie_unll_next);
+            next_bottom.setImageResource(R.mipmap.ag_btn_movie_unll_next);
             next_bottom.setClickable(false);
         }
     }

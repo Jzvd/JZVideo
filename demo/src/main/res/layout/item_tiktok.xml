@@ -41,7 +41,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/ic_douyin_icon"
+            android:drawableLeft="@mipmap/tiktok_douyin_icon"
             android:drawablePadding="5dp"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
@@ -85,7 +85,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/ic_add_star" />
+                    android:background="@mipmap/tiktok_add_star" />
             </FrameLayout>
 
         </FrameLayout>
@@ -110,7 +110,7 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="12sp"
-            android:drawableTop="@drawable/ic_comment_normal"
+            android:drawableTop="@mipmap/tiktok_comment_normal"
             android:text="1.1w" />
 
 <!--        <item name="android:layout_width">wrap_content</item>-->
@@ -128,7 +128,7 @@
             android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="12sp"
-            android:drawableTop="@mipmap/btn_share_to"
+            android:drawableTop="@mipmap/tiktok_btn_share"
             android:text="1111" />
 
         <ImageView
@@ -136,6 +136,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="58dp"
             android:layout_marginTop="38dp"
-            android:background="@drawable/ic_music_play" />
+            android:background="@mipmap/tiktok_music_play" />
     </LinearLayout>
 </FrameLayout>

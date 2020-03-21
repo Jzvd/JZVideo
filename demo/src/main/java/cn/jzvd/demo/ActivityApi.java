@@ -63,7 +63,7 @@ public class ActivityApi extends AppCompatActivity {
 
         /** Play video in local localVideoPath, eg:record by system camera **/
 //        cpAssertVideoToLocalPath();
-//        mJzvdStd.setUp(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/local_video.mp4"
+//        mJzvdStd.setUp(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/activity_local_video.mp4"
 //                , "饺子不信", Jzvd.SCREEN_NORMAL);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mSensorEventListener = new Jzvd.JZAutoFullscreenListener();
@@ -109,7 +109,7 @@ public class ActivityApi extends AppCompatActivity {
         verifyStoragePermissions();
         try {
             InputStream myInput;
-            OutputStream myOutput = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/local_video.mp4");
+            OutputStream myOutput = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/activity_local_video.mp4");
             myInput = this.getAssets().open("local_video.mp4");
             byte[] buffer = new byte[1024];
             int length = myInput.read(buffer);

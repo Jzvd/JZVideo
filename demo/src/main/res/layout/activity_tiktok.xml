@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:src="@mipmap/add_bg" />
+            android:src="@mipmap/tiktok_bg_add" />
 
         <TextView
             android:id="@+id/tv_message"
