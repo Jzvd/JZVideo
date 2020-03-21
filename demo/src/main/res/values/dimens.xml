@@ -1,0 +1,7 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="jz_start_button_w_h_normal">50dp</dimen>
+    <dimen name="jz_start_button_w_h_normal_ag">50dp</dimen>
+</resources>
