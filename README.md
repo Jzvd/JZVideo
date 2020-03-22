@@ -45,7 +45,7 @@
 
 ## 效果
 
-<img src="https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg" width="90%">
+<img src="https://user-images.githubusercontent.com/2038071/77248671-2c190780-6c76-11ea-937a-5d30cf37c543.jpg" width="90%">
 
 <img src="https://user-images.githubusercontent.com/2038071/76214561-f6245e00-6247-11ea-85bb-da35ede45463.gif" width="90%">
 
