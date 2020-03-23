@@ -16,6 +16,7 @@ import tv.danmaku.ijk.media.player.IjkTimedText;
 
 /**
  * Created by Nathen on 2017/11/18.
+ * ijk兼容SO库:https://github.com/NamHofstadter/IjkPlayerSos
  */
 
 public class JZMediaIjk extends JZMediaInterface implements IMediaPlayer.OnPreparedListener, IMediaPlayer.OnVideoSizeChangedListener, IMediaPlayer.OnCompletionListener, IMediaPlayer.OnErrorListener, IMediaPlayer.OnInfoListener, IMediaPlayer.OnBufferingUpdateListener, IMediaPlayer.OnSeekCompleteListener, IMediaPlayer.OnTimedTextListener {

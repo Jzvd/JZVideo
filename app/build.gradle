@@ -42,14 +42,6 @@ android {
         abortOnError false
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
-    repositories {
-        flatDir { dirs 'libs' }
-    }
 }
 
 dependencies {
