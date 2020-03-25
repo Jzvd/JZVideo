@@ -858,7 +858,7 @@ public class JzvdStd extends Jzvd {
         }
     }
 
-    private BroadcastReceiver battertReceiver = new BroadcastReceiver() {
+    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
@@ -876,19 +876,23 @@ public class JzvdStd extends Jzvd {
         }
     };
 
-    private void registerWifiListener(Context context) {
+    public void registerWifiListener(Context context) {
         if (context == null) return;
         mIsWifi = JZUtils.isWifiConnected(context);
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         context.registerReceiver(wifiReceiver, intentFilter);
     }
 
-    private void unregisterWifiListener(Context context) {
+    public void unregisterWifiListener(Context context) {
         if (context == null) return;
-        context.unregisterReceiver(wifiReceiver);
+        try {
+            context.unregisterReceiver(wifiReceiver);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
-    private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
