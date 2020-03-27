@@ -488,10 +488,25 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             if (CONTAINER_LIST.size() == 0) {
                 clearFloatScreen();//直接进入全屏
             } else {
-                setCurrentJzvd(null);
-                gotoScreenNormal();
+                gotoNormalCompletion();
             }
         }
+    }
+
+    public void gotoNormalCompletion() {
+        gobakFullscreenTime = System.currentTimeMillis();//退出全屏
+        ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
+        vg.removeView(this);
+        textureViewContainer.removeView(textureView);
+        CONTAINER_LIST.getLast().removeAllViews();
+        CONTAINER_LIST.getLast().addView(this, new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        CONTAINER_LIST.pop();
+
+        setScreenNormal();
+        JZUtils.showStatusBar(jzvdContext);
+        JZUtils.setRequestedOrientation(jzvdContext, NORMAL_ORIENTATION);
+        JZUtils.showSystemUI(jzvdContext);
     }
 
     /**
