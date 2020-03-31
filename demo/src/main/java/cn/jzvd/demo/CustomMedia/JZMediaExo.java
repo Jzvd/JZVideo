@@ -246,7 +246,7 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
                 }
                 break;
                 case Player.STATE_ENDED: {
-                    jzvd.onAutoCompletion();
+                    jzvd.onCompletion();
                 }
                 break;
             }

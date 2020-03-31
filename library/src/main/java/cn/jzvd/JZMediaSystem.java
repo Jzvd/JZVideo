@@ -140,7 +140,7 @@ public class JZMediaSystem extends JZMediaInterface implements MediaPlayer.OnPre
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
-        handler.post(() -> jzvd.onAutoCompletion());
+        handler.post(() -> jzvd.onCompletion());
     }
 
     @Override

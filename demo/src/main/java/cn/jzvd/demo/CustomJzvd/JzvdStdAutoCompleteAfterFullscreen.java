@@ -40,11 +40,11 @@ public class JzvdStdAutoCompleteAfterFullscreen extends JzvdStd {
     }
 
     @Override
-    public void onAutoCompletion() {
+    public void onCompletion() {
         if (screen == SCREEN_FULLSCREEN) {
             onStateAutoComplete();
         } else {
-            super.onAutoCompletion();
+            super.onCompletion();
         }
 
     }
