@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/video_main"
+        android:orientation="vertical" android:layout_width="320dp"
+        android:background="#f21c1c1d"
+        android:layout_height="match_parent">
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选集"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="24dp"
+            android:textColor="#ffffffff"
+            android:textSize="18sp"
+            />
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/video_episode"
+            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

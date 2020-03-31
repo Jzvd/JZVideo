@@ -11,3 +11,4 @@ build
 projectFilesBackup
 release
 _build
+/gradle/
