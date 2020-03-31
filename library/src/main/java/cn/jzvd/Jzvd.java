@@ -29,8 +29,6 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.sql.DataSource;
-
 /**
  * Created by Nathen on 16/7/30.
  */
@@ -472,7 +470,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    public void onAutoCompletion() {
+    public void onCompletion() {
         Runtime.getRuntime().gc();
         Log.i(TAG, "onAutoCompletion " + " [" + this.hashCode() + "] ");
         cancelProgressTimer();
@@ -851,10 +849,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    //TODO 是否有用
-    public void onSeekComplete() {
-
-    }
 
     public void showWifiDialog() {
     }
@@ -974,7 +968,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING) {
                 //准备状态暂停后的
                 CURRENT_JZVD.startVideo();
-//                CURRENT_JZVD.mediaInterface.start();
             }
         }
     }

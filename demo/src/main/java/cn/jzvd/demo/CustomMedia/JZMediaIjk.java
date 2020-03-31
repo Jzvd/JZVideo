@@ -220,6 +220,6 @@ public class JZMediaIjk extends JZMediaInterface implements IMediaPlayer.OnPrepa
 
     @Override
     public void onCompletion(IMediaPlayer iMediaPlayer) {
-        handler.post(() -> jzvd.onAutoCompletion());
+        handler.post(() -> jzvd.onCompletion());
     }
 }

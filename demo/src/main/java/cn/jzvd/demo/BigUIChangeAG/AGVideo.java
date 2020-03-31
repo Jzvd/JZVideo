@@ -486,7 +486,7 @@ public class AGVideo extends JzvdStd {
     }
 
     @Override
-    public void onAutoCompletion() {
+    public void onCompletion() {
         Runtime.getRuntime().gc();
         Log.i(TAG, "onAutoCompletion " + " [" + this.hashCode() + "] ");
         cancelProgressTimer();

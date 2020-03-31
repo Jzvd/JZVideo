@@ -20,8 +20,8 @@ public class JzvdStdShowTextureViewAfterAutoComplete extends JzvdStd {
     }
 
     @Override
-    public void onAutoCompletion() {
-        super.onAutoCompletion();
+    public void onCompletion() {
+        super.onCompletion();
         posterImageView.setVisibility(View.GONE);
     }
 
