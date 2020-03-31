@@ -1,5 +1,6 @@
 package cn.jzvd.demo.BigUIChangeAG;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -22,9 +23,11 @@ import java.util.TimerTask;
 
 import cn.jzvd.JZDataSource;
 import cn.jzvd.JZUtils;
+import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.NetworkUtils;
+import cn.jzvd.demo.utils.StatusBarUtil;
 import cn.jzvd.demo.widget.LoadingView;
 
 public class AGVideo extends JzvdStd {
@@ -34,7 +37,7 @@ public class AGVideo extends JzvdStd {
     private ImageView screenIV, quickRetreat, fastForward, start_bottom, next_bottom;
     private CheckBox lock;
     private TextView tvSpeed, tvSelectPart,next_set;
-    private LinearLayout startLayout;
+    private LinearLayout startLayout,ll_bottom,ll_top;
     //无网络布局
     private LoadingView loadingView;
 
@@ -80,6 +83,8 @@ public class AGVideo extends JzvdStd {
         startLayout = findViewById(R.id.start_layout);
         quickRetreat = findViewById(R.id.quick_retreat);
         fastForward = findViewById(R.id.fast_forward);
+        ll_bottom = findViewById(R.id.layout_bottom);
+        ll_top = findViewById(R.id.layout_top);
         start_bottom = findViewById(R.id.start_bottom);
         next_bottom = findViewById(R.id.next_bottom);
         lock = findViewById(R.id.lock);
@@ -112,7 +117,11 @@ public class AGVideo extends JzvdStd {
                 }
             }
         });
+
     }
+
+
+
 
     private void cancelGoneLock() {
         cancelDismissLockViewTimer();
@@ -444,6 +453,19 @@ public class AGVideo extends JzvdStd {
         }
     }
 
+    private void updateConfigChanged(int state){
+        Log.d(TAG, "updateConfigChanged state: "+(state == Jzvd.SCREEN_FULLSCREEN));
+        if (state == Jzvd.SCREEN_FULLSCREEN){
+            StatusBarUtil.setNoTranslucentForImageView((Activity) getContext(),0,findViewById(R.id.layout_top));
+            ll_top.setBackgroundResource(R.drawable.jz_title_bg);
+            ll_bottom.setBackgroundResource(R.drawable.jz_bottom_bg);
+        }else{
+            StatusBarUtil.setTranslucentForImageView((Activity) getContext(),0,findViewById(R.id.layout_top));
+            ll_top.setBackgroundResource(0);
+            ll_bottom.setBackgroundResource(0);
+        }
+    }
+
     @Override
     public void setScreenNormal() {
         screen = SCREEN_NORMAL;
@@ -514,12 +536,14 @@ public class AGVideo extends JzvdStd {
                 setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
                 updateStartImage();
+                updateConfigChanged(screen);
                 break;
             case SCREEN_FULLSCREEN:
                 if (!isLock) {
                     setAllControlsVisiblity(View.VISIBLE, View.VISIBLE, View.VISIBLE,
                             View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
                     updateStartImage();
+                    updateConfigChanged(screen);
                 }
                 lock.setVisibility(View.VISIBLE);
                 break;
