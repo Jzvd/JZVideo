@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp">
+    <TextView
+            android:id="@+id/item_episodeNum"
+            android:gravity="center"
+            android:background="@drawable/bg_video_episodes_uncheck"
+            android:text="1"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+</RelativeLayout>
