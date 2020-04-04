@@ -53,7 +53,7 @@
 
 1.添加类库
 ```gradle
-compile 'cn.jzvd:jiaozivideoplayer:7.2.3'
+implementation 'cn.jzvd:jiaozivideoplayer:7.2.3'
 ```
 
 2.添加布局
