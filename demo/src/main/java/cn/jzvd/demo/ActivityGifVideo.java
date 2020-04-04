@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import cn.jzvd.Jzvd;
@@ -67,6 +68,9 @@ public class ActivityGifVideo extends AppCompatActivity {
                 myJzvdStd.post(new Runnable() {
                     @Override
                     public void run() {
+                        if(mDialog!=null){
+                            mDialog.dismiss();
+                        }
                         Toast.makeText(myJzvdStd.getContext(), "创建成功", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -78,9 +82,22 @@ public class ActivityGifVideo extends AppCompatActivity {
             }
         });
     }
+
+    AlertDialog mDialog;
     public void clickStartGif(View view) {
+        mDialog=showDialog();
         current=System.currentTimeMillis();
         mGifCreateHelper.startGif();
+    }
+
+    private AlertDialog showDialog(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("正在创建Gif");
+        builder.setMessage("创建中");
+        AlertDialog dialog=builder.create();
+        dialog.show();
+        dialog.setCancelable(false);
+        return dialog;
     }
 
 }
