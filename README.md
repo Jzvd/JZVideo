@@ -2,7 +2,7 @@
 --
 <p align="center">
 <a href="http://developer.android.com/index.html"><img src="https://img.shields.io/badge/platform-android-green.svg"></a>
-<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.2.2%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.2.2-green.svg"></a>
+<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.2.3%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.2.3-green.svg"></a>
 <a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
 <a href="https://android-arsenal.com/details/1/3269"><img src="https://img.shields.io/badge/Android%20Arsenal-jiaozivideoplayer-green.svg?style=true"></a>
 </p>
@@ -39,13 +39,13 @@
 
 ## 文档
 
-- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装demo[jiaozivideoplayer-7.2.2.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.2.2/jiaozivideoplayer-7.2.2.apk)，仔细过一遍demo
+- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装demo[jiaozivideoplayer-7.2.3.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.2.3/jiaozivideoplayer-7.2.3.apk)，仔细过一遍demo
 - [文档 - 自定义Jzvd](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89Jzvd)，继承JzvdStd实现自己的播放器
 - [文档 - 自定义播放内核](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%86%85%E6%A0%B8)，测试哪个播放内核适合自己的项目
 
 ## 效果
 
-<img src="https://user-images.githubusercontent.com/2038071/31045150-a077cc8a-a5a2-11e7-8dc2-7a0e3a9f3e62.jpg" width="90%">
+<img src="https://user-images.githubusercontent.com/2038071/78055336-fd0d3f00-73b5-11ea-83f2-b9c141d1d3c9.jpg" width="90%">
 
 <img src="https://user-images.githubusercontent.com/2038071/76214561-f6245e00-6247-11ea-85bb-da35ede45463.gif" width="90%">
 
@@ -53,7 +53,7 @@
 
 1.添加类库
 ```gradle
-compile 'cn.jzvd:jiaozivideoplayer:7.2.2'
+implementation 'cn.jzvd:jiaozivideoplayer:7.2.3'
 ```
 
 2.添加布局
