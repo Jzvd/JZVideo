@@ -81,6 +81,16 @@
                 android:onClick="clickLocal"
                 android:text="LOCAL VIDEO" />
 
+            <Button
+                android:id="@+id/start_gif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="clickStartGif"
+                android:text="开始Gif" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

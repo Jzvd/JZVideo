@@ -68,5 +68,8 @@ public class ActivityMain extends AppCompatActivity {
     public void clickLocal(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityLocalVideo.class));
     }
+    public void clickStartGif(View view) {
+        startActivity(new Intent(ActivityMain.this, ActivityGifVideo.class));
+    }
 
 }
