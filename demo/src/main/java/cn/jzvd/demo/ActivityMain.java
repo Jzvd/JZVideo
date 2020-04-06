@@ -70,7 +70,7 @@ public class ActivityMain extends AppCompatActivity {
         startActivity(new Intent(ActivityMain.this, ActivityLocalVideo.class));
     }
     public void clickStartGif(View view) {
-        startActivity(new Intent(ActivityMain.this, ActivityGifVideo.class));
+        startActivity(new Intent(ActivityMain.this, ActivityGetGif.class));
     }
 
     public void clickCustomAgVideo(View view) {
