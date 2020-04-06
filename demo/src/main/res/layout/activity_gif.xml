@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="none">
 
         <LinearLayout
@@ -21,7 +21,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp">
 
-                    <cn.jzvd.demo.CustomJzvd.MyJzvdStd
+                    <cn.jzvd.demo.CustomJzvd.JzvdStdGif
                         android:id="@+id/jz_video"
                         android:layout_width="match_parent"
                         android:layout_height="200dp" />
@@ -32,12 +32,30 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
+                    android:padding="10dp"
                     android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="40dp"
                     android:src="@mipmap/ic_record_start"/>
             </FrameLayout>
             
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_hint_region"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:text="正在创建Gif..."/>
+    </FrameLayout>
+</FrameLayout>
