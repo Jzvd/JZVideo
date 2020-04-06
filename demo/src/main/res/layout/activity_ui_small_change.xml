@@ -156,6 +156,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
+                android:text="Standard ui with volume button" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <cn.jzvd.demo.CustomJzvd.JzvdStdVolume
+                    android:id="@+id/custom_videoplayer_standard_with_volume_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
                 android:text="Play Mp3" />
 

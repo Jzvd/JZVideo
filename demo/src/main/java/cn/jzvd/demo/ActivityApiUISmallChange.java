@@ -17,6 +17,7 @@ import cn.jzvd.demo.CustomJzvd.JzvdStdShowShareButtonAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdShowTextureViewAfterAutoComplete;
 import cn.jzvd.demo.CustomJzvd.JzvdStdShowTitleAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdSpeed;
+import cn.jzvd.demo.CustomJzvd.JzvdStdVolume;
 import cn.jzvd.demo.CustomJzvd.JzvdStdVolumeAfterFullscreen;
 
 /**
@@ -31,6 +32,7 @@ public class ActivityApiUISmallChange extends AppCompatActivity {
     JzvdStdMp3 jzvdStdMp3;
     JzvdStdSpeed jzvdStdSpeed;
     JzvdStdLockScreen lockScreen;
+    JzvdStdVolume jzvdStdVolume;
 
     JzvdStd jzvdStd_1_1, jzvdStd_16_9;
 
@@ -112,6 +114,13 @@ public class ActivityApiUISmallChange extends AppCompatActivity {
                 .load(VideoConstant.videoPosters[0][1])
                 .into(jzvdStdSpeed.posterImageView);
 
+
+        jzvdStdVolume = findViewById(R.id.custom_videoplayer_standard_with_volume_button);
+        jzvdStdVolume.setUp(VideoConstant.videoUrls[0][1],
+                "饺子吃莽莽", Jzvd.SCREEN_NORMAL);
+        Glide.with(this)
+                .load(VideoConstant.videoPosters[0][1])
+                .into(jzvdStdVolume.posterImageView);
     }
 
     @Override
