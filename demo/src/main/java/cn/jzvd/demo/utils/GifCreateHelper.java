@@ -1,4 +1,4 @@
-package cn.jzvd.utils;
+package cn.jzvd.demo.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -29,7 +29,7 @@ public class GifCreateHelper {
 
     private final String completeButNoImageTag="completeButError";
 
-    private JzvdStd mPlayer;
+    public JzvdStd mPlayer;
 
     private JaoziVideoGifSaveListener mJaoziVideoGifSaveListener;
 

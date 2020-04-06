@@ -1,4 +1,4 @@
-package cn.jzvd.utils;
+package cn.jzvd.demo.utils;
 
 import java.io.IOException;
 import java.io.OutputStream;
