@@ -31,7 +31,7 @@ public class GifCreateHelper {
 
     public JzvdStd mPlayer;
 
-    private JaoziVideoGifSaveListener mJaoziVideoGifSaveListener;
+    private JzGifListener mJzGifListener;
 
     //gif的帧之间延时
     private int mDelay = 50;
@@ -49,8 +49,8 @@ public class GifCreateHelper {
     private String mGifPath = Environment
             .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)+"/jiaozi-" + System.currentTimeMillis() + ".gif";
 
-    public GifCreateHelper(JzvdStd jzvdStd, JaoziVideoGifSaveListener jaoziVideoGifSaveListener) {
-        this(jzvdStd, jaoziVideoGifSaveListener, 200, 1, 5, 5000,"");
+    public GifCreateHelper(JzvdStd jzvdStd, JzGifListener jzGifListener) {
+        this(jzvdStd, jzGifListener, 200, 1, 5, 5000,"");
     }
 
     /**
@@ -60,10 +60,10 @@ public class GifCreateHelper {
      * @param gifPeriod      gif时长，毫秒
      * @param gifPath        gif文件的存储路径
      */
-    public GifCreateHelper(JzvdStd jzvdStd, JaoziVideoGifSaveListener jaoziVideoGifSaveListener,
+    public GifCreateHelper(JzvdStd jzvdStd, JzGifListener jzGifListener,
                            int delay, int inSampleSize, int smallScale, int gifPeriod,String gifPath) {
         mPlayer = jzvdStd;
-        mJaoziVideoGifSaveListener = jaoziVideoGifSaveListener;
+        mJzGifListener = jzGifListener;
         mDelay = delay;
         mSampleSize = inSampleSize;
         mSmallScale = smallScale;
@@ -147,7 +147,7 @@ public class GifCreateHelper {
                 }
             }
 
-            mJaoziVideoGifSaveListener.process(picList.length-emptyCount,picList.length,isCurrentSuccess?"下载成功":"下载失败");
+            mJzGifListener.process(picList.length-emptyCount,picList.length,isCurrentSuccess?"下载成功":"下载失败");
 
             if(emptyCount==0){
                 isDownloadComplete=true;
@@ -167,12 +167,12 @@ public class GifCreateHelper {
 
         if (rightPic.size() > 2) {
             if(createGif(gifFile, rightPic, mDelay, mSampleSize, mSmallScale)){
-                mJaoziVideoGifSaveListener.result(true, gifFile);
+                mJzGifListener.result(true, gifFile);
             }else{
-                mJaoziVideoGifSaveListener.result(false, null);
+                mJzGifListener.result(false, null);
             }
         } else {
-            mJaoziVideoGifSaveListener.result(false, null);
+            mJzGifListener.result(false, null);
         }
         deleteDirWihtFile(new File(cacheImageDir));//清除缓存的图片
     }
@@ -248,7 +248,7 @@ public class GifCreateHelper {
             localAnimatedGifEncoder.addFrame(pic);
             bitmap.recycle();
             pic.recycle();
-            mJaoziVideoGifSaveListener.process(i,pics.size(),"组合中");
+            mJzGifListener.process(i,pics.size(),"组合中");
         }
         localAnimatedGifEncoder.finish();//finish
         try {
@@ -314,7 +314,7 @@ public class GifCreateHelper {
     /**
      * 保存进度以及结果的回调
      */
-    public interface JaoziVideoGifSaveListener {
+    public interface JzGifListener {
 
         void process(int curPosition, int total,String status);
 

@@ -134,7 +134,7 @@
             android:layout_centerVertical="true"
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
-            android:layout_toLeftOf="@+id/convert_to_gif"
+            android:layout_toLeftOf="@+id/battery_time_layout"
             android:layout_toEndOf="@+id/back"
             android:layout_toRightOf="@+id/back"
             android:ellipsize="end"
@@ -142,17 +142,6 @@
             android:textColor="#ffffff"
             android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/convert_to_gif"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
-            android:padding="10dp"
-            android:src="@mipmap/ic_record_start" />
         <LinearLayout
             android:id="@+id/battery_time_layout"
             android:layout_width="wrap_content"
@@ -222,6 +211,16 @@
         android:textSize="12sp"
         android:visibility="invisible" />
 
+    <ImageView
+        android:id="@+id/convert_to_gif"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="70dp"
+        android:padding="10dp"
+        android:src="@mipmap/ic_record_start"
+        android:visibility="visible"/>
     <LinearLayout
         android:id="@+id/retry_layout"
         android:layout_width="wrap_content"
