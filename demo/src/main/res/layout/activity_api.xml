@@ -104,7 +104,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:onClick="clickStartGif"
-                android:text="Convert vedio to Gif" />
+                android:text="Get Gif" />
 
         </LinearLayout>
     </ScrollView>
