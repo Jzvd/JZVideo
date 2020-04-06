@@ -1,7 +1,5 @@
 package cn.jzvd.demo;
 
-import cn.jzvd.demo.BigUIChangeAG.AGVideo;
-
 /**
  * Created by shengjun on 16/9/10.
  */

@@ -99,8 +99,8 @@
         <activity
             android:name=".tiktok.ActivityTikTok"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
         <activity
             android:name=".ActivityListViewToDetail"
@@ -121,13 +121,16 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
 
-        <activity android:name=".ActivityScreenRotate"
+        <activity
+            android:name=".ActivityScreenRotate"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".BigUIChangeAG.ActivityApiUIBigChangeAG"
+        <activity
+            android:name=".BigUIChangeAG.ActivityApiUIBigChangeAG"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ActivityGetGif"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityGetGif"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>

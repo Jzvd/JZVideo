@@ -22,15 +22,16 @@ import cn.jzvd.demo.R;
 import cn.jzvd.demo.ScreenRotateUtils;
 
 public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVideo.JzVideoListener, ScreenRotateUtils.OrientationChangeListener
-,VideoSpeedPopup.SpeedChangeListener,VideoEpisodePopup.EpisodeClickListener{
+        , VideoSpeedPopup.SpeedChangeListener, VideoEpisodePopup.EpisodeClickListener {
     private AGVideo mPlayer;
     private JZDataSource mJzDataSource;
     private List<AGEpsodeEntity> episodeList;
     private TabLayout episodes;
-    private int playingNum=0;
+    private int playingNum = 0;
     //倍数弹窗
     private VideoSpeedPopup videoSpeedPopup;
     private VideoEpisodePopup videoEpisodePopup;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +42,9 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         ScreenRotateUtils.getInstance(this.getApplicationContext()).setOrientationChangeListener(this);
     }
 
-    private void initView(){
+    private void initView() {
         episodes = findViewById(R.id.video_episodes);
-        mPlayer=findViewById(R.id.ag_player);
+        mPlayer = findViewById(R.id.ag_player);
         initEpisodesTablayout();
         mPlayer.setJzVideoListener(this);
         mJzDataSource = new JZDataSource(episodeList.get(0).getVideoUrl(), episodeList.get(0).getVideoName());
@@ -52,7 +53,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         mPlayer.startVideo();
     }
 
-    private void initEpisodesTablayout(){
+    private void initEpisodesTablayout() {
         episodes.clearOnTabSelectedListeners();
         episodes.removeAllTabs();
         for (int i = 0; i < episodeList.size(); i++) {
@@ -83,8 +84,8 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
             public void onTabSelected(TabLayout.Tab tab) {
                 //定义方法，判断是否选中
                 int tag = Integer.parseInt(tab.getText().toString());
-                AGEpsodeEntity entity=episodeList.get(tag-1);
-                mJzDataSource=new JZDataSource(entity.getVideoUrl(),entity.getVideoName());
+                AGEpsodeEntity entity = episodeList.get(tag - 1);
+                mJzDataSource = new JZDataSource(entity.getVideoUrl(), entity.getVideoName());
                 updateTabView(tab, true);
                 playChangeUrl();
                 isNext(tab.getPosition());
@@ -102,8 +103,6 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         });
         isNext(episodes.getSelectedTabPosition());
     }
-
-
 
 
     @Override
@@ -184,7 +183,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
                 && mPlayer.screen != Jzvd.SCREEN_TINY) {
             if (orientation >= 45 && orientation <= 315 && mPlayer.screen == Jzvd.SCREEN_NORMAL) {
                 changeScreenFullLandscape(ScreenRotateUtils.orientationDirection);
-            } else if (((orientation >= 0 &&orientation <45) || orientation > 315) && mPlayer.screen == Jzvd.SCREEN_FULLSCREEN) {
+            } else if (((orientation >= 0 && orientation < 45) || orientation > 315) && mPlayer.screen == Jzvd.SCREEN_FULLSCREEN) {
                 changeScrenNormal();
             }
         }
@@ -235,7 +234,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
         Object[] object = {speed};
         mPlayer.mediaInterface.setSpeed(speed);
         mJzDataSource.objects[0] = object;
-        Toast.makeText(this,"正在以" + speed + "X倍速播放",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "正在以" + speed + "X倍速播放", Toast.LENGTH_SHORT).show();
         mPlayer.speedChange(speed);
     }
 
@@ -253,8 +252,8 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
     @Override
     public void nextClick() {
         int position = episodes.getSelectedTabPosition() + 1;
-        AGEpsodeEntity entity=episodeList.get(position);
-        mJzDataSource=new JZDataSource(entity.getVideoUrl(),entity.getVideoName());
+        AGEpsodeEntity entity = episodeList.get(position);
+        mJzDataSource = new JZDataSource(entity.getVideoUrl(), entity.getVideoName());
         TabLayout.Tab tab = episodes.getTabAt(position);
         if (tab != null) {
             tab.select();
@@ -267,7 +266,7 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
             dismissSpeedPopAndEpisodePop();
             AGVideo.backPress();
         } else {
-           finish();
+            finish();
         }
     }
 
@@ -284,18 +283,17 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
             videoEpisodePopup.setEpisondeClickListener(this);
         }
         videoEpisodePopup.setPlayNum(1);
-        videoEpisodePopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT,0,0);
+        videoEpisodePopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT, 0, 0);
     }
 
     @Override
     public void speedClick() {
-        if (videoSpeedPopup==null){
-            videoSpeedPopup=new VideoSpeedPopup(this);
+        if (videoSpeedPopup == null) {
+            videoSpeedPopup = new VideoSpeedPopup(this);
             videoSpeedPopup.setSpeedChangeListener(this);
         }
-        videoSpeedPopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT,0,0);
+        videoSpeedPopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT, 0, 0);
     }
-
 
 
     @Override
@@ -305,37 +303,37 @@ public class ActivityApiUIBigChangeAG extends AppCompatActivity implements AGVid
 
     @Override
     public void onEpisodeClickListener(AGEpsodeEntity entity, int position) {
-        TabLayout.Tab tab=episodes.getTabAt(position);
-        if (tab!=null){
+        TabLayout.Tab tab = episodes.getTabAt(position);
+        if (tab != null) {
             tab.select();
         }
     }
-    private void initVideoData(){
-        episodeList=new ArrayList<>();
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/QSeTc4nj/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第01集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/Qtgy7SjP/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第02集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/AXkWBoLb/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第03集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/P6oGsmgK/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第04集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/PdWWKahH/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第05集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/eoCI1M65/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第06集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/pXP2NPFc/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第07集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/aA6UwOvW/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","谢尔顿 第一季 第08集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/lLmVLxJQ/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第09集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/Ddt92vAR/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第10集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/90R6x9rF/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第11集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/nMfWnUQr/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第12集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/myJUPq6V/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第13集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/fC10illG/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第14集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/7jA5lpyB/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第15集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/6MKcJRT3/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第16集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/qPeGRErs/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第17集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/mhBHwiIw/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第18集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/vAYMt0AA/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第19集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/7R1KU2R2/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第20集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/bkuLrOEX/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第21集"));
-        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/SuL66DB3/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106","小谢尔顿 第一季 第22集"));
-    }
 
+    private void initVideoData() {
+        episodeList = new ArrayList<>();
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/QSeTc4nj/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第01集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/Qtgy7SjP/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第02集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/AXkWBoLb/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第03集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/P6oGsmgK/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第04集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/PdWWKahH/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第05集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/eoCI1M65/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第06集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/pXP2NPFc/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第07集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/aA6UwOvW/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "谢尔顿 第一季 第08集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/lLmVLxJQ/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第09集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/Ddt92vAR/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第10集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/90R6x9rF/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第11集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/nMfWnUQr/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第12集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/myJUPq6V/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第13集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/fC10illG/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第14集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/7jA5lpyB/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第15集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/6MKcJRT3/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第16集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/qPeGRErs/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第17集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/mhBHwiIw/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第18集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/vAYMt0AA/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第19集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/7R1KU2R2/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第20集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/bkuLrOEX/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第21集"));
+        episodeList.add(new AGEpsodeEntity("http://agmjjzyi.ixibeiren.com/20181108/SuL66DB3/index.m3u8?wsSecret=3158b8e5e257118f6132f86cf45bf8aa&wsTime=1584361106", "小谢尔顿 第一季 第22集"));
+    }
 
 
 }

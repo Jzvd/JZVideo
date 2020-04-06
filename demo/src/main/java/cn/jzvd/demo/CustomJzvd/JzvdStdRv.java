@@ -10,16 +10,16 @@ public class JzvdStdRv extends JzvdStd {
     private ClickUi clickUi;
     private boolean isAtList;
 
-    public void setClickUi(ClickUi clickUi) {
-        this.clickUi = clickUi;
-    }
-
     public JzvdStdRv(Context context) {
         super(context);
     }
 
     public JzvdStdRv(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    public void setClickUi(ClickUi clickUi) {
+        this.clickUi = clickUi;
     }
 
     public boolean isAtList() {

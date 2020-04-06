@@ -55,6 +55,23 @@ public class JzvdStd extends Jzvd {
     public PopupWindow clarityPopWindow;
     public TextView mRetryBtn;
     public LinearLayout mRetryLayout;
+    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
+                int level = intent.getIntExtra("level", 0);
+                int scale = intent.getIntExtra("scale", 100);
+                int percent = level * 100 / scale;
+                LAST_GET_BATTERYLEVEL_PERCENT = percent;
+                setBatteryLevel();
+                try {
+                    getContext().unregisterReceiver(battertReceiver);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    };
     protected DismissControlViewTimerTask mDismissControlViewTimerTask;
     protected Dialog mProgressDialog;
     protected ProgressBar mDialogProgressBar;
@@ -69,6 +86,24 @@ public class JzvdStd extends Jzvd {
     protected ProgressBar mDialogBrightnessProgressBar;
     protected TextView mDialogBrightnessTextView;
     private boolean mIsWifi;
+    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+                boolean isWifi = JZUtils.isWifiConnected(context);
+                if (mIsWifi == isWifi) return;
+                mIsWifi = isWifi;
+                if (!mIsWifi && !WIFI_TIP_DIALOG_SHOWED && state == STATE_PLAYING) {
+                    startButton.performClick();
+                    showWifiDialog();
+                }
+            }
+        }
+    };
+    //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
+    private long lastClickTime = 0;
+    private long doubleTime = 200;
+    private ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
 
     public JzvdStd(Context context) {
         super(context);
@@ -185,11 +220,6 @@ public class JzvdStd extends Jzvd {
         super.startVideo();
         registerWifiListener(getApplicationContext());
     }
-
-    //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
-    private long lastClickTime = 0;
-    private long doubleTime = 200;
-    private ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -498,7 +528,6 @@ public class JzvdStd extends Jzvd {
             }
         }
     }
-
 
     @Override
     public void onProgress(int progress, long position, long duration) {
@@ -850,32 +879,6 @@ public class JzvdStd extends Jzvd {
         }
     }
 
-    public class DismissControlViewTimerTask extends TimerTask {
-
-        @Override
-        public void run() {
-            dissmissControlView();
-        }
-    }
-
-    public BroadcastReceiver battertReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
-                int level = intent.getIntExtra("level", 0);
-                int scale = intent.getIntExtra("scale", 100);
-                int percent = level * 100 / scale;
-                LAST_GET_BATTERYLEVEL_PERCENT = percent;
-                setBatteryLevel();
-                try {
-                    getContext().unregisterReceiver(battertReceiver);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    };
-
     public void registerWifiListener(Context context) {
         if (context == null) return;
         mIsWifi = JZUtils.isWifiConnected(context);
@@ -892,19 +895,12 @@ public class JzvdStd extends Jzvd {
         }
     }
 
-    public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+    public class DismissControlViewTimerTask extends TimerTask {
+
         @Override
-        public void onReceive(Context context, Intent intent) {
-            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
-                boolean isWifi = JZUtils.isWifiConnected(context);
-                if (mIsWifi == isWifi) return;
-                mIsWifi = isWifi;
-                if (!mIsWifi && !WIFI_TIP_DIALOG_SHOWED && state == STATE_PLAYING) {
-                    startButton.performClick();
-                    showWifiDialog();
-                }
-            }
+        public void run() {
+            dissmissControlView();
         }
-    };
+    }
 
 }

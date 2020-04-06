@@ -23,6 +23,7 @@ import cn.jzvd.demo.utils.DpOrPxUtils;
 
 public class VideoEpisodePopup extends PopupWindow {
     private static final int COMPLETED = 0;
+    protected DismissTimerTask mDismissTimerTask;
     private Context mC;
     private LinearLayout main;
     private LayoutInflater inflater;
@@ -36,43 +37,44 @@ public class VideoEpisodePopup extends PopupWindow {
      */
     private int playNum = 0;
     private Timer mDismissTimer;
-    protected DismissTimerTask mDismissTimerTask;
-    public EpisodeClickListener getEpisondeClickListener() {
-        return episondeClickListener;
-    }
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == COMPLETED) {
+                dismiss();
 
-    public void setEpisondeClickListener(EpisodeClickListener episondeClickListener) {
-        this.episondeClickListener = episondeClickListener;
-    }
+            }
+        }
+    };
 
-    public VideoEpisodePopup(Context context, List<AGEpsodeEntity> entities){
+    public VideoEpisodePopup(Context context, List<AGEpsodeEntity> entities) {
         super(context);
-        this.mC=context;
-        mC=context;
-        this.episodeList=entities;
-        inflater=(LayoutInflater)mC.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        contentView=inflater.inflate(R.layout.popup_video_episode,null);
+        this.mC = context;
+        mC = context;
+        this.episodeList = entities;
+        inflater = (LayoutInflater) mC.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        contentView = inflater.inflate(R.layout.popup_video_episode, null);
         setContentView(contentView);
         setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-        setWidth(DpOrPxUtils.dip2px(context,320));
+        setWidth(DpOrPxUtils.dip2px(context, 320));
         setOutsideTouchable(true);
         //不设置该属性，弹窗于屏幕边框会有缝隙并且背景不是半透明
         setBackgroundDrawable(new BitmapDrawable());
-        main=contentView.findViewById(R.id.video_main);
+        main = contentView.findViewById(R.id.video_main);
         episodeRecycler = contentView.findViewById(R.id.video_episode);
         episodeRecycler.setLayoutManager(new GridLayoutManager(context, 5));
-        episodeAdapter = new VideoEpisodeAdapter(mC,episodeList);
+        episodeAdapter = new VideoEpisodeAdapter(mC, episodeList);
         episodeRecycler.setAdapter(episodeAdapter);
 
         episodeAdapter.setmOnItemClickListener(new VideoEpisodeAdapter.OnItemClickListener() {
             @Override
             public void onItemClicked(View view, int position) {
-                if (episondeClickListener!=null){
-                    episondeClickListener.onEpisodeClickListener(episodeList.get(position),position);
+                if (episondeClickListener != null) {
+                    episondeClickListener.onEpisodeClickListener(episodeList.get(position), position);
                 }
                 //更换当前正在播放的集数
-                if (playNum<1){
-                    playNum=1;
+                if (playNum < 1) {
+                    playNum = 1;
                 }
                 episodeList.get(playNum - 1).setPlay(false);
                 playNum = position + 1;
@@ -95,6 +97,14 @@ public class VideoEpisodePopup extends PopupWindow {
                 return false;
             }
         });
+    }
+
+    public EpisodeClickListener getEpisondeClickListener() {
+        return episondeClickListener;
+    }
+
+    public void setEpisondeClickListener(EpisodeClickListener episondeClickListener) {
+        this.episondeClickListener = episondeClickListener;
     }
 
     @Override
@@ -137,10 +147,10 @@ public class VideoEpisodePopup extends PopupWindow {
 
     }
 
-
     public interface EpisodeClickListener {
         /**
          * 选集发生变化
+         *
          * @param entity
          * @param position
          */
@@ -156,14 +166,4 @@ public class VideoEpisodePopup extends PopupWindow {
             handler.sendMessage(message);
         }
     }
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == COMPLETED) {
-                dismiss();
-
-            }
-        }
-    };
 }

@@ -23,10 +23,6 @@ import cn.jzvd.demo.utils.DpOrPxUtils;
  * @date 2019/12/19
  */
 public class LoadingView extends View {
-    //画笔
-    private Paint mPaint;
-    //圆圈边框宽度
-    private int borderWidth = DpOrPxUtils.dip2px(getContext(), 2);
     //圆形的矩形轮廓
     RectF rectF;
     //圆弧扫过的角度
@@ -35,6 +31,10 @@ public class LoadingView extends View {
     ObjectAnimator objectAnimator;
     ObjectAnimator rotateAnimator;
     AnimatorSet animatorSet;
+    //画笔
+    private Paint mPaint;
+    //圆圈边框宽度
+    private int borderWidth = DpOrPxUtils.dip2px(getContext(), 2);
 
     public LoadingView(Context context) {
         super(context);
@@ -64,11 +64,11 @@ public class LoadingView extends View {
                 0, 180);
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator.setInterpolator(new CycleInterpolator(0.5f));
-        rotateAnimator = ObjectAnimator.ofFloat(this,"rotateAngle",0,720);
+        rotateAnimator = ObjectAnimator.ofFloat(this, "rotateAngle", 0, 720);
         rotateAnimator.setInterpolator(new LinearInterpolator());
         rotateAnimator.setRepeatCount(ValueAnimator.INFINITE);
         animatorSet = new AnimatorSet();
-        animatorSet.playTogether(objectAnimator,rotateAnimator);
+        animatorSet.playTogether(objectAnimator, rotateAnimator);
         animatorSet.setDuration(1000);
         animatorSet.start();
     }
@@ -77,7 +77,7 @@ public class LoadingView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         //绘制圆弧
-        canvas.rotate(rotateAngle,getHeight()/2,getWidth()/2);
+        canvas.rotate(rotateAngle, getHeight() / 2, getWidth() / 2);
         canvas.drawArc(rectF, 0, sweepAngle, false, mPaint);
         super.onDraw(canvas);
     }

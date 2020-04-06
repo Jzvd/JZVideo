@@ -16,6 +16,7 @@ import cn.jzvd.JzvdStd;
  */
 public class ActivityScreenRotate extends AppCompatActivity implements ScreenRotateUtils.OrientationChangeListener {
     JzvdStd mJzvdStd;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +79,7 @@ public class ActivityScreenRotate extends AppCompatActivity implements ScreenRot
                 && mJzvdStd.screen != Jzvd.SCREEN_TINY) {
             if (orientation >= 45 && orientation <= 315 && mJzvdStd.screen == Jzvd.SCREEN_NORMAL) {
                 changeScreenFullLandscape(ScreenRotateUtils.orientationDirection);
-            } else if (((orientation >= 0 &&orientation <45) || orientation > 315) && mJzvdStd.screen == Jzvd.SCREEN_FULLSCREEN) {
+            } else if (((orientation >= 0 && orientation < 45) || orientation > 315) && mJzvdStd.screen == Jzvd.SCREEN_FULLSCREEN) {
                 changeScrenNormal();
             }
         }

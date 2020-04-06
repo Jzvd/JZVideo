@@ -3,8 +3,10 @@ package cn.jzvd.demo.BigUIChangeAG;
 public class AGEpsodeEntity {
     private String videoUrl;
     private String videoName;
-    /**是否被选中播放(默认没有播放)*/
-    private boolean isPlay=false;
+    /**
+     * 是否被选中播放(默认没有播放)
+     */
+    private boolean isPlay = false;
 
     public AGEpsodeEntity(String videoUrl, String videoName) {
         this.videoUrl = videoUrl;

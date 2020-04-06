@@ -24,10 +24,10 @@ import cn.jzvd.demo.CustomJzvd.ViewAttr;
  * @author Liberations
  */
 public class ActivityListViewDetail extends AppCompatActivity {
+    public final long DURATION = 300;
     private LinearLayout llContent;
     private FrameLayout container;
     private ViewAttr attr;
-    public final long DURATION = 300;
     private ViewAttr currentAttr;
 
     @Override

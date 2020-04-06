@@ -19,8 +19,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:background="#000000"
         android:adjustViewBounds="true"
+        android:background="#000000"
         android:scaleType="fitXY" />
 
     <LinearLayout
@@ -215,12 +215,13 @@
         android:id="@+id/convert_to_gif"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="70dp"
+        android:adjustViewBounds="true"
         android:padding="10dp"
         android:src="@mipmap/ic_record_start"
-        android:visibility="visible"/>
+        android:visibility="visible" />
+
     <LinearLayout
         android:id="@+id/retry_layout"
         android:layout_width="wrap_content"
@@ -264,8 +265,8 @@
             android:id="@+id/tv_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
             android:layout_gravity="center"
-            android:text="正在创建Gif..."/>
+            android:text="正在创建Gif..."
+            android:textColor="#ffffff" />
     </FrameLayout>
 </RelativeLayout>
