@@ -1,24 +1,15 @@
 package cn.jzvd.demo;
 
-import java.io.File;
-
 import com.bumptech.glide.Glide;
-import com.danikula.videocache.HttpProxyCacheServer;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdGif;
-import cn.jzvd.demo.utils.GifCreateHelper;
 
 /**
  * @author dl
@@ -32,6 +23,13 @@ public class ActivityGifVideo extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(false);
+        getSupportActionBar().setTitle("GifMediaPlayer");
+
         setContentView(R.layout.activity_gif);
 
         myJzvdStd = findViewById(R.id.jz_video);
@@ -54,4 +52,13 @@ public class ActivityGifVideo extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -174,4 +174,8 @@ public class ActivityApi extends AppCompatActivity {
     public void clickScreenRotate(View view) {
         startActivity(new Intent(ActivityApi.this, ActivityScreenRotate.class));
     }
+
+    public void clickStartGif(View view) {
+        startActivity(new Intent(ActivityApi.this, ActivityGifVideo.class));
+    }
 }
