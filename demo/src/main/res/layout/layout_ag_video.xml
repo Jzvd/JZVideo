@@ -352,7 +352,7 @@
         android:indeterminateDrawable="@drawable/jz_loading"
         android:visibility="gone" />
 
-    <cn.jzvd.demo.widget.LoadingView
+    <cn.jzvd.demo.api.BigUIChangeAG.LoadingView
         android:id="@+id/player_newLoading"
         android:layout_width="50dp"
         android:layout_height="50dp"

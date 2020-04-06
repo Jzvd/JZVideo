@@ -14,7 +14,7 @@ import java.io.File;
 
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.utils.GifCreateHelper;
+import cn.jzvd.demo.api.GifCreateHelper;
 
 /**
  * Created by dl on 2020/4/6.

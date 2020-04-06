@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
-        <cn.jzvd.demo.BigUIChangeAG.AGVideo
+        <cn.jzvd.demo.api.BigUIChangeAG.AGVideo
             android:id="@+id/ag_player"
             android:layout_width="match_parent"
             android:layout_height="200dp" />
