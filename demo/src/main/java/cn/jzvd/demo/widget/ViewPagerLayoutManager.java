@@ -19,6 +19,26 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
     private OnViewPagerListener mOnViewPagerListener;
     private RecyclerView mRecyclerView;
     private int mDrift;//位移，用来判断移动方向
+    private RecyclerView.OnChildAttachStateChangeListener mChildAttachStateChangeListener = new RecyclerView.OnChildAttachStateChangeListener() {
+        @Override
+        public void onChildViewAttachedToWindow(View view) {
+            if (mOnViewPagerListener != null && getChildCount() == 1) {
+                mOnViewPagerListener.onInitComplete();
+            }
+        }
+
+        @Override
+        public void onChildViewDetachedFromWindow(View view) {
+            if (mDrift >= 0) {
+                if (mOnViewPagerListener != null)
+                    mOnViewPagerListener.onPageRelease(true, getPosition(view));
+            } else {
+                if (mOnViewPagerListener != null)
+                    mOnViewPagerListener.onPageRelease(false, getPosition(view));
+            }
+
+        }
+    };
 
     public ViewPagerLayoutManager(Context context, int orientation) {
         super(context, orientation, false);
@@ -34,7 +54,6 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         mPagerSnapHelper = new PagerSnapHelper();
 
     }
-
 
     @Override
     public void onAttachedToWindow(RecyclerView view) {
@@ -55,6 +74,7 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
      * 缓慢拖拽-> SCROLL_STATE_DRAGGING
      * 快速滚动-> SCROLL_STATE_SETTLING
      * 空闲状态-> SCROLL_STATE_IDLE
+     *
      * @param state
      */
     @Override
@@ -64,7 +84,7 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
                 View viewIdle = mPagerSnapHelper.findSnapView(this);
                 int positionIdle = getPosition(viewIdle);
                 if (mOnViewPagerListener != null && getChildCount() == 1) {
-                    mOnViewPagerListener.onPageSelected(positionIdle,positionIdle == getItemCount() - 1);
+                    mOnViewPagerListener.onPageSelected(positionIdle, positionIdle == getItemCount() - 1);
                 }
                 break;
             case RecyclerView.SCROLL_STATE_DRAGGING:
@@ -79,10 +99,9 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         }
     }
 
-
-
     /**
      * 监听竖直方向的相对偏移量
+     *
      * @param dy
      * @param recycler
      * @param state
@@ -94,9 +113,9 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         return super.scrollVerticallyBy(dy, recycler, state);
     }
 
-
     /**
      * 监听水平方向的相对偏移量
+     *
      * @param dx
      * @param recycler
      * @param state
@@ -110,28 +129,10 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
 
     /**
      * 设置监听
+     *
      * @param listener
      */
-    public void setOnViewPagerListener(OnViewPagerListener listener){
+    public void setOnViewPagerListener(OnViewPagerListener listener) {
         this.mOnViewPagerListener = listener;
     }
-
-    private RecyclerView.OnChildAttachStateChangeListener mChildAttachStateChangeListener = new RecyclerView.OnChildAttachStateChangeListener() {
-        @Override
-        public void onChildViewAttachedToWindow(View view) {
-            if (mOnViewPagerListener != null && getChildCount() == 1) {
-                mOnViewPagerListener.onInitComplete();
-            }
-        }
-
-        @Override
-        public void onChildViewDetachedFromWindow(View view) {
-            if (mDrift >= 0){
-                if (mOnViewPagerListener != null) mOnViewPagerListener.onPageRelease(true,getPosition(view));
-            }else {
-                if (mOnViewPagerListener != null) mOnViewPagerListener.onPageRelease(false,getPosition(view));
-            }
-
-        }
-    };
 }

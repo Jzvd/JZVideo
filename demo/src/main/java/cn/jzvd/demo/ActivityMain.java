@@ -69,9 +69,6 @@ public class ActivityMain extends AppCompatActivity {
     public void clickLocal(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityLocalVideo.class));
     }
-    public void clickStartGif(View view) {
-        startActivity(new Intent(ActivityMain.this, ActivityGetGif.class));
-    }
 
     public void clickCustomAgVideo(View view) {
         startActivity(new Intent(ActivityMain.this, ActivityApiUIBigChangeAG.class));

@@ -43,7 +43,7 @@ public class AdapterTikTokRecyclerView extends RecyclerView.Adapter<AdapterTikTo
         JZDataSource jzDataSource = new JZDataSource(VideoConstant.videoUrls[3][position],
                 VideoConstant.videoTitles[0][position]);
         jzDataSource.looping = true;
-        holder.jzvdStd.setUp(jzDataSource,Jzvd.SCREEN_NORMAL);
+        holder.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL);
         Glide.with(holder.jzvdStd.getContext()).load(VideoConstant.videoPosters[0][position]).into(holder.jzvdStd.posterImageView);
     }
 

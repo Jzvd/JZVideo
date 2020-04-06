@@ -1,5 +1,13 @@
 package cn.jzvd.demo.utils;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
+import android.os.Build;
+import android.os.Environment;
+import android.text.TextUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,14 +18,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.MediaMetadataRetriever;
-import android.media.ThumbnailUtils;
-import android.os.Build;
-import android.os.Environment;
-import android.text.TextUtils;
-
 import cn.jzvd.JzvdStd;
 
 /**
@@ -27,29 +27,33 @@ import cn.jzvd.JzvdStd;
 
 public class GifCreateHelper {
 
+    /**
+     * 获取某一时刻视频图片
+     *
+     * @param url
+     * @param type 链接类型：NETWORK 网络，LOCAL 本地
+     * @param time 视频的时间点（单位：毫秒）
+     * @return
+     */
+    public static final int NETWORK = 0;
+    public static final int LOCAL = 1;
     private final String completeButNoImageTag = "completeButError";
-
     public JzvdStd mPlayer;
-
-    private JzGifListener mJzGifListener;
-
-    //gif的帧之间延时
-    private int mDelay = 50;
-
-    //采样率
-    private int mSampleSize = 1;
-
-    //缩小比例
-    private int mSmallScale = 5;
-
-    //gif时长，毫秒
-    private int mGifPeriod = 5000;
-
     //最后生成的gif的默认存储路径
     public String mGifPath = "";
     String cacheImageDir = Environment
             .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaoziTemp";
-
+    boolean isDownloadComplete = false;
+    private JzGifListener mJzGifListener;
+    //gif的帧之间延时
+    private int mDelay = 50;
+    //采样率
+    private int mSampleSize = 1;
+    //缩小比例
+    private int mSmallScale = 5;
+    //gif时长，毫秒
+    private int mGifPeriod = 5000;
+    private ExecutorService executorService = Executors.newCachedThreadPool();
 
     /**
      * @param delay        每一帧之间的延时
@@ -69,7 +73,56 @@ public class GifCreateHelper {
         mGifPath = TextUtils.isEmpty(gifPath) ? mGifPath : gifPath;
     }
 
-    private ExecutorService executorService = Executors.newCachedThreadPool();
+    /**
+     * 删除文件夹和文件夹里面的文件
+     *
+     * @param dir
+     */
+    public static void deleteDirWihtFile(File dir) {
+        if (dir == null || !dir.exists() || !dir.isDirectory())
+            return;
+        for (File file : dir.listFiles()) {
+            if (file.isFile())
+                file.delete(); // 删除所有文件
+            else if (file.isDirectory())
+                deleteDirWihtFile(file); // 递规的方式删除文件夹
+        }
+        dir.delete();// 删除目录本身
+    }
+
+    public static Bitmap getBitmapFormVideoUrl(String url, int type, long time) {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            if (Build.VERSION.SDK_INT >= 14) {
+
+                if (NETWORK == type) {
+                    retriever.setDataSource(url, new HashMap<String, String>());
+                } else if (LOCAL == type) {
+                    if (url.contains("file:///")) {
+                        url = url.replace("file://", "");
+                    }
+                    retriever.setDataSource(url);
+                } else {
+                    retriever.setDataSource(url, new HashMap<String, String>());
+                }
+            } else {
+                retriever.setDataSource(url);
+            }
+
+            //可惜这个方法不能设置采样率，不然效率能提高点。（可优化点）
+            bitmap = retriever.getFrameAtTime(time * 1000, MediaMetadataRetriever.OPTION_CLOSEST);//微秒
+        } catch (Exception e) { // IllegalArgumentException RuntimeException
+            e.printStackTrace();
+        } finally {
+            try {
+                retriever.release();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return bitmap;
+    }
 
     /**
      * 开始gif截图
@@ -107,25 +160,6 @@ public class GifCreateHelper {
             });
         }
     }
-
-    /**
-     * 删除文件夹和文件夹里面的文件
-     *
-     * @param dir
-     */
-    public static void deleteDirWihtFile(File dir) {
-        if (dir == null || !dir.exists() || !dir.isDirectory())
-            return;
-        for (File file : dir.listFiles()) {
-            if (file.isFile())
-                file.delete(); // 删除所有文件
-            else if (file.isDirectory())
-                deleteDirWihtFile(file); // 递规的方式删除文件夹
-        }
-        dir.delete();// 删除目录本身
-    }
-
-    boolean isDownloadComplete = false;
 
     private void checkCompleteAndDoNext(String[] picList, boolean isCurrentSuccess) {
         synchronized (GifCreateHelper.class) {
@@ -262,51 +296,6 @@ public class GifCreateHelper {
         }
 
         return true;
-    }
-
-    /**
-     * 获取某一时刻视频图片
-     *
-     * @param url
-     * @param type 链接类型：NETWORK 网络，LOCAL 本地
-     * @param time 视频的时间点（单位：毫秒）
-     * @return
-     */
-    public static final int NETWORK = 0;
-    public static final int LOCAL = 1;
-
-    public static Bitmap getBitmapFormVideoUrl(String url, int type, long time) {
-        Bitmap bitmap = null;
-        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        try {
-            if (Build.VERSION.SDK_INT >= 14) {
-
-                if (NETWORK == type) {
-                    retriever.setDataSource(url, new HashMap<String, String>());
-                } else if (LOCAL == type) {
-                    if (url.contains("file:///")) {
-                        url = url.replace("file://", "");
-                    }
-                    retriever.setDataSource(url);
-                } else {
-                    retriever.setDataSource(url, new HashMap<String, String>());
-                }
-            } else {
-                retriever.setDataSource(url);
-            }
-
-            //可惜这个方法不能设置采样率，不然效率能提高点。（可优化点）
-            bitmap = retriever.getFrameAtTime(time * 1000, MediaMetadataRetriever.OPTION_CLOSEST);//微秒
-        } catch (Exception e) { // IllegalArgumentException RuntimeException
-            e.printStackTrace();
-        } finally {
-            try {
-                retriever.release();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return bitmap;
     }
 
     /**

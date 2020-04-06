@@ -1,12 +1,12 @@
 package cn.jzvd.demo;
 
-import com.bumptech.glide.Glide;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdGetGif;

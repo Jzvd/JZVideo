@@ -1,19 +1,17 @@
 package cn.jzvd.demo.CustomJzvd;
 
-import java.io.File;
-
 import android.content.Context;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.jzvd.Jzvd;
+import java.io.File;
+
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.GifCreateHelper;

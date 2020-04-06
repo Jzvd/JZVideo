@@ -5,6 +5,17 @@ import android.os.Parcelable;
 
 
 public class ViewAttr implements Parcelable {
+    public static final Creator<ViewAttr> CREATOR = new Creator<ViewAttr>() {
+        @Override
+        public ViewAttr createFromParcel(Parcel in) {
+            return new ViewAttr(in);
+        }
+
+        @Override
+        public ViewAttr[] newArray(int size) {
+            return new ViewAttr[size];
+        }
+    };
     private int x;
     private int y;
     private int width;
@@ -19,18 +30,6 @@ public class ViewAttr implements Parcelable {
         width = in.readInt();
         height = in.readInt();
     }
-
-    public static final Creator<ViewAttr> CREATOR = new Creator<ViewAttr>() {
-        @Override
-        public ViewAttr createFromParcel(Parcel in) {
-            return new ViewAttr(in);
-        }
-
-        @Override
-        public ViewAttr[] newArray(int size) {
-            return new ViewAttr[size];
-        }
-    };
 
     public int getX() {
         return x;

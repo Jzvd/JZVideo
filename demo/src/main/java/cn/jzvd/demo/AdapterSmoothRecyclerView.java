@@ -23,12 +23,12 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
     private Context context;
     private OnVideoClick onVideoClick;
 
-    public void setOnVideoClick(OnVideoClick onVideoClick) {
-        this.onVideoClick = onVideoClick;
-    }
-
     public AdapterSmoothRecyclerView(Context context) {
         this.context = context;
+    }
+
+    public void setOnVideoClick(OnVideoClick onVideoClick) {
+        this.onVideoClick = onVideoClick;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
                 attr.setY(location[1]);
                 attr.setWidth(holder.container.getMeasuredWidth());
                 attr.setHeight(holder.container.getMeasuredHeight());
-                if (onVideoClick != null) onVideoClick.videoClick(holder.container,attr, position);
+                if (onVideoClick != null) onVideoClick.videoClick(holder.container, attr, position);
                 jzvdStdRv.setClickUi(null);
             }
 
@@ -97,6 +97,10 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
         return videoIndexs.length;
     }
 
+    public interface OnVideoClick {
+        void videoClick(ViewGroup focusView, ViewAttr viewAttr, int position);
+    }
+
     class MyViewHolder extends RecyclerView.ViewHolder {
         FrameLayout container;
 
@@ -104,10 +108,6 @@ public class AdapterSmoothRecyclerView extends RecyclerView.Adapter<AdapterSmoot
             super(itemView);
             container = itemView.findViewById(R.id.surface_container);
         }
-    }
-
-    public interface OnVideoClick {
-        void videoClick(ViewGroup focusView,ViewAttr viewAttr, int position);
     }
 
 }

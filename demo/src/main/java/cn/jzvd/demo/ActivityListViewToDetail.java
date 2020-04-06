@@ -23,9 +23,9 @@ import cn.jzvd.demo.CustomJzvd.ViewAttr;
  * @author Liberations
  */
 public class ActivityListViewToDetail extends AppCompatActivity {
+    public static ActivityListViewToDetail activityListViewToDetail;
     RecyclerView recyclerView;
     AdapterSmoothRecyclerView adapterVideoList;
-    public static ActivityListViewToDetail activityListViewToDetail;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,13 +3,13 @@ package cn.jzvd.demo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -63,7 +63,7 @@ public class ActivityLocalVideo extends AppCompatActivity {
 
         //setUp jzvd
         jzvdLocalPath.setUp(localVideoPath, "Play Local Video");
-        jzvdAssertPath.setUp("local_video.mp4","Play Assert Video",JzvdStd.SCREEN_NORMAL,JZMediaSystemAssertFolder.class);
+        jzvdAssertPath.setUp("local_video.mp4", "Play Assert Video", JzvdStd.SCREEN_NORMAL, JZMediaSystemAssertFolder.class);
     }
 
     @Override

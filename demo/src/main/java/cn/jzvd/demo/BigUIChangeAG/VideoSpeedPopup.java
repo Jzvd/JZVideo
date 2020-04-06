@@ -18,40 +18,50 @@ import cn.jzvd.demo.utils.DpOrPxUtils;
 
 public class VideoSpeedPopup extends PopupWindow implements View.OnClickListener {
     private static final int COMPLETED = 0;
-    private TextView speedOne,speedTwo,speedThree,speedFour,speedFive;
+    protected DismissTimerTask mDismissTimerTask;
+    private TextView speedOne, speedTwo, speedThree, speedFour, speedFive;
     private SpeedChangeListener speedChangeListener;
     private Context mC;
     private LayoutInflater inflater;
     private View contentView;
     private Timer mDismissTimer;
-    protected DismissTimerTask mDismissTimerTask;
-   public VideoSpeedPopup(Context context){
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == COMPLETED) {
+                dismiss();
+
+            }
+        }
+    };
+
+    public VideoSpeedPopup(Context context) {
         super(context);
-       mC=context;
-       inflater=(LayoutInflater)mC.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-       contentView=inflater.inflate(R.layout.popup_video_speed,null);
-       setContentView(contentView);
-       setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-       setWidth(DpOrPxUtils.dip2px(context,200));
-       speedOne=contentView.findViewById(R.id.pop_speed_1);
-       speedTwo=contentView.findViewById(R.id.pop_speed_1_25);
-       speedThree=contentView.findViewById(R.id.pop_speed_1_5);
-       speedFour=contentView.findViewById(R.id.pop_speed_1_75);
-       speedFive=contentView.findViewById(R.id.pop_speed_2);
-       setOutsideTouchable(true);
-       //不设置该属性，弹窗于屏幕边框会有缝隙并且背景不是半透明
-       setBackgroundDrawable(new BitmapDrawable());
-       speedOne.setOnClickListener(this);
-       speedTwo.setOnClickListener(this);
-       speedThree.setOnClickListener(this);
-       speedFour.setOnClickListener(this);
-       speedFive.setOnClickListener(this);
-   }
+        mC = context;
+        inflater = (LayoutInflater) mC.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        contentView = inflater.inflate(R.layout.popup_video_speed, null);
+        setContentView(contentView);
+        setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+        setWidth(DpOrPxUtils.dip2px(context, 200));
+        speedOne = contentView.findViewById(R.id.pop_speed_1);
+        speedTwo = contentView.findViewById(R.id.pop_speed_1_25);
+        speedThree = contentView.findViewById(R.id.pop_speed_1_5);
+        speedFour = contentView.findViewById(R.id.pop_speed_1_75);
+        speedFive = contentView.findViewById(R.id.pop_speed_2);
+        setOutsideTouchable(true);
+        //不设置该属性，弹窗于屏幕边框会有缝隙并且背景不是半透明
+        setBackgroundDrawable(new BitmapDrawable());
+        speedOne.setOnClickListener(this);
+        speedTwo.setOnClickListener(this);
+        speedThree.setOnClickListener(this);
+        speedFour.setOnClickListener(this);
+        speedFive.setOnClickListener(this);
+    }
 
     @Override
     public void onClick(View v) {
-        if (speedChangeListener!=null){
-            switch (v.getId()){
+        if (speedChangeListener != null) {
+            switch (v.getId()) {
                 case R.id.pop_speed_1:
                     speedOne.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
                     speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
@@ -133,7 +143,7 @@ public class VideoSpeedPopup extends PopupWindow implements View.OnClickListener
         this.speedChangeListener = speedChangeListener;
     }
 
-    public interface SpeedChangeListener{
+    public interface SpeedChangeListener {
         void speedChange(float speed);
     }
 
@@ -146,14 +156,4 @@ public class VideoSpeedPopup extends PopupWindow implements View.OnClickListener
             handler.sendMessage(message);
         }
     }
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            if (msg.what == COMPLETED) {
-                dismiss();
-
-            }
-        }
-    };
 }
