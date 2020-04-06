@@ -1,25 +1,18 @@
 package cn.jzvd.demo;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.Environment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.LinkedHashMap;
 
 import cn.jzvd.JZDataSource;
@@ -58,13 +51,7 @@ public class ActivityApi extends AppCompatActivity {
         mJzvdStd.setUp(jzDataSource
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this).load(VideoConstant.videoPosterList[0]).into(mJzvdStd.posterImageView);
-//        mJzvdStd.seekToInAdvance = 20000;
-//        Jzvd.SAVE_PROGRESS = false;//把这些注释的代码放到按钮上，让它可操作可见。
 
-        /** Play video in local localVideoPath, eg:record by system camera **/
-//        cpAssertVideoToLocalPath();
-//        mJzvdStd.setUp(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/activity_local_video.mp4"
-//                , "饺子不信", Jzvd.SCREEN_NORMAL);
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mSensorEventListener = new Jzvd.JZAutoFullscreenListener();
     }
@@ -105,49 +92,12 @@ public class ActivityApi extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void cpAssertVideoToLocalPath() {
-        verifyStoragePermissions();
-        try {
-            InputStream myInput;
-            OutputStream myOutput = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera/activity_local_video.mp4");
-            myInput = this.getAssets().open("local_video.mp4");
-            byte[] buffer = new byte[1024];
-            int length = myInput.read(buffer);
-            while (length > 0) {
-                myOutput.write(buffer, 0, length);
-                length = myInput.read(buffer);
-            }
-
-            myOutput.flush();
-            myInput.close();
-            myOutput.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void verifyStoragePermissions() {
-        try {
-            int permission = ActivityCompat.checkSelfPermission(this,
-                    "android.permission.WRITE_EXTERNAL_STORAGE");
-            if (permission != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{
-                        "android.permission.READ_EXTERNAL_STORAGE",
-                        "android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void clickSmallChange(View view) {
         startActivity(new Intent(ActivityApi.this, ActivityApiUISmallChange.class));
     }
 
     public void clickBigChange(View view) {
-//        Toast.makeText(ActivityApi.this, "Comming Soon", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(ActivityApi.this, ActivityApiUIBigChange.class));
+        startActivity(new Intent(ActivityApi.this, ActivityApiUIBigChange.class));
     }
 
     public void clickOrientation(View view) {
@@ -176,6 +126,6 @@ public class ActivityApi extends AppCompatActivity {
     }
 
     public void clickStartGif(View view) {
-        startActivity(new Intent(ActivityApi.this, ActivityGifVideo.class));
+        startActivity(new Intent(ActivityApi.this, ActivityGetGif.class));
     }
 }

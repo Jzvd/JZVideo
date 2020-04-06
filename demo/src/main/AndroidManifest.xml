@@ -127,7 +127,7 @@
         <activity android:name=".BigUIChangeAG.ActivityApiUIBigChangeAG"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ActivityGifVideo"
+        <activity android:name=".ActivityGetGif"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>
