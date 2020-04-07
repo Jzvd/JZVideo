@@ -77,16 +77,15 @@
 
         <ImageView
             android:id="@+id/volume"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:paddingLeft="14dp"
-            android:scaleType="centerInside"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
             android:src="@drawable/jz_volume_close" />
 
         <ImageView
             android:id="@+id/fullscreen"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="52.5dp"
+            android:layout_height="fill_parent"
             android:paddingRight="14dp"
             android:scaleType="centerInside"
             android:src="@drawable/jz_enlarge" />
