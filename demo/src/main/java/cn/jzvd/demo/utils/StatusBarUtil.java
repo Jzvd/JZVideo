@@ -17,6 +17,7 @@ import cn.jzvd.demo.R;
 
 public class StatusBarUtil {
 
+    public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
     //    public static int getStatusBarHeight(Context context) {
 //        int statusBarHeight = 0;
 //        try {
@@ -59,8 +60,6 @@ public class StatusBarUtil {
             activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
-
-    public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
 
     /**
      * 设置状态栏颜色
@@ -426,6 +425,7 @@ public class StatusBarUtil {
             layoutParams.setMargins(0, getStatusBarHeight(activity), 0, 0);
         }
     }
+
     /**
      * 为头部是 ImageView 的界面设置状态栏透明
      *

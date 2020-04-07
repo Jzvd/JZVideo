@@ -1,13 +1,10 @@
-
 package cn.jzvd.demo.CustomJzvd;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.ImageView;
 
 import cn.jzvd.JZUtils;
@@ -18,9 +15,9 @@ import cn.jzvd.demo.R;
  * 这里是不改源码得情况下
  */
 public class JzvdStdLockScreen extends JzvdStd {
+    float starX, startY;
     private boolean isLockScreen;
     private ImageView lockIv;
-    float starX, startY;
 
     public JzvdStdLockScreen(Context context) {
         super(context);
@@ -68,7 +65,6 @@ public class JzvdStdLockScreen extends JzvdStd {
         lockIv = findViewById(R.id.lock);
         lockIv.setOnClickListener(this);
     }
-
 
 
     @Override

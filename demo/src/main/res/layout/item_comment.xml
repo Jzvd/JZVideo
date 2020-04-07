@@ -7,9 +7,9 @@
     <ImageView
         android:id="@+id/iv_head"
         android:layout_width="45dp"
-        android:scaleType="centerCrop"
         android:layout_height="45dp"
-        android:layout_margin="15dp" />
+        android:layout_margin="15dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tv_name"
