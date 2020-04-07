@@ -14,11 +14,11 @@
         android:textColor="#000">
 
         <TextView
-            android:text="全部评论(999+)"
-            android:paddingLeft="15dp"
-            android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:layout_height="45dp" />
+            android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="全部评论(999+)" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comment"

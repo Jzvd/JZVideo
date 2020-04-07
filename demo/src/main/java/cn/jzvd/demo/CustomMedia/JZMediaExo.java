@@ -38,7 +38,7 @@ import com.google.android.exoplayer2.video.VideoListener;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.BigUIChangeAG.AGVideo;
+import cn.jzvd.demo.api.BigUIChangeAG.AGVideo;
 import cn.jzvd.demo.R;
 
 /**
@@ -114,8 +114,8 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
             callback = new onBufferingUpdate();
 
             if (jzvd.textureView != null) {
-                SurfaceTexture surfaceTexture=jzvd.textureView.getSurfaceTexture();
-                if (surfaceTexture!=null){
+                SurfaceTexture surfaceTexture = jzvd.textureView.getSurfaceTexture();
+                if (surfaceTexture != null) {
                     simpleExoPlayer.setVideoSurface(new Surface(surfaceTexture));
                 }
             }
@@ -145,7 +145,7 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
 
     @Override
     public void seekTo(long time) {
-        if (simpleExoPlayer==null){
+        if (simpleExoPlayer == null) {
             return;
         }
         if (time != previousSeek) {
@@ -286,10 +286,10 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
 
     @Override
     public void setSurface(Surface surface) {
-        if (simpleExoPlayer!=null){
+        if (simpleExoPlayer != null) {
             simpleExoPlayer.setVideoSurface(surface);
-        }else {
-            Log.e("AGVideo","simpleExoPlayer为空");
+        } else {
+            Log.e("AGVideo", "simpleExoPlayer为空");
         }
     }
 
