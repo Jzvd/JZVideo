@@ -33,7 +33,7 @@ public class GetGifActivity extends AppCompatActivity {
 
         jzvdStdGetGif = findViewById(R.id.jz_video);
         String url = "http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4";
-        jzvdStdGetGif.setUp(url, "饺子快长大");
+        jzvdStdGetGif.setUp(url, "饺子会拼图");
         Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(jzvdStdGetGif.posterImageView);
     }
 
