@@ -32,10 +32,10 @@ public class JzvdStdVolume extends JzvdStd {
         super.onPrepared();
         if (screen == SCREEN_FULLSCREEN) {
             mediaInterface.setVolume(1f, 1f);
-            ivVolume.setImageResource(R.drawable.jz_volume_open);
+            ivVolume.setImageResource(R.drawable.ic_volume_open);
         } else {
             mediaInterface.setVolume(volumeOpen ? 1f : 0f, volumeOpen ? 1f : 0f);
-            ivVolume.setImageResource(volumeOpen ? R.drawable.jz_volume_open : R.drawable.jz_volume_close);
+            ivVolume.setImageResource(volumeOpen ? R.drawable.ic_volume_open : R.drawable.ic_volume_close);
         }
     }
 
@@ -44,7 +44,7 @@ public class JzvdStdVolume extends JzvdStd {
         super.setScreenNormal();
         if (mediaInterface != null && !volumeOpen)
             mediaInterface.setVolume(0f, 0f);
-        ivVolume.setImageResource(volumeOpen ? R.drawable.jz_volume_open : R.drawable.jz_volume_close);
+        ivVolume.setImageResource(volumeOpen ? R.drawable.ic_volume_open : R.drawable.ic_volume_close);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class JzvdStdVolume extends JzvdStd {
         super.setScreenFullscreen();
         if (mediaInterface != null)
             mediaInterface.setVolume(1f, 1f);
-        ivVolume.setImageResource(R.drawable.jz_volume_open);
+        ivVolume.setImageResource(R.drawable.ic_volume_open);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class JzvdStdVolume extends JzvdStd {
         if (v.getId() == R.id.volume) {
             volumeOpen = !volumeOpen;
             mediaInterface.setVolume(volumeOpen ? 1f : 0f, volumeOpen ? 1f : 0f);
-            ivVolume.setImageResource(volumeOpen ? R.drawable.jz_volume_open : R.drawable.jz_volume_close);
+            ivVolume.setImageResource(volumeOpen ? R.drawable.ic_volume_open : R.drawable.ic_volume_close);
         }
     }
 
