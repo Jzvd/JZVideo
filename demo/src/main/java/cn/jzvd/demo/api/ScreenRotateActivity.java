@@ -30,7 +30,7 @@ public class ScreenRotateActivity extends AppCompatActivity implements ScreenRot
         getSupportActionBar().setTitle("ScreenRotate");
         setContentView(R.layout.activity_screen_rotate);
         mJzvdStd = findViewById(R.id.jz_video);
-        mJzvdStd.setUp(Urls.videoUrlList[0], "饺子不信"
+        mJzvdStd.setUp(Urls.videoUrlList[0], "饺子挺好"
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
                 .load(Urls.videoPosterList[0])
