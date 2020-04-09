@@ -118,10 +118,10 @@ public class SmallChangeUiActivity extends AppCompatActivity {
 
 
         jzvdStdVolume = findViewById(R.id.custom_videoplayer_standard_with_volume_button);
-        jzvdStdVolume.setUp(VideoConstant.videoUrls[0][1],
+        jzvdStdVolume.setUp(Urls.videoUrls[0][1],
                 "饺子吃莽莽", Jzvd.SCREEN_NORMAL);
         Glide.with(this)
-                .load(VideoConstant.videoPosters[0][1])
+                .load(Urls.videoPosters[0][1])
                 .into(jzvdStdVolume.posterImageView);
     }
 
