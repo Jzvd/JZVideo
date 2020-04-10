@@ -347,13 +347,13 @@ public class JzvdStd extends Jzvd {
                 }
             }
 
-            clarityPopWindow = new PopupWindow(layout, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
+            clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 280), LayoutParams.MATCH_PARENT, true);
             clarityPopWindow.setContentView(layout);
-            clarityPopWindow.showAsDropDown(clarity);
-            layout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-            int offsetX = clarity.getMeasuredWidth() / 3;
-            int offsetY = clarity.getMeasuredHeight() / 3;
-            clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());
+            clarityPopWindow.setAnimationStyle(R.style.pop_animation);
+            clarityPopWindow.showAtLocation(textureViewContainer, Gravity.END, 0, 0);
+//            int offsetX = clarity.getMeasuredWidth() / 3;
+//            int offsetY = clarity.getMeasuredHeight() / 3;
+//            clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());
         } else if (i == R.id.retry_btn) {
             if (jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
                 Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
