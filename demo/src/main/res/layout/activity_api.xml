@@ -96,6 +96,16 @@
                 android:layout_marginBottom="8dp"
                 android:onClick="clickScreenRotate"
                 android:text="Screen Rotate" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="clickStartGif"
+                android:text="Get Gif" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

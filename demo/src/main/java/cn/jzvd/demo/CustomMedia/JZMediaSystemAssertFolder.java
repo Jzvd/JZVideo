@@ -145,7 +145,7 @@ public class JZMediaSystemAssertFolder extends JZMediaInterface implements Media
 
     @Override
     public void onCompletion(MediaPlayer mediaPlayer) {
-        handler.post(() -> jzvd.onAutoCompletion());
+        handler.post(() -> jzvd.onCompletion());
     }
 
     @Override

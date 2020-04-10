@@ -19,8 +19,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:background="#000000"
         android:adjustViewBounds="true"
+        android:background="#000000"
         android:scaleType="fitXY" />
 
     <LinearLayout
