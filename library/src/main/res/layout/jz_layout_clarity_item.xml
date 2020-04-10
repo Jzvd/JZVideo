@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:paddingLeft="10dp"
-    android:paddingTop="8dp"
-    android:paddingRight="10dp"
-    android:paddingBottom="8dp"
+
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
     android:textColor="#FFF"
-    android:textSize="26sp" />
+    android:textSize="18sp" />

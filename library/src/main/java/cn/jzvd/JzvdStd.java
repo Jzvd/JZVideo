@@ -233,7 +233,6 @@ public class JzvdStd extends Jzvd {
         if (id == R.id.surface_container) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    break;
                 case MotionEvent.ACTION_MOVE:
                     break;
                 case MotionEvent.ACTION_UP:
@@ -304,6 +303,9 @@ public class JzvdStd extends Jzvd {
             }
         } else if (i == R.id.surface_container) {
             startDismissControlViewTimer();
+            if (clarityPopWindow != null) {
+                clarityPopWindow.dismiss();
+            }
         } else if (i == R.id.back) {
             backPress();
         } else if (i == R.id.back_tiny) {
@@ -347,7 +349,7 @@ public class JzvdStd extends Jzvd {
                 }
             }
 
-            clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 280), LayoutParams.MATCH_PARENT, true);
+            clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 250), LayoutParams.MATCH_PARENT, true);
             clarityPopWindow.setContentView(layout);
             clarityPopWindow.setAnimationStyle(R.style.pop_animation);
             clarityPopWindow.showAtLocation(textureViewContainer, Gravity.END, 0, 0);
@@ -861,9 +863,6 @@ public class JzvdStd extends Jzvd {
     public void reset() {
         super.reset();
         cancelDismissControlViewTimer();
-        if (clarityPopWindow != null) {
-            clarityPopWindow.dismiss();
-        }
         unregisterWifiListener(getApplicationContext());
     }
 
@@ -875,9 +874,7 @@ public class JzvdStd extends Jzvd {
                 bottomContainer.setVisibility(View.INVISIBLE);
                 topContainer.setVisibility(View.INVISIBLE);
                 startButton.setVisibility(View.INVISIBLE);
-                if (clarityPopWindow != null) {
-                    clarityPopWindow.dismiss();
-                }
+
                 if (screen != SCREEN_TINY) {
                     bottomProgressBar.setVisibility(View.VISIBLE);
                 }
