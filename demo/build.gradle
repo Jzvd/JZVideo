@@ -8,8 +8,8 @@ android {
         applicationId "cn.jzvd.demo"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 98
-        versionName "7.2.3"
+        versionCode 99
+        versionName "7.2.4"
         ndk {
             // add support lib
             abiFilters 'armeabi-v7a' //, 'arm64-v8a'//, "mips"  //,'armeabi''x86',, 'x86_64',
@@ -42,6 +42,7 @@ android {
     lintOptions {
         abortOnError false
     }
+
 }
 
 dependencies {

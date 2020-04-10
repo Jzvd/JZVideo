@@ -218,8 +218,8 @@
         android:layout_height="35dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="80dp"
-        android:scaleType="centerInside"
         android:background="@mipmap/unlock"
+        android:scaleType="centerInside"
         android:visibility="gone" />
 
     <LinearLayout
