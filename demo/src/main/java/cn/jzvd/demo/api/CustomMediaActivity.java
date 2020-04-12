@@ -38,7 +38,7 @@ public class CustomMediaActivity extends AppCompatActivity {
         jzvdStd = findViewById(R.id.videoplayer);
 
         jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子快长大", JzvdStd.SCREEN_NORMAL);
+                , "饺子很保守", JzvdStd.SCREEN_NORMAL);
 
         Glide.with(this)
                 .load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png")
@@ -50,7 +50,7 @@ public class CustomMediaActivity extends AppCompatActivity {
     public void clickChangeToIjkplayer(View view) {
         Jzvd.releaseAllVideos();
         jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子快长大", JzvdStd.SCREEN_NORMAL, JZMediaIjk.class);
+                , "饺子变心", JzvdStd.SCREEN_NORMAL, JZMediaIjk.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to Ijkplayer", Toast.LENGTH_SHORT).show();
     }
@@ -58,7 +58,7 @@ public class CustomMediaActivity extends AppCompatActivity {
     public void clickChangeToSystem(View view) {
         Jzvd.releaseAllVideos();
         jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子快长大", JzvdStd.SCREEN_NORMAL, JZMediaSystem.class);
+                , "饺子回来了", JzvdStd.SCREEN_NORMAL, JZMediaSystem.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to MediaPlayer", Toast.LENGTH_SHORT).show();
     }
@@ -66,7 +66,7 @@ public class CustomMediaActivity extends AppCompatActivity {
     public void clickChangeToExo(View view) {
         Jzvd.releaseAllVideos();
         jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子快长大", JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
+                , "饺子追星", JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to ExoPlayer", Toast.LENGTH_SHORT).show();
     }
