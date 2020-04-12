@@ -30,7 +30,7 @@ public class OrientationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Orientation");
         setContentView(R.layout.activity_orientation);
         mJzvdStd = findViewById(R.id.jz_video);
-        mJzvdStd.setUp(Urls.videoUrlList[0], "饺子不信"
+        mJzvdStd.setUp(Urls.videoUrlList[0], "饺子会旋转"
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
                 .load(Urls.videoPosterList[0])

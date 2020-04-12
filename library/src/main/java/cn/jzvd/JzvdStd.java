@@ -152,6 +152,12 @@ public class JzvdStd extends Jzvd {
         setScreen(screen);
     }
 
+    @Override
+    public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
+        super.changeUrl(jzDataSource, seekToInAdvance);
+        titleTextView.setText(jzDataSource.title);
+    }
+
     public void changeStartButtonSize(int size) {
         ViewGroup.LayoutParams lp = startButton.getLayoutParams();
         lp.height = size;

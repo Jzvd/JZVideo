@@ -17,6 +17,7 @@ import cn.jzvd.demo.CustomJzvd.JzvdStdShowShareButtonAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdShowTextureViewAfterAutoComplete;
 import cn.jzvd.demo.CustomJzvd.JzvdStdShowTitleAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdSpeed;
+import cn.jzvd.demo.CustomJzvd.JzvdStdVolume;
 import cn.jzvd.demo.CustomJzvd.JzvdStdVolumeAfterFullscreen;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.Urls;
@@ -33,6 +34,7 @@ public class SmallChangeUiActivity extends AppCompatActivity {
     JzvdStdMp3 jzvdStdMp3;
     JzvdStdSpeed jzvdStdSpeed;
     JzvdStdLockScreen lockScreen;
+    JzvdStdVolume jzvdStdVolume;
 
     JzvdStd jzvdStd_1_1, jzvdStd_16_9;
 
@@ -49,7 +51,7 @@ public class SmallChangeUiActivity extends AppCompatActivity {
 
         lockScreen = findViewById(R.id.lock_screen);
         lockScreen.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子快长大");
+                , "饺子定身");
         Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(lockScreen.posterImageView);
 
 
@@ -114,6 +116,13 @@ public class SmallChangeUiActivity extends AppCompatActivity {
                 .load(Urls.videoPosters[0][1])
                 .into(jzvdStdSpeed.posterImageView);
 
+
+        jzvdStdVolume = findViewById(R.id.custom_videoplayer_standard_with_volume_button);
+        jzvdStdVolume.setUp(Urls.videoUrls[0][1],
+                "饺子吃莽莽", Jzvd.SCREEN_NORMAL);
+        Glide.with(this)
+                .load(Urls.videoPosters[0][1])
+                .into(jzvdStdVolume.posterImageView);
     }
 
     @Override
