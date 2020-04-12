@@ -468,6 +468,7 @@ public class AGVideo extends JzvdStd {
         next_set.setVisibility(GONE);
         showProgress();
         super.changeUrl(jzDataSource, seekToInAdvance);
+        titleTextView.setText(jzDataSource.title);
 //        //切换播放地址之后继续以1倍速播放
         if (jzDataSource.objects == null) {
             Object[] object = {1};
