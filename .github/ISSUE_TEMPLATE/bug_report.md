@@ -6,6 +6,8 @@ about: Create a report to help us improve
 
 **什么jzvd版本
 
+**什么播放器内核
+
 **相关log是什么
 
 **demo是否有这个问题
