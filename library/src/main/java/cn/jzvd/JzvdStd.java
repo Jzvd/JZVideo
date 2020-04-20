@@ -312,8 +312,7 @@ public class JzvdStd extends Jzvd {
             showWifiDialog();
             return;
         }
-        addTextureView();
-        onStatePreparing();
+        startVideo();
     }
 
     private void clickClarity() {
