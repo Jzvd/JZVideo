@@ -318,6 +318,8 @@ public class JzvdStd extends Jzvd {
     }
 
     private void clickClarity() {
+        onCLickUiToggleToClear();
+
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.jz_layout_clarity, null);
@@ -339,45 +341,30 @@ public class JzvdStd extends Jzvd {
                     ((TextView) layout.getChildAt(j)).setTextColor(Color.parseColor("#ffffff"));
                 }
             }
-//<<<<<<< HEAD
-//            if (clarityPopWindow != null) {
-//                clarityPopWindow.dismiss();
-//=======
+            if (clarityPopWindow != null) {
+                clarityPopWindow.dismiss();
+            }
+        };
 
-            clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 240), LayoutParams.MATCH_PARENT, true);
-            clarityPopWindow.setContentView(layout);
-            clarityPopWindow.setAnimationStyle(R.style.pop_animation);
-            clarityPopWindow.showAtLocation(textureViewContainer, Gravity.END, 0, 0);
+        for (int j = 0; j < jzDataSource.urlsMap.size(); j++) {
+            String key = jzDataSource.getKeyFromDataSource(j);
+            TextView clarityItem = (TextView) View.inflate(getContext(), R.layout.jz_layout_clarity_item, null);
+            clarityItem.setText(key);
+            clarityItem.setTag(j);
+            layout.addView(clarityItem, j);
+            clarityItem.setOnClickListener(mQualityListener);
+            if (j == jzDataSource.currentUrlIndex) {
+                clarityItem.setTextColor(Color.parseColor("#fff85959"));
+            }
+        }
+
+        clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 240), LayoutParams.MATCH_PARENT, true);
+        clarityPopWindow.setContentView(layout);
+        clarityPopWindow.setAnimationStyle(R.style.pop_animation);
+        clarityPopWindow.showAtLocation(textureViewContainer, Gravity.END, 0, 0);
 //            int offsetX = clarity.getMeasuredWidth() / 3;
 //            int offsetY = clarity.getMeasuredHeight() / 3;
 //            clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());
-//        } else if (i == R.id.retry_btn) {
-//            if (jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
-//                Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
-//                return;
-////>>>>>>> pr/108
-//            }
-        };
-
-//        for (int j = 0; j < jzDataSource.urlsMap.size(); j++) {
-//            String key = jzDataSource.getKeyFromDataSource(j);
-//            TextView clarityItem = (TextView) View.inflate(getContext(), R.layout.jz_layout_clarity_item, null);
-//            clarityItem.setText(key);
-//            clarityItem.setTag(j);
-//            layout.addView(clarityItem, j);
-//            clarityItem.setOnClickListener(mQualityListener);
-//            if (j == jzDataSource.currentUrlIndex) {
-//                clarityItem.setTextColor(Color.parseColor("#fff85959"));
-//            }
-//        }
-//
-//        clarityPopWindow = new PopupWindow(layout, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
-//        clarityPopWindow.setContentView(layout);
-//        clarityPopWindow.showAsDropDown(clarity);
-//        layout.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-//        int offsetX = clarity.getMeasuredWidth() / 3;
-//        int offsetY = clarity.getMeasuredHeight() / 3;
-//        clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());
     }
 
     private void clickBackTiny() {
@@ -551,6 +538,7 @@ public class JzvdStd extends Jzvd {
         }
     }
 
+    //** 和onClickUiToggle重复，要干掉
     public void onCLickUiToggleToClear() {
         if (state == STATE_PREPARING) {
             if (bottomContainer.getVisibility() == View.VISIBLE) {
