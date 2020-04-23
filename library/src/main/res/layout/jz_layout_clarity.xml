@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/video_quality_wrapper_area"
-    android:layout_width="250dp"
+    android:layout_width="240dp"
     android:layout_height="match_parent"
     android:background="#88000000"
     android:gravity="center"
