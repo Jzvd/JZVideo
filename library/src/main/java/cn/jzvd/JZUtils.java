@@ -5,10 +5,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -164,6 +167,33 @@ public class JZUtils {
     public static void showSystemUI(Context context) {
         int uiOptions = View.SYSTEM_UI_FLAG_VISIBLE;
         JZUtils.getWindow(context).getDecorView().setSystemUiVisibility(SYSTEM_UI);
+    }
+
+    //获取状态栏的高度
+    public static int getStatusBarHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        return height;
+    }
+
+    //获取NavigationBar的高度
+    public static int getNavigationBarHeight(Context context) {
+        boolean var1 = ViewConfiguration.get(context).hasPermanentMenuKey();
+        int var2;
+        return (var2 = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android")) > 0 && !var1 ? context.getResources().getDimensionPixelSize(var2) : 0;
+    }
+
+    //获取屏幕的宽度
+    public static int getScreenWidth(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.widthPixels;
+    }
+
+    //获取屏幕的高度
+    public static int getScreenHeight(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        return dm.heightPixels;
     }
 
 }
