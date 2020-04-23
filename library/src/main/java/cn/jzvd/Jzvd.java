@@ -394,6 +394,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         float absDeltaX = Math.abs(deltaX);
         float absDeltaY = Math.abs(deltaY);
         if (screen == SCREEN_FULLSCREEN) {
+            //拖动的是NavigationBar和状态栏
+            if (mDownX > JZUtils.getScreenWidth(getContext()) || mDownY < JZUtils.getStatusBarHeight(getContext())) {
+                return;
+            }
             if (!mChangePosition && !mChangeVolume && !mChangeBrightness) {
                 if (absDeltaX > THRESHOLD || absDeltaY > THRESHOLD) {
                     cancelProgressTimer();
