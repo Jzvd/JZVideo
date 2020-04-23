@@ -349,7 +349,7 @@ public class JzvdStd extends Jzvd {
                 }
             }
 
-            clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 250), LayoutParams.MATCH_PARENT, true);
+            clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 240), LayoutParams.MATCH_PARENT, true);
             clarityPopWindow.setContentView(layout);
             clarityPopWindow.setAnimationStyle(R.style.pop_animation);
             clarityPopWindow.showAtLocation(textureViewContainer, Gravity.END, 0, 0);
