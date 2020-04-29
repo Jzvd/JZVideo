@@ -1,4 +1,4 @@
-package cn.jzvd.demo.api.BigUIChangeAG;
+package cn.jzvd.demo.api.BigUIChangeAG.popup;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +19,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.api.BigUIChangeAG.AGEpsodeEntity;
+import cn.jzvd.demo.api.BigUIChangeAG.VideoEpisodeAdapter;
 import cn.jzvd.demo.utils.DipAndPx;
 
 public class VideoEpisodePopup extends PopupWindow {
