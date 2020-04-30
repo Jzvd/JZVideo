@@ -356,10 +356,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (id == R.id.surface_container) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    touchActionDown(x,y);
+                    touchActionDown(x, y);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    touchActionMove(x,y);
+                    touchActionMove(x, y);
                     break;
                 case MotionEvent.ACTION_UP:
                     touchActionUp();
@@ -387,7 +387,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         startProgressTimer();
     }
 
-    private void touchActionMove(float x,float y) {
+    private void touchActionMove(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
         float deltaX = x - mDownX;
         float deltaY = y - mDownY;
@@ -471,7 +471,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void touchActionDown(float x,float y) {
+    private void touchActionDown(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionDown [" + this.hashCode() + "] ");
         mTouchingProgressBar = true;
 
@@ -591,7 +591,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
             Log.d(TAG, "MEDIA_INFO_VIDEO_RENDERING_START");
             if (state == Jzvd.STATE_PREPARED
-                    || state == Jzvd.STATE_PREPARING_CHANGE_URL) {
+                    || state == Jzvd.STATE_PREPARING_CHANGE_URL
+                    || state == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
                 onStatePlaying();//开始渲染图像，真正进入playing状态
             }
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
