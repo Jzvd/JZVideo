@@ -103,7 +103,7 @@ protected void onPause() {
 2. 如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
 
 ## JZVD DEMO说明
-![Demo说明](https://gitee.com/FIUI/SYD_OTA/raw/master/JZVD.png)
+<a href="https://github.com/Jzvd/JiaoZiVideoPlayer" target="_blank"><p align="center"><img src="https://gitee.com/FIUI/SYD_OTA/raw/master/JZVD.png" alt="JiaoZiVideoPlayer"></p></a>
 
 ## License MIT
 
