@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
 
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.utils.AnimatedGifEncoder;
+import wseemann.media.FFmpegMediaMetadataRetriever;
 
 /**
  * gif截图
@@ -41,7 +42,8 @@ public class GifCreateHelper {
     private final String completeButNoImageTag = "completeButError";
     public JzvdStd mPlayer;
     //最后生成的gif的默认存储路径
-    public String mGifPath = "";
+    public String mGifPath = Environment
+            .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaozi-" + System.currentTimeMillis() + ".gif";
     String cacheImageDir = Environment
             .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaoziTemp";
     boolean isDownloadComplete = false;
@@ -51,7 +53,10 @@ public class GifCreateHelper {
     //采样率
     private int mSampleSize = 1;
     //缩小比例
-    private int mSmallScale = 5;
+    @Deprecated
+    private int mSmallScale = 1;
+    private int gifWidth = 300; //gif宽
+    private int gifHeight = 300;//gif高
     //gif时长，毫秒
     private int mGifPeriod = 5000;
     private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -59,17 +64,19 @@ public class GifCreateHelper {
     /**
      * @param delay        每一帧之间的延时
      * @param inSampleSize 采样率，最小值1 即：每隔inSampleSize个像素点，取一个读入到内存。越大处理越快
-     * @param smallScale   缩小倍数，越大处理越快
+     * @param width   gif宽
+     * @param height   gif高
      * @param gifPeriod    gif时长，毫秒
      * @param gifPath      gif文件的存储路径
      */
     public GifCreateHelper(JzvdStd jzvdStd, JzGifListener jzGifListener,
-                           int delay, int inSampleSize, int smallScale, int gifPeriod, String gifPath) {
+                           int delay, int inSampleSize, int width,int height, int gifPeriod, String gifPath) {
         mPlayer = jzvdStd;
         mJzGifListener = jzGifListener;
         mDelay = delay;
         mSampleSize = inSampleSize;
-        mSmallScale = smallScale;
+        gifWidth = width;
+        gifHeight = height;
         mGifPeriod = gifPeriod;
         mGifPath = TextUtils.isEmpty(gifPath) ? mGifPath : gifPath;
     }
@@ -91,40 +98,6 @@ public class GifCreateHelper {
         dir.delete();// 删除目录本身
     }
 
-    public static Bitmap getBitmapFormVideoUrl(String url, int type, long time) {
-        Bitmap bitmap = null;
-        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        try {
-            if (Build.VERSION.SDK_INT >= 14) {
-
-                if (NETWORK == type) {
-                    retriever.setDataSource(url, new HashMap<String, String>());
-                } else if (LOCAL == type) {
-                    if (url.contains("file:///")) {
-                        url = url.replace("file://", "");
-                    }
-                    retriever.setDataSource(url);
-                } else {
-                    retriever.setDataSource(url, new HashMap<String, String>());
-                }
-            } else {
-                retriever.setDataSource(url);
-            }
-
-            //可惜这个方法不能设置采样率，不然效率能提高点。（可优化点）
-            bitmap = retriever.getFrameAtTime(time * 1000, MediaMetadataRetriever.OPTION_CLOSEST);//微秒
-        } catch (Exception e) { // IllegalArgumentException RuntimeException
-            e.printStackTrace();
-        } finally {
-            try {
-                retriever.release();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return bitmap;
-    }
-
     /**
      * 开始gif截图
      */
@@ -140,13 +113,14 @@ public class GifCreateHelper {
         int bitmapCount = mGifPeriod / mDelay;
         String[] picList = new String[bitmapCount];
         isDownloadComplete = false;
+        FFmpegMediaMetadataRetriever mmr = prepareFFmpegMediaMetadataRetriever(vedioUrl);
         for (int i = 0; i < bitmapCount; i++) {
             final int index = i;
             executorService.submit(new Runnable() {
                 @Override
                 public void run() {
-                    //可优化点，找到替代的能加入采样点api，能提高效率,此处先缓存到本地，全放入内存占用空间太大
-                    String path = saveBitmap(getBitmapFormVideoUrl(vedioUrl, vedioUrl.startsWith("http") ? NETWORK : LOCAL, bitmapFromTime + index * mDelay),
+                    //先缓存到本地，全放入内存占用空间太大
+                    String path = saveBitmap(mmr.getScaledFrameAtTime((bitmapFromTime + index * mDelay)*1000,FFmpegMediaMetadataRetriever.OPTION_CLOSEST,gifWidth,gifHeight),
                             cacheImageDir + "/" + System.currentTimeMillis() + "index-" + index + ".png");
                     boolean isCurrentSuccess = true;
                     if (!TextUtils.isEmpty(path)) {
@@ -157,9 +131,21 @@ public class GifCreateHelper {
                     }
 
                     checkCompleteAndDoNext(picList, isCurrentSuccess);
+                    if(isDownloadComplete){
+                        mmr.release();
+                    }
                 }
             });
         }
+    }
+
+    private FFmpegMediaMetadataRetriever prepareFFmpegMediaMetadataRetriever(String vedioUrl){
+        FFmpegMediaMetadataRetriever mmr = new FFmpegMediaMetadataRetriever();
+        mmr.setDataSource(vedioUrl);
+        mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_ALBUM);
+        mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_ARTIST);
+
+        return mmr;
     }
 
     private void checkCompleteAndDoNext(String[] picList, boolean isCurrentSuccess) {
@@ -183,7 +169,12 @@ public class GifCreateHelper {
 
             if (emptyCount == 0) {
                 isDownloadComplete = true;
-                combinePicToGif(picList);
+                mPlayer.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        combinePicToGif(picList);
+                    }
+                });
             }
         }
     }
@@ -227,6 +218,8 @@ public class GifCreateHelper {
             fos.close();
         } catch (Exception e) {
             return null;
+        }finally {
+            bitmap.recycle();
         }
         return path;
     }

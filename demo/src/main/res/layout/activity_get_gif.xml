@@ -24,6 +24,15 @@
                     android:layout_height="200dp" />
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="展开全屏播放，可看见转gif按钮" />
+
 
         </LinearLayout>
     </ScrollView>
