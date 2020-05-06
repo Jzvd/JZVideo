@@ -12,3 +12,5 @@ projectFilesBackup
 release
 _build
 /gradle/
+
+*.so
