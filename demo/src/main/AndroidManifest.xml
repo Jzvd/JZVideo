@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity">
         <activity
-            android:name=".MainActivity"
+            android:name=".ControllerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,6 +24,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".DirectPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -101,7 +105,6 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".ListView.ListViewToDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -115,12 +118,10 @@
             android:name=".ListView.AutoPlayListViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".LocalVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".api.ScreenRotateActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
