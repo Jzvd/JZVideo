@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        fragments = new ArrayList<>(3);
-        items = new SparseIntArray(3);
+        fragments = new ArrayList<>(4);
+        items = new SparseIntArray(4);
 
         BasicFragment basicsFragment = new BasicFragment();
         CustomFragment customFragment = new CustomFragment();
