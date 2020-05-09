@@ -44,7 +44,7 @@ public class ApiActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
         getSupportActionBar().setTitle("Api");
-        setContentView(R.layout.activity_api);
+        setContentView(R.layout.fragment_api);
 
         mJzvdStd = findViewById(R.id.jz_video);
         LinkedHashMap map = new LinkedHashMap();
