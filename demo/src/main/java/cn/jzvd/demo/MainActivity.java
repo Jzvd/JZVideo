@@ -26,7 +26,7 @@ import cn.jzvd.demo.fragment.OtherFragment;
 
 import static cn.jzvd.Jzvd.backPress;
 
-public class ControllerActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private VpAdapter adapter;
     private ViewPager viewPager;
@@ -38,7 +38,7 @@ public class ControllerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_controller);
+        setContentView( R.layout.activity_main);
 
         initView();
         initData();
