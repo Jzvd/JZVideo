@@ -27,7 +27,7 @@ import cn.jzvd.demo.utils.ViewMoveHelper;
  * @author Liberations
  */
 public class DetailListViewActivity extends AppCompatActivity {
-    public final long DURATION = 300;
+    public final long DURATION = 250;
     private LinearLayout llContent;
     private FrameLayout container;
     private ViewAttr attr;
