@@ -23,7 +23,7 @@
 
 ## 文档
 
-- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装demo[jiaozivideoplayer-7.3.0.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.3.0/jiaozivideoplayer-7.3.0.apk)，仔细过一遍demo
+- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装[Demo jiaozivideoplayer-7.3.0.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.3.0/jiaozivideoplayer-7.3.0.apk)，仔细过一遍Demo
 - [文档 - 自定义Jzvd](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89Jzvd)，继承JzvdStd实现自己的播放器
 - [文档 - 自定义播放内核](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%86%85%E6%A0%B8)，测试哪个播放内核适合自己的项目
 
