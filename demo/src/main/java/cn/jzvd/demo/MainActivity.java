@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView( R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
         initView();
         initData();
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         viewPager = findViewById(R.id.viewpager);
-        bottomNavigationViewEx =  findViewById(R.id.bottom_navigation);
+        bottomNavigationViewEx = findViewById(R.id.bottom_navigation);
         bottomNavigationViewEx.enableAnimation(false);
         bottomNavigationViewEx.enableShiftingMode(false);
         bottomNavigationViewEx.enableItemShiftingMode(true);
@@ -76,38 +76,41 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            bottomNavigationViewEx.setCurrentItem(position);
+            Jzvd.releaseAllVideos();
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        private int previousPosition = -1;
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            int position = items.get(item.getItemId());
+            if (previousPosition != position) {
+                previousPosition = position;
+                viewPager.setCurrentItem(position);
+            }
+            return true;
+        }
+    };
+
     private void initEvent() {
-        bottomNavigationViewEx.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            private int previousPosition = -1;
-
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int position = items.get(item.getItemId());
-                if (previousPosition != position) {
-                    previousPosition = position;
-                    viewPager.setCurrentItem(position);
-                }
-                return true;
-            }
-        });
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                bottomNavigationViewEx.setCurrentItem(position);
-                Jzvd.releaseAllVideos();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+        bottomNavigationViewEx.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+        viewPager.addOnPageChangeListener(pageChangeListener);
     }
 
     private static class VpAdapter extends FragmentPagerAdapter {
@@ -142,5 +145,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Jzvd.releaseAllVideos();
+        navigationItemSelectedListener = null;
+        bottomNavigationViewEx.setOnNavigationItemSelectedListener(null);
+        viewPager.removeOnPageChangeListener(pageChangeListener);
     }
 }
