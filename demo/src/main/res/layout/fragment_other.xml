@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:onClick="clickDirectPlay"
         android:text="Direct Play" />
 
     <Button
@@ -20,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:onClick="clickWebView"
         android:text="WebView" />
 
     <Button
@@ -30,7 +28,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="clickLocal"
         android:text="LOCAL VIDEO" />
 
 </LinearLayout>
