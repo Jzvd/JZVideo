@@ -74,10 +74,10 @@ public class CustomFragment extends BaseFragment implements View.OnClickListener
     protected void initData() {
         super.initData();
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(mContext).getProxyUrl(Urls.videoUrls[0][9]);
+        String proxyUrl = ApplicationDemo.getProxy(mContext).getProxyUrl(Urls.clarities[0]);
         map.put("高清", proxyUrl);
-        map.put("标清", Urls.videoUrls[0][6]);
-        map.put("普清", Urls.videoUrlList[0]);
+        map.put("标清", Urls.clarities[1]);
+        map.put("普清", Urls.clarities[2]);
         JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
