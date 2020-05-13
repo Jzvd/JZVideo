@@ -925,17 +925,26 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
+    ViewGroup.LayoutParams tmpLayoutParams;
+    int index;
+
     public void gotoScreenFullscreen() {
         gotoFullscreenTime = System.currentTimeMillis();
         jzvdContext = ((ViewGroup) getParent()).getContext();
         ViewGroup vg = (ViewGroup) getParent();
+        tmpLayoutParams = getLayoutParams();
+        index = vg.indexOfChild(this);
+        System.out.println("fdsafdsfadsa -- " + tmpLayoutParams.hashCode() + " fdsafddsa " + index);
+
         vg.removeView(this);
         cloneAJzvd(vg);
         CONTAINER_LIST.add(vg);
         vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
 
-        vg.addView(this, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ViewGroup.LayoutParams fullLayout = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        vg.addView(this, fullLayout);
+        System.out.println("fdsafdsfadsa -fds- " + fullLayout.hashCode());
 
         setScreenFullscreen();
         JZUtils.hideStatusBar(jzvdContext);
@@ -948,10 +957,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         gobakFullscreenTime = System.currentTimeMillis();//退出全屏
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
-        CONTAINER_LIST.getLast().removeAllViews();
-        CONTAINER_LIST.getLast().addView(this, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        CONTAINER_LIST.getLast().removeAllViews();
+        CONTAINER_LIST.getLast().addView(this, index, tmpLayoutParams);
         CONTAINER_LIST.pop();
+        System.out.println("fdsafdsfadsa -fdfdsas- " + tmpLayoutParams.hashCode());
 
         setScreenNormal();//这块可以放到jzvd中
         JZUtils.showStatusBar(jzvdContext);
