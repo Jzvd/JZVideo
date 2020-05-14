@@ -4,15 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <cn.jzvd.demo.CustomJzvd.MyJzvdStd
+        android:id="@+id/jz_video"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <cn.jzvd.demo.CustomJzvd.MyJzvdStd
-            android:id="@+id/jz_video"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
-    </LinearLayout>
+        android:layout_height="200dp" />
 
     <Button
         android:layout_width="match_parent"
