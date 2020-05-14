@@ -592,7 +592,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             Log.d(TAG, "MEDIA_INFO_VIDEO_RENDERING_START");
             if (state == Jzvd.STATE_PREPARED
                     || state == Jzvd.STATE_PREPARING_CHANGE_URL
-                    || state == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
+                    || state == Jzvd.STATE_PREPARING_PLAYING) {
                 onStatePlaying();//开始渲染图像，真正进入playing状态
             }
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
