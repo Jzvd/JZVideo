@@ -14,15 +14,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
 
-                <cn.jzvd.demo.CustomJzvd.JzvdStdGetGif
-                    android:id="@+id/jz_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp" />
-            </LinearLayout>
+            <cn.jzvd.demo.CustomJzvd.JzvdStdGetGif
+                android:id="@+id/jz_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
 
             <TextView
                 android:layout_width="match_parent"

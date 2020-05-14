@@ -912,7 +912,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             Constructor<Jzvd> constructor = (Constructor<Jzvd>) Jzvd.this.getClass().getConstructor(Context.class);
             Jzvd jzvd = constructor.newInstance(getContext());
             jzvd.setId(getId());
-            vg.addView(jzvd);
+            jzvd.setMinimumWidth(blockWidth);
+            jzvd.setMinimumHeight(blockHeight);
+            vg.addView(jzvd, blockIndex, blockLayoutParams);
             jzvd.setUp(jzDataSource.cloneMe(), SCREEN_NORMAL, mediaInterfaceClass);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -925,16 +927,24 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    ViewGroup.LayoutParams tmpLayoutParams;
-    int index;
+    /**
+     * 如果不在列表中可以不加block
+     */
+    ViewGroup.LayoutParams blockLayoutParams;
+    int blockIndex;
+    int blockWidth;
+    int blockHeight;
 
     public void gotoScreenFullscreen() {
         gotoFullscreenTime = System.currentTimeMillis();
         jzvdContext = ((ViewGroup) getParent()).getContext();
         ViewGroup vg = (ViewGroup) getParent();
-        tmpLayoutParams = getLayoutParams();
-        index = vg.indexOfChild(this);
-        System.out.println("fdsafdsfadsa -- " + tmpLayoutParams.hashCode() + " fdsafddsa " + index);
+        blockLayoutParams = getLayoutParams();
+        blockIndex = vg.indexOfChild(this);
+        blockWidth = getWidth();
+        blockHeight = getHeight();
+        System.out.println("fdsafdsfadsa -- " + blockLayoutParams.hashCode() + " fdsafddsa " + blockIndex +
+                " width " + getWidth() + " height " + getHeight());
 
         vg.removeView(this);
         cloneAJzvd(vg);
@@ -958,9 +968,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
 //        CONTAINER_LIST.getLast().removeAllViews();
-        CONTAINER_LIST.getLast().addView(this, index, tmpLayoutParams);
+        CONTAINER_LIST.getLast().removeViewAt(blockIndex);//remove block
+        CONTAINER_LIST.getLast().addView(this, blockIndex, blockLayoutParams);
         CONTAINER_LIST.pop();
-        System.out.println("fdsafdsfadsa -fdfdsas- " + tmpLayoutParams.hashCode());
+        System.out.println("fdsafdsfadsa -fdfdsas- " + blockLayoutParams.hashCode());
 
         setScreenNormal();//这块可以放到jzvd中
         JZUtils.showStatusBar(jzvdContext);
