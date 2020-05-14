@@ -946,8 +946,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         blockIndex = vg.indexOfChild(this);
         blockWidth = getWidth();
         blockHeight = getHeight();
-        System.out.println("fdsafdsfadsa -- " + blockLayoutParams.hashCode() + " fdsafddsa " + blockIndex +
-                " width " + getWidth() + " height " + getHeight());
 
         vg.removeView(this);
         cloneAJzvd(vg);
@@ -957,7 +955,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         ViewGroup.LayoutParams fullLayout = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         vg.addView(this, fullLayout);
-        System.out.println("fdsafdsfadsa -fds- " + fullLayout.hashCode());
 
         setScreenFullscreen();
         JZUtils.hideStatusBar(jzvdContext);
@@ -974,7 +971,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         CONTAINER_LIST.getLast().removeViewAt(blockIndex);//remove block
         CONTAINER_LIST.getLast().addView(this, blockIndex, blockLayoutParams);
         CONTAINER_LIST.pop();
-        System.out.println("fdsafdsfadsa -fdfdsas- " + blockLayoutParams.hashCode());
 
         setScreenNormal();//这块可以放到jzvd中
         JZUtils.showStatusBar(jzvdContext);
