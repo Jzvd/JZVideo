@@ -4,15 +4,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <cn.jzvd.JzvdStd
+        android:id="@+id/videoplayer"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <cn.jzvd.JzvdStd
-            android:id="@+id/videoplayer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
+        android:layout_height="200dp" />
 
 </LinearLayout>
