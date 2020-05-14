@@ -5,15 +5,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <cn.jzvd.demo.api.BigUIChangeAG.AGVideo
+        android:id="@+id/ag_player"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
-
-        <cn.jzvd.demo.api.BigUIChangeAG.AGVideo
-            android:id="@+id/ag_player"
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
-    </LinearLayout>
+        android:layout_height="200dp" />
 
     <TextView
         android:id="@+id/video_episode"
