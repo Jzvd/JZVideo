@@ -127,7 +127,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected int mGestureDownVolume;
     protected float mGestureDownBrightness;
     protected long mSeekTimePosition;
-    private Context jzvdContext;
+    protected Context jzvdContext;
 
     public Jzvd(Context context) {
         super(context);
@@ -248,6 +248,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public void init(Context context) {
         View.inflate(context, getLayoutId(), this);
+        jzvdContext = context;
         startButton = findViewById(R.id.start);
         fullscreenButton = findViewById(R.id.fullscreen);
         progressBar = findViewById(R.id.bottom_seek_progress);
