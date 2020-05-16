@@ -128,6 +128,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected float mGestureDownBrightness;
     protected long mSeekTimePosition;
     protected Context jzvdContext;
+    protected long mCurrentPosition;
 
     public Jzvd(Context context) {
         super(context);
@@ -821,6 +822,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public void onProgress(int progress, long position, long duration) {
 //        Log.d(TAG, "onProgress: progress=" + progress + " position=" + position + " duration=" + duration);
+        mCurrentPosition = position;
         if (!mTouchingProgressBar) {
             if (seekToManulPosition != -1) {
                 if (seekToManulPosition > progress) {
@@ -841,6 +843,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void resetProgressAndTime() {
+        mCurrentPosition = 0;
         progressBar.setProgress(0);
         progressBar.setSecondaryProgress(0);
         currentTimeTextView.setText(JZUtils.stringForTime(0));
