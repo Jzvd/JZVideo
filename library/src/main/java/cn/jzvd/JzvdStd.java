@@ -314,6 +314,7 @@ public class JzvdStd extends Jzvd {
             showWifiDialog();
             return;
         }
+        seekToInAdvance = mCurrentPosition;
         startVideo();
     }
 
