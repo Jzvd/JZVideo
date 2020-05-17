@@ -2,7 +2,7 @@
 --
 <p align="center">
 <a href="http://developer.android.com/index.html"><img src="https://img.shields.io/badge/platform-android-green.svg"></a>
-<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.3.0%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.3.0-green.svg"></a>
+<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.3.1%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.3.1-green.svg"></a>
 <a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
 <a href="https://android-arsenal.com/details/1/3269"><img src="https://img.shields.io/badge/Android%20Arsenal-jiaozivideoplayer-green.svg?style=true"></a>
 </p>
@@ -23,7 +23,7 @@
 
 ## 文档
 
-- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装demo[jiaozivideoplayer-7.3.0.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.3.0/jiaozivideoplayer-7.3.0.apk)，仔细过一遍demo
+- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装[Demo jiaozivideoplayer-7.3.1.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.3.1/jiaozivideoplayer-7.3.1.apk)，仔细过一遍Demo
 - [文档 - 自定义Jzvd](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89Jzvd)，继承JzvdStd实现自己的播放器
 - [文档 - 自定义播放内核](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%86%85%E6%A0%B8)，测试哪个播放内核适合自己的项目
 
@@ -37,7 +37,7 @@
 
 1.添加类库
 ```gradle
-implementation 'cn.jzvd:jiaozivideoplayer:7.3.0'
+implementation 'cn.jzvd:jiaozivideoplayer:7.3.1'
 ```
 
 2.添加布局
@@ -102,63 +102,8 @@ protected void onPause() {
 1. 7.0版本之后要在JzvdStd外面包一层Layout
 2. 如果引入配置失败，根据失败的log检查是否添加了Java8的配置，或者升级环境到最新的稳定版
 
-# JZVD DEMO说明
-## [MainActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/MainActivity.java)
-饺子快长大----包含JZVD最基本的使用例子
-### [ApiActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ApiActivity.java)
-展示饺子播放器自定义用法
-  * [SmallChangeUiActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/SmallChangeUiActivity.java)
-    * [饺子想呼吸----添加分享按钮](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowShareButtonAfterFullscreen.java)
-    * [饺子想摇头----全屏时显示标题](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowTitleAfterFullscreen.java)
-    * [饺子想旅行----播放完显示textureview](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowTextureViewAfterAutoComplete.java)
-    * [饺子没来----播放完成后保持全屏](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdAutoCompleteAfterFullscreen.java)
-    * [饺子摇摆----进入全屏模式的时候打开声音](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdVolumeAfterFullscreen.java)
-    * [饺子你听----播放MP3音乐](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdMp3.java)
-    * [饺子快点----视频倍速播放](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdSpeed.java)
-    * [饺子定身----添加锁定按钮，全屏后锁定无法操作界面](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdLockScreen.java)
-    * [饺子有事吗----视频按1:1显示](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/SmallChangeUiActivity.java)
-    * [饺子来不了----视频按16:9显示](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/SmallChangeUiActivity.java)
-    * [饺子吃莽莽----添加音量按钮，默认小屏静音全屏有声](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdVolume.java)
-  * [BigChangeUiActivity----包含了模仿市面上成熟APP的UI范例](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/BigChangeUiActivity.java)
-    * [UiBigChangeAGActivity-模仿爱奇艺,包含选集快进快退等](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/BigUIChangeAG/UiBigChangeAGActivity.java)
-  * [OrientationActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/OrientationActivity.java)
-    * [饺子会旋转----展示饺子视频方向切换](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/SmallChangeUiActivity.java)
-  * [ExtendsNormalActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/ExtendsNormalActivity.java)
-    * [饺子不信----适配了普通的Activity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/ExtendsNormalActivity.java)
-  * [RotationVideoSizeActivity-展示视频旋转，封面填充方式设置](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/RotationVideoSizeActivity.java)
-    * [饺子坐火车----展示了视频画面旋转一定度数，视频封面填充方式](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/RotationVideoSizeActivity.java)
-  * [CustomMediaActivity-自定义饺子播放内核](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/CustomMediaActivity.java)
-    * [饺子很保守----展示使用系统默认播放器内核](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/CustomMediaActivity.java)
-    * [饺子变心----展示使用Ijkplayer播放器内核](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/CustomMediaActivity.java)
-    * [饺子回来了----展示饺子切换回使用系统默认播放器内核](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/CustomMediaActivity.java)
-    * [饺子追星----展示使用ExoPlayer播放器内核](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/CustomMediaActivity.java)
-  * [PreloadingActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/PreloadingActivity.java)
-    * [饺子存钱----展示饺子预加载视频，加载完成后播放](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/PreloadingActivity.java)
-  * [ScreenRotateActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/ScreenRotateActivity.java)
-    * [饺子挺好----根据重力感应切换横竖屏](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/ScreenRotateActivity.java)
-  * [GetGifActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/GetGifActivity.java)
-    * [饺子会拼图----展示饺子生成GIF功能](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdGetGif.java)
-	
-### [ListViewActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListViewActivity.java)
-展示饺子播放器在列表中的使用
-  * [NormalListViewActivity----展示饺子在ListView中的一般用法](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/NormalListViewActivity.java)
-  * [ListViewFragmentViewPagerActivity----展示饺子在viewpager-fragment中使用](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/ListViewFragmentViewPagerActivity.java)
-  * [ListViewMultiHolderActivity----展示饺子在多布局中使用](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/ListViewMultiHolderActivity.java)
-  * [RecyclerViewActivity----展示饺子在Recyleview中的一般用法](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/RecyclerViewActivity.java)
-  * [ListViewToDetailActivity----展示饺子从列表到详情页无缝切换](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/ListViewToDetailActivity.java)
-  * [AutoPlayListViewActivity----展示饺子在列表中实现自动播放](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/AutoPlayListViewActivity.java)
-  * [ActivityTikTok----模仿抖音列表](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/ListView/ActivityTikTok.java)
-  
-### [TinyWindowActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/TinyWindow/TinyWindowActivity.java)
-展示饺子小窗播放功能
-### [DirectPlayActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/DirectPlayActivity.java)
-展示饺子直接全屏播放
-### [WebViewActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/WebViewActivity.java)
-展示在WebView中使用饺子播放器
-### [LocalVideoActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/LocalVideoActivity.java)
-展示播放本地视频文件
-### [UiBigChangeAGActivity](https://github.com/Jzvd/JiaoZiVideoPlayer/blob/develop/demo/src/main/java/cn/jzvd/demo/api/BigUIChangeAG/UiBigChangeAGActivity.java)
-高仿爱奇艺UI，包含锁定屏幕，视频切换，快进，快退等
+## JZVD DEMO说明
+<a href="https://gitee.com/FIUI/SYD_OTA/raw/master/JZVD.png" target="_blank"><p align="center"><img src="https://gitee.com/FIUI/SYD_OTA/raw/master/JZVD.png" alt="JiaoZiVideoPlayer"></p></a>
 
 ## License MIT
 

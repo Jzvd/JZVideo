@@ -16,6 +16,12 @@ public class Urls {
                     "http://jzvd.nathen.cn/c6e3dc12a1154626b3476d9bf3bd7266/6b56c5f0dc31428083757a45764763b0-5287d2089db37e62345123a1be272f8b.mp4"
             };
 
+    public static String[] clarities = {
+            "https://jzvd.nathen.cn/video/460bad24-170c5bc6956-0007-1823-c86-de200.mp4",
+            "https://jzvd.nathen.cn/video/2b64c629-17204eaa4fa-0007-1823-c86-de200.mp4",
+            "https://jzvd.nathen.cn/video/a70a7fb-17204eaa501-0007-1823-c86-de200.mp4"
+    };
+
     public static String[] videoPosterList =
             {
                     "http://jzvd-pic.nathen.cn/jzvd-pic/00b026e7-b830-4994-bc87-38f4033806a6.jpg",

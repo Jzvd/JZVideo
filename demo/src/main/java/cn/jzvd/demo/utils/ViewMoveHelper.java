@@ -5,6 +5,8 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 
 import cn.jzvd.demo.utils.ViewAttr;
 
@@ -57,7 +59,7 @@ public class ViewMoveHelper {
         AnimatorSet animation = new AnimatorSet();
         animation.playTogether(xAnim, yAnim, widthAnim, heightAnim);
         animation.setDuration(duration);
-        animation.setInterpolator(new AccelerateInterpolator());
+        animation.setInterpolator(new DecelerateInterpolator());
         animation.start();
     }
 }

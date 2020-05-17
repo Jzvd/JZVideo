@@ -14,15 +14,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
 
-                <cn.jzvd.JzvdStd
-                    android:id="@+id/jz_video"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp" />
-            </LinearLayout>
+            <cn.jzvd.JzvdStd
+                android:id="@+id/jz_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
             <Button
                 android:id="@+id/small_change"
@@ -31,7 +27,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickSmallChange"
                 android:text="Small change Ui" />
 
             <Button
@@ -40,7 +35,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickBigChange"
                 android:text="Big change Ui" />
 
             <Button
@@ -49,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickOrientation"
                 android:text="Orientation" />
 
             <Button
@@ -58,7 +51,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickExtendsNormalActivity"
                 android:text="Extends Normal Activity" />
 
             <Button
@@ -67,7 +59,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickRotationAndVideoSize"
                 android:text="Video And VideoSize" />
 
             <Button
@@ -76,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickCustomMediaPlayer"
                 android:text="Custom MediaPlayer" />
 
             <Button
@@ -85,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickPreloading"
                 android:text="Preloading" />
 
             <Button
@@ -94,16 +83,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickScreenRotate"
                 android:text="Screen Rotate" />
 
             <Button
+                android:id="@+id/get_gif"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:onClick="clickStartGif"
                 android:text="Get Gif" />
 
         </LinearLayout>

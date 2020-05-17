@@ -65,7 +65,7 @@ public class JzvdStd extends Jzvd {
                 LAST_GET_BATTERYLEVEL_PERCENT = percent;
                 setBatteryLevel();
                 try {
-                    getContext().unregisterReceiver(battertReceiver);
+                    jzvdContext.unregisterReceiver(battertReceiver);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -305,22 +305,23 @@ public class JzvdStd extends Jzvd {
 
     private void clickRetryBtn() {
         if (jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
-            Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
+            Toast.makeText(jzvdContext, getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
             return;
         }
         if (!jzDataSource.getCurrentUrl().toString().startsWith("file") && !
                 jzDataSource.getCurrentUrl().toString().startsWith("/") &&
-                !JZUtils.isWifiConnected(getContext()) && !WIFI_TIP_DIALOG_SHOWED) {
+                !JZUtils.isWifiConnected(jzvdContext) && !WIFI_TIP_DIALOG_SHOWED) {
             showWifiDialog();
             return;
         }
+        seekToInAdvance = mCurrentPosition;
         startVideo();
     }
 
     private void clickClarity() {
         onCLickUiToggleToClear();
 
-        LayoutInflater inflater = (LayoutInflater) getContext()
+        LayoutInflater inflater = (LayoutInflater) jzvdContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.jz_layout_clarity, null);
 
@@ -348,7 +349,7 @@ public class JzvdStd extends Jzvd {
 
         for (int j = 0; j < jzDataSource.urlsMap.size(); j++) {
             String key = jzDataSource.getKeyFromDataSource(j);
-            TextView clarityItem = (TextView) View.inflate(getContext(), R.layout.jz_layout_clarity_item, null);
+            TextView clarityItem = (TextView) View.inflate(jzvdContext, R.layout.jz_layout_clarity_item, null);
             clarityItem.setText(key);
             clarityItem.setTag(j);
             layout.addView(clarityItem, j);
@@ -358,7 +359,7 @@ public class JzvdStd extends Jzvd {
             }
         }
 
-        clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(getContext(), 240), LayoutParams.MATCH_PARENT, true);
+        clarityPopWindow = new PopupWindow(layout, JZUtils.dip2px(jzvdContext, 240), LayoutParams.MATCH_PARENT, true);
         clarityPopWindow.setContentView(layout);
         clarityPopWindow.setAnimationStyle(R.style.pop_animation);
         clarityPopWindow.showAtLocation(textureViewContainer, Gravity.END, 0, 0);
@@ -381,13 +382,13 @@ public class JzvdStd extends Jzvd {
 
     private void clickPoster() {
         if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
-            Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
+            Toast.makeText(jzvdContext, getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
             return;
         }
         if (state == STATE_NORMAL) {
             if (!jzDataSource.getCurrentUrl().toString().startsWith("file") &&
                     !jzDataSource.getCurrentUrl().toString().startsWith("/") &&
-                    !JZUtils.isWifiConnected(getContext()) && !WIFI_TIP_DIALOG_SHOWED) {
+                    !JZUtils.isWifiConnected(jzvdContext) && !WIFI_TIP_DIALOG_SHOWED) {
                 showWifiDialog();
                 return;
             }
@@ -439,7 +440,7 @@ public class JzvdStd extends Jzvd {
     @Override
     public void showWifiDialog() {
         super.showWifiDialog();
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(jzvdContext);
         builder.setMessage(getResources().getString(R.string.tips_not_wifi));
         builder.setPositiveButton(getResources().getString(R.string.tips_not_wifi_confirm), (dialog, which) -> {
             dialog.dismiss();
@@ -512,7 +513,7 @@ public class JzvdStd extends Jzvd {
         videoCurrentTime.setText(dateFormater.format(date));
         if ((System.currentTimeMillis() - LAST_GET_BATTERYLEVEL_TIME) > 30000) {
             LAST_GET_BATTERYLEVEL_TIME = System.currentTimeMillis();
-            getContext().registerReceiver(
+            jzvdContext.registerReceiver(
                     battertReceiver,
                     new IntentFilter(Intent.ACTION_BATTERY_CHANGED)
             );
@@ -752,7 +753,7 @@ public class JzvdStd extends Jzvd {
     public void showProgressDialog(float deltaX, String seekTime, long seekTimePosition, String totalTime, long totalTimeDuration) {
         super.showProgressDialog(deltaX, seekTime, seekTimePosition, totalTime, totalTimeDuration);
         if (mProgressDialog == null) {
-            View localView = LayoutInflater.from(getContext()).inflate(R.layout.jz_dialog_progress, null);
+            View localView = LayoutInflater.from(jzvdContext).inflate(R.layout.jz_dialog_progress, null);
             mDialogProgressBar = localView.findViewById(R.id.duration_progressbar);
             mDialogSeekTime = localView.findViewById(R.id.tv_current);
             mDialogTotalTime = localView.findViewById(R.id.tv_duration);
@@ -786,7 +787,7 @@ public class JzvdStd extends Jzvd {
     public void showVolumeDialog(float deltaY, int volumePercent) {
         super.showVolumeDialog(deltaY, volumePercent);
         if (mVolumeDialog == null) {
-            View localView = LayoutInflater.from(getContext()).inflate(R.layout.jz_dialog_volume, null);
+            View localView = LayoutInflater.from(jzvdContext).inflate(R.layout.jz_dialog_volume, null);
             mDialogVolumeImageView = localView.findViewById(R.id.volume_image_tip);
             mDialogVolumeTextView = localView.findViewById(R.id.tv_volume);
             mDialogVolumeProgressBar = localView.findViewById(R.id.volume_progressbar);
@@ -822,7 +823,7 @@ public class JzvdStd extends Jzvd {
     public void showBrightnessDialog(int brightnessPercent) {
         super.showBrightnessDialog(brightnessPercent);
         if (mBrightnessDialog == null) {
-            View localView = LayoutInflater.from(getContext()).inflate(R.layout.jz_dialog_brightness, null);
+            View localView = LayoutInflater.from(jzvdContext).inflate(R.layout.jz_dialog_brightness, null);
             mDialogBrightnessTextView = localView.findViewById(R.id.tv_brightness);
             mDialogBrightnessProgressBar = localView.findViewById(R.id.brightness_progressbar);
             mBrightnessDialog = createDialogWithView(localView);
@@ -849,7 +850,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public Dialog createDialogWithView(View localView) {
-        Dialog dialog = new Dialog(getContext(), R.style.jz_style_dialog_progress);
+        Dialog dialog = new Dialog(jzvdContext, R.style.jz_style_dialog_progress);
         dialog.setContentView(localView);
         Window window = dialog.getWindow();
         window.addFlags(Window.FEATURE_ACTION_BAR);

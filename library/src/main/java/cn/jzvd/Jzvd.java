@@ -127,7 +127,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected int mGestureDownVolume;
     protected float mGestureDownBrightness;
     protected long mSeekTimePosition;
-    private Context jzvdContext;
+    protected Context jzvdContext;
+    protected long mCurrentPosition;
 
     public Jzvd(Context context) {
         super(context);
@@ -248,6 +249,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public void init(Context context) {
         View.inflate(context, getLayoutId(), this);
+        jzvdContext = context;
         startButton = findViewById(R.id.start);
         fullscreenButton = findViewById(R.id.fullscreen);
         progressBar = findViewById(R.id.bottom_seek_progress);
@@ -356,10 +358,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (id == R.id.surface_container) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    touchActionDown(x,y);
+                    touchActionDown(x, y);
                     break;
                 case MotionEvent.ACTION_MOVE:
-                    touchActionMove(x,y);
+                    touchActionMove(x, y);
                     break;
                 case MotionEvent.ACTION_UP:
                     touchActionUp();
@@ -387,7 +389,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         startProgressTimer();
     }
 
-    private void touchActionMove(float x,float y) {
+    private void touchActionMove(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
         float deltaX = x - mDownX;
         float deltaY = y - mDownY;
@@ -471,7 +473,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void touchActionDown(float x,float y) {
+    private void touchActionDown(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionDown [" + this.hashCode() + "] ");
         mTouchingProgressBar = true;
 
@@ -591,7 +593,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
             Log.d(TAG, "MEDIA_INFO_VIDEO_RENDERING_START");
             if (state == Jzvd.STATE_PREPARED
-                    || state == Jzvd.STATE_PREPARING_CHANGE_URL) {
+                    || state == Jzvd.STATE_PREPARING_CHANGE_URL
+                    || state == Jzvd.STATE_PREPARING_PLAYING) {
                 onStatePlaying();//开始渲染图像，真正进入playing状态
             }
         } else if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START) {
@@ -819,6 +822,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public void onProgress(int progress, long position, long duration) {
 //        Log.d(TAG, "onProgress: progress=" + progress + " position=" + position + " duration=" + duration);
+        mCurrentPosition = position;
         if (!mTouchingProgressBar) {
             if (seekToManulPosition != -1) {
                 if (seekToManulPosition > progress) {
@@ -839,6 +843,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void resetProgressAndTime() {
+        mCurrentPosition = 0;
         progressBar.setProgress(0);
         progressBar.setSecondaryProgress(0);
         currentTimeTextView.setText(JZUtils.stringForTime(0));
@@ -911,7 +916,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             Constructor<Jzvd> constructor = (Constructor<Jzvd>) Jzvd.this.getClass().getConstructor(Context.class);
             Jzvd jzvd = constructor.newInstance(getContext());
             jzvd.setId(getId());
-            vg.addView(jzvd);
+            jzvd.setMinimumWidth(blockWidth);
+            jzvd.setMinimumHeight(blockHeight);
+            vg.addView(jzvd, blockIndex, blockLayoutParams);
             jzvd.setUp(jzDataSource.cloneMe(), SCREEN_NORMAL, mediaInterfaceClass);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -924,17 +931,33 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
+    /**
+     * 如果不在列表中可以不加block
+     */
+    ViewGroup.LayoutParams blockLayoutParams;
+    int blockIndex;
+    int blockWidth;
+    int blockHeight;
+
+    /**
+     * 如果全屏或者返回全屏的视图有问题，复写这两个函数gotoScreenNormal(),根据自己布局的情况重新布局。
+     */
     public void gotoScreenFullscreen() {
         gotoFullscreenTime = System.currentTimeMillis();
-        jzvdContext = ((ViewGroup) getParent()).getContext();
         ViewGroup vg = (ViewGroup) getParent();
+        blockLayoutParams = getLayoutParams();
+        blockIndex = vg.indexOfChild(this);
+        blockWidth = getWidth();
+        blockHeight = getHeight();
+
         vg.removeView(this);
         cloneAJzvd(vg);
         CONTAINER_LIST.add(vg);
         vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
 
-        vg.addView(this, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        ViewGroup.LayoutParams fullLayout = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        vg.addView(this, fullLayout);
 
         setScreenFullscreen();
         JZUtils.hideStatusBar(jzvdContext);
@@ -947,9 +970,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         gobakFullscreenTime = System.currentTimeMillis();//退出全屏
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
-        CONTAINER_LIST.getLast().removeAllViews();
-        CONTAINER_LIST.getLast().addView(this, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//        CONTAINER_LIST.getLast().removeAllViews();
+        CONTAINER_LIST.getLast().removeViewAt(blockIndex);//remove block
+        CONTAINER_LIST.getLast().addView(this, blockIndex, blockLayoutParams);
         CONTAINER_LIST.pop();
 
         setScreenNormal();//这块可以放到jzvd中

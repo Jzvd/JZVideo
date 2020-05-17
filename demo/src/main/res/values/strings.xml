@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">JZVD</string>
+    <string name="app_name" translatable="false">JZVD</string>
+    <string name="base" translatable="false">base</string>
+    <string name="custom" translatable="false">custom</string>
+    <string name="complex" translatable="false">complex</string>
+    <string name="other" translatable="false">other</string>
 </resources>

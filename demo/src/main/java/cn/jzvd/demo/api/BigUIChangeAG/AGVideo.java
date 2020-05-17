@@ -29,6 +29,8 @@ import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.api.BigUIChangeAG.view.LoadingView;
+import cn.jzvd.demo.api.BigUIChangeAG.view.PlayAndPauseView;
 import cn.jzvd.demo.utils.NetworkUtils;
 import cn.jzvd.demo.utils.StatusBarUtil;
 
@@ -38,6 +40,7 @@ public class AGVideo extends JzvdStd {
     //视频控制布局
     private RelativeLayout videoPlayControlLayout;
     private ImageView screenIV, quickRetreat, fastForward, start_bottom, next_bottom;
+    private PlayAndPauseView playAndPauseView;
     private CheckBox lock;
     private TextView tvSpeed, tvSelectPart, next_set;
     private LinearLayout startLayout, ll_bottom, ll_top;
@@ -50,6 +53,7 @@ public class AGVideo extends JzvdStd {
     private int nextTimerDate = 3;
     private Timer mDismissLockViewTimer, mDismissNextViewTimer;
     private DismissNextViewTimerTask mDismissNextViewTimerTask;
+    private boolean clickPlayOrPause;
 
     public AGVideo(Context context) {
         super(context);
@@ -87,6 +91,7 @@ public class AGVideo extends JzvdStd {
         ll_bottom = findViewById(R.id.layout_bottom);
         ll_top = findViewById(R.id.layout_top);
         start_bottom = findViewById(R.id.start_bottom);
+        playAndPauseView = findViewById(R.id.playAndPauseView);
         next_bottom = findViewById(R.id.next_bottom);
         lock = findViewById(R.id.lock);
         next_set = findViewById(R.id.next_set);
@@ -96,6 +101,7 @@ public class AGVideo extends JzvdStd {
         tvSpeed.setOnClickListener(this);
         tvSelectPart.setOnClickListener(this);
         start_bottom.setOnClickListener(this);
+        playAndPauseView.setOnClickListener(this);
         next_bottom.setOnClickListener(this);
         quickRetreat.setOnClickListener(this);
         fastForward.setOnClickListener(this);
@@ -135,6 +141,10 @@ public class AGVideo extends JzvdStd {
         int id = v.getId();
         switch (id) {
             case R.id.start:
+            case R.id.start_bottom:
+            case R.id.playAndPauseView:
+                clickPlayOrPause = true;
+                playAndPauseView.playOrPause();
                 if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
                     Toast.makeText(getContext(), getResources().getString(cn.jzvd.R.string.no_url), Toast.LENGTH_SHORT).show();
                     return;
@@ -153,7 +163,6 @@ public class AGVideo extends JzvdStd {
                     onStatePause();
                 } else if (state == STATE_PAUSE) {
                     mediaInterface.start();
-                    onStatePlaying();
                 } else if (state == STATE_AUTO_COMPLETE) {
                     startVideo();
                 }
@@ -281,30 +290,6 @@ public class AGVideo extends JzvdStd {
             case R.id.next_bottom:
                 if (jzVideoListener != null) {
                     jzVideoListener.nextClick();
-                }
-                break;
-            case R.id.start_bottom:
-                if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
-                    Toast.makeText(getContext(), getResources().getString(cn.jzvd.R.string.no_url), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (state == STATE_NORMAL) {
-                    if (!jzDataSource.getCurrentUrl().toString().startsWith("file") && !
-                            jzDataSource.getCurrentUrl().toString().startsWith("/") &&
-                            !JZUtils.isWifiConnected(getContext()) && !WIFI_TIP_DIALOG_SHOWED) {//这个可以放到std中
-                        showWifiDialog();
-                        return;
-                    }
-                    startVideo();
-                } else if (state == STATE_PLAYING) {
-                    Log.d(TAG, "pauseVideo [" + this.hashCode() + "] ");
-                    mediaInterface.pause();
-                    onStatePause();
-                } else if (state == STATE_PAUSE) {
-                    mediaInterface.start();
-                    onStatePlaying();
-                } else if (state == STATE_AUTO_COMPLETE) {
-                    startVideo();
                 }
                 break;
             case R.id.fast_forward:
@@ -533,7 +518,6 @@ public class AGVideo extends JzvdStd {
 
     @Override
     public void updateStartImage() {
-        Log.e("AGVideo", "state:" + state);
         if (state == STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
             startButton.setImageResource(R.mipmap.ag_btn_movie_suspend);
@@ -615,7 +599,28 @@ public class AGVideo extends JzvdStd {
 
     @Override
     public void onStatePlaying() {
-        super.onStatePlaying();
+//        super.onStatePlaying();
+        Log.i(TAG, "onStatePlaying " + " [" + this.hashCode() + "] ");
+        if (state == STATE_PREPARED) {//如果是准备完成视频后第一次播放，先判断是否需要跳转进度。
+            if (seekToInAdvance != 0) {
+                mediaInterface.seekTo(seekToInAdvance);
+                seekToInAdvance = 0;
+            } else {
+                long position = JZUtils.getSavedProgress(getContext(), jzDataSource.getCurrentUrl());
+                if (position != 0) {
+                    mediaInterface.seekTo(position);//这里为什么区分开呢，第一次的播放和resume播放是不一样的。 这里怎么区分是一个问题。然后
+                }
+            }
+        }
+        state = STATE_PLAYING;
+        startProgressTimer();
+        Log.e("AGVideo", "clickPlayOrPause:" + clickPlayOrPause);
+        updateStartImage();
+        if (clickPlayOrPause) {
+            startDismissControlViewTimer();
+        } else {
+            changeUiToPlayingClear();
+        }
         titleTextView.setVisibility(VISIBLE);
         screenIV.setVisibility(VISIBLE);
     }
@@ -932,6 +937,7 @@ public class AGVideo extends JzvdStd {
         }
     }
 
+
     private void dismissNextView() {
         replayTextView.setVisibility(GONE);
         next_set.setVisibility(View.GONE);
@@ -988,4 +994,5 @@ public class AGVideo extends JzvdStd {
             });
         }
     }
+
 }

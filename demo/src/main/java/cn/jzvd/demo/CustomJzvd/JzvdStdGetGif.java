@@ -37,6 +37,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         super(context, attrs);
     }
 
+    long current;
     @Override
     public void init(Context context) {
         super.init(context);
@@ -53,7 +54,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
             saveGifPath = Environment
                     .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaozi-" + System.currentTimeMillis() + ".gif";
-            mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 5, 5000, saveGifPath);
+            mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 300,200, 5000, saveGifPath);
+            current=System.currentTimeMillis();
             mGifCreateHelper.startGif();//这个函数里用了jzvd的两个参数。
             try {
                 mediaInterface.pause();
@@ -71,7 +73,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
     @Override
     public void process(int curPosition, int total, String status) {
-        Log.e("Jzvd-gif", status + "  " + curPosition + "/" + total);
+        Log.e("Jzvd-gif", status + "  " + curPosition + "/" + total+"  time: "+(System.currentTimeMillis()-current));
         post(() -> tv_hint.setText(curPosition + "/" + total + " " + status));
     }
 
