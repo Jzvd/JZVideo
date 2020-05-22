@@ -945,6 +945,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public void gotoScreenFullscreen() {
         gotoFullscreenTime = System.currentTimeMillis();
         ViewGroup vg = (ViewGroup) getParent();
+        jzvdContext = vg.getContext();
         blockLayoutParams = getLayoutParams();
         blockIndex = vg.indexOfChild(this);
         blockWidth = getWidth();
