@@ -23,47 +23,16 @@
         android:background="#000000"
         android:scaleType="fitXY" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/jz_bottom_bg"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|right"
         android:orientation="horizontal"
         android:visibility="invisible">
 
-        <TextView
-            android:id="@+id/current"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:text="00:00"
-            android:textColor="#ffffff" />
-
-        <SeekBar
-            android:id="@+id/bottom_seek_progress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1.0"
-            android:background="@null"
-            android:max="100"
-            android:maxHeight="1dp"
-            android:minHeight="1dp"
-            android:paddingLeft="12dp"
-            android:paddingTop="8dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="8dp"
-            android:progressDrawable="@drawable/jz_bottom_seek_progress"
-            android:thumb="@drawable/jz_bottom_seek_poster" />
-
-        <TextView
-            android:id="@+id/total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="00:00"
-            android:textColor="#ffffff" />
 
         <ImageView
             android:id="@+id/fullscreen"
@@ -73,25 +42,8 @@
             android:paddingRight="14dp"
             android:scaleType="centerInside"
             android:src="@drawable/jz_enlarge" />
-    </LinearLayout>
+    </RelativeLayout>
 
-    <ProgressBar
-        android:id="@+id/bottom_progress"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:layout_alignParentBottom="true"
-        android:max="100"
-        android:progressDrawable="@drawable/jz_bottom_progress" />
-
-    <ImageView
-        android:id="@+id/back_tiny"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginTop="6dp"
-        android:background="@drawable/jz_click_back_tiny_selector"
-        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/layout_top"
