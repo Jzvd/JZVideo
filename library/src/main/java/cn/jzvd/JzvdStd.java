@@ -85,7 +85,7 @@ public class JzvdStd extends Jzvd {
     protected Dialog mBrightnessDialog;
     protected ProgressBar mDialogBrightnessProgressBar;
     protected TextView mDialogBrightnessTextView;
-    private boolean mIsWifi;
+    protected boolean mIsWifi;
     public BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -101,9 +101,9 @@ public class JzvdStd extends Jzvd {
         }
     };
     //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
-    private long lastClickTime = 0;
-    private long doubleTime = 200;
-    private ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
+    protected long lastClickTime = 0;
+    protected long doubleTime = 200;
+    protected ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
 
     public JzvdStd(Context context) {
         super(context);
@@ -343,7 +343,7 @@ public class JzvdStd extends Jzvd {
         }
     }
 
-    private void clickRetryBtn() {
+    protected void clickRetryBtn() {
         if (jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
             Toast.makeText(jzvdContext, getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
             return;
@@ -358,7 +358,7 @@ public class JzvdStd extends Jzvd {
         startVideo();
     }
 
-    private void clickClarity() {
+    protected void clickClarity() {
         onCLickUiToggleToClear();
 
         LayoutInflater inflater = (LayoutInflater) jzvdContext
@@ -408,19 +408,19 @@ public class JzvdStd extends Jzvd {
 //            clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());
     }
 
-    private void clickBackTiny() {
+    protected void clickBackTiny() {
         clearFloatScreen();
     }
 
-    private void clickBack() {
+    protected void clickBack() {
         backPress();
     }
 
-    private void clickSurfaceContainer() {
+    protected void clickSurfaceContainer() {
         startDismissControlViewTimer();
     }
 
-    private void clickPoster() {
+    protected void clickPoster() {
         if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
             Toast.makeText(jzvdContext, getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
             return;

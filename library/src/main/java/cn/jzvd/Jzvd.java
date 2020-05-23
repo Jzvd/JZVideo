@@ -339,7 +339,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void clickFullscreen() {
+    protected void clickFullscreen() {
         Log.i(TAG, "onClick fullscreen [" + this.hashCode() + "] ");
         if (state == STATE_AUTO_COMPLETE) return;
         if (screen == SCREEN_FULLSCREEN) {
@@ -351,7 +351,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void clickStart() {
+    protected void clickStart() {
         Log.i(TAG, "onClick start [" + this.hashCode() + "] ");
         if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
             Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
@@ -398,7 +398,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         return false;
     }
 
-    private void touchActionUp() {
+    protected void touchActionUp() {
         Log.i(TAG, "onTouch surfaceContainer actionUp [" + this.hashCode() + "] ");
         mTouchingProgressBar = false;
         dismissProgressDialog();
@@ -416,7 +416,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         startProgressTimer();
     }
 
-    private void touchActionMove(float x, float y) {
+    protected void touchActionMove(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
         float deltaX = x - mDownX;
         float deltaY = y - mDownY;
@@ -500,7 +500,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void touchActionDown(float x, float y) {
+    protected void touchActionDown(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionDown [" + this.hashCode() + "] ");
         mTouchingProgressBar = true;
 
