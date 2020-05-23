@@ -19,6 +19,8 @@ import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -258,6 +260,31 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         bottomContainer = findViewById(R.id.layout_bottom);
         textureViewContainer = findViewById(R.id.surface_container);
         topContainer = findViewById(R.id.layout_top);
+
+        if (startButton == null) {
+            startButton = new ImageView(context);
+        }
+        if (fullscreenButton == null) {
+            fullscreenButton = new ImageView(context);
+        }
+        if (progressBar == null) {
+            progressBar = new SeekBar(context);
+        }
+        if (currentTimeTextView == null) {
+            currentTimeTextView = new TextView(context);
+        }
+        if (totalTimeTextView == null) {
+            totalTimeTextView = new TextView(context);
+        }
+        if (bottomContainer == null) {
+            bottomContainer = new LinearLayout(context);
+        }
+        if (textureViewContainer == null) {
+            textureViewContainer = new FrameLayout(context);
+        }
+        if (topContainer == null) {
+            topContainer = new RelativeLayout(context);
+        }
 
         startButton.setOnClickListener(this);
         fullscreenButton.setOnClickListener(this);

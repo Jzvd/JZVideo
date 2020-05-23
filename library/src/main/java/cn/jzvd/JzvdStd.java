@@ -130,6 +130,46 @@ public class JzvdStd extends Jzvd {
         mRetryBtn = findViewById(R.id.retry_btn);
         mRetryLayout = findViewById(R.id.retry_layout);
 
+        if (batteryTimeLayout == null) {
+            batteryTimeLayout = new LinearLayout(context);
+        }
+        if (bottomProgressBar == null) {
+            bottomProgressBar = new ProgressBar(context);
+        }
+        if (titleTextView == null) {
+            titleTextView = new TextView(context);
+        }
+        if (backButton == null) {
+            backButton = new ImageView(context);
+        }
+        if (posterImageView == null) {
+            posterImageView = new ImageView(context);
+        }
+        if (loadingProgressBar == null) {
+            loadingProgressBar = new ProgressBar(context);
+        }
+        if (tinyBackImageView == null) {
+            tinyBackImageView = new ImageView(context);
+        }
+        if (batteryLevel == null) {
+            batteryLevel = new ImageView(context);
+        }
+        if (videoCurrentTime == null) {
+            videoCurrentTime = new TextView(context);
+        }
+        if (replayTextView == null) {
+            replayTextView = new TextView(context);
+        }
+        if (clarity == null) {
+            clarity = new TextView(context);
+        }
+        if (mRetryBtn == null) {
+            mRetryBtn = new TextView(context);
+        }
+        if (mRetryLayout == null) {
+            mRetryLayout = new LinearLayout(context);
+        }
+
         posterImageView.setOnClickListener(this);
         backButton.setOnClickListener(this);
         tinyBackImageView.setOnClickListener(this);
