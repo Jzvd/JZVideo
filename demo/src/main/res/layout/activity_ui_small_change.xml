@@ -17,6 +17,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
+                android:text="extends JzvdStd and delete some parent views" />
+
+            <cn.jzvd.demo.CustomJzvd.MyJzvdStdNoTitleNoClarity
+                android:id="@+id/jz_notitle"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="Standard ui but delete some parent views " />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
                 android:text="lock screen" />
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdLockScreen

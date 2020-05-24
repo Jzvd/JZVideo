@@ -19,6 +19,8 @@ import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -259,6 +261,31 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         textureViewContainer = findViewById(R.id.surface_container);
         topContainer = findViewById(R.id.layout_top);
 
+        if (startButton == null) {
+            startButton = new ImageView(context);
+        }
+        if (fullscreenButton == null) {
+            fullscreenButton = new ImageView(context);
+        }
+        if (progressBar == null) {
+            progressBar = new SeekBar(context);
+        }
+        if (currentTimeTextView == null) {
+            currentTimeTextView = new TextView(context);
+        }
+        if (totalTimeTextView == null) {
+            totalTimeTextView = new TextView(context);
+        }
+        if (bottomContainer == null) {
+            bottomContainer = new LinearLayout(context);
+        }
+        if (textureViewContainer == null) {
+            textureViewContainer = new FrameLayout(context);
+        }
+        if (topContainer == null) {
+            topContainer = new RelativeLayout(context);
+        }
+
         startButton.setOnClickListener(this);
         fullscreenButton.setOnClickListener(this);
         progressBar.setOnSeekBarChangeListener(this);
@@ -312,7 +339,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void clickFullscreen() {
+    protected void clickFullscreen() {
         Log.i(TAG, "onClick fullscreen [" + this.hashCode() + "] ");
         if (state == STATE_AUTO_COMPLETE) return;
         if (screen == SCREEN_FULLSCREEN) {
@@ -324,7 +351,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void clickStart() {
+    protected void clickStart() {
         Log.i(TAG, "onClick start [" + this.hashCode() + "] ");
         if (jzDataSource == null || jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
             Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
@@ -371,7 +398,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         return false;
     }
 
-    private void touchActionUp() {
+    protected void touchActionUp() {
         Log.i(TAG, "onTouch surfaceContainer actionUp [" + this.hashCode() + "] ");
         mTouchingProgressBar = false;
         dismissProgressDialog();
@@ -389,7 +416,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         startProgressTimer();
     }
 
-    private void touchActionMove(float x, float y) {
+    protected void touchActionMove(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionMove [" + this.hashCode() + "] ");
         float deltaX = x - mDownX;
         float deltaY = y - mDownY;
@@ -473,7 +500,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
-    private void touchActionDown(float x, float y) {
+    protected void touchActionDown(float x, float y) {
         Log.i(TAG, "onTouch surfaceContainer actionDown [" + this.hashCode() + "] ");
         mTouchingProgressBar = true;
 
@@ -945,6 +972,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public void gotoScreenFullscreen() {
         gotoFullscreenTime = System.currentTimeMillis();
         ViewGroup vg = (ViewGroup) getParent();
+        jzvdContext = vg.getContext();
         blockLayoutParams = getLayoutParams();
         blockIndex = vg.indexOfChild(this);
         blockWidth = getWidth();
