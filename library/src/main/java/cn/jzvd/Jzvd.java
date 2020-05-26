@@ -439,7 +439,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                         }
                     } else {
                         //如果y轴滑动距离超过设置的处理范围，那么进行滑动事件处理
-                        if (mDownX < mScreenWidth * 0.5f) {//左侧改变亮度
+                        if (mDownX < mScreenHeight * 0.5f) {//左侧改变亮度
                             mChangeBrightness = true;
                             WindowManager.LayoutParams lp = JZUtils.getWindow(getContext()).getAttributes();
                             if (lp.screenBrightness < 0) {
