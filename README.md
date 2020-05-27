@@ -42,14 +42,10 @@ implementation 'cn.jzvd:jiaozivideoplayer:7.4.0'
 
 2.添加布局
 ```xml
-<LinearLayout
+<cn.jzvd.demo.CustomJzvd.MyJzvdStd
+    android:id="@+id/jz_video"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
-    <cn.jzvd.demo.CustomJzvd.MyJzvdStd
-        android:id="@+id/jz_video"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
-</LinearLayout>
+    android:layout_height="200dp" />
 ```
 
 3.设置视频地址、缩略图地址、标题
