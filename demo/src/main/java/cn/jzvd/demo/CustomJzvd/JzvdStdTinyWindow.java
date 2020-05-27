@@ -28,14 +28,21 @@ public class JzvdStdTinyWindow extends JzvdStd {
         super.setUp(jzDataSource, screen, mediaInterface);
     }
 
-    public void gotoScreenTiny() {
+    public void gotoTinyScreen() {
         Log.i(TAG, "startWindowTiny " + " [" + this.hashCode() + "] ");
         if (state == STATE_NORMAL || state == STATE_ERROR || state == STATE_AUTO_COMPLETE)
             return;
         ViewGroup vg = (ViewGroup) getParent();
+        jzvdContext = vg.getContext();
+        blockLayoutParams = getLayoutParams();
+        blockIndex = vg.indexOfChild(this);
+        blockWidth = getWidth();
+        blockHeight = getHeight();
+
         vg.removeView(this);
         cloneAJzvd(vg);
         CONTAINER_LIST.add(vg);
+
         ViewGroup vgg = (ViewGroup) (JZUtils.scanForActivity(getContext())).getWindow().getDecorView();//和他也没有关系
         FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(400, 400);
         lp.gravity = Gravity.RIGHT | Gravity.BOTTOM;
@@ -43,6 +50,5 @@ public class JzvdStdTinyWindow extends JzvdStd {
         vgg.addView(this, lp);
         setScreenTiny();
     }
-
 
 }

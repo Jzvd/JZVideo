@@ -72,7 +72,7 @@ public class TinyWindowRecycleViewMultiHolderActivity extends AppCompatActivity 
                     if (Jzvd.CURRENT_JZVD.state == Jzvd.STATE_PAUSE) {
                         Jzvd.releaseAllVideos();
                     } else {
-                        ((JzvdStdTinyWindow) Jzvd.CURRENT_JZVD).gotoScreenTiny();
+                        ((JzvdStdTinyWindow) Jzvd.CURRENT_JZVD).gotoTinyScreen();
                     }
                 }
             }

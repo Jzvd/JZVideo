@@ -322,7 +322,7 @@ public class AGVideo extends JzvdStd {
                     //quit fullscreen
                     backPress();
                 } else {
-                    gotoScreenFullscreen();
+                    gotoFullscreen();
                 }
                 break;
             case R.id.screen:
