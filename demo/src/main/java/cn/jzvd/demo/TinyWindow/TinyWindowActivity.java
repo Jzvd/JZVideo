@@ -69,7 +69,7 @@ public class TinyWindowActivity extends AppCompatActivity {
 
 
     public void clickTinyWindow(View view) {
-        jzvdStdTinyWindow.gotoScreenTiny();
+        jzvdStdTinyWindow.gotoTinyScreen();
     }
 
     public void clickAutoTinyListViewRecyclerView(View view) {

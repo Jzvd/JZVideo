@@ -220,7 +220,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static boolean backPress() {
         Log.i(TAG, "backPress");
         if (CONTAINER_LIST.size() != 0 && CURRENT_JZVD != null) {//判断条件，因为当前所有goBack都是回到普通窗口
-            CURRENT_JZVD.gotoScreenNormal();
+            CURRENT_JZVD.gotoNormalScreen();
             return true;
         } else if (CONTAINER_LIST.size() == 0 && CURRENT_JZVD != null && CURRENT_JZVD.screen != SCREEN_NORMAL) {//退出直接进入的全屏
             CURRENT_JZVD.clearFloatScreen();
@@ -347,7 +347,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             backPress();
         } else {
             Log.d(TAG, "toFullscreenActivity [" + this.hashCode() + "] ");
-            gotoScreenFullscreen();
+            gotoFullscreen();
         }
     }
 
@@ -439,7 +439,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                         }
                     } else {
                         //如果y轴滑动距离超过设置的处理范围，那么进行滑动事件处理
-                        if (mDownX < mScreenWidth * 0.5f) {//左侧改变亮度
+                        if (mDownX < mScreenHeight * 0.5f) {//左侧改变亮度
                             mChangeBrightness = true;
                             WindowManager.LayoutParams lp = JZUtils.getWindow(getContext()).getAttributes();
                             if (lp.screenBrightness < 0) {
@@ -671,11 +671,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
         textureViewContainer.removeView(textureView);
-        CONTAINER_LIST.getLast().removeAllViews();
-        CONTAINER_LIST.getLast().addView(this, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        CONTAINER_LIST.getLast().removeViewAt(blockIndex);//remove block
+        CONTAINER_LIST.getLast().addView(this, blockIndex, blockLayoutParams);
         CONTAINER_LIST.pop();
-
         setScreenNormal();
         JZUtils.showStatusBar(jzvdContext);
         JZUtils.setRequestedOrientation(jzvdContext, NORMAL_ORIENTATION);
@@ -961,15 +959,15 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     /**
      * 如果不在列表中可以不加block
      */
-    ViewGroup.LayoutParams blockLayoutParams;
-    int blockIndex;
-    int blockWidth;
-    int blockHeight;
+    protected ViewGroup.LayoutParams blockLayoutParams;
+    protected int blockIndex;
+    protected int blockWidth;
+    protected int blockHeight;
 
     /**
      * 如果全屏或者返回全屏的视图有问题，复写这两个函数gotoScreenNormal(),根据自己布局的情况重新布局。
      */
-    public void gotoScreenFullscreen() {
+    public void gotoFullscreen() {
         gotoFullscreenTime = System.currentTimeMillis();
         ViewGroup vg = (ViewGroup) getParent();
         jzvdContext = vg.getContext();
@@ -994,7 +992,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     }
 
-    public void gotoScreenNormal() {//goback本质上是goto
+    public void gotoNormalScreen() {//goback本质上是goto
         gobakFullscreenTime = System.currentTimeMillis();//退出全屏
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
@@ -1032,7 +1030,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             } else {
                 JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
             }
-            gotoScreenFullscreen();
+            gotoFullscreen();
         }
     }
 
