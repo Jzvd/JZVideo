@@ -671,11 +671,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
         textureViewContainer.removeView(textureView);
-        CONTAINER_LIST.getLast().removeAllViews();
-        CONTAINER_LIST.getLast().addView(this, new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        CONTAINER_LIST.getLast().removeViewAt(blockIndex);//remove block
+        CONTAINER_LIST.getLast().addView(this, blockIndex, blockLayoutParams);
         CONTAINER_LIST.pop();
-
         setScreenNormal();
         JZUtils.showStatusBar(jzvdContext);
         JZUtils.setRequestedOrientation(jzvdContext, NORMAL_ORIENTATION);
