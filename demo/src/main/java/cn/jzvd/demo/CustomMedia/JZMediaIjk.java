@@ -74,7 +74,8 @@ public class JZMediaIjk extends JZMediaInterface implements IMediaPlayer.OnPrepa
             ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "fflags", "fastseek");
             //播放前的探测Size，默认是1M, 改小一点会出画面更快
             ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "probesize", 1024 * 10);
-
+            //1变速变调状态 0变速不变调状态
+            ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "soundtouch", 1);
 
             ijkMediaPlayer.setOnPreparedListener(JZMediaIjk.this);
             ijkMediaPlayer.setOnVideoSizeChangedListener(JZMediaIjk.this);
