@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new VpAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(items.size());
     }
 
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         private List<BaseFragment> data;
 
         public VpAdapter(FragmentManager fm, List<BaseFragment> data) {
-            super(fm);
+            super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             this.data = data;
         }
 
