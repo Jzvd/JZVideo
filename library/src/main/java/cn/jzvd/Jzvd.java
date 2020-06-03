@@ -160,6 +160,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                 //准备状态暂停后的
                 CURRENT_JZVD.startVideo();
             }
+            if (CURRENT_JZVD.screen == Jzvd.SCREEN_FULLSCREEN) {
+    			JZUtils.hideStatusBar(CURRENT_JZVD.jzvdContext);
+    			JZUtils.hideSystemUI(CURRENT_JZVD.jzvdContext);
+			}
         }
     }
 
