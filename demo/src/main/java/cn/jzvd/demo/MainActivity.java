@@ -135,6 +135,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Jzvd.goOnPlayOnResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.goOnPlayOnPause();
+    }
+
+    @Override
     public void onBackPressed() {
         if (backPress()) {
             return;
