@@ -28,7 +28,7 @@ public class ListViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("ListView");
+        getSupportActionBar().setTitle(getString(R.string.listview));
         setContentView(R.layout.activity_listview);
     }
 

@@ -27,7 +27,7 @@ public class OrientationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("Orientation");
+        getSupportActionBar().setTitle(getString(R.string.orientation));
         setContentView(R.layout.activity_orientation);
         mJzvdStd = findViewById(R.id.jz_video);
         mJzvdStd.setUp(Urls.videoUrlList[0], "饺子会旋转"

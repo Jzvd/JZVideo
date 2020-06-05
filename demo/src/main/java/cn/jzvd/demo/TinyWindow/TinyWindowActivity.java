@@ -30,7 +30,7 @@ public class TinyWindowActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("TinyWindow");
+        getSupportActionBar().setTitle(getString(R.string.tiny_window));
         setContentView(R.layout.activity_tiny_window);
 
         jzvdStdTinyWindow = findViewById(R.id.jz_video);

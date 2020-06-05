@@ -29,7 +29,7 @@ public class RotationVideoSizeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("RotationAndVideoSize");
+        getSupportActionBar().setTitle(getString(R.string.video_cover_and_orientation));
         setContentView(R.layout.activity_api_rotation_videosize);
 
         myJzvdStd = findViewById(R.id.jz_video);

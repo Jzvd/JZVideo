@@ -27,7 +27,7 @@ public class ScreenRotateActivity extends AppCompatActivity implements ScreenRot
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("ScreenRotate");
+        getSupportActionBar().setTitle(getString(R.string.screen_rotate));
         setContentView(R.layout.activity_screen_rotate);
         mJzvdStd = findViewById(R.id.jz_video);
         mJzvdStd.setUp(Urls.videoUrlList[0], "饺子挺好"

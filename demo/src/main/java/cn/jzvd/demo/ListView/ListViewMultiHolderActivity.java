@@ -36,7 +36,7 @@ public class ListViewMultiHolderActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("MultiHolderListView");
+        getSupportActionBar().setTitle(getString(R.string.multi_holder));
 
 
         listView = findViewById(R.id.listview);

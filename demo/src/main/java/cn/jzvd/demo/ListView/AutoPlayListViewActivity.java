@@ -28,7 +28,7 @@ public class AutoPlayListViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("RecyclerView");
+        getSupportActionBar().setTitle(getString(R.string.list_auto_play));
         setContentView(R.layout.activity_recyclerview_content);
 
         recyclerView = findViewById(R.id.recyclerview);

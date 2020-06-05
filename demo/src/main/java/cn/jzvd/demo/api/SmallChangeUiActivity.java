@@ -46,7 +46,7 @@ public class SmallChangeUiActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("SmallChangeUI");
+        getSupportActionBar().setTitle(getString(R.string.small_change));
         setContentView(R.layout.activity_ui_small_change);
 
         jzNoTitle = findViewById(R.id.jz_notitle);

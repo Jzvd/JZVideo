@@ -11,7 +11,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:onClick="clickNormal"
-        android:text="Normal ListView" />
+        android:text="@string/normal_listview" />
 
     <Button
         android:id="@+id/listview_fragment_viewpager"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickListViewFragmentViewpager"
-        android:text="ListView Fragment ViewPager" />
+        android:text="@string/list_fragment_viewpager" />
 
     <Button
         android:id="@+id/multiholder"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickMultiHolder"
-        android:text="Multi Holder ListView" />
+        android:text="@string/multi_holder" />
 
     <Button
         android:id="@+id/recyleview"
@@ -35,21 +35,21 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickRecyclerView"
-        android:text="Recyleview" />
+        android:text="@string/recyclerview" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickListSmoothToDetail"
-        android:text="List Smooth To Detail" />
+        android:text="@string/list_to_detail" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickListAutoPlay"
-        android:text="List Auto Play" />
+        android:text="@string/list_auto_play" />
 
     <Button
         android:id="@+id/btn_tiktok"
@@ -57,5 +57,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:onClick="clickTikTok"
-        android:text="TikTok" />
+        android:text="@string/tiktok" />
 </LinearLayout>

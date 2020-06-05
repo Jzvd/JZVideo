@@ -30,7 +30,7 @@ public class ListViewFragmentViewPagerActivity extends AppCompatActivity impleme
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("ActivityListViewFragmentViewPager");
+        getSupportActionBar().setTitle(getString(R.string.list_fragment_viewpager));
 
         fragmentList.add(new FragmentDemo().setIndex(0));
         fragmentList.add(new FragmentDemo().setIndex(1));

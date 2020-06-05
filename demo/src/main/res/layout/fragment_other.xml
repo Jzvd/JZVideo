@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:text="Direct Play" />
+        android:text="@string/direct_play" />
 
     <Button
         android:id="@+id/web_view"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:text="WebView" />
+        android:text="@string/webview" />
 
     <Button
         android:id="@+id/local_video"
@@ -28,7 +28,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="LOCAL VIDEO" />
+        android:text="@string/local_video" />
 
     <TextView
         android:id="@+id/version"

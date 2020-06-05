@@ -27,7 +27,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("RecyclerView");
+        getSupportActionBar().setTitle(getString(R.string.recyclerview));
         setContentView(R.layout.activity_recyclerview_content);
 
         recyclerView = findViewById(R.id.recyclerview);

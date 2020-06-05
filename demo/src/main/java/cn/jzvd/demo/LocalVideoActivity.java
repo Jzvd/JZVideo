@@ -44,7 +44,7 @@ public class LocalVideoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("PlayLocalVideo");
+        getSupportActionBar().setTitle(getString(R.string.local_video));
         setContentView(R.layout.activity_local_video);
         jzvdLocalPath = findViewById(cn.jzvd.demo.R.id.lcoal_path);
         jzvdAssertPath = findViewById(cn.jzvd.demo.R.id.assert_path);

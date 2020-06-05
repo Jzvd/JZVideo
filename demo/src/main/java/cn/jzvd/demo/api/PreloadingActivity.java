@@ -24,7 +24,7 @@ public class PreloadingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("Preloading");
+        getSupportActionBar().setTitle(getString(R.string.preloading));
         setContentView(R.layout.activity_preloading);
         jzvdStd = findViewById(R.id.jz_video);
 

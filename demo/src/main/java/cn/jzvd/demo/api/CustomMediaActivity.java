@@ -32,7 +32,7 @@ public class CustomMediaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("CustomMediaPlayer");
+        getSupportActionBar().setTitle(getString(R.string.custom_mediaplayer));
         setContentView(R.layout.activity_api_custom_mediaplayer);
 
         jzvdStd = findViewById(R.id.videoplayer);

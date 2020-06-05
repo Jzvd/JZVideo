@@ -30,7 +30,7 @@ public class GetGifActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("GetGif");
+        getSupportActionBar().setTitle(getString(R.string.get_gif));
         setContentView(R.layout.activity_get_gif);
 
         //checkPermission

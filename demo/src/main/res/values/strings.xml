@@ -1,7 +1,60 @@
-<resources>
-    <string name="app_name" translatable="false">JZVD</string>
-    <string name="base" translatable="false">base</string>
-    <string name="custom" translatable="false">custom</string>
-    <string name="complex" translatable="false">complex</string>
-    <string name="other" translatable="false">other</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name" >JZVD</string>
+    <string name="base">base</string>
+    <string name="custom">custom</string>
+    <string name="complex">complex</string>
+    <string name="other">other</string>
+    <string name="small_change">Small change Ui</string>
+    <string name="big_ui_change">Big change Ui</string>
+    <string name="orientation">Orientation</string>
+    <string name="extend_activity">Extends Normal Activity</string>
+    <string name="video_cover_and_orientation">Video And VideoSize</string>
+    <string name="custom_mediaplayer">Custom MediaPlayer</string>
+    <string name="preloading">Preloading</string>
+    <string name="screen_rotate">Screen Rotate</string>
+    <string name="get_gif">Get Gif</string>
+    <string name="extend_jzvdstd_delete_view">extends JzvdStd and delete some parent views</string>
+    <string name="jzvdstd_delete_view_add_lock">Standard ui but delete some parent views and add lock button</string>
+    <string name="add_share_btn_after_fullscreen">Standard ui with share button, visible after fullscreen</string>
+    <string name="show_title_when_fullscreen">Standard ui show title after fullscreen</string>
+    <string name="show_textureview_after_complete">Standard ui show textureview after auto complete</string>
+    <string name="auto_complete_after_fullscreen">Standard ui auto complete after fullscreen</string>
+    <string name="play_with_1_1">Standard ui 1:1</string>
+    <string name="play_with_16_9">Standard ui 16:9</string>
+    <string name="volume_after_fullscreen">Volume after fullscreen</string>
+    <string name="add_volume_btn">Volume after fullscreen</string>
+    <string name="play_mp3">Play Mp3</string>
+    <string name="play_speed">Play Speed</string>
+    <string name="agplayer">UI Big Change AG</string>
+    <string name="rotation_0">Click to rotation to 0</string>
+    <string name="rotation_90">Click to rotation to 90</string>
+    <string name="rotation_180">Click to rotation to 180</string>
+    <string name="rotation_270">Click to rotation to 270</string>
+    <string name="video_img_default">Video Image Adapter(Default)</string>
+    <string name="video_fill_parent">Video Image Fill Parent</string>
+    <string name="video_fill_crop">Video Image Fill Crop</string>
+    <string name="video_img_origin">Video Image Original</string>
+    <string name="change_ijk">Change to Ijkplayer</string>
+    <string name="change_system_player">Change to android.media.MediaPlayer</string>
+    <string name="change_exo">Change to Exoplayer</string>
+    <string name="start_preloading">start Preloading</string>
+    <string name="start_play_after_preloading">start Video After Preloading</string>
+    <string name="listview">ListView</string>
+    <string name="tiny_window">Tiny Window</string>
+    <string name="custom_ag">## Custom Ag Video</string>
+    <string name="normal_listview">Normal ListView</string>
+    <string name="list_fragment_viewpager">ListView Fragment ViewPager</string>
+    <string name="multi_holder">Multi Holder ListView</string>
+    <string name="recyclerview">Recyleview</string>
+    <string name="list_to_detail">List Smooth To Detail</string>
+    <string name="list_auto_play">List Auto Play</string>
+    <string name="tiktok">TikTok</string>
+    <string name="start_tiny">Start Tiny Window</string>
+    <string name="recyclerview_tiny">RecycleView TinyWindow</string>
+    <string name="recyclerview_tiny_multi">RecycleView MultiHolder TinyWindow</string>
+    <string name="direct_play">Direct Play</string>
+    <string name="webview">WebView</string>
+    <string name="local_video">LOCAL VIDEO</string>
+    <string name="direct_play_fullscreen">Fullscreen</string>
+    <string name="direct_play_tiny">TinyWindow</string>
 </resources>

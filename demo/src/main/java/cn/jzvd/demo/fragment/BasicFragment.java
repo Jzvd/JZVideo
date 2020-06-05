@@ -9,6 +9,7 @@ import cn.jzvd.demo.R;
 
 /**
  * Created by pengan.li on 2020/5/8.
+ * 展示饺子最基本的用法
  */
 public class BasicFragment extends BaseFragment{
 

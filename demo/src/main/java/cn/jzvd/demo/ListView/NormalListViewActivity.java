@@ -31,7 +31,7 @@ public class NormalListViewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("NormalListView");
+        getSupportActionBar().setTitle(getString(R.string.normal_listview));
         setContentView(R.layout.activity_listview_normal);
 
         listView = findViewById(R.id.listview);

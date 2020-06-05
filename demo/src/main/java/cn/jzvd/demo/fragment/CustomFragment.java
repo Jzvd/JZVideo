@@ -31,6 +31,7 @@ import static android.content.Context.SENSOR_SERVICE;
 
 /**
  * Created by pengan.li on 2020/5/8.
+ * 展示饺子的一些自定义用法
  */
 public class CustomFragment extends BaseFragment implements View.OnClickListener {
 

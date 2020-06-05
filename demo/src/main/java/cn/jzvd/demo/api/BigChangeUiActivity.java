@@ -23,7 +23,7 @@ public class BigChangeUiActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("BigChangeUI");
+        getSupportActionBar().setTitle(getString(R.string.big_ui_change));
         setContentView(R.layout.activity_ui_big_change);
 
     }

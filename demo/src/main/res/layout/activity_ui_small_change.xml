@@ -17,7 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="extends JzvdStd and delete some parent views" />
+                android:text="@string/extend_jzvdstd_delete_view" />
 
             <cn.jzvd.demo.CustomJzvd.MyJzvdStdNoTitleNoClarity
                 android:id="@+id/jz_notitle"
@@ -28,14 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="Standard ui but delete some parent views " />
+                android:text="@string/jzvdstd_delete_view_add_lock" />
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:text="lock screen" />
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdLockScreen
                 android:id="@+id/lock_screen"
@@ -46,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="Standard ui with share button, visible after fullscreen" />
+                android:text="@string/add_share_btn_after_fullscreen" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdShowShareButtonAfterFullscreen
@@ -60,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Standard ui show title after fullscreen" />
+                android:text="@string/show_title_when_fullscreen" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdShowTitleAfterFullscreen
@@ -74,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Standard ui show textureview after auto complete" />
+                android:text="@string/show_textureview_after_complete" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdShowTextureViewAfterAutoComplete
@@ -88,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Standard ui auto complete after fullscreen" />
+                android:text="@string/auto_complete_after_fullscreen" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
@@ -102,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Standard ui 1:1" />
+                android:text="@string/play_with_1_1" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
@@ -116,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Standard ui 16:9" />
+                android:text="@string/play_with_16_9" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
@@ -130,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Volume after fullscreen" />
+                android:text="@string/volume_after_fullscreen" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdVolumeAfterFullscreen
@@ -143,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="Standard ui with volume button" />
+                android:text="@string/add_volume_btn" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdVolume
@@ -157,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Play Mp3" />
+                android:text="@string/play_mp3" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdMp3
@@ -171,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
                 android:layout_marginTop="18dp"
-                android:text="Play Speed" />
+                android:text="@string/play_speed" />
 
 
             <cn.jzvd.demo.CustomJzvd.JzvdStdSpeed

@@ -24,7 +24,7 @@ public class DirectPlayActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(false);
-        getSupportActionBar().setTitle("DirectPlay");
+        getSupportActionBar().setTitle(getString(R.string.direct_play));
         setContentView(R.layout.activity_directly_play);
     }
 
