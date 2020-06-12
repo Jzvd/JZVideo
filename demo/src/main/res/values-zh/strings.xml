@@ -25,7 +25,7 @@
     <string name="add_volume_btn">全屏状态添加静音键</string>
     <string name="play_mp3">播放MP3演示</string>
     <string name="play_speed">视频倍速播放演示</string>
-    <string name="agplayer">基于饺子自定义的AG播放器</string>
+    <string name="agplayer">高度自定义的AGVideo</string>
     <string name="rotation_0">旋转0度</string>
     <string name="rotation_90">旋转90度</string>
     <string name="rotation_180">旋转180度</string>
