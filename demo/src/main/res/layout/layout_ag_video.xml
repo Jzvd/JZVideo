@@ -48,7 +48,7 @@
                 android:layout_marginLeft="10dp"
                 android:padding="5dp"
                 android:src="@mipmap/ag_btn_movie_play_bottom" />
-            <cn.jzvd.demo.api.BigUIChangeAG.view.PlayAndPauseView
+            <cn.jzvd.demo.CustomFragment.AGVideo.view.PlayAndPauseView
                 android:id="@+id/playAndPauseView"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
@@ -359,7 +359,7 @@
         android:indeterminateDrawable="@drawable/jz_loading"
         android:visibility="gone" />
 
-    <cn.jzvd.demo.api.BigUIChangeAG.view.LoadingView
+    <cn.jzvd.demo.CustomFragment.AGVideo.view.LoadingView
         android:id="@+id/player_newLoading"
         android:layout_width="50dp"
         android:layout_height="50dp"

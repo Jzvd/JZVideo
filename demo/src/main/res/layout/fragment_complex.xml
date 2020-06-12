@@ -13,6 +13,14 @@
         android:text="@string/listview" />
 
     <Button
+        android:id="@+id/get_gif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:text="@string/get_gif" />
+
+    <Button
         android:id="@+id/tiny_window"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,11 +28,4 @@
         android:layout_marginTop="8dp"
         android:text="@string/tiny_window" />
 
-    <Button
-        android:id="@+id/get_gif"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="8dp"
-        android:text="@string/get_gif" />
 </LinearLayout>

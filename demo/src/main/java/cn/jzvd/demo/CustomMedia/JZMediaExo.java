@@ -38,7 +38,7 @@ import com.google.android.exoplayer2.video.VideoListener;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.api.BigUIChangeAG.AGVideo;
+import cn.jzvd.demo.CustomFragment.AGVideo.AGVideo;
 import cn.jzvd.demo.R;
 
 /**

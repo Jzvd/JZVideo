@@ -18,10 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.fragment.CustomFragment;
-import cn.jzvd.demo.fragment.ComplexFragment;
-import cn.jzvd.demo.fragment.BaseFragment;
-import cn.jzvd.demo.fragment.OtherFragment;
 
 import static cn.jzvd.Jzvd.backPress;
 
@@ -56,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         fragments = new ArrayList<>(4);
         items = new SparseIntArray(4);
 
-        BaseFragment basicsFragment = new BaseFragment();
-        CustomFragment customFragment = new CustomFragment();
-        ComplexFragment complexFragment = new ComplexFragment();
-        OtherFragment otherFragment = new OtherFragment();
+        FragmentBase basicsFragment = new FragmentBase();
+        FragmentCustom customFragment = new FragmentCustom();
+        FragmentComplex complexFragment = new FragmentComplex();
+        FragmentOther otherFragment = new FragmentOther();
 
         fragments.add(basicsFragment);
         fragments.add(customFragment);
