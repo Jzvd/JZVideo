@@ -131,6 +131,13 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected long mSeekTimePosition;
     protected Context jzvdContext;
     protected long mCurrentPosition;
+    /**
+     * 如果不在列表中可以不加block
+     */
+    protected ViewGroup.LayoutParams blockLayoutParams;
+    protected int blockIndex;
+    protected int blockWidth;
+    protected int blockHeight;
 
     public Jzvd(Context context) {
         super(context);
@@ -161,9 +168,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                 CURRENT_JZVD.startVideo();
             }
             if (CURRENT_JZVD.screen == Jzvd.SCREEN_FULLSCREEN) {
-    			JZUtils.hideStatusBar(CURRENT_JZVD.jzvdContext);
-    			JZUtils.hideSystemUI(CURRENT_JZVD.jzvdContext);
-			}
+                JZUtils.hideStatusBar(CURRENT_JZVD.jzvdContext);
+                JZUtils.hideSystemUI(CURRENT_JZVD.jzvdContext);
+            }
         }
     }
 
@@ -959,14 +966,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             e.printStackTrace();
         }
     }
-
-    /**
-     * 如果不在列表中可以不加block
-     */
-    protected ViewGroup.LayoutParams blockLayoutParams;
-    protected int blockIndex;
-    protected int blockWidth;
-    protected int blockHeight;
 
     /**
      * 如果全屏或者返回全屏的视图有问题，复写这两个函数gotoScreenNormal(),根据自己布局的情况重新布局。

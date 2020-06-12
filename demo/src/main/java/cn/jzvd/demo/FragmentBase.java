@@ -20,15 +20,12 @@ import cn.jzvd.JZDataSource;
 import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
-import cn.jzvd.demo.ApplicationDemo;
 import cn.jzvd.demo.BasicFragment.CustomMediaActivity;
 import cn.jzvd.demo.BasicFragment.ExtendsNormalActivity;
 import cn.jzvd.demo.BasicFragment.OrientationActivity;
 import cn.jzvd.demo.BasicFragment.PreloadingActivity;
 import cn.jzvd.demo.BasicFragment.RotationVideoSizeActivity;
 import cn.jzvd.demo.BasicFragment.ScreenRotateActivity;
-import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 import static android.content.Context.SENSOR_SERVICE;
 

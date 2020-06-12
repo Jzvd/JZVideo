@@ -42,18 +42,19 @@
 
             <ImageView
                 android:id="@+id/start_bottom"
-                android:visibility="gone"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="10dp"
                 android:padding="5dp"
-                android:src="@mipmap/ag_btn_movie_play_bottom" />
+                android:src="@mipmap/ag_btn_movie_play_bottom"
+                android:visibility="gone" />
+
             <cn.jzvd.demo.CustomFragment.AGVideo.view.PlayAndPauseView
                 android:id="@+id/playAndPauseView"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:padding="5dp"/>
+                android:padding="5dp" />
 
             <ImageView
                 android:id="@+id/next_bottom"

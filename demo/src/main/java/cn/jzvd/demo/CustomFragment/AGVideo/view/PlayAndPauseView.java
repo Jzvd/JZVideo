@@ -15,8 +15,8 @@ import android.view.View;
 
 import androidx.annotation.RequiresApi;
 
-import cn.jzvd.demo.R;
 import cn.jzvd.demo.CustomFragment.AGVideo.Utils;
+import cn.jzvd.demo.R;
 
 
 /**
@@ -201,8 +201,18 @@ public class PlayAndPauseView extends View {
         return leftZoomValue;
     }
 
+    public void setLeftZoomValue(float paramFloat) {
+        leftZoomValue = paramFloat;
+        postInvalidate();
+    }
+
     public float getRightZoomValue() {
         return rightZoomValue;
+    }
+
+    public void setRightZoomValue(float paramFloat) {
+        rightZoomValue = paramFloat;
+        postInvalidate();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -263,16 +273,6 @@ public class PlayAndPauseView extends View {
             }
             canvas.drawPath(mRightDstPath, linePaint);
         }
-    }
-
-    public void setLeftZoomValue(float paramFloat) {
-        leftZoomValue = paramFloat;
-        postInvalidate();
-    }
-
-    public void setRightZoomValue(float paramFloat) {
-        rightZoomValue = paramFloat;
-        postInvalidate();
     }
 }
 

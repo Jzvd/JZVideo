@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.utils.AutoPlayUtils;
 import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
-import cn.jzvd.demo.utils.ViewAttr;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.Urls;
+import cn.jzvd.demo.utils.AutoPlayUtils;
+import cn.jzvd.demo.utils.ViewAttr;
 
 public class SmoothRecyclerViewAdapter extends RecyclerView.Adapter<SmoothRecyclerViewAdapter.MyViewHolder> {
 

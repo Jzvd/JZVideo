@@ -17,10 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
 import cn.jzvd.demo.ComplexFragment.ListView.adapter.CommentAdapter;
-import cn.jzvd.demo.utils.ViewAttr;
+import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.utils.ViewAttr;
 import cn.jzvd.demo.utils.ViewMoveHelper;
 
 /**

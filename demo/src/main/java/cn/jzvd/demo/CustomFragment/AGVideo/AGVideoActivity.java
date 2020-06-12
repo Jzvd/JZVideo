@@ -17,11 +17,11 @@ import java.util.List;
 import cn.jzvd.JZDataSource;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
+import cn.jzvd.demo.CustomFragment.AGVideo.popup.VideoEpisodePopup;
+import cn.jzvd.demo.CustomFragment.AGVideo.popup.VideoSpeedPopup;
 import cn.jzvd.demo.CustomMedia.JZMediaExo;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.Urls;
-import cn.jzvd.demo.CustomFragment.AGVideo.popup.VideoEpisodePopup;
-import cn.jzvd.demo.CustomFragment.AGVideo.popup.VideoSpeedPopup;
 import cn.jzvd.demo.utils.ScreenRotateUtils;
 
 public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVideoListener, ScreenRotateUtils.OrientationChangeListener
@@ -314,8 +314,8 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
 
     private void initVideoData() {
         episodeList = new ArrayList<>();
-        for (int i =0 ;i< Urls.ssVideos.length;i++){
-            episodeList.add(new AGEpsodeEntity(Urls.ssVideos[i], "三生三世枕上书 第"+(i+1)+"集"));
+        for (int i = 0; i < Urls.ssVideos.length; i++) {
+            episodeList.add(new AGEpsodeEntity(Urls.ssVideos[i], "三生三世枕上书 第" + (i + 1) + "集"));
         }
     }
 

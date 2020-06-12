@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.ComplexFragment.ListView.adapter.SmoothRecyclerViewAdapter;
+import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.AutoPlayUtils;
 import cn.jzvd.demo.utils.ViewAttr;
-import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.ViewMoveHelper;
 
 /**

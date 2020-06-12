@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="app_name" >JZVD</string>
+    <string name="app_name">JZVD</string>
     <string name="base">base</string>
     <string name="custom">custom</string>
     <string name="complex">complex</string>

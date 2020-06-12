@@ -6,7 +6,6 @@ import android.content.Context;
 import com.danikula.videocache.HttpProxyCacheServer;
 
 /**
- *
  * 能不能干掉这个类，非常想干掉这个类，可以不可以移到MainActivity
  * Created by Nathen
  * On 2015/12/01 11:29

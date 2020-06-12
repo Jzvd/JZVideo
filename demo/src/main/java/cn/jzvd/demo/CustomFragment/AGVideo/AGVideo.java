@@ -28,9 +28,9 @@ import cn.jzvd.JZDataSource;
 import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
-import cn.jzvd.demo.R;
 import cn.jzvd.demo.CustomFragment.AGVideo.view.LoadingView;
 import cn.jzvd.demo.CustomFragment.AGVideo.view.PlayAndPauseView;
+import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.NetworkUtils;
 import cn.jzvd.demo.utils.StatusBarUtil;
 

@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import cn.jzvd.demo.ComplexFragment.ListView.AutoPlayListViewActivity;
 import cn.jzvd.demo.ComplexFragment.ListView.ListViewFragmentViewPagerActivity;
 import cn.jzvd.demo.ComplexFragment.ListView.ListViewMultiHolderActivity;
+import cn.jzvd.demo.ComplexFragment.ListView.ListViewToDetailActivity;
 import cn.jzvd.demo.ComplexFragment.ListView.NormalListViewActivity;
 import cn.jzvd.demo.ComplexFragment.ListView.RecyclerViewActivity;
-import cn.jzvd.demo.ComplexFragment.ListView.ListViewToDetailActivity;
 import cn.jzvd.demo.ComplexFragment.ListView.tiktok.ActivityTikTok;
 import cn.jzvd.demo.R;
 

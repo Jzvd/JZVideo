@@ -17,16 +17,27 @@ import androidx.fragment.app.Fragment;
 import cn.jzvd.demo.OtherFragment.DirectPlayActivity;
 import cn.jzvd.demo.OtherFragment.LocalVideoActivity;
 import cn.jzvd.demo.OtherFragment.WebViewActivity;
-import cn.jzvd.demo.R;
 
 /**
  * Created by pengan.li on 2020/5/8.
  */
 public class FragmentOther extends Fragment implements View.OnClickListener {
 
+    TextView versionTextView;
     private Button mDirectPlay, mWebView, mLocalVideo;
 
-    TextView versionTextView;
+    public static String getAppVersionName(Context context) {
+        String appVersionName = "";
+        try {
+            PackageInfo packageInfo = context.getApplicationContext()
+                    .getPackageManager()
+                    .getPackageInfo(context.getPackageName(), 0);
+            appVersionName = packageInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+
+        }
+        return appVersionName;
+    }
 
     @Nullable
     @Override
@@ -43,7 +54,6 @@ public class FragmentOther extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -66,18 +76,5 @@ public class FragmentOther extends Fragment implements View.OnClickListener {
                 break;
         }
 
-    }
-
-    public static String getAppVersionName(Context context) {
-        String appVersionName = "";
-        try {
-            PackageInfo packageInfo = context.getApplicationContext()
-                    .getPackageManager()
-                    .getPackageInfo(context.getPackageName(), 0);
-            appVersionName = packageInfo.versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-
-        }
-        return appVersionName;
     }
 }

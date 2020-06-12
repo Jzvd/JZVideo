@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.ComplexFragment.ListView.adapter.RecyclerViewAdapter;
-import cn.jzvd.demo.utils.AutoPlayUtils;
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.utils.AutoPlayUtils;
 
 
 public class AutoPlayListViewActivity extends AppCompatActivity {

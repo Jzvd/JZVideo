@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
+import cn.jzvd.demo.CustomFragment.AGVideo.AGVideoActivity;
 import cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdLockScreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdMp3;
@@ -23,7 +24,6 @@ import cn.jzvd.demo.CustomJzvd.JzvdStdShowTitleAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdSpeed;
 import cn.jzvd.demo.CustomJzvd.JzvdStdVolume;
 import cn.jzvd.demo.CustomJzvd.JzvdStdVolumeAfterFullscreen;
-import cn.jzvd.demo.CustomFragment.AGVideo.AGVideoActivity;
 
 /**
  * Created by pengan.li on 2020/5/8.

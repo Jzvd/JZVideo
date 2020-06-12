@@ -61,13 +61,13 @@ public class GifCreateHelper {
     /**
      * @param delay        每一帧之间的延时
      * @param inSampleSize 采样率，最小值1 即：每隔inSampleSize个像素点，取一个读入到内存。越大处理越快
-     * @param width   gif宽
-     * @param height   gif高
+     * @param width        gif宽
+     * @param height       gif高
      * @param gifPeriod    gif时长，毫秒
      * @param gifPath      gif文件的存储路径
      */
     public GifCreateHelper(JzvdStd jzvdStd, JzGifListener jzGifListener,
-                           int delay, int inSampleSize, int width,int height, int gifPeriod, String gifPath) {
+                           int delay, int inSampleSize, int width, int height, int gifPeriod, String gifPath) {
         mPlayer = jzvdStd;
         mJzGifListener = jzGifListener;
         mDelay = delay;
@@ -117,7 +117,7 @@ public class GifCreateHelper {
                 @Override
                 public void run() {
                     //先缓存到本地，全放入内存占用空间太大
-                    String path = saveBitmap(mmr.getScaledFrameAtTime((bitmapFromTime + index * mDelay)*1000,FFmpegMediaMetadataRetriever.OPTION_CLOSEST,gifWidth,gifHeight),
+                    String path = saveBitmap(mmr.getScaledFrameAtTime((bitmapFromTime + index * mDelay) * 1000, FFmpegMediaMetadataRetriever.OPTION_CLOSEST, gifWidth, gifHeight),
                             cacheImageDir + "/" + System.currentTimeMillis() + "index-" + index + ".png");
                     boolean isCurrentSuccess = true;
                     if (!TextUtils.isEmpty(path)) {
@@ -128,7 +128,7 @@ public class GifCreateHelper {
                     }
 
                     checkCompleteAndDoNext(picList, isCurrentSuccess);
-                    if(isDownloadComplete){
+                    if (isDownloadComplete) {
                         mmr.release();
                     }
                 }
@@ -136,7 +136,7 @@ public class GifCreateHelper {
         }
     }
 
-    private FFmpegMediaMetadataRetriever prepareFFmpegMediaMetadataRetriever(String vedioUrl){
+    private FFmpegMediaMetadataRetriever prepareFFmpegMediaMetadataRetriever(String vedioUrl) {
         FFmpegMediaMetadataRetriever mmr = new FFmpegMediaMetadataRetriever();
         mmr.setDataSource(vedioUrl);
         mmr.extractMetadata(FFmpegMediaMetadataRetriever.METADATA_KEY_ALBUM);
@@ -215,7 +215,7 @@ public class GifCreateHelper {
             fos.close();
         } catch (Exception e) {
             return null;
-        }finally {
+        } finally {
             bitmap.recycle();
         }
         return path;
