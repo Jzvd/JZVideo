@@ -3,8 +3,14 @@ package cn.jzvd.demo.fragment;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
@@ -33,7 +39,7 @@ import static android.content.Context.SENSOR_SERVICE;
  * Created by pengan.li on 2020/5/8.
  * 展示饺子的一些自定义用法
  */
-public class CustomFragment extends BaseFragment implements View.OnClickListener {
+public class CustomFragment extends Fragment implements View.OnClickListener {
 
     private JzvdStd mJzvdStd;
     private Button mSmallChange, mBigChange, mOrientation, mExtendsNormalActivity,
@@ -41,9 +47,10 @@ public class CustomFragment extends BaseFragment implements View.OnClickListener
     private Jzvd.JZAutoFullscreenListener mSensorEventListener;
     private SensorManager mSensorManager;
 
+    @Nullable
     @Override
-    protected View initView() {
-        View view = View.inflate(mContext, R.layout.fragment_api, null);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = View.inflate(getContext(), R.layout.fragment_api, null);
         mJzvdStd = view.findViewById(R.id.jz_video);
         mSmallChange = view.findViewById(R.id.small_change);
         mBigChange = view.findViewById(R.id.big_change);
@@ -65,17 +72,18 @@ public class CustomFragment extends BaseFragment implements View.OnClickListener
         mScreenRotate.setOnClickListener(this);
         mGetGif.setOnClickListener(this);
 
-        mSensorManager = (SensorManager) mContext.getSystemService(SENSOR_SERVICE);
+        mSensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
         mSensorEventListener = new Jzvd.JZAutoFullscreenListener();
 
         return view;
     }
 
+
     @Override
-    protected void initData() {
-        super.initData();
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(mContext).getProxyUrl(Urls.clarities[0]);
+        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(Urls.clarities[0]);
         map.put("高清", proxyUrl);
         map.put("标清", Urls.clarities[1]);
         map.put("普清", Urls.clarities[2]);
@@ -87,6 +95,7 @@ public class CustomFragment extends BaseFragment implements View.OnClickListener
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this).load(Urls.videoPosterList[0]).into(mJzvdStd.posterImageView);
     }
+
 
     @Override
     public void onResume() {
@@ -101,7 +110,7 @@ public class CustomFragment extends BaseFragment implements View.OnClickListener
     public void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(mSensorEventListener);
-        JZUtils.clearSavedProgress(mContext, null);
+        JZUtils.clearSavedProgress(getContext(), null);
         //home back
         Jzvd.goOnPlayOnPause();
     }
@@ -110,31 +119,31 @@ public class CustomFragment extends BaseFragment implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.small_change:
-                startActivity(new Intent(mContext, SmallChangeUiActivity.class));
+                startActivity(new Intent(getContext(), SmallChangeUiActivity.class));
                 break;
             case R.id.big_change:
-                startActivity(new Intent(mContext, BigChangeUiActivity.class));
+                startActivity(new Intent(getContext(), BigChangeUiActivity.class));
                 break;
             case R.id.orientation:
-                startActivity(new Intent(mContext, OrientationActivity.class));
+                startActivity(new Intent(getContext(), OrientationActivity.class));
                 break;
             case R.id.extends_normal_activity:
-                startActivity(new Intent(mContext, ExtendsNormalActivity.class));
+                startActivity(new Intent(getContext(), ExtendsNormalActivity.class));
                 break;
             case R.id.rotation_and_videosize:
-                startActivity(new Intent(mContext, RotationVideoSizeActivity.class));
+                startActivity(new Intent(getContext(), RotationVideoSizeActivity.class));
                 break;
             case R.id.custom_mediaplayer:
-                startActivity(new Intent(mContext, CustomMediaActivity.class));
+                startActivity(new Intent(getContext(), CustomMediaActivity.class));
                 break;
             case R.id.preloading:
-                startActivity(new Intent(mContext, PreloadingActivity.class));
+                startActivity(new Intent(getContext(), PreloadingActivity.class));
                 break;
             case R.id.screen_rotate:
-                startActivity(new Intent(mContext, ScreenRotateActivity.class));
+                startActivity(new Intent(getContext(), ScreenRotateActivity.class));
                 break;
             case R.id.get_gif:
-                startActivity(new Intent(mContext, GetGifActivity.class));
+                startActivity(new Intent(getContext(), GetGifActivity.class));
                 break;
         }
     }

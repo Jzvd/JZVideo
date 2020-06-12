@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.fragment.BaseFragment;
 import cn.jzvd.demo.fragment.BasicFragment;
 import cn.jzvd.demo.fragment.ComplexFragment;
 import cn.jzvd.demo.fragment.CustomFragment;
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationViewEx bottomNavigationViewEx;
 
     private SparseIntArray items;// used for change ViewPager selected item
-    private List<BaseFragment> fragments;// used for ViewPager adapter
+    private List<Fragment> fragments;// used for ViewPager adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static class VpAdapter extends FragmentPagerAdapter {
-        private List<BaseFragment> data;
+        private List<Fragment> data;
 
-        public VpAdapter(FragmentManager fm, List<BaseFragment> data) {
+        public VpAdapter(FragmentManager fm, List<Fragment> data) {
             super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             this.data = data;
         }
