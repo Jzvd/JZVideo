@@ -20,22 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
-            <Button
-                android:id="@+id/small_change"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/small_change" />
-
-            <Button
-                android:id="@+id/big_change"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="@string/big_ui_change" />
 
             <Button
                 android:id="@+id/orientation"
@@ -84,14 +68,6 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="@string/screen_rotate" />
-
-            <Button
-                android:id="@+id/get_gif"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="@string/get_gif" />
 
         </LinearLayout>
     </ScrollView>

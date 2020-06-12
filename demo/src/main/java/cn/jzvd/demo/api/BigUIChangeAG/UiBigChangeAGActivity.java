@@ -39,7 +39,7 @@ public class UiBigChangeAGActivity extends AppCompatActivity implements AGVideo.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_ui_big_change_ag);
+        setContentView(R.layout.activity_agvideo);
         initVideoData();
         initView();
         ScreenRotateUtils.getInstance(this.getApplicationContext()).setOrientationChangeListener(this);

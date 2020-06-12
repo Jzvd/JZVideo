@@ -13,14 +13,14 @@ import androidx.fragment.app.Fragment;
 import cn.jzvd.demo.ListViewActivity;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.TinyWindow.TinyWindowActivity;
-import cn.jzvd.demo.api.BigUIChangeAG.UiBigChangeAGActivity;
+import cn.jzvd.demo.api.GetGifActivity;
 
 /**
  * Created by pengan.li on 2020/5/8.
  */
-public class ComplexFragment extends Fragment implements View.OnClickListener{
+public class ComplexFragment extends Fragment implements View.OnClickListener {
 
-    private Button mListView,mTinyWindow,mCustomAgVideo;
+    private Button mListView, mTinyWindow, mGetGif;
 
     @Nullable
     @Override
@@ -28,13 +28,13 @@ public class ComplexFragment extends Fragment implements View.OnClickListener{
         View view = View.inflate(getContext(), R.layout.fragment_complex, null);
         mListView = view.findViewById(R.id.list_view);
         mTinyWindow = view.findViewById(R.id.tiny_window);
-        mCustomAgVideo = view.findViewById(R.id.custom_ag_video);
+        mGetGif = view.findViewById(R.id.get_gif);
+
+        mGetGif.setOnClickListener(this);
         mListView.setOnClickListener(this);
         mTinyWindow.setOnClickListener(this);
-        mCustomAgVideo.setOnClickListener(this);
         return view;
     }
-
 
     @Override
     public void onClick(View view) {
@@ -45,8 +45,8 @@ public class ComplexFragment extends Fragment implements View.OnClickListener{
             case R.id.tiny_window:
                 startActivity(new Intent(getContext(), TinyWindowActivity.class));
                 break;
-            case R.id.custom_ag_video:
-                startActivity(new Intent(getContext(), UiBigChangeAGActivity.class));
+            case R.id.get_gif:
+                startActivity(new Intent(getContext(), GetGifActivity.class));
                 break;
         }
 

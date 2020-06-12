@@ -4,7 +4,6 @@
     <string name="custom">custom</string>
     <string name="complex">complex</string>
     <string name="other">other</string>
-    <string name="small_change">Small change Ui</string>
     <string name="big_ui_change">Big change Ui</string>
     <string name="orientation">Orientation</string>
     <string name="extend_activity">Extends Normal Activity</string>
