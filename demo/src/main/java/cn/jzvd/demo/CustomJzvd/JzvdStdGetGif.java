@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.io.File;
 
 import cn.jzvd.JzvdStd;
-import cn.jzvd.demo.ComplexFragment.GifCreateHelper;
+import cn.jzvd.demo.Tab_3_Complex.GifCreateHelper;
 import cn.jzvd.demo.R;
 
 /**

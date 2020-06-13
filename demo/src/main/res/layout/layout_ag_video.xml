@@ -49,7 +49,7 @@
                 android:src="@mipmap/ag_btn_movie_play_bottom"
                 android:visibility="gone" />
 
-            <cn.jzvd.demo.CustomFragment.AGVideo.view.PlayAndPauseView
+            <cn.jzvd.demo.Tab_2_Custom.AGVideo.view.PlayAndPauseView
                 android:id="@+id/playAndPauseView"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
@@ -360,7 +360,7 @@
         android:indeterminateDrawable="@drawable/jz_loading"
         android:visibility="gone" />
 
-    <cn.jzvd.demo.CustomFragment.AGVideo.view.LoadingView
+    <cn.jzvd.demo.Tab_2_Custom.AGVideo.view.LoadingView
         android:id="@+id/player_newLoading"
         android:layout_width="50dp"
         android:layout_height="50dp"

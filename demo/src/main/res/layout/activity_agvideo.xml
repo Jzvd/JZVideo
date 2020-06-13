@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <cn.jzvd.demo.CustomFragment.AGVideo.AGVideo
+    <cn.jzvd.demo.Tab_2_Custom.AGVideo.AGVideo
         android:id="@+id/ag_player"
         android:layout_width="match_parent"
         android:layout_height="200dp" />

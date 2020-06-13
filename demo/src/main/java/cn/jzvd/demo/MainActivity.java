@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         fragments = new ArrayList<>(4);
         items = new SparseIntArray(4);
 
-        FragmentBase basicsFragment = new FragmentBase();
-        FragmentCustom customFragment = new FragmentCustom();
-        FragmentComplex complexFragment = new FragmentComplex();
-        FragmentOther otherFragment = new FragmentOther();
+        Fragment_1_Base basicsFragment = new Fragment_1_Base();
+        Fragment_2_Custom customFragment = new Fragment_2_Custom();
+        Fragment_3_Complex complexFragment = new Fragment_3_Complex();
+        Fragment_4_Other otherFragment = new Fragment_4_Other();
 
         fragments.add(basicsFragment);
         fragments.add(customFragment);
