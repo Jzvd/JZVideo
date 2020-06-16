@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         Fragment_1_Base basicsFragment = new Fragment_1_Base();
         Fragment_2_Custom customFragment = new Fragment_2_Custom();
-        Fragment_3_Complex complexFragment = new Fragment_3_Complex();
-        Fragment_4_Other otherFragment = new Fragment_4_Other();
+        Fragment_3_List complexFragment = new Fragment_3_List();
+        Fragment_4_More otherFragment = new Fragment_4_More();
 
         fragments.add(basicsFragment);
         fragments.add(customFragment);

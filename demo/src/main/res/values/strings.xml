@@ -2,8 +2,8 @@
     <string name="app_name">JZVD</string>
     <string name="base">base</string>
     <string name="custom">custom</string>
-    <string name="complex">complex</string>
-    <string name="other">other</string>
+    <string name="complex">list</string>
+    <string name="other">more</string>
     <string name="big_ui_change">Big change Ui</string>
     <string name="orientation">Orientation</string>
     <string name="extend_activity">Extends Normal Activity</string>

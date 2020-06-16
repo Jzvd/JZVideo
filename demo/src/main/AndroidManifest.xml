@@ -25,35 +25,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Tab_4_Other.DirectPlayActivity"
+            android:name=".Tab_4_More.DirectPlayActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListViewActivity"
+            android:name=".Tab_3_List.ListView.NormalListViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListView.NormalListViewActivity"
+            android:name=".Tab_3_List.ListView.ListViewFragmentViewPagerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListView.ListViewFragmentViewPagerActivity"
+            android:name=".Tab_3_List.ListView.ListViewMultiHolderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListView.ListViewMultiHolderActivity"
+            android:name=".Tab_3_List.TinyWindow.TinyWindowRecycleViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.TinyWindow.TinyWindowRecycleViewActivity"
+            android:name=".Tab_3_List.TinyWindow.TinyWindowActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.TinyWindow.TinyWindowActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Tab_3_Complex.TinyWindow.TinyWindowRecycleViewMultiHolderActivity"
+            android:name=".Tab_3_List.TinyWindow.TinyWindowRecycleViewMultiHolderActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
@@ -65,11 +61,11 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListView.RecyclerViewActivity"
+            android:name=".Tab_3_List.ListView.RecyclerViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_4_Other.WebViewActivity"
+            android:name=".Tab_4_More.WebViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
@@ -85,25 +81,25 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListView.tiktok.ActivityTikTok"
+            android:name=".Tab_3_List.ListView.tiktok.ActivityTikTok"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".Tab_3_Complex.ListView.ListViewToDetailActivity"
+            android:name=".Tab_3_List.ListView.ListViewToDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.ListView.DetailListViewActivity"
+            android:name=".Tab_3_List.ListView.DetailListViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentWindow" />
         <activity
-            android:name=".Tab_3_Complex.ListView.AutoPlayListViewActivity"
+            android:name=".Tab_3_List.ListView.AutoPlayListViewActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_4_Other.LocalVideoActivity"
+            android:name=".Tab_4_More.LocalVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
@@ -115,7 +111,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Tab_3_Complex.GetGifActivity"
+            android:name=".Tab_3_List.GetGifActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>

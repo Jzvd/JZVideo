@@ -3,8 +3,8 @@
     <string name="app_name">饺子播放器</string>
     <string name="base">基础</string>
     <string name="custom">自定义</string>
-    <string name="complex">复杂</string>
-    <string name="other">其他</string>
+    <string name="complex">列表</string>
+    <string name="other">更多</string>
     <string name="big_ui_change">大改饺子播放器(自定义)</string>
     <string name="orientation">视频播放方向控制</string>
     <string name="extend_activity">继承Activity非AppCompatActivity</string>
