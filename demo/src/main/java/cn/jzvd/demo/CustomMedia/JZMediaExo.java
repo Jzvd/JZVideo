@@ -67,7 +67,7 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
         release();
         mMediaHandlerThread = new HandlerThread("JZVD");
         mMediaHandlerThread.start();
-        mMediaHandler = new Handler(mMediaHandlerThread.getLooper());//主线程还是非主线程，就在这里
+        mMediaHandler = new Handler(context.getMainLooper());//主线程还是非主线程，就在这里
         handler = new Handler();
         mMediaHandler.post(() -> {
             BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
