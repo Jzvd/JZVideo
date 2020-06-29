@@ -45,6 +45,7 @@ public class JZMediaSystem extends JZMediaInterface implements MediaPlayer.OnPre
                 mediaPlayer.setOnInfoListener(JZMediaSystem.this);
                 mediaPlayer.setOnVideoSizeChangedListener(JZMediaSystem.this);
                 Class<MediaPlayer> clazz = MediaPlayer.class;
+                //如果不用反射，没有url和header参数的setDataSource函数
                 Method method = clazz.getDeclaredMethod("setDataSource", String.class, Map.class);
                 method.invoke(mediaPlayer, jzvd.jzDataSource.getCurrentUrl().toString(), jzvd.jzDataSource.headerMap);
                 mediaPlayer.prepareAsync();

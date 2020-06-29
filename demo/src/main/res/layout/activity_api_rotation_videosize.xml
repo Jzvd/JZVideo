@@ -25,28 +25,28 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:onClick="clickRotationTo0"
-                android:text="Click to rotation to 0" />
+                android:text="@string/rotation_0" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="clickRotationTo90"
-                android:text="Click to rotation to 90" />
+                android:text="@string/rotation_90" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="clickRotationTo180"
-                android:text="Click to rotation to 180" />
+                android:text="@string/rotation_180" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="clickRotationTo270"
-                android:text="Click to rotation to 270" />
+                android:text="@string/rotation_270" />
 
             <Button
                 android:layout_width="match_parent"
@@ -54,28 +54,28 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="18dp"
                 android:onClick="clickVideoImageDiaplayAdapter"
-                android:text="Video Image Adapter(Default)" />
+                android:text="@string/video_img_default" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="clickVideoImageDisplayFillParent"
-                android:text="Video Image Fill Parent" />
+                android:text="@string/video_fill_parent" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="clickVideoImageDisplayFillCrop"
-                android:text="Video Image Fill Crop" />
+                android:text="@string/video_fill_crop" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:onClick="clickVideoImageDiaplayOriginal"
-                android:text="Video Image Original" />
+                android:text="@string/video_img_origin" />
 
         </LinearLayout>
     </ScrollView>

@@ -60,7 +60,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static boolean TOOL_BAR_EXIST = true;
     public static int FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
     public static int NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-    public static boolean SAVE_PROGRESS = false;
+    public static boolean SAVE_PROGRESS = true;
     public static boolean WIFI_TIP_DIALOG_SHOWED = false;
     public static int VIDEO_IMAGE_DISPLAY_TYPE = 0;
     public static long lastAutoFullscreenTime = 0;
@@ -131,6 +131,13 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     protected long mSeekTimePosition;
     protected Context jzvdContext;
     protected long mCurrentPosition;
+    /**
+     * 如果不在列表中可以不加block
+     */
+    protected ViewGroup.LayoutParams blockLayoutParams;
+    protected int blockIndex;
+    protected int blockWidth;
+    protected int blockHeight;
 
     public Jzvd(Context context) {
         super(context);
@@ -159,6 +166,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             } else if (CURRENT_JZVD.state == Jzvd.STATE_PREPARING) {
                 //准备状态暂停后的
                 CURRENT_JZVD.startVideo();
+            }
+            if (CURRENT_JZVD.screen == Jzvd.SCREEN_FULLSCREEN) {
+                JZUtils.hideStatusBar(CURRENT_JZVD.jzvdContext);
+                JZUtils.hideSystemUI(CURRENT_JZVD.jzvdContext);
             }
         }
     }
@@ -955,14 +966,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             e.printStackTrace();
         }
     }
-
-    /**
-     * 如果不在列表中可以不加block
-     */
-    protected ViewGroup.LayoutParams blockLayoutParams;
-    protected int blockIndex;
-    protected int blockWidth;
-    protected int blockHeight;
 
     /**
      * 如果全屏或者返回全屏的视图有问题，复写这两个函数gotoScreenNormal(),根据自己布局的情况重新布局。

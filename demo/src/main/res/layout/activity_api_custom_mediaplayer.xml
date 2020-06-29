@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
         android:onClick="clickChangeToIjkplayer"
-        android:text="Change to Ijkplayer" />
+        android:text="@string/change_ijk" />
 
     <Button
         android:id="@+id/change_to_system_mediaplayer"
@@ -26,7 +26,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
         android:onClick="clickChangeToSystem"
-        android:text="Change to android.media.MediaPlayer" />
+        android:text="@string/change_system_player" />
 
     <Button
         android:id="@+id/change_to_exo"
@@ -35,5 +35,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp"
         android:onClick="clickChangeToExo"
-        android:text="Change to Exoplayer" />
+        android:text="@string/change_exo" />
 </LinearLayout>

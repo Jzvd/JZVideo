@@ -13,8 +13,8 @@ import android.widget.Toast;
 import java.io.File;
 
 import cn.jzvd.JzvdStd;
+import cn.jzvd.demo.Tab_3_List.GifCreateHelper;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.api.GifCreateHelper;
 
 /**
  * Created by dl on 2020/4/6.
@@ -28,6 +28,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     ImageView convert_to_gif;
 
     String saveGifPath;
+    long current;
 
     public JzvdStdGetGif(Context context) {
         super(context);
@@ -37,7 +38,6 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         super(context, attrs);
     }
 
-    long current;
     @Override
     public void init(Context context) {
         super.init(context);
@@ -54,8 +54,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
             saveGifPath = Environment
                     .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaozi-" + System.currentTimeMillis() + ".gif";
-            mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 300,200, 5000, saveGifPath);
-            current=System.currentTimeMillis();
+            mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 300, 200, 5000, saveGifPath);
+            current = System.currentTimeMillis();
             mGifCreateHelper.startGif();//这个函数里用了jzvd的两个参数。
             try {
                 mediaInterface.pause();
@@ -73,7 +73,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
     @Override
     public void process(int curPosition, int total, String status) {
-        Log.e("Jzvd-gif", status + "  " + curPosition + "/" + total+"  time: "+(System.currentTimeMillis()-current));
+        Log.e("Jzvd-gif", status + "  " + curPosition + "/" + total + "  time: " + (System.currentTimeMillis() - current));
         post(() -> tv_hint.setText(curPosition + "/" + total + " " + status));
     }
 
@@ -132,4 +132,11 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         convert_to_gif.setVisibility(View.GONE);
     }
 
+    @Override
+    public void reset() {
+        posterImageView.setImageBitmap(textureView.getBitmap());
+        super.reset();
+        cancelDismissControlViewTimer();
+        unregisterWifiListener(getApplicationContext());
+    }
 }

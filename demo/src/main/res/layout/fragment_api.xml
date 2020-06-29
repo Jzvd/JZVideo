@@ -20,22 +20,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
 
-            <Button
-                android:id="@+id/small_change"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Small change Ui" />
-
-            <Button
-                android:id="@+id/big_change"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="Big change Ui" />
 
             <Button
                 android:id="@+id/orientation"
@@ -43,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Orientation" />
+                android:text="@string/orientation" />
 
             <Button
                 android:id="@+id/extends_normal_activity"
@@ -51,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Extends Normal Activity" />
+                android:text="@string/extend_activity" />
 
             <Button
                 android:id="@+id/rotation_and_videosize"
@@ -59,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Video And VideoSize" />
+                android:text="@string/video_cover_and_orientation" />
 
             <Button
                 android:id="@+id/custom_mediaplayer"
@@ -67,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Custom MediaPlayer" />
+                android:text="@string/custom_mediaplayer" />
 
             <Button
                 android:id="@+id/preloading"
@@ -75,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Preloading" />
+                android:text="@string/preloading" />
 
             <Button
                 android:id="@+id/screen_rotate"
@@ -83,15 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:text="Screen Rotate" />
-
-            <Button
-                android:id="@+id/get_gif"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="Get Gif" />
+                android:text="@string/screen_rotate" />
 
         </LinearLayout>
     </ScrollView>

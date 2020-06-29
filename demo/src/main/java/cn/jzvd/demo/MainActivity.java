@@ -18,11 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.fragment.BaseFragment;
-import cn.jzvd.demo.fragment.BasicFragment;
-import cn.jzvd.demo.fragment.ComplexFragment;
-import cn.jzvd.demo.fragment.CustomFragment;
-import cn.jzvd.demo.fragment.OtherFragment;
 
 import static cn.jzvd.Jzvd.backPress;
 
@@ -33,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationViewEx bottomNavigationViewEx;
 
     private SparseIntArray items;// used for change ViewPager selected item
-    private List<BaseFragment> fragments;// used for ViewPager adapter
+    private List<Fragment> fragments;// used for ViewPager adapter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         fragments = new ArrayList<>(4);
         items = new SparseIntArray(4);
 
-        BasicFragment basicsFragment = new BasicFragment();
-        CustomFragment customFragment = new CustomFragment();
-        ComplexFragment complexFragment = new ComplexFragment();
-        OtherFragment otherFragment = new OtherFragment();
+        Fragment_1_Base basicsFragment = new Fragment_1_Base();
+        Fragment_2_Custom customFragment = new Fragment_2_Custom();
+        Fragment_3_List complexFragment = new Fragment_3_List();
+        Fragment_4_More otherFragment = new Fragment_4_More();
 
         fragments.add(basicsFragment);
         fragments.add(customFragment);
@@ -74,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new VpAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(items.size());
     }
 
     private ViewPager.OnPageChangeListener pageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -114,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static class VpAdapter extends FragmentPagerAdapter {
-        private List<BaseFragment> data;
+        private List<Fragment> data;
 
-        public VpAdapter(FragmentManager fm, List<BaseFragment> data) {
-            super(fm);
+        public VpAdapter(FragmentManager fm, List<Fragment> data) {
+            super(fm,FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
             this.data = data;
         }
 
@@ -132,6 +128,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Jzvd.goOnPlayOnResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.goOnPlayOnPause();
+    }
 
     @Override
     public void onBackPressed() {

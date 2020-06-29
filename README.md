@@ -2,7 +2,7 @@
 --
 <p align="center">
 <a href="http://developer.android.com/index.html"><img src="https://img.shields.io/badge/platform-android-green.svg"></a>
-<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.4.1%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.4.1-green.svg"></a>
+<a href="http://search.maven.org/#artifactdetails%7Ccn.jzvd%7Cjiaozivideoplayer%7C7.4.2%7Caar"><img src="https://img.shields.io/badge/Maven%20Central-7.4.2-green.svg"></a>
 <a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/badge/license-MIT-green.svg"></a>
 <a href="https://android-arsenal.com/details/1/3269"><img src="https://img.shields.io/badge/Android%20Arsenal-jiaozivideoplayer-green.svg?style=true"></a>
 </p>
@@ -11,7 +11,7 @@
 
 ## 置顶消息：
 
-群主微信进饺子粉丝群，沟通重心从Q群转移到微信群。微信:lipanhelloworld备注JZVD，Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，QQ:1066666651，[Telegram](https://t.me/jiaozitoken)，[Weibo](http://weibo.com/2342820395/profile?topnav=1&wvr=6&is_all=1)，[公众号文章](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0)
+群主微信进饺子粉丝群，沟通重心从Q群转移到微信群。微信:lipangit备注JZVD，Q群:490442439, 2群:761899104, 验证信息:jzvd, 微信公众号:jzvdjzt，QQ:1066666651，[Telegram](https://t.me/jiaozitoken)，[Weibo](http://weibo.com/2342820395/profile?topnav=1&wvr=6&is_all=1)，[公众号文章](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0)
 
 
 
@@ -23,7 +23,7 @@
 
 ## 文档
 
-- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装[Demo jiaozivideoplayer-7.4.1.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.4.1/jiaozivideoplayer-7.4.1.apk)，仔细过一遍Demo
+- [文档 - API](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-API)，下载安装[Demo jiaozivideoplayer-7.4.2.apk](https://github.com/Jzvd/JiaoZiVideoPlayer/releases/download/v7.4.2/jiaozivideoplayer-7.4.2.apk)，仔细过一遍Demo
 - [文档 - 自定义Jzvd](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89Jzvd)，继承JzvdStd实现自己的播放器
 - [文档 - 自定义播放内核](https://github.com/Jzvd/JiaoZiVideoPlayer/wiki/%E6%96%87%E6%A1%A3-%E2%80%94-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%92%AD%E6%94%BE%E5%86%85%E6%A0%B8)，测试哪个播放内核适合自己的项目
 
@@ -37,7 +37,7 @@
 
 1.添加类库
 ```gradle
-implementation 'cn.jzvd:jiaozivideoplayer:7.4.1'
+implementation 'cn.jzvd:jiaozivideoplayer:7.4.2'
 ```
 
 2.添加布局

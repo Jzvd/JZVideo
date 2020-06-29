@@ -16,7 +16,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:onClick="clickTinyWindow"
-        android:text="Start Tiny Window" />
+        android:text="@string/start_tiny" />
 
     <Button
         android:id="@+id/auto_tiny_list_view_recycleview"
@@ -25,7 +25,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:onClick="clickAutoTinyListViewRecyclerView"
-        android:text="RecycleView TinyWindow" />
+        android:text="@string/recyclerview_tiny" />
 
     <Button
         android:id="@+id/auto_tiny_list_view_recycleview_multiholder"
@@ -34,7 +34,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:onClick="clickAutoTinyListViewRecyclerViewMultiHolder"
-        android:text="RecycleView MultiHolder TinyWindow" />
+        android:text="@string/recyclerview_tiny_multi" />
 
 
 </LinearLayout>
