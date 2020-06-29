@@ -10,9 +10,15 @@ import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 
+import java.util.LinkedHashMap;
+
+import cn.jzvd.JZDataSource;
 import cn.jzvd.Jzvd;
+import cn.jzvd.JzvdStd;
+import cn.jzvd.demo.ApplicationDemo;
 import cn.jzvd.demo.CustomJzvd.JzvdStdGetGif;
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.Urls;
 
 /**
  * @author dl
@@ -42,9 +48,25 @@ public class GetGifActivity extends AppCompatActivity {
         }
 
         jzvdStdGetGif = findViewById(R.id.jz_video);
-        String url = "http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4";
-        jzvdStdGetGif.setUp(url, "饺子会拼图");
-        Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(jzvdStdGetGif.posterImageView);
+
+        LinkedHashMap map = new LinkedHashMap();
+        String proxyUrl = ApplicationDemo.getProxy(getBaseContext()).getProxyUrl(Urls.clarities[0]);
+        map.put("高清", proxyUrl);
+        map.put("标清", Urls.clarities[1]);
+        map.put("普清", Urls.clarities[2]);
+        JZDataSource jzDataSource = new JZDataSource(map, "饺子会拼图");
+        jzDataSource.looping = true;
+        jzDataSource.currentUrlIndex = 2;
+        jzDataSource.headerMap.put("key", "value");//header
+        jzvdStdGetGif.setUp(jzDataSource
+                , JzvdStd.SCREEN_NORMAL);
+        Glide.with(this).load(Urls.videoPosterList[0]).into(jzvdStdGetGif.posterImageView);
+
+
+
+//        String url = "http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4";
+//        jzvdStdGetGif.setUp(url, "饺子会拼图");
+//        Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(jzvdStdGetGif.posterImageView);
     }
 
     @Override

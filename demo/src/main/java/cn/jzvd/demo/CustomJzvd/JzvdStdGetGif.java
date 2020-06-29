@@ -132,4 +132,11 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         convert_to_gif.setVisibility(View.GONE);
     }
 
+    @Override
+    public void reset() {
+        posterImageView.setImageBitmap(textureView.getBitmap());
+        super.reset();
+        cancelDismissControlViewTimer();
+        unregisterWifiListener(getApplicationContext());
+    }
 }
