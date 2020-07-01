@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="layout_bottom"/>
+    <item type="id" name="current"/>
+    <item type="id" name="bottom_seek_progress"/>
+    <item type="id" name="total"/>
+    <item type="id" name="clarity"/>
+    <item type="id" name="fullscreen"/>
+    <item type="id" name="back_tiny"/>
+    <item type="id" name="layout_top"/>
+    <item type="id" name="back"/>
+    <item type="id" name="title"/>
+    <item type="id" name="battery_time_layout"/>
+    <item type="id" name="battery_level"/>
+    <item type="id" name="video_current_time"/>
+    <item type="id" name="retry_layout"/>
+    <item type="id" name="retry_btn"/>
+    <item type="id" name="replay_text"/>
+    <item type="id" name="bottom_progress"/>
+    <item type="id" name="loading"/>
+    <item type="id" name="start_layout"/>
+    <item type="id" name="start"/>
+</resources>
