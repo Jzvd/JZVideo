@@ -12,15 +12,14 @@ import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.RenderersFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
@@ -70,21 +69,29 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
         mMediaHandler = new Handler(context.getMainLooper());//主线程还是非主线程，就在这里
         handler = new Handler();
         mMediaHandler.post(() -> {
-            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+
             TrackSelection.Factory videoTrackSelectionFactory =
-                    new AdaptiveTrackSelection.Factory(bandwidthMeter);
+                    new AdaptiveTrackSelection.Factory();
             TrackSelector trackSelector =
-                    new DefaultTrackSelector(videoTrackSelectionFactory);
+                    new DefaultTrackSelector(context,videoTrackSelectionFactory);
 
-            LoadControl loadControl = new DefaultLoadControl(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE),
-                    360000, 600000, 1000, 5000,
-                    C.LENGTH_UNSET,
-                    false);
+            LoadControl loadControl = new DefaultLoadControl.Builder()
+                    .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
+                    .setBufferDurationsMs( 360000, 600000, 1000, 5000)
+                    .setPrioritizeTimeOverSizeThresholds(false)
+                    .setTargetBufferBytes(C.LENGTH_UNSET)
+                    .createDefaultLoadControl();
 
+
+            BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter.Builder(context).build();
             // 2. Create the player
 
             RenderersFactory renderersFactory = new DefaultRenderersFactory(context);
-            simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(context, renderersFactory, trackSelector, loadControl);
+            simpleExoPlayer = new SimpleExoPlayer.Builder(context, renderersFactory)
+                    .setTrackSelector(trackSelector)
+                    .setLoadControl(loadControl)
+                    .setBandwidthMeter(bandwidthMeter)
+                    .build() ;
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
                     Util.getUserAgent(context, context.getResources().getString(R.string.app_name)));
@@ -93,9 +100,13 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
             MediaSource videoSource;
             if (currUrl.contains(".m3u8")) {
                 videoSource = new HlsMediaSource.Factory(dataSourceFactory)
-                        .createMediaSource(Uri.parse(currUrl), handler, null);
+                        .createMediaSource(Uri.parse(currUrl));
+                //addEventListener 这里只有两个参数都要传入值才可以成功设置
+                // 否者会被断言 Assertions.checkArgument(handler != null && eventListener != null);
+                // 并且报错  IllegalArgumentException()  所以不需要添加监听器时 注释掉
+                //      videoSource .addEventListener( handler, null);
             } else {
-                videoSource = new ExtractorMediaSource.Factory(dataSourceFactory)
+                videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory)
                         .createMediaSource(Uri.parse(currUrl));
             }
             simpleExoPlayer.addVideoListener(this);
