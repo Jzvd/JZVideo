@@ -12,6 +12,8 @@ import com.danikula.videocache.HttpProxyCacheServer;
  */
 public class ApplicationDemo extends Application {
 
+    public static Context APP_CONTEXT = null;
+
     private HttpProxyCacheServer proxy;
 
     public static HttpProxyCacheServer getProxy(Context context) {
@@ -22,6 +24,7 @@ public class ApplicationDemo extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        APP_CONTEXT = this;
 //        LeakCanary.install(this);
 
     }
