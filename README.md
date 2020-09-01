@@ -42,7 +42,7 @@ implementation 'cn.jzvd:jiaozivideoplayer:7.4.2'
 
 2.添加布局
 ```xml
-<cn.jzvd.demo.CustomJzvd.MyJzvdStd
+<cn.jzvd.JzvdStd
     android:id="@+id/jz_video"
     android:layout_width="match_parent"
     android:layout_height="200dp" />
