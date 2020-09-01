@@ -77,7 +77,7 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
         mMediaHandler = new Handler();
         handler = new Handler();
         mMediaHandler.post(() -> {
-            aliyunMediaPlayer = AliPlayerFactory.createAliPlayer(ApplicationDemo.APP_CONTEXT);
+            aliyunMediaPlayer = AliPlayerFactory.createAliPlayer(jzvd.getContext());
 
             //region 阿里云播放器基本设置 具体参考: {@link https://help.aliyun.com/document_detail/124714.html?spm=a2c4g.11186623.6.1083.2dbf2722XQM0Mr}
             //先获取配置
