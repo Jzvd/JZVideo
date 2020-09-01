@@ -37,6 +37,7 @@
     <string name="change_ijk">切换至Ijkplayer播放内核</string>
     <string name="change_system_player">切换至android.media.MediaPlayer播放内核</string>
     <string name="change_exo">切换至Exoplayer播放内核</string>
+    <string name="change_aliyun">切换至阿里云播放内核</string>
     <string name="start_preloading">开始预加载</string>
     <string name="start_play_after_preloading">预加载完播放</string>
     <string name="listview">在列表中使用</string>

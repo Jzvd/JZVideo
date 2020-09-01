@@ -36,6 +36,7 @@
     <string name="change_ijk">Change to Ijkplayer</string>
     <string name="change_system_player">Change to android.media.MediaPlayer</string>
     <string name="change_exo">Change to Exoplayer</string>
+    <string name="change_aliyun">Change to Aliyunplayer</string>
     <string name="start_preloading">start Preloading</string>
     <string name="start_play_after_preloading">start Video After Preloading</string>
     <string name="listview">ListView</string>
