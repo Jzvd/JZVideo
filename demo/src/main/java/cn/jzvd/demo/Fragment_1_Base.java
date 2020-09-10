@@ -70,17 +70,21 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(Urls.clarities[0]);
-        map.put("高清", proxyUrl);
-        map.put("标清", Urls.clarities[1]);
-        map.put("普清", Urls.clarities[2]);
-        JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
-        jzDataSource.looping = true;
-        jzDataSource.currentUrlIndex = 2;
-        jzDataSource.headerMap.put("key", "value");//header
-        mJzvdStd.setUp(jzDataSource
-                , JzvdStd.SCREEN_NORMAL);
+//        LinkedHashMap map = new LinkedHashMap();
+////        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(Urls.clarities[0]);
+//        map.put("高清", "https://gateway.ipfs.io/ipfs/QmWgxNKnmdUwebiNGWH8zT6Pihu4YVbXhpqcAv2ovYJeXb");
+////        https://gateway.ipfs.io/ipfs/QmQzVtDA1zX6nBAZvKqdDzDotbZyBe9ucYQVZFpRWuaiLR    你莫走
+//        map.put("标清", Urls.clarities[1]);
+//        map.put("普清", Urls.clarities[2]);
+//        JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
+//        jzDataSource.looping = true;
+//        jzDataSource.currentUrlIndex = 0;
+//        jzDataSource.headerMap.put("key", "value");//header
+
+//        onError 1 - -2147483648 [126182172]
+
+        mJzvdStd.setUp("https://gateway.ipfs.io/ipfs/QmQzVtDA1zX6nBAZvKqdDzDotbZyBe9ucYQVZFpRWuaiLR"
+                , "fdsafds", JzvdStd.SCREEN_NORMAL);
         Glide.with(this).load(Urls.videoPosterList[0]).into(mJzvdStd.posterImageView);
     }
 
