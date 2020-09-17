@@ -81,7 +81,6 @@ public class ViewPagerLayoutManager extends LinearLayoutManager {
         switch (state) {
             case RecyclerView.SCROLL_STATE_IDLE:
                 View viewIdle = mPagerSnapHelper.findSnapView(this);
-                viewIdle = null;
                 if (viewIdle != null) {
                     int positionIdle = getPosition(viewIdle);
                     if (mOnViewPagerListener != null && getChildCount() == 1) {
