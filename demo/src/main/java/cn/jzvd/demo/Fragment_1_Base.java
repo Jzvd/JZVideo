@@ -83,7 +83,7 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
 
 //        onError 1 - -2147483648 [126182172]
 
-        mJzvdStd.setUp("https://gateway.ipfs.io/ipfs/QmQzVtDA1zX6nBAZvKqdDzDotbZyBe9ucYQVZFpRWuaiLR"
+        mJzvdStd.setUp("https://gateway.ipfs.io/ipfs/QmWgxNKnmdUwebiNGWH8zT6Pihu4YVbXhpqcAv2ovYJeXb"
                 , "fdsafds", JzvdStd.SCREEN_NORMAL);
         Glide.with(this).load(Urls.videoPosterList[0]).into(mJzvdStd.posterImageView);
     }
