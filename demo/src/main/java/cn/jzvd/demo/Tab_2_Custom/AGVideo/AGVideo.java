@@ -897,6 +897,12 @@ public class AGVideo extends JzvdStd {
         }
     }
 
+    @Override
+    public void onStatePreparingPlaying() {
+        state = STATE_PREPARING_PLAYING;
+        showProgress();
+    }
+
     public void showProgress() {
         if (loadingView.getVisibility() != View.VISIBLE) {
             loadingView.setVisibility(VISIBLE);
