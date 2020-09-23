@@ -39,8 +39,8 @@ public class JzvdStdTikTok extends JzvdStd {
     @Override
     public void setAllControlsVisiblity(int topCon, int bottomCon, int startBtn, int loadingPro,
                                         int posterImg, int bottomPro, int retryLayout) {
-        topContainer.setVisibility(topCon);
-        bottomContainer.setVisibility(bottomCon);
+        topContainer.setVisibility(INVISIBLE);
+        bottomContainer.setVisibility(INVISIBLE);
         startButton.setVisibility(startBtn);
         loadingProgressBar.setVisibility(loadingPro);
         posterImageView.setVisibility(posterImg);

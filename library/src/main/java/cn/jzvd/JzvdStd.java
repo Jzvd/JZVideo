@@ -945,6 +945,7 @@ public class JzvdStd extends Jzvd {
                 if (screen != SCREEN_TINY) {
                     bottomProgressBar.setVisibility(View.VISIBLE);
                 }
+                cancelProgressTimer();
             });
         }
     }

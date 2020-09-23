@@ -26,7 +26,7 @@ public class PlayAndPauseView extends View {
     private int animationStep = 1;
     private int animationType = 2;
     //左边动画时间
-    private long leftDuration = 1000;
+    private long leftDuration = 300;
     //右边动画时间
     private long rightDuration = 2 * leftDuration / 3;
 
@@ -94,7 +94,7 @@ public class PlayAndPauseView extends View {
         final ObjectAnimator leftZoomHideAnimation = ObjectAnimator.ofFloat(this, "leftZoomValue", 0f, 1.0f);
         //左边线条缩放动画
         ObjectAnimator objectAnimator1 = ObjectAnimator.ofFloat(this, "leftZoomValue", 0f, 0.2f);
-        objectAnimator1.setDuration(500);
+        objectAnimator1.setDuration(200);
         objectAnimator1.addListener(new Animator.AnimatorListener() {
             public void onAnimationCancel(Animator param1Animator) {
             }
@@ -141,7 +141,7 @@ public class PlayAndPauseView extends View {
 
     private void initReverseAnimation() {
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(this, "leftZoomValue", 0.2f, 0f);
-        objectAnimator.setDuration(1000);
+        objectAnimator.setDuration(200);
         ValueAnimator valueAnimator1 = ValueAnimator.ofFloat(0f, 1.0f);
         valueAnimator1.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator param1ValueAnimator) {
