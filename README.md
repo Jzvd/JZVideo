@@ -1,7 +1,3 @@
-<a href="https://github.com/Jzvd/jzvideo" target="_blank"><p align="center"><img src="https://user-images.githubusercontent.com/2038071/42033014-0bf1c0b0-7b0e-11e8-811d-7639bcd294eb.png" alt="JiaoZiVideoPlayer" height="75px"></p></a>
---
-
-
 高度自定义的安卓视频框架
 
 ## QuickStart
@@ -65,10 +61,10 @@ protected void onPause() {
 
 ## 效果
 <p align="center">
-<img src="https://user-images.githubusercontent.com/2038071/94292970-3fdc5800-ff90-11ea-97df-7b9b7455fe7d.jpg" width="90%">
+<img src="https://user-images.githubusercontent.com/2038071/94292970-3fdc5800-ff90-11ea-97df-7b9b7455fe7d.jpg" width="75%">
 </p>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/2038071/76214561-f6245e00-6247-11ea-85bb-da35ede45463.gif" width="90%">
+<img src="https://user-images.githubusercontent.com/2038071/76214561-f6245e00-6247-11ea-85bb-da35ede45463.gif" width="75%">
 </p>
 
 ## License MIT
