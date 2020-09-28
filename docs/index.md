@@ -1,12 +1,12 @@
-## 中文文档
+### [中文文档](https://github.com/Jzvd/JZVideo)
 
 本文档围绕Demo进行讲解。集成JZVideo之前，看完Demo的每个页面，点击Demo的每个按钮之后，找到自己需要的功能之后，再开始写代码。
 
-## QuickStart
+### QuickStart
 
 见GitHub首页
 
-## 初级用法(或者放到二级页面，也没必要有代码，放链接就好了)
+### 初级用法(或者放到二级页面，也没必要有代码，放链接就好了)
 
 不需要继承JzvdStd，直接调用JzvdStd暴露的接口和变量。效果见Demo的Tab_1
 
@@ -28,11 +28,12 @@ Jzvd.setTextureViewRotation(90); //0 - 360 旋转的角度
 3.[自定义播放内核](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/CustomMediaActivity.java)，选择适合项目的播放内核。
 
 ```
+//Demo提供了四个播放内核。JZMediaAliyun,JZMediaIjk.class,JZMediaSystem.class,JZMediaExo.class，通过如下两种方式使用。
 jzvdStd.setUp("http://url.mp4", "title", JzvdStd.SCREEN_NORMAL, **.class);
 or
 jzvdStd.setMediaInterface(**.class);
 
-//Demo提供了四个播放内核。JZMediaAliyun,JZMediaIjk.class,JZMediaSystem.class,JZMediaExo.class
+
 ```
 
 4.[控制全屏前和全屏后的屏幕方向，进入全屏前和全屏后的屏幕方向](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/OrientationActivity.java#L41)，可以设置为退出全屏时横屏，进入全屏时竖屏。
@@ -55,7 +56,7 @@ public void orientationChange(int orientation) {
 }
 ```
 
-## 继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2 (内容较多，应放到二级页面)
+### 继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2 (内容较多的，应放到二级页面)
 
 1.继承JzvdStd后删除不需要的父类控件
 
@@ -79,9 +80,9 @@ public void orientationChange(int orientation) {
 
 11.倍速播放
 
-## 列表的使用，推荐RecycleView，不推荐ListView
+### 列表的使用，推荐RecycleView，不推荐ListView
 
-## 进阶用法
+### 进阶用法
 
 1.AgVideo 完全自定义UI
 
