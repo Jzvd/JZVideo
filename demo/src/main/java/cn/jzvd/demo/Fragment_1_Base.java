@@ -21,7 +21,6 @@ import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.Tab_1_Basic.CustomMediaActivity;
-import cn.jzvd.demo.Tab_1_Basic.ExtendsNormalActivity;
 import cn.jzvd.demo.Tab_1_Basic.OrientationActivity;
 import cn.jzvd.demo.Tab_1_Basic.PreloadingActivity;
 import cn.jzvd.demo.Tab_1_Basic.RotationVideoSizeActivity;
@@ -36,7 +35,7 @@ import static android.content.Context.SENSOR_SERVICE;
 public class Fragment_1_Base extends Fragment implements View.OnClickListener {
 
     private JzvdStd mJzvdStd;
-    private Button mOrientation, mExtendsNormalActivity,
+    private Button mOrientation,
             mRotationAndVideoSize, mCustomMediaPlayer, mPreLoading, mScreenRotate;
     private Jzvd.JZAutoFullscreenListener mSensorEventListener;
     private SensorManager mSensorManager;
@@ -47,14 +46,12 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
         View view = View.inflate(getContext(), R.layout.fragment_api, null);
         mJzvdStd = view.findViewById(R.id.jz_video);
         mOrientation = view.findViewById(R.id.orientation);
-        mExtendsNormalActivity = view.findViewById(R.id.extends_normal_activity);
         mRotationAndVideoSize = view.findViewById(R.id.rotation_and_videosize);
         mCustomMediaPlayer = view.findViewById(R.id.custom_mediaplayer);
         mPreLoading = view.findViewById(R.id.preloading);
         mScreenRotate = view.findViewById(R.id.screen_rotate);
 
         mOrientation.setOnClickListener(this);
-        mExtendsNormalActivity.setOnClickListener(this);
         mRotationAndVideoSize.setOnClickListener(this);
         mCustomMediaPlayer.setOnClickListener(this);
         mPreLoading.setOnClickListener(this);
@@ -109,9 +106,6 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
             case R.id.orientation:
                 startActivity(new Intent(getContext(), OrientationActivity.class));
                 break;
-            case R.id.extends_normal_activity:
-                startActivity(new Intent(getContext(), ExtendsNormalActivity.class));
-                break;
             case R.id.rotation_and_videosize:
                 startActivity(new Intent(getContext(), RotationVideoSizeActivity.class));
                 break;
@@ -124,7 +118,6 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
             case R.id.screen_rotate:
                 startActivity(new Intent(getContext(), ScreenRotateActivity.class));
                 break;
-
         }
     }
 }

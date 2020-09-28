@@ -30,14 +30,6 @@
                 android:text="@string/orientation" />
 
             <Button
-                android:id="@+id/extends_normal_activity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="@string/extend_activity" />
-
-            <Button
                 android:id="@+id/rotation_and_videosize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
