@@ -4,9 +4,9 @@
 
 ### QuickStart
 
-见GitHub首页
+[见GitHub首页](https://github.com/Jzvd/JZVideo)
 
-### 初级用法(或者放到二级页面，也没必要有代码，放链接就好了)
+### 初级用法
 
 不需要继承JzvdStd，直接调用JzvdStd暴露的接口和变量。效果见Demo的Tab_1
 
@@ -25,7 +25,7 @@ Jzvd.setVideoImageDisplayType(Jzvd.VIDEO_IMAGE_DISPLAY_TYPE_ORIGINAL);
 Jzvd.setTextureViewRotation(90); //0 - 360 旋转的角度
 ```
 
-3.[自定义播放内核](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/CustomMediaActivity.java)，选择适合项目的播放内核。
+3.[切换播放内核](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/CustomMediaActivity.java)，选择适合项目的播放内核。
 
 ```
 //Demo提供了四个播放内核。JZMediaAliyun,JZMediaIjk.class,JZMediaSystem.class,JZMediaExo.class，通过如下两种方式使用。
@@ -36,11 +36,11 @@ jzvdStd.setMediaInterface(**.class);
 
 ```
 
-4.[控制全屏前和全屏后的屏幕方向，进入全屏前和全屏后的屏幕方向](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/OrientationActivity.java#L41)，可以设置为退出全屏时横屏，进入全屏时竖屏。
+4.[分别设置非全屏和全屏后的屏幕方向](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/OrientationActivity.java#L41)
 
 ```
-Jzvd.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+Jzvd.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;// 非全屏是横屏
+Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;// 进入全屏后是竖屏
 ```
 
 5.[根据传感器自动旋转屏幕进入全屏](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_1_Basic/ScreenRotateActivity.java)
@@ -58,29 +58,31 @@ public void orientationChange(int orientation) {
 
 ### 继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2 (内容较多的，应放到二级页面)
 
-1.继承JzvdStd后删除不需要的父类控件
+1.继承JzvdStd后删除不需要的父类控件 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/MyJzvdStdNoTitleNoClarity.java)
 
-2.全屏锁
+2.全屏锁 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdLockScreen.java)
 
-3.全屏时显示分享按钮
+3.全屏时显示分享按钮 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowShareButtonAfterFullscreen.java)
 
-4.全屏时显示title，非全屏隐藏title
+4.全屏时显示title，非全屏隐藏title [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowTitleAfterFullscreen.java)
 
-5.播放完毕后不隐藏TextureView显示视频的最后一帧
+5.播放完毕后不隐藏TextureView显示视频的最后一帧 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowTextureViewAfterAutoComplete.java)
 
-6.播放完成不退出全屏状态
+6.播放完成不退出全屏状态 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdAutoCompleteAfterFullscreen.java)
 
-7.设置视频高宽比例
+7.设置视频高宽比例 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Fragment_2_Custom.java#L111)
 
-8.非全屏静音，全屏之后有声音
+8.非全屏静音，全屏之后有声音 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdVolumeAfterFullscreen.java)
 
-9.全屏显示静音按钮
+9.全屏显示静音按钮 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdVolume.java)
 
-10.播放mp3
+10.播放mp3 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdMp3.java)
 
-11.倍速播放
+11.倍速播放 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdSpeed.java)
 
 ### 列表的使用，推荐RecycleView，不推荐ListView
+
+
 
 ### 进阶用法
 

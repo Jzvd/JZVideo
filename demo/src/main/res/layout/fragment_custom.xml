@@ -108,7 +108,7 @@
                 android:text="@string/play_with_1_1" />
 
 
-            <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
+            <cn.jzvd.JzvdStd
                 android:id="@+id/jz_videoplayer_1_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -122,7 +122,7 @@
                 android:text="@string/play_with_16_9" />
 
 
-            <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
+            <cn.jzvd.JzvdStd
                 android:id="@+id/jz_videoplayer_16_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
