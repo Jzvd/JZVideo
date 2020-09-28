@@ -14,28 +14,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <cn.jzvd.JzvdStd
                 android:id="@+id/jz_video"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
-
-
-            <Button
-                android:id="@+id/orientation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="@string/orientation" />
-
-            <Button
-                android:id="@+id/rotation_and_videosize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:text="@string/video_cover_and_orientation" />
 
             <Button
                 android:id="@+id/custom_mediaplayer"
@@ -46,12 +28,28 @@
                 android:text="@string/custom_mediaplayer" />
 
             <Button
+                android:id="@+id/rotation_and_videosize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="@string/video_cover_and_orientation" />
+
+            <Button
                 android:id="@+id/preloading"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="8dp"
                 android:text="@string/preloading" />
+
+            <Button
+                android:id="@+id/orientation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:text="@string/orientation" />
 
             <Button
                 android:id="@+id/screen_rotate"

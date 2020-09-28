@@ -1,6 +1,6 @@
-### [中文文档](https://github.com/Jzvd/JZVideo)
+### [饺子视频播放器文档](https://github.com/Jzvd/JZVideo)
 
-本文档围绕Demo进行讲解。集成JZVideo之前，看完Demo的每个页面，点击Demo的每个按钮之后，找到自己需要的功能之后，再开始写代码。
+本文档围绕Demo([点此下载](https://github.com/Jzvd/JZVideo/releases))进行讲解。集成JZVideo之前，看完Demo的每个页面，点击Demo的每个按钮之后，找到自己需要的功能之后，再开始写代码。
 
 ### QuickStart
 
@@ -56,7 +56,9 @@ public void orientationChange(int orientation) {
 }
 ```
 
-### 继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2 (内容较多的，应放到二级页面)
+### 继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2
+
+- AgVideo 完全自定义UI [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_2_Custom/AGVideo/AGVideo.java)
 
 1.继承JzvdStd后删除不需要的父类控件 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/MyJzvdStdNoTitleNoClarity.java)
 
@@ -68,7 +70,7 @@ public void orientationChange(int orientation) {
 
 5.播放完毕后不隐藏TextureView显示视频的最后一帧 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdShowTextureViewAfterAutoComplete.java)
 
-6.播放完成不退出全屏状态 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdAutoCompleteAfterFullscreen.java)
+6.全屏播放完成不退出全屏 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdAutoCompleteAfterFullscreen.java)
 
 7.设置视频高宽比例 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Fragment_2_Custom.java#L111)
 

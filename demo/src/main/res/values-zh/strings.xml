@@ -6,12 +6,12 @@
     <string name="complex">列表</string>
     <string name="other">更多</string>
     <string name="big_ui_change">大改饺子播放器(自定义)</string>
-    <string name="orientation">视频播放方向控制</string>
+    <string name="orientation">分别设置全屏前和全屏后的屏幕方向</string>
     <string name="extend_activity">继承Activity非AppCompatActivity</string>
     <string name="video_cover_and_orientation">调整视频填充方式、播放方向</string>
     <string name="custom_mediaplayer">自定义播放内核</string>
     <string name="preloading">视频预加载</string>
-    <string name="screen_rotate">视频根据传感器自动旋转</string>
+    <string name="screen_rotate">视频根据传感器自动进入和退出全屏</string>
     <string name="get_gif">Gif截图</string>
     <string name="extend_jzvdstd_delete_view">继承JzvdStd删除父布局的一些控件</string>
     <string name="jzvdstd_delete_view_add_lock">继承JzvdStd删除父布局的一些控件并添加锁定按钮</string>
