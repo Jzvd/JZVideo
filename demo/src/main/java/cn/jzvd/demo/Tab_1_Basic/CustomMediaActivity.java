@@ -73,8 +73,9 @@ public class CustomMediaActivity extends AppCompatActivity {
 
     public void clickChangeToAliyun(View view) {
         Jzvd.releaseAllVideos();
-        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子梭哈", JzvdStd.SCREEN_NORMAL, JZMediaAliyun.class);
+//        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
+//                , "饺子梭哈", JzvdStd.SCREEN_NORMAL, JZMediaAliyun.class);
+        jzvdStd.setMediaInterface(JZMediaAliyun.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to AliyunPlayer", Toast.LENGTH_SHORT).show();
     }
