@@ -1,6 +1,8 @@
 高度自定义的安卓视频框架
 
-[文档](https://jzvd.github.io/JZVideo/) [下载Demo](https://github.com/Jzvd/JZVideo/releases/download/v7.5.0/jiaozivideoplayer-7.5.0.apk)
+[中文文档](https://jzvd.github.io/JZVideo/)
+
+[下载Demo](https://github.com/Jzvd/JZVideo/releases/download/v7.5.0/jiaozivideoplayer-7.5.0.apk)
 
 ## QuickStart
 
