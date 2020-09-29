@@ -1,12 +1,12 @@
-### [饺子视频播放器文档](https://github.com/Jzvd/JZVideo)
+## [饺子视频播放器文档](https://github.com/Jzvd/JZVideo)
 
 本文档围绕Demo([点此下载](https://github.com/Jzvd/JZVideo/releases))进行讲解。集成JZVideo之前，看完Demo的每个页面，点击Demo的每个按钮之后，再开始写代码。
 
-### QuickStart
+## 一、QuickStart
 
 [见GitHub首页](https://github.com/Jzvd/JZVideo)
 
-### 初级用法
+## 二、初级用法
 
 不需要继承JzvdStd，直接调用JzvdStd暴露的接口和变量。效果见Demo的Tab_1
 
@@ -61,7 +61,7 @@ jzvdStd.startPreloading(); //开始预加载，加载完等待播放
 jzvdStd.startVideoAfterPreloading(); //如果预加载完会开始播放，如果未加载则开始加载
 ```
 
-### 继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2
+## 三、继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2
 
 - AgVideo 完全自定义UI [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_2_Custom/AGVideo/AGVideo.java)
 
@@ -87,11 +87,11 @@ jzvdStd.startVideoAfterPreloading(); //如果预加载完会开始播放，如�
 
 11.倍速播放 [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/CustomJzvd/JzvdStdSpeed.java)
 
-### 列表的使用，推荐RecycleView，不推荐ListView
+## 四、列表的使用
 
+推荐RecycleView，不推荐ListView
 
-
-### 进阶用法
+## 五、进阶用法
 
 1.AgVideo 完全自定义UI
 
