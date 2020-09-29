@@ -59,7 +59,9 @@ jzvdStd.startPreloading(); //开始预加载，加载完等待播放
 jzvdStd.startVideoAfterPreloading(); //如果预加载完会开始播放，如果未加载则开始加载
 ```
 
-## 三、继承JzvdStd，实现更多自定义功能，效果见Demo的Tab_2
+## 三、继承JzvdStd
+
+灵活实现更多自定义功能和UI，效果见Demo的Tab_2
 
 - AgVideo 完全自定义UI [进入源码](https://github.com/Jzvd/JZVideo/blob/develop/demo/src/main/java/cn/jzvd/demo/Tab_2_Custom/AGVideo/AGVideo.java)
 
