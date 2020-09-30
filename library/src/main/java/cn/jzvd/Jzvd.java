@@ -50,10 +50,12 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static final int STATE_PAUSE = 6;
     public static final int STATE_AUTO_COMPLETE = 7;
     public static final int STATE_ERROR = 8;
+
     public static final int VIDEO_IMAGE_DISPLAY_TYPE_ADAPTER = 0;//DEFAULT
     public static final int VIDEO_IMAGE_DISPLAY_TYPE_FILL_PARENT = 1;
     public static final int VIDEO_IMAGE_DISPLAY_TYPE_FILL_SCROP = 2;
     public static final int VIDEO_IMAGE_DISPLAY_TYPE_ORIGINAL = 3;
+
     public static final int THRESHOLD = 80;
     public static Jzvd CURRENT_JZVD;
     public static LinkedList<ViewGroup> CONTAINER_LIST = new LinkedList<>();

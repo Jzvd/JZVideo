@@ -7,12 +7,12 @@ import android.widget.RelativeLayout
 const val TAG = "JZVD"
 
 
-open class JZVideoA : RelativeLayout {
+enum class State {
+    IDLE, NORMAL, PREPARING, PREPARING_CHANGE_URL, PREPARING_PLAYING,
+    PREPARED, PLAYING, PAUSE, COMPLETE, ERROR
+}
 
-    enum class State {
-        IDLE, NORMAL, PREPARING, PREPARING_CHANGE_URL, PREPARING_PLAYING,
-        PREPARED, PLAYING, PAUSE, COMPLETE, ERROR
-    }
+open class JZVideoA : RelativeLayout {
 
     enum class Screen {
         NORMAL, FULLSCREEN, TINY
@@ -26,6 +26,9 @@ open class JZVideoA : RelativeLayout {
 
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs) {
     }
+
+
+
 
     companion object {
         @JvmStatic
