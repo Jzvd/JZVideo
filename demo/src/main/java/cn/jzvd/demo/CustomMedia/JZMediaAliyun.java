@@ -1,7 +1,10 @@
 package cn.jzvd.demo.CustomMedia;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.SurfaceTexture;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
 
@@ -11,12 +14,12 @@ import com.aliyun.player.IPlayer;
 import com.aliyun.player.bean.ErrorInfo;
 import com.aliyun.player.bean.InfoBean;
 import com.aliyun.player.bean.InfoCode;
+import com.aliyun.player.nativeclass.CacheConfig;
 import com.aliyun.player.nativeclass.PlayerConfig;
 import com.aliyun.player.source.UrlSource;
 
 import cn.jzvd.JZMediaInterface;
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.ApplicationDemo;
 
 /**
  * usage: 阿里云播放器内核
@@ -29,6 +32,8 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
 
     private static final String TAG = JZMediaAliyun.class.getSimpleName();
     private static final int FROM_ALIYUN_PLAYER_INFO = 0x1688;
+    public static String AliyunVideoCachePath = "";
+    private int initialRotation = -1; // 视频首次播放时的初始角度 fix阿里云上传功能 缓存导致的方向改变问题
 
     AliPlayer aliyunMediaPlayer;
     private boolean isPlaying;
@@ -59,10 +64,15 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
 
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+        if (aliyunMediaPlayer != null)
+            aliyunMediaPlayer.redraw();
     }
 
     @Override
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+        // 如果不支持全屏播放 建议增加下方代码
+//        if (aliyunMediaPlayer != null)
+//            aliyunMediaPlayer.setDisplay(null);
         return false;
     }
 
@@ -104,6 +114,22 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
             aliyunMediaPlayer.setConfig(config);
             //endregion
 
+            //region 缓存功能
+            if (!TextUtils.isEmpty(AliyunVideoCachePath)) {
+                CacheConfig cacheConfig = new CacheConfig();
+                //开启缓存功能
+                cacheConfig.mEnable = true;
+                //能够缓存的单个文件最大时长。超过此长度则不缓存
+                cacheConfig.mMaxDurationS = 500;
+                //缓存目录的位置
+                cacheConfig.mDir = AliyunVideoCachePath;
+                //缓存目录的最大大小。超过此大小，将会删除最旧的缓存文件
+                cacheConfig.mMaxSizeMB = 200;
+                //设置缓存配置给到播放器
+                aliyunMediaPlayer.setCacheConfig(cacheConfig);
+            }
+            //endregion
+
 //            aliyunMediaPlayer.setAutoPlay(true); // 是否自动播放
 //            aliyunMediaPlayer.setLoop(true); // 是否循环播放
 
@@ -117,6 +143,14 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
             aliyunMediaPlayer.setOnRenderingStartListener(JZMediaAliyun.this); // 首帧渲染显示事件
             aliyunMediaPlayer.setOnLoadingStatusListener(JZMediaAliyun.this);
             //endregion
+
+            // aliYun 播放器展示模式与Jzvd展示兼容 可通过jzDataSource传参修改
+            if (jzvd.jzDataSource.objects != null) {
+                Jzvd.setVideoImageDisplayType((Integer) jzvd.jzDataSource.objects[0]);
+            } else {
+                Jzvd.setVideoImageDisplayType(Jzvd.VIDEO_IMAGE_DISPLAY_TYPE_FILL_SCROP); // 默认剪裁模式
+            }
+            aliyunMediaPlayer.setScaleMode(IPlayer.ScaleMode.SCALE_ASPECT_FIT); // 设置模式为fit适应
 
             //设置配置给播放器
             try {
@@ -213,6 +247,24 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
 
     @Override
     public void onVideoSizeChanged(int i, int i1) {
+        if (aliyunMediaPlayer != null && !TextUtils.isEmpty(AliyunVideoCachePath)) {
+            // FIXME: 2020/10/19 解决问题: 在播放网络视频时 能拿到视频的旋转角度正常播放, 在播放缓存的视频时 角度为0 播放方向异常, 需要转换为初始网络视频的角度, 因此对角度进行缓存 如果视频角度发生变化, 旋转为初始网络视频记录的角度
+            if (initialRotation == -1) { // 视频开始播放时
+                if (getCacheRotation(jzvd.jzDataSource.getCurrentUrl()) == -1) { // 没进行过角度的缓存 说明是第一次播放
+                    Log.d(TAG, "第一次播放, 记录角度:" + aliyunMediaPlayer.getVideoRotation());
+                    initialRotation = aliyunMediaPlayer.getVideoRotation();
+                    saveCacheRotation(jzvd.jzDataSource.getCurrentUrl(), aliyunMediaPlayer.getVideoRotation());// 缓存旋转角度
+                } else { // 说明不是第一次播放, 直接取缓存的角度
+                    Log.d(TAG, "第一次播放, 获取角度:" + getCacheRotation(jzvd.jzDataSource.getCurrentUrl()));
+                    initialRotation = getCacheRotation(jzvd.jzDataSource.getCurrentUrl());
+                }
+            }
+
+            if (initialRotation != aliyunMediaPlayer.getVideoRotation()) { // 如果当前角度与初始化角度不同, 应使用初始化角度
+                Log.d(TAG, "角度应旋转:" + initialRotation);
+                Jzvd.setTextureViewRotation(initialRotation);
+            }
+        }
         handler.post(() -> jzvd.onVideoSizeChanged(aliyunMediaPlayer.getVideoWidth(), aliyunMediaPlayer.getVideoHeight()));
     }
 
@@ -273,5 +325,22 @@ public class JZMediaAliyun extends JZMediaInterface implements IPlayer.OnPrepare
     @Override
     public void onLoadingEnd() {
         //缓冲结束
+    }
+
+    public void saveCacheRotation(Object url, int rotation) {
+        if (jzvd == null)
+            return;
+        SharedPreferences spn = jzvd.getContext().getSharedPreferences("ALIYUN_ROTATION",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = spn.edit();
+        editor.putInt("rotate:" + url.toString(), rotation).apply();
+    }
+
+    public int getCacheRotation(Object url) {
+        if (jzvd == null)
+            return -1;
+        SharedPreferences spn = jzvd.getContext().getSharedPreferences("ALIYUN_ROTATION",
+                Context.MODE_PRIVATE);
+        return spn.getInt("rotate:" + url.toString(), -1);
     }
 }
