@@ -21,10 +21,10 @@ import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.Tab_1_Basic.CustomMediaActivity;
-import cn.jzvd.demo.Tab_1_Basic.OrientationActivity;
 import cn.jzvd.demo.Tab_1_Basic.PreloadingActivity;
 import cn.jzvd.demo.Tab_1_Basic.RotationVideoSizeActivity;
 import cn.jzvd.demo.Tab_1_Basic.ScreenRotateActivity;
+import org.jzvd.jzvideo.demo.mActivity;
 
 import static android.content.Context.SENSOR_SERVICE;
 
@@ -104,7 +104,7 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.orientation:
-                startActivity(new Intent(getContext(), OrientationActivity.class));
+                startActivity(new Intent(getContext(), mActivity.class));
                 break;
             case R.id.rotation_and_videosize:
                 startActivity(new Intent(getContext(), RotationVideoSizeActivity.class));

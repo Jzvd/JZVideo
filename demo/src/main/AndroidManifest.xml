@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity,MissingTranslation">
         <activity
-            android:name=".MainActivity"
+            android:name="org.jzvd.jzvideo.demo.mActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -110,6 +110,9 @@
             android:name=".Tab_3_List.GetGifActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
+
+<!--        <activity android:name=".jzvideo.mActivity"/>-->
+
     </application>
 
 </manifest>

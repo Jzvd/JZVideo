@@ -3,6 +3,7 @@ package org.jzvd.jzvideo
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
+import cn.jzvd.R
 
 const val TAG = "JZVD"
 
@@ -18,17 +19,20 @@ open class JZVideoA : RelativeLayout {
         NORMAL, FULLSCREEN, TINY
     }
 
-    lateinit var state: State
-
-
+    //    lateinit var state: State
+//
+//
     constructor(ctx: Context) : super(ctx) {
+        inflate(context, R.layout.jzvideo_a, this)
     }
 
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs) {
+        inflate(context, R.layout.jzvideo_a, this)
     }
 
+    fun release() {
 
-
+    }
 
     companion object {
         @JvmStatic
@@ -36,5 +40,9 @@ open class JZVideoA : RelativeLayout {
 
         }
     }
+
+}
+
+fun releaseAllVideos() {
 
 }
