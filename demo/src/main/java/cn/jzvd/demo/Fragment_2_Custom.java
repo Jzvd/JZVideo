@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
+import cn.jzvd.demo.CustomJzvd.JzvdStdRound;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.AGVideoActivity;
 import cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen;
 import cn.jzvd.demo.CustomJzvd.JzvdStdLockScreen;
@@ -40,6 +41,7 @@ public class Fragment_2_Custom extends Fragment implements View.OnClickListener 
     JzvdStdSpeed jzvdStdSpeed;
     JzvdStdLockScreen lockScreen;
     JzvdStdVolume jzvdStdVolume;
+    JzvdStdRound jzvdStdRound;
 
     JzvdStd jzvdStd_1_1, jzvdStd_16_9;
     JzvdStd jzNoTitle;
@@ -53,6 +55,7 @@ public class Fragment_2_Custom extends Fragment implements View.OnClickListener 
         agVideo = view.findViewById(R.id.agvideo);
         jzNoTitle = view.findViewById(R.id.jz_notitle);
         lockScreen = view.findViewById(R.id.lock_screen);
+        jzvdStdRound = view.findViewById(R.id.jz_round);
         jzvdStdWithShareButton = view.findViewById(R.id.custom_videoplayer_standard_with_share_button);
         jzvdStdShowTitleAfterFullscreen = view.findViewById(R.id.custom_videoplayer_standard_show_title_after_fullscreen);
         jzvdStdShowTextureViewAfterAutoComplete = view.findViewById(R.id.custom_videoplayer_standard_show_textureview_aoto_complete);
@@ -72,6 +75,10 @@ public class Fragment_2_Custom extends Fragment implements View.OnClickListener 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        jzvdStdRound.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
+                , "饺子圆角");
+        Glide.with(this).load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png").into(jzvdStdRound.posterImageView);
 
 
         jzNoTitle.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
