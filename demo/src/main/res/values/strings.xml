@@ -12,6 +12,7 @@
     <string name="preloading">Preloading</string>
     <string name="screen_rotate">Screen Rotate</string>
     <string name="get_gif">Get Gif</string>
+    <string name="jzvd_auto_orientation">JZVD auto orientation</string>
     <string name="jzvd_round">JzvdStd Round</string>
     <string name="extend_jzvdstd_delete_view">extends JzvdStd and delete some parent views</string>
     <string name="jzvdstd_delete_view_add_lock">Standard ui but delete some parent views and add lock button</string>

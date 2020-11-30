@@ -22,7 +22,16 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/agplayer" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/jzvd_auto_orientation" />
 
+            <cn.jzvd.demo.CustomJzvd.JzvdStdAutoOrizental
+                android:id="@+id/jz_auto_oriental"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
             <TextView
                 android:layout_width="match_parent"
