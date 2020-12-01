@@ -107,15 +107,19 @@ public class JzvdDanmu extends JzvdStd {
     @Override
     public void onStatePreparing() {
         super.onStatePreparing();
+        if (danmakuView.isPrepared()) {
+            danmakuView.restart();
+        }
+        danmakuView.prepare(danmakuParser, danmakuContext);
     }
 
     @Override
     public void onStatePlaying() {
         super.onStatePlaying();
-        if (danmakuView.isPrepared()) {
-            danmakuView.restart();
+        if (danmakuView.isPrepared() && danmakuView.isPaused()) {
+            danmakuView.resume();
         }
-        danmakuView.prepare(danmakuParser, danmakuContext);
+
     }
 
     @Override
