@@ -60,4 +60,11 @@
     <string name="local_video">播放本地视频</string>
     <string name="direct_play_fullscreen">直接全屏播放</string>
     <string name="direct_play_tiny">直接小窗播放</string>
+    <string name="danmu_show">弹幕</string>
+    <string name="add_danmu">新增一条弹幕</string>
+    <string name="add_diy_danmu">新增自定义弹幕</string>
+    <string name="show_danmu">显示弹幕</string>
+    <string name="hide_danmu">隐藏弹幕</string>
+    <string name="clear_danmu">清空弹幕</string>
+    <string name="test_danmu">模拟弹幕</string>
 </resources>
