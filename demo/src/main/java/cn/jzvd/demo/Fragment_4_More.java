@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import cn.jzvd.demo.Tab_3_List.GetGifActivity;
 import cn.jzvd.demo.Tab_3_List.TinyWindow.TinyWindowActivity;
+import cn.jzvd.demo.Tab_4_More.DanmuActivity;
 import cn.jzvd.demo.Tab_4_More.DirectPlayActivity;
 import cn.jzvd.demo.Tab_4_More.LocalVideoActivity;
 import cn.jzvd.demo.Tab_4_More.WebViewActivity;
@@ -26,7 +27,7 @@ import cn.jzvd.demo.Tab_4_More.WebViewActivity;
 public class Fragment_4_More extends Fragment implements View.OnClickListener {
 
     TextView versionTextView;
-    private Button mDirectPlay, mWebView, mLocalVideo, mTinyWindow, mGetGif;
+    private Button mDirectPlay, mWebView, mLocalVideo, mTinyWindow, mGetGif,mDanmu;
 
     public static String getAppVersionName(Context context) {
         String appVersionName = "";
@@ -52,6 +53,7 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
         versionTextView = view.findViewById(R.id.version);
         mTinyWindow = view.findViewById(R.id.tiny_window);
         mGetGif = view.findViewById(R.id.get_gif);
+        mDanmu = view.findViewById(R.id.danmu_view);
 
 
         mDirectPlay.setOnClickListener(this);
@@ -59,6 +61,7 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
         mLocalVideo.setOnClickListener(this);
         mGetGif.setOnClickListener(this);
         mTinyWindow.setOnClickListener(this);
+        mDanmu.setOnClickListener(this);
         return view;
     }
 
@@ -86,6 +89,9 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
                 break;
             case R.id.get_gif:
                 startActivity(new Intent(getContext(), GetGifActivity.class));
+                break;
+            case R.id.danmu_view:
+                startActivity(new Intent(getContext(), DanmuActivity.class));
                 break;
         }
 

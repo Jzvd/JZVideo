@@ -37,4 +37,11 @@ public class JzvdStdAutoOrizental extends JzvdStd {
             }
         }
     }
+
+    @Override
+    public void reset() {
+        super.reset();
+        Jzvd.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
+        Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+    }
 }
