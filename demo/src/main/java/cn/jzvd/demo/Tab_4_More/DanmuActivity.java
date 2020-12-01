@@ -97,7 +97,6 @@ public class DanmuActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         super.onBackPressed();
-        jzvdDanmu.releaseDanMu();
     }
 
     @Override
