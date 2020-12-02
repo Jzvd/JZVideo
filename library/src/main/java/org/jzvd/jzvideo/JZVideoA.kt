@@ -19,9 +19,9 @@ open class JZVideoA : RelativeLayout {
         NORMAL, FULLSCREEN, TINY
     }
 
-    //    lateinit var state: State
-//
-//
+    var state: State? = null
+
+
     constructor(ctx: Context) : super(ctx) {
         inflate(context, R.layout.jzvideo_a, this)
     }
@@ -32,6 +32,21 @@ open class JZVideoA : RelativeLayout {
 
     fun release() {
 
+    }
+
+
+    fun startVideo() {
+        //TODO 添加surface，开始MediaPlayer播放。
+
+
+    }
+
+    fun addSurface() {
+
+    }
+
+    fun getLayout(): Int {
+        return R.layout.jz_video_a;
     }
 
     companion object {
