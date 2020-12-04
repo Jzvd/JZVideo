@@ -3,22 +3,17 @@ package cn.jzvd.demo.Tab_3_List.ListView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RelativeLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.Tab_3_List.ListView.adapter.RecyclerViewLoadMoreAdapter;
 import cn.jzvd.demo.R;
@@ -113,13 +108,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
     }
 
     private void addData() {
+        ArrayList<VideoEntity> tempList = new ArrayList<>();
         for (int i = 0; i < Urls.videoUrls[0].length; i++) {
             VideoEntity videoEntity = new VideoEntity();
             videoEntity.setUrl(Urls.videoUrls[0][i]);
             videoEntity.setTitle(Urls.videoTitles[0][i]);
             videoEntity.setThumb(Urls.videoPosters[0][i]);
-            videos.add(videoEntity);
+            tempList.add(videoEntity);
         }
+        //随机打乱
+        Collections.shuffle(tempList);
+        videos.addAll(tempList);
     }
 
     private void loadData() {
@@ -127,8 +126,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         refreshLayout.finishRefresh(1500);
         videos.clear();
         addData();
-        //随机打乱
-        Collections.shuffle(videos);
         adapterVideoList.notifyDataSetChanged();
     }
 
@@ -138,8 +135,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
     private void loadMore() {
         refreshLayout.finishLoadMore(1500);
         addData();
-        //随机打乱
-        Collections.shuffle(videos);
         adapterVideoList.notifyDataSetChanged();
     }
 
