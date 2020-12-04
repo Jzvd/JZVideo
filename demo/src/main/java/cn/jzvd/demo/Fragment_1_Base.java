@@ -70,8 +70,8 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
         LinkedHashMap map = new LinkedHashMap();
         String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(Urls.clarities[0]);
         map.put("高清", proxyUrl);
-        map.put("标清", Urls.clarities[1]);
-        map.put("普清", Urls.clarities[2]);
+        map.put("标清", "http://videos.jzvd.org/ldj/01-ldj.mp4");
+        map.put("普清", "http://videos.jzvd.org/ldj/04-ldj.mp4");
         JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
