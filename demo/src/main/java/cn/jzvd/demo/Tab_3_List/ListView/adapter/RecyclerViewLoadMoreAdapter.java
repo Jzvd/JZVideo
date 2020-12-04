@@ -19,14 +19,15 @@ import cn.jzvd.demo.R;
 import cn.jzvd.demo.Tab_3_List.ListView.entity.VideoEntity;
 import cn.jzvd.demo.Urls;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class RecyclerViewLoadMoreAdapter extends RecyclerView.Adapter<RecyclerViewLoadMoreAdapter.MyViewHolder> {
 
-    public static final String TAG = "AdapterRecyclerView";
-    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    public static final String TAG = "RecyclerViewLoadMoreAdapter";
+    ArrayList<VideoEntity> videos;
     private Context context;
 
-    public RecyclerViewAdapter(Context context) {
+    public RecyclerViewLoadMoreAdapter(Context context, ArrayList<VideoEntity> videos) {
         this.context = context;
+        this.videos = videos;
     }
 
     @Override
@@ -41,16 +42,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Log.i(TAG, "onBindViewHolder [" + holder.jzvdStd.hashCode() + "] position=" + position);
-
-        holder.jzvdStd.setUp(
-                Urls.videoUrls[0][position],
-                Urls.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(Urls.videoPosters[0][position]).into(holder.jzvdStd.posterImageView);
+        VideoEntity videoEntity = videos.get(position);
+        holder.jzvdStd.setUp(videoEntity.getUrl(), videoEntity.getTitle(), Jzvd.SCREEN_NORMAL);
+        Glide.with(holder.jzvdStd.getContext()).load(videoEntity.getThumb()).into(holder.jzvdStd.posterImageView);
     }
 
     @Override
     public int getItemCount() {
-        return videoIndexs.length;
+        return videos.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
