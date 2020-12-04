@@ -2,10 +2,7 @@ package org.jzvd.jzvideo
 
 import android.view.Surface
 
-class JZSurfaceView : JZSurfaceInterface() {
-    override var surface: Surface?
-        get() = TODO("Not yet implemented")
-        set(value) {}
+class JZSurfaceView : JZSurfaceInterface {
 
     override fun onSurfaceCreate() {
         TODO("Not yet implemented")
