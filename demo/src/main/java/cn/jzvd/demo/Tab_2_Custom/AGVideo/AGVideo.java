@@ -262,7 +262,6 @@ public class AGVideo extends JzvdStd {
                     dismissNextView();
                     cancelDismissNextViewTimer();
 
-                    Jzvd.releaseAllVideos();
                     //resetProgressAndTime();
                     //mediaInterface.seekTo(0);
                     changeUrl(jzDataSource, 0);
@@ -456,6 +455,7 @@ public class AGVideo extends JzvdStd {
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
         next_set.setVisibility(GONE);
         showProgress();
+        Jzvd.releaseAllVideos();
         super.changeUrl(jzDataSource, seekToInAdvance);
 //        //切换播放地址之后继续以1倍速播放
         if (jzDataSource.objects == null) {
