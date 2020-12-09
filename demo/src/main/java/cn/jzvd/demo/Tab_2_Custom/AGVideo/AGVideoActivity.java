@@ -90,8 +90,6 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
                 mJzDataSource = new JZDataSource(ApplicationDemo.getProxy(AGVideoActivity.this).getProxyUrl(entity.getVideoUrl()), entity.getVideoName());
                 updateTabView(tab, true);
 
-                Jzvd.releaseAllVideos();
-
                 playChangeUrl();
                 isNext(tab.getPosition());
             }
