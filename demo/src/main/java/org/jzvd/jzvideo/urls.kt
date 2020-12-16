@@ -50,15 +50,99 @@ val ldjVideos = arrayOf(
 )
 
 val videos = arrayOf(
-    "",
-    ""
+    "http://videos.jzvd.org/v/饺子还年轻.mp4",
+    "http://videos.jzvd.org/v/饺子主动.mp4",
+    "http://videos.jzvd.org/v/饺子真萌.mp4",
+    "http://videos.jzvd.org/v/饺子真会.mp4",
+    "http://videos.jzvd.org/v/饺子运动.mp4",
+    "http://videos.jzvd.org/v/饺子有活.mp4",
+    "http://videos.jzvd.org/v/饺子星光.mp4",
+    "http://videos.jzvd.org/v/饺子想听.mp4",
+    "http://videos.jzvd.org/v/饺子想吹.mp4",
+    "http://videos.jzvd.org/v/饺子汪汪.mp4",
+    "http://videos.jzvd.org/v/饺子偷人.mp4",
+    "http://videos.jzvd.org/v/饺子挺住.mp4",
+    "http://videos.jzvd.org/v/饺子跳.mp4",
+    "http://videos.jzvd.org/v/饺子受不了.mp4",
+    "http://videos.jzvd.org/v/饺子三位.mp4",
+    "http://videos.jzvd.org/v/饺子起飞.mp4",
+    "http://videos.jzvd.org/v/饺子你听.mp4",
+    "http://videos.jzvd.org/v/饺子可以了.mp4",
+    "http://videos.jzvd.org/v/饺子可以.mp4",
+    "http://videos.jzvd.org/v/饺子好妈妈.mp4",
+    "http://videos.jzvd.org/v/饺子还小.mp4",
+    "http://videos.jzvd.org/v/饺子高兴.mp4",
+    "http://videos.jzvd.org/v/饺子高冷.mp4",
+    "http://videos.jzvd.org/v/饺子堵住了.mp4",
+    "http://videos.jzvd.org/v/饺子都懂.mp4",
+    "http://videos.jzvd.org/v/饺子打电话.mp4",
+    "http://videos.jzvd.org/v/饺子不服.mp4"
 )
 
 val thumbnails = arrayOf(
-    "",
-    ""
+    "http://videos.jzvd.org/v/饺子还年轻.jpg",
+    "http://videos.jzvd.org/v/饺子主动.jpg",
+    "http://videos.jzvd.org/v/饺子真萌.jpg",
+    "http://videos.jzvd.org/v/饺子真会.jpg",
+    "http://videos.jzvd.org/v/饺子运动.jpg",
+    "http://videos.jzvd.org/v/饺子有活.jpg",
+    "http://videos.jzvd.org/v/饺子星光.jpg",
+    "http://videos.jzvd.org/v/饺子想听.jpg",
+    "http://videos.jzvd.org/v/饺子想吹.jpg",
+    "http://videos.jzvd.org/v/饺子汪汪.jpg",
+    "http://videos.jzvd.org/v/饺子偷人.jpg",
+    "http://videos.jzvd.org/v/饺子挺住.jpg",
+    "http://videos.jzvd.org/v/饺子跳.jpg",
+    "http://videos.jzvd.org/v/饺子受不了.jpg",
+    "http://videos.jzvd.org/v/饺子三位.jpg",
+    "http://videos.jzvd.org/v/饺子起飞.jpg",
+    "http://videos.jzvd.org/v/饺子你听.jpg",
+    "http://videos.jzvd.org/v/饺子可以了.jpg",
+    "http://videos.jzvd.org/v/饺子可以.jpg",
+    "http://videos.jzvd.org/v/饺子好妈妈.jpg",
+    "http://videos.jzvd.org/v/饺子还小.jpg",
+    "http://videos.jzvd.org/v/饺子高兴.jpg",
+    "http://videos.jzvd.org/v/饺子高冷.jpg",
+    "http://videos.jzvd.org/v/饺子堵住了.jpg",
+    "http://videos.jzvd.org/v/饺子都懂.jpg",
+    "http://videos.jzvd.org/v/饺子打电话.jpg",
+    "http://videos.jzvd.org/v/饺子不服.jpg"
 )
 
-val someUrls = ldjVideos.copyOfRange(3, 9)
+val titles = arrayOf(
+    "饺子还年轻",
+    "饺子主动",
+    "饺子真萌",
+    "饺子真会",
+    "饺子运动",
+    "饺子有活",
+    "饺子星光",
+    "饺子想听",
+    "饺子想吹",
+    "饺子汪汪",
+    "饺子偷人",
+    "饺子挺住",
+    "饺子跳",
+    "饺子受不了",
+    "饺子三位",
+    "饺子起飞",
+    "饺子你听",
+    "饺子可以了",
+    "饺子可以",
+    "饺子好妈妈",
+    "饺子还小",
+    "饺子高兴",
+    "饺子高冷",
+    "饺子堵住了",
+    "饺子都懂",
+    "饺子打电话",
+    "饺子不服"
+)
+
+val list1 = videos.copyOfRange(3, 9)
+val list2 = videos.copyOfRange(1, 6)
+val list3 = videos.copyOfRange(0, 3)
+
+
 
 
