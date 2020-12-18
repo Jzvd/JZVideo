@@ -15,10 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen
@@ -132,11 +133,11 @@ public class ListViewMultiHolderActivity extends AppCompatActivity {
                 }
 
                 viewHolder.jzvdStd.setUp(
-                        Urls.videoUrls[0][position],
-                        Urls.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
+                        UrlsKt.getVideos()[position],
+                        UrlsKt.getTitles()[position], Jzvd.SCREEN_NORMAL);
                 viewHolder.jzvdStd.positionInList = position;
                 Glide.with(ListViewMultiHolderActivity.this)
-                        .load(Urls.videoPosters[0][position])
+                        .load(UrlsKt.getThumbnails()[position])
                         .into(viewHolder.jzvdStd.posterImageView);
             } else {
                 TextViewHolder textViewHolder;

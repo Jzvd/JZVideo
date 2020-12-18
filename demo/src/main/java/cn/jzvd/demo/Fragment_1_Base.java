@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import java.util.LinkedHashMap;
 
 import cn.jzvd.JZDataSource;
@@ -68,7 +70,7 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(Urls.clarities[0]);
+        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl("http://videos.jzvd.org/ldj/01-ldj.mp4");
         map.put("高清", proxyUrl);
         map.put("标清", "http://videos.jzvd.org/ldj/01-ldj.mp4");
         map.put("普清", "http://videos.jzvd.org/ldj/04-ldj.mp4");
@@ -79,7 +81,7 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
         mJzvdStd.setUp(jzDataSource
                 , JzvdStd.SCREEN_NORMAL);
         Jzvd.PROGRESS_DRAG_RATE = 2f;//设置播放进度条手势滑动阻尼系数
-        Glide.with(this).load(Urls.videoPosterList[0]).into(mJzvdStd.posterImageView);
+        Glide.with(this).load(UrlsKt.getThumbnails()[0]).into(mJzvdStd.posterImageView);
     }
 
 

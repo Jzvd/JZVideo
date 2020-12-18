@@ -10,6 +10,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import java.util.LinkedHashMap;
 
 import cn.jzvd.JZDataSource;
@@ -18,7 +20,6 @@ import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.ApplicationDemo;
 import cn.jzvd.demo.CustomJzvd.JzvdStdGetGif;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * @author dl
@@ -50,17 +51,17 @@ public class GetGifActivity extends AppCompatActivity {
         jzvdStdGetGif = findViewById(R.id.jz_video);
 
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(getBaseContext()).getProxyUrl(Urls.clarities[0]);
+        String proxyUrl = ApplicationDemo.getProxy(getBaseContext()).getProxyUrl("http://videos.jzvd.org/ldj/01-ldj.mp4");
         map.put("高清", proxyUrl);
-        map.put("标清", Urls.clarities[1]);
-        map.put("普清", Urls.clarities[2]);
-        JZDataSource jzDataSource = new JZDataSource(map, "饺子会拼图");
+        map.put("标清", "http://videos.jzvd.org/ldj/01-ldj.mp4");
+        map.put("普清", "http://videos.jzvd.org/ldj/04-ldj.mp4");
+        JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
         jzDataSource.headerMap.put("key", "value");//header
         jzvdStdGetGif.setUp(jzDataSource
                 , JzvdStd.SCREEN_NORMAL);
-        Glide.with(this).load(Urls.videoPosterList[0]).into(jzvdStdGetGif.posterImageView);
+        Glide.with(this).load(UrlsKt.getThumbnails()[0]).into(jzvdStdGetGif.posterImageView);
 
 
 

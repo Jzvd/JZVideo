@@ -8,10 +8,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 16/7/31.
@@ -54,7 +55,7 @@ public class DirectPlayActivity extends AppCompatActivity {
     }
 
     public void clickFullScreen(View view) {
-        JzvdStd.startFullscreenDirectly(this, JzvdStd.class, Urls.videoUrlList[6], "饺子辛苦了");
+        JzvdStd.startFullscreenDirectly(this, JzvdStd.class, UrlsKt.getVideos()[15], UrlsKt.getTitles()[15]);
     }
 
     public void clickTinyWindow(View view) {

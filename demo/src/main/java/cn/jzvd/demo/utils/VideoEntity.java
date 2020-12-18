@@ -1,4 +1,4 @@
-package cn.jzvd.demo.Tab_3_List.ListView.entity;
+package cn.jzvd.demo.utils;
 
 public class VideoEntity {
     private String url;

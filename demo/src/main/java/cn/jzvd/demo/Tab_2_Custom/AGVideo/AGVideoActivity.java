@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,6 @@ import cn.jzvd.demo.Tab_2_Custom.AGVideo.popup.VideoEpisodePopup;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.popup.VideoSpeedPopup;
 import cn.jzvd.demo.CustomMedia.JZMediaExo;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 import cn.jzvd.demo.utils.ScreenRotateUtils;
 
 public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVideoListener, ScreenRotateUtils.OrientationChangeListener
@@ -314,8 +315,8 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
 
     private void initVideoData() {
         episodeList = new ArrayList<>();
-        for (int i = 0; i < Urls.ssVideos.length; i++) {
-            episodeList.add(new AGEpsodeEntity(Urls.ssVideos[i], "三生三世枕上书 第" + (i + 1) + "集"));
+        for (int i = 0; i < UrlsKt.getLdjVideos().length; i++) {
+            episodeList.add(new AGEpsodeEntity(UrlsKt.getLdjVideos()[i], "鹿鼎记 第" + (i + 1) + "集"));
         }
     }
 

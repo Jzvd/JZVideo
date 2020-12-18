@@ -1,5 +1,7 @@
 package org.jzvd.jzvideo
 
+// Chrome浏览器和饺子demo(android.MediaPlayer)相同时间相同网络环境播放，速度相差很远，为什么。
+// ijk好像略快，但没有电脑的chrome快。红米手机的自带浏览器可以完整观看视频无需中途加载。
 
 val ldjVideos = arrayOf(
     "http://videos.jzvd.org/v/ldj/01-ldj.mp4",
@@ -139,10 +141,30 @@ val titles = arrayOf(
     "饺子不服"
 )
 
-val list1 = videos.copyOfRange(3, 9)
-val list2 = videos.copyOfRange(1, 6)
-val list3 = videos.copyOfRange(0, 3)
+val vl1 = videos.copyOfRange(3, 9)
+val pl1 = videos.copyOfRange(3, 9)
+val tl1 = videos.copyOfRange(3, 9)
 
+val vl2 = videos.copyOfRange(10, 20)
+val pl2 = videos.copyOfRange(10, 20)
+val tl2 = videos.copyOfRange(10, 20)
+
+val vl3 = videos.copyOfRange(20, 21)
+val pl3 = videos.copyOfRange(20, 21)
+val tl3 = videos.copyOfRange(20, 21)
+
+
+val vll = arrayOf(
+    vl1, vl2, vl3
+)
+
+val pll = arrayOf(
+    pl1, pl2, pl3
+)
+
+val tll = arrayOf(
+    tl1, tl2, tl3
+)
 
 
 

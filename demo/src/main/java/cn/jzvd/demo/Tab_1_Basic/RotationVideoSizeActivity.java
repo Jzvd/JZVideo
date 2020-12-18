@@ -9,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 2017/11/2.
@@ -33,10 +34,10 @@ public class RotationVideoSizeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_api_rotation_videosize);
 
         myJzvdStd = findViewById(R.id.jz_video);
-        myJzvdStd.setUp(Urls.videoUrls[0][7], Urls.videoTitles[0][7]
+        myJzvdStd.setUp(UrlsKt.getVideos()[30], UrlsKt.getTitles()[30]
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
-                .load(Urls.videoPosters[0][7])
+                .load(UrlsKt.getThumbnails()[30])
                 .into(myJzvdStd.posterImageView);
         // The Point IS 或者这样写也可以
 //        myJzvdStd.videoRotation = 180;
