@@ -49,9 +49,9 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
         mPlayer = findViewById(R.id.ag_player);
         initEpisodesTablayout();
         mPlayer.setJzVideoListener(this);
-        mJzDataSource = new JZDataSource(ApplicationDemo.getProxy(AGVideoActivity.this).getProxyUrl(episodeList.get(0).getVideoUrl()), episodeList.get(0).getVideoName());
-        //mPlayer.setUp(mJzDataSource, JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
-        mPlayer.setUp(mJzDataSource, JzvdStd.SCREEN_NORMAL);
+        mJzDataSource = new JZDataSource(episodeList.get(0).getVideoUrl(), episodeList.get(0).getVideoName());
+        mPlayer.setUp(mJzDataSource
+                , JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
         mPlayer.startVideo();
     }
 
@@ -87,9 +87,8 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
                 //定义方法，判断是否选中
                 int tag = Integer.parseInt(tab.getText().toString());
                 AGEpsodeEntity entity = episodeList.get(tag - 1);
-                mJzDataSource = new JZDataSource(ApplicationDemo.getProxy(AGVideoActivity.this).getProxyUrl(entity.getVideoUrl()), entity.getVideoName());
+                mJzDataSource = new JZDataSource(entity.getVideoUrl(), entity.getVideoName());
                 updateTabView(tab, true);
-
                 playChangeUrl();
                 isNext(tab.getPosition());
             }
@@ -256,7 +255,7 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
     public void nextClick() {
         int position = episodes.getSelectedTabPosition() + 1;
         AGEpsodeEntity entity = episodeList.get(position);
-        mJzDataSource = new JZDataSource(ApplicationDemo.getProxy(AGVideoActivity.this).getProxyUrl(entity.getVideoUrl()), entity.getVideoName());
+        mJzDataSource = new JZDataSource(entity.getVideoUrl(), entity.getVideoName());
         TabLayout.Tab tab = episodes.getTabAt(position);
         if (tab != null) {
             tab.select();
