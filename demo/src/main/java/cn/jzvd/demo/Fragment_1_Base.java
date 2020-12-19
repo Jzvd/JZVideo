@@ -70,18 +70,18 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl("http://videos.jzvd.org/v/ldj/01-ldj.mp4");
+        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(UrlsKt.getAliVideos()[0]);
         map.put("高清", proxyUrl);
-        map.put("标清", "http://videos.jzvd.org/v/ldj/01-ldj.mp4");
-        map.put("普清", "http://videos.jzvd.org/v/ldj/04-ldj.mp4");
-        JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
+        map.put("标清", UrlsKt.getAliVideos()[1]);
+        map.put("普清", UrlsKt.getAliVideos()[2]);
+        JZDataSource jzDataSource = new JZDataSource(map, "饺子起立");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
         jzDataSource.headerMap.put("key", "value");//header
         mJzvdStd.setUp(jzDataSource
                 , JzvdStd.SCREEN_NORMAL);
         Jzvd.PROGRESS_DRAG_RATE = 2f;//设置播放进度条手势滑动阻尼系数
-        Glide.with(this).load(UrlsKt.getThumbnails()[0]).into(mJzvdStd.posterImageView);
+        Glide.with(this).load(UrlsKt.getAliThumbnail()[0]).into(mJzvdStd.posterImageView);
     }
 
 

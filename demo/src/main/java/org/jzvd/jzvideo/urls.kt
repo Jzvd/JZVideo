@@ -50,6 +50,25 @@ val ldjVideos = arrayOf(
     "http://videos.jzvd.org/v/ldj/44-ldj.mp4",
     "http://videos.jzvd.org/v/ldj/45-ldj.mp4"
 )
+val aliVideos = arrayOf(
+    "https://jzvd.nathen.cn/video/cfe6c30-1767b1bc21f-0007-1823-c86-de200.mp4",//三个不同分辨率
+    "https://jzvd.nathen.cn/0339d49439f947419576c33a0aa51545/79e1a938b0d2435d85bd964a77640506-f4e986e3e38ed3f473f7ba82bc07e188-ld.mp4",
+    "https://jzvd.nathen.cn/0339d49439f947419576c33a0aa51545/79e1a938b0d2435d85bd964a77640506-8924c7da92ebd789d315bc5de0a81059-fd.mp4",
+
+    "https://jzvd.nathen.cn/video/59aa468b-1767b6d891e-0007-1823-c86-de200.mp4",//饺子还小
+    "https://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4",//饺子还年轻
+    "https://jzvd.nathen.cn/video/5a6465ff-1767b2a5e28-0007-1823-c86-de200.mp4",
+)
+
+val aliThumbnail = arrayOf(
+    "https://jzvd.nathen.cn/snapshot/0339d49439f947419576c33a0aa5154500005.jpg",
+    "",
+    "",
+
+    "https://jzvd.nathen.cn/snapshot/61c99f9225c04b24a1d0374e9a3f006700004.jpg",
+    "https://jzvd.nathen.cn/snapshot/044ef6cf452d48b795cea0a96ee4ea4100002.jpg",
+    "https://jzvd.nathen.cn/snapshot/a172cc6442ff40ffb826829fc78f83b700005.jpg"
+)
 
 val videos = arrayOf(
     "http://videos.jzvd.org/v/饺子还年轻.mp4",
@@ -62,6 +81,7 @@ val videos = arrayOf(
     "http://videos.jzvd.org/v/饺子想听.mp4",
     "http://videos.jzvd.org/v/饺子想吹.mp4",
     "http://videos.jzvd.org/v/饺子汪汪.mp4",
+
     "http://videos.jzvd.org/v/饺子偷人.mp4",
     "http://videos.jzvd.org/v/饺子挺住.mp4",
     "http://videos.jzvd.org/v/饺子跳.mp4",
@@ -72,6 +92,7 @@ val videos = arrayOf(
     "http://videos.jzvd.org/v/饺子可以了.mp4",
     "http://videos.jzvd.org/v/饺子可以.mp4",
     "http://videos.jzvd.org/v/饺子好妈妈.mp4",
+
     "http://videos.jzvd.org/v/饺子还小.mp4",
     "http://videos.jzvd.org/v/饺子高兴.mp4",
     "http://videos.jzvd.org/v/饺子高冷.mp4",
@@ -92,6 +113,7 @@ val thumbnails = arrayOf(
     "http://videos.jzvd.org/v/饺子想听.jpg",
     "http://videos.jzvd.org/v/饺子想吹.jpg",
     "http://videos.jzvd.org/v/饺子汪汪.jpg",
+
     "http://videos.jzvd.org/v/饺子偷人.jpg",
     "http://videos.jzvd.org/v/饺子挺住.jpg",
     "http://videos.jzvd.org/v/饺子跳.jpg",
@@ -102,6 +124,7 @@ val thumbnails = arrayOf(
     "http://videos.jzvd.org/v/饺子可以了.jpg",
     "http://videos.jzvd.org/v/饺子可以.jpg",
     "http://videos.jzvd.org/v/饺子好妈妈.jpg",
+
     "http://videos.jzvd.org/v/饺子还小.jpg",
     "http://videos.jzvd.org/v/饺子高兴.jpg",
     "http://videos.jzvd.org/v/饺子高冷.jpg",
@@ -122,6 +145,7 @@ val titles = arrayOf(
     "饺子想听",
     "饺子想吹",
     "饺子汪汪",
+
     "饺子偷人",
     "饺子挺住",
     "饺子跳",
@@ -132,6 +156,7 @@ val titles = arrayOf(
     "饺子可以了",
     "饺子可以",
     "饺子好妈妈",
+
     "饺子还小",
     "饺子高兴",
     "饺子高冷",
@@ -142,16 +167,16 @@ val titles = arrayOf(
 )
 
 val vl1 = videos.copyOfRange(3, 9)
-val pl1 = videos.copyOfRange(3, 9)
-val tl1 = videos.copyOfRange(3, 9)
+val pl1 = thumbnails.copyOfRange(3, 9)
+val tl1 = titles.copyOfRange(3, 9)
 
 val vl2 = videos.copyOfRange(10, 20)
-val pl2 = videos.copyOfRange(10, 20)
-val tl2 = videos.copyOfRange(10, 20)
+val pl2 = thumbnails.copyOfRange(10, 20)
+val tl2 = titles.copyOfRange(10, 20)
 
-val vl3 = videos.copyOfRange(20, 21)
-val pl3 = videos.copyOfRange(20, 21)
-val tl3 = videos.copyOfRange(20, 21)
+val vl3 = videos.copyOfRange(20, 25)
+val pl3 = thumbnails.copyOfRange(20, 25)
+val tl3 = titles.copyOfRange(20, 25)
 
 
 val vll = arrayOf(
