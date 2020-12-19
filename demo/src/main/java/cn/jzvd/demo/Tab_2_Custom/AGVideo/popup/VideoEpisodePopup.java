@@ -11,16 +11,15 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import cn.jzvd.demo.R;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.AGEpsodeEntity;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.VideoEpisodeAdapter;
-import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.DipAndPx;
 
 public class VideoEpisodePopup extends PopupWindow {
@@ -130,6 +129,8 @@ public class VideoEpisodePopup extends PopupWindow {
             this.playNum = playNum;
             episodeList.get(this.playNum - 1).setPlay(true);
         }
+
+        episodeRecycler.getAdapter().notifyDataSetChanged();
     }
 
     public void startDismissTimer() {

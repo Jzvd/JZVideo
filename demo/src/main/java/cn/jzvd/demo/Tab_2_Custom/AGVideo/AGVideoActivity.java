@@ -6,21 +6,20 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import cn.jzvd.JZDataSource;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
+import cn.jzvd.demo.ApplicationDemo;
+import cn.jzvd.demo.R;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.popup.VideoEpisodePopup;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.popup.VideoSpeedPopup;
-import cn.jzvd.demo.CustomMedia.JZMediaExo;
-import cn.jzvd.demo.R;
 import cn.jzvd.demo.Urls;
 import cn.jzvd.demo.utils.ScreenRotateUtils;
 
@@ -234,7 +233,7 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
      * @param speed
      */
     private void changeSpeed(float speed) {
-        Object[] object = {speed};
+        Object[] object = { speed };
         mPlayer.mediaInterface.setSpeed(speed);
         mJzDataSource.objects[0] = object;
         Toast.makeText(this, "正在以" + speed + "X倍速播放", Toast.LENGTH_SHORT).show();
@@ -285,7 +284,7 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
             videoEpisodePopup = new VideoEpisodePopup(this, episodeList);
             videoEpisodePopup.setEpisondeClickListener(this);
         }
-        videoEpisodePopup.setPlayNum(1);
+        videoEpisodePopup.setPlayNum(episodes.getSelectedTabPosition() + 1);
         videoEpisodePopup.showAtLocation(getWindow().getDecorView(), Gravity.RIGHT, 0, 0);
     }
 
@@ -318,6 +317,4 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
             episodeList.add(new AGEpsodeEntity(Urls.ssVideos[i], "三生三世枕上书 第" + (i + 1) + "集"));
         }
     }
-
-
 }
