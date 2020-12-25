@@ -66,14 +66,16 @@
 
                 <Button
                     android:id="@+id/server_cn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="server_cn" />
 
                 <Button
                     android:id="@+id/server_us"
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="server_us" />
 
             </LinearLayout>
