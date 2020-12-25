@@ -59,6 +59,24 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/screen_rotate" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/server_cn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="server_cn" />
+
+                <Button
+                    android:id="@+id/server_us"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="server_us" />
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
