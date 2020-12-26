@@ -76,10 +76,10 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(UrlsKt.getAliVideos()[0]);
+        String proxyUrl = ApplicationDemo.getProxy(getContext()).getProxyUrl(UrlsKt.getCndVideos()[0]);
         map.put("高清", proxyUrl);
-        map.put("标清", UrlsKt.getAliVideos()[1]);
-        map.put("普清", UrlsKt.getAliVideos()[2]);
+        map.put("标清", UrlsKt.getCndVideos()[1]);
+        map.put("普清", UrlsKt.getCndVideos()[2]);
         JZDataSource jzDataSource = new JZDataSource(map, "饺子起立");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
@@ -87,7 +87,7 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
         mJzvdStd.setUp(jzDataSource
                 , JzvdStd.SCREEN_NORMAL);
         Jzvd.PROGRESS_DRAG_RATE = 2f;//设置播放进度条手势滑动阻尼系数
-        Glide.with(this).load(UrlsKt.getAliThumbnail()[0]).into(mJzvdStd.posterImageView);
+        Glide.with(this).load(UrlsKt.getCndThumbnail()[0]).into(mJzvdStd.posterImageView);
     }
 
 

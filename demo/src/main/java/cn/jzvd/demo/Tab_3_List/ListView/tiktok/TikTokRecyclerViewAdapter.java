@@ -21,7 +21,7 @@ import cn.jzvd.demo.R;
 public class TikTokRecyclerViewAdapter extends RecyclerView.Adapter<TikTokRecyclerViewAdapter.MyViewHolder> {
 
     public static final String TAG = "AdapterTikTokRecyclerView";
-    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int[] videoIndexs = {0, 1, 2, 3, 4, 5};
     private Context context;
 
     public TikTokRecyclerViewAdapter(Context context) {
@@ -41,11 +41,11 @@ public class TikTokRecyclerViewAdapter extends RecyclerView.Adapter<TikTokRecycl
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Log.i(TAG, "onBindViewHolder [" + holder.jzvdStd.hashCode() + "] position=" + position);
 
-        JZDataSource jzDataSource = new JZDataSource(UrlsKt.getVl1()[position],
-                UrlsKt.getTl1()[position]);
+        JZDataSource jzDataSource = new JZDataSource(UrlsKt.getVl3()[position],
+                UrlsKt.getTl3()[position]);
         jzDataSource.looping = true;
         holder.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(UrlsKt.getPl1()[position]).into(holder.jzvdStd.posterImageView);
+        Glide.with(holder.jzvdStd.getContext()).load(UrlsKt.getPl3()[position]).into(holder.jzvdStd.posterImageView);
     }
 
     @Override

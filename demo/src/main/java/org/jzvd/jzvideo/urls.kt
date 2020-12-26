@@ -7,7 +7,7 @@ package org.jzvd.jzvideo
 val cn = "http://8.136.101.204"
 val us = "http://videos.jzvd.org"
 
-var server_name: String = cn;
+var server_name: String = cn
 
 
 val ldjVideos = arrayOf(
@@ -58,7 +58,7 @@ val ldjVideos = arrayOf(
     "$server_name/v/ldj/45-ldj.mp4"
 )
 
-val aliVideos = arrayOf(
+val cndVideos = arrayOf(
     "https://jzvd.nathen.cn/video/cfe6c30-1767b1bc21f-0007-1823-c86-de200.mp4",//三个不同分辨率
     "https://jzvd.nathen.cn/0339d49439f947419576c33a0aa51545/79e1a938b0d2435d85bd964a77640506-f4e986e3e38ed3f473f7ba82bc07e188-ld.mp4",
     "https://jzvd.nathen.cn/0339d49439f947419576c33a0aa51545/79e1a938b0d2435d85bd964a77640506-8924c7da92ebd789d315bc5de0a81059-fd.mp4",
@@ -68,7 +68,7 @@ val aliVideos = arrayOf(
     "https://jzvd.nathen.cn/video/5a6465ff-1767b2a5e28-0007-1823-c86-de200.mp4"
 )
 
-val aliThumbnail = arrayOf(
+val cndThumbnail = arrayOf(
     "https://jzvd.nathen.cn/snapshot/0339d49439f947419576c33a0aa5154500005.jpg",
     "",
     "",
@@ -79,99 +79,104 @@ val aliThumbnail = arrayOf(
 )
 
 val videos = arrayOf(
-    "$server_name/v/饺子还年轻.mp4",
+
+    //width > height
     "$server_name/v/饺子主动.mp4",
-    "$server_name/v/饺子真萌.mp4",
-    "$server_name/v/饺子真会.mp4",
     "$server_name/v/饺子运动.mp4",
     "$server_name/v/饺子有活.mp4",
     "$server_name/v/饺子星光.mp4",
-    "$server_name/v/饺子想听.mp4",
     "$server_name/v/饺子想吹.mp4",
     "$server_name/v/饺子汪汪.mp4",
-
     "$server_name/v/饺子偷人.mp4",
-    "$server_name/v/饺子挺住.mp4",
     "$server_name/v/饺子跳.mp4",
     "$server_name/v/饺子受不了.mp4",
     "$server_name/v/饺子三位.mp4",
     "$server_name/v/饺子起飞.mp4",
     "$server_name/v/饺子你听.mp4",
     "$server_name/v/饺子可以了.mp4",
-    "$server_name/v/饺子可以.mp4",
-    "$server_name/v/饺子好妈妈.mp4",
-
     "$server_name/v/饺子还小.mp4",
     "$server_name/v/饺子高兴.mp4",
     "$server_name/v/饺子高冷.mp4",
     "$server_name/v/饺子堵住了.mp4",
     "$server_name/v/饺子都懂.mp4",
     "$server_name/v/饺子打电话.mp4",
-    "$server_name/v/饺子不服.mp4"
-)
+    "$server_name/v/饺子不服.mp4",
+    //height > width
+    "$server_name/v/饺子还年轻.mp4",
+    "$server_name/v/饺子好妈妈.mp4",
+    "$server_name/v/饺子可以.mp4",
+    "$server_name/v/饺子挺住.mp4",
+    "$server_name/v/饺子想听.mp4",
+    "$server_name/v/饺子真会.mp4",
+    "$server_name/v/饺子真萌.mp4"
+
+    )
 
 val thumbnails = arrayOf(
-    "$server_name/v/饺子还年轻.jpg",
     "$server_name/v/饺子主动.jpg",
-    "$server_name/v/饺子真萌.jpg",
-    "$server_name/v/饺子真会.jpg",
     "$server_name/v/饺子运动.jpg",
     "$server_name/v/饺子有活.jpg",
     "$server_name/v/饺子星光.jpg",
-    "$server_name/v/饺子想听.jpg",
     "$server_name/v/饺子想吹.jpg",
     "$server_name/v/饺子汪汪.jpg",
-
     "$server_name/v/饺子偷人.jpg",
-    "$server_name/v/饺子挺住.jpg",
     "$server_name/v/饺子跳.jpg",
     "$server_name/v/饺子受不了.jpg",
     "$server_name/v/饺子三位.jpg",
     "$server_name/v/饺子起飞.jpg",
     "$server_name/v/饺子你听.jpg",
     "$server_name/v/饺子可以了.jpg",
-    "$server_name/v/饺子可以.jpg",
-    "$server_name/v/饺子好妈妈.jpg",
-
     "$server_name/v/饺子还小.jpg",
     "$server_name/v/饺子高兴.jpg",
     "$server_name/v/饺子高冷.jpg",
     "$server_name/v/饺子堵住了.jpg",
     "$server_name/v/饺子都懂.jpg",
     "$server_name/v/饺子打电话.jpg",
-    "$server_name/v/饺子不服.jpg"
+    "$server_name/v/饺子不服.jpg",
+
+    //height > width
+    "$server_name/v/饺子还年轻.jpg",
+    "$server_name/v/饺子好妈妈.jpg",
+    "$server_name/v/饺子可以.jpg",
+    "$server_name/v/饺子挺住.jpg",
+    "$server_name/v/饺子想听.jpg",
+    "$server_name/v/饺子真会.jpg",
+    "$server_name/v/饺子真萌.jpg"
+
 )
 
 val titles = arrayOf(
-    "饺子还年轻",
+    //width > height
     "饺子主动",
-    "饺子真萌",
-    "饺子真会",
     "饺子运动",
     "饺子有活",
     "饺子星光",
-    "饺子想听",
     "饺子想吹",
     "饺子汪汪",
-
     "饺子偷人",
-    "饺子挺住",
     "饺子跳",
     "饺子受不了",
     "饺子三位",
+
     "饺子起飞",
     "饺子你听",
     "饺子可以了",
-    "饺子可以",
-    "饺子好妈妈",
-
     "饺子还小",
     "饺子高兴",
     "饺子高冷",
     "饺子堵住了",
     "饺子都懂",
     "饺子打电话",
-    "饺子不服"
+    "饺子不服",
+
+    //height > width
+    "饺子还年轻",
+    "饺子好妈妈",
+    "饺子可以",
+    "饺子挺住",
+    "饺子想听",
+    "饺子真会",
+    "饺子真萌"
 )
 
 val vl1 = videos.copyOfRange(3, 9)
@@ -182,9 +187,9 @@ val vl2 = videos.copyOfRange(10, 20)
 val pl2 = thumbnails.copyOfRange(10, 20)
 val tl2 = titles.copyOfRange(10, 20)
 
-val vl3 = videos.copyOfRange(20, 25)
-val pl3 = thumbnails.copyOfRange(20, 25)
-val tl3 = titles.copyOfRange(20, 25)
+val vl3 = videos.copyOfRange(20, 26)
+val pl3 = thumbnails.copyOfRange(20, 26)
+val tl3 = titles.copyOfRange(20, 26)
 
 
 val vll = arrayOf(
@@ -198,6 +203,8 @@ val pll = arrayOf(
 val tll = arrayOf(
     tl1, tl2, tl3
 )
+
+
 
 
 
