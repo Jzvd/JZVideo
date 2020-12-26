@@ -9,7 +9,6 @@ val us = "http://videos.jzvd.org"
 
 var server_name: String = cn
 
-
 val ldjVideos = arrayOf(
     "$server_name/v/ldj/01-ldj.mp4",
     "$server_name/v/ldj/02-ldj.mp4",
@@ -79,7 +78,6 @@ val cndThumbnail = arrayOf(
 )
 
 val videos = arrayOf(
-
     //width > height
     "$server_name/v/饺子主动.mp4",
     "$server_name/v/饺子运动.mp4",
