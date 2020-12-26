@@ -179,9 +179,9 @@ val titles = arrayOf(
     "饺子真萌"
 )
 
-val vl1 = videos.copyOfRange(3, 9)
-val pl1 = thumbnails.copyOfRange(3, 9)
-val tl1 = titles.copyOfRange(3, 9)
+val vl1 = videos.copyOfRange(0, 9)
+val pl1 = thumbnails.copyOfRange(0, 9)
+val tl1 = titles.copyOfRange(0, 9)
 
 val vl2 = videos.copyOfRange(10, 20)
 val pl2 = thumbnails.copyOfRange(10, 20)

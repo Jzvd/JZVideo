@@ -37,9 +37,9 @@ public class NormalListViewActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
         listView.setAdapter(new ListViewAdapter(this,
-                UrlsKt.getVl3(),
-                UrlsKt.getTl3(),
-                UrlsKt.getPl3()));
+                UrlsKt.getVl2(),
+                UrlsKt.getTl2(),
+                UrlsKt.getPl2()));
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
