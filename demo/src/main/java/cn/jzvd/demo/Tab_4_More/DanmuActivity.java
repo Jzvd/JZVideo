@@ -1,37 +1,22 @@
 package cn.jzvd.demo.Tab_4_More;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Random;
+import org.jzvd.jzvideo.UrlsKt;
 
 import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
-import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.CustomJzvd.JzvdDanmu;
-import cn.jzvd.demo.CustomJzvd.JzvdStdAssert;
-import cn.jzvd.demo.CustomMedia.JZMediaSystemAssertFolder;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
-import master.flame.danmaku.ui.widget.DanmakuView;
 
 /**
  * @author Liberations
@@ -63,8 +48,8 @@ public class DanmuActivity extends AppCompatActivity implements View.OnClickList
         hideDanmu.setOnClickListener(this);
 
 
-        jzvdDanmu.setUp(Urls.clarities[2], "饺子键盘侠", Jzvd.SCREEN_NORMAL);
-        Glide.with(this).load(Urls.videoPosterList[0]).into(jzvdDanmu.posterImageView);
+        jzvdDanmu.setUp(UrlsKt.getVideos()[14], UrlsKt.getTitles()[14], Jzvd.SCREEN_NORMAL);
+        Glide.with(this).load(UrlsKt.getThumbnails()[14]).into(jzvdDanmu.posterImageView);
         testDanmu();
         jzvdDanmu.startButton.performClick();
 

@@ -8,10 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 import cn.jzvd.demo.utils.ScreenRotateUtils;
 
 /**
@@ -30,10 +31,10 @@ public class ScreenRotateActivity extends AppCompatActivity implements ScreenRot
         getSupportActionBar().setTitle(getString(R.string.screen_rotate));
         setContentView(R.layout.activity_screen_rotate);
         mJzvdStd = findViewById(R.id.jz_video);
-        mJzvdStd.setUp(Urls.videoUrlList[0], "饺子挺好"
+        mJzvdStd.setUp(UrlsKt.getVideos()[16], UrlsKt.getTitles()[16]
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
-                .load(Urls.videoPosterList[0])
+                .load(UrlsKt.getThumbnails()[16])
                 .into(mJzvdStd.posterImageView);
         ScreenRotateUtils.getInstance(this.getApplicationContext()).setOrientationChangeListener(this);
     }

@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
@@ -27,10 +28,13 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Glide.with(holder.ivHead.getContext()).load(Urls.videoPosters[0][position])
+        Glide.with(holder.ivHead.getContext()).load(
+                UrlsKt.getPl1()[position])
                 .into(holder.ivHead);
-        holder.tvName.setText(Urls.videoTitles[0][position]);
-        holder.tvContent.setText(Urls.videoTitles[0][position]);
+        holder.tvName.setText(
+                UrlsKt.getTl1()[position]);
+        holder.tvContent.setText(
+                UrlsKt.getVl1()[position]);
     }
 
     @Override

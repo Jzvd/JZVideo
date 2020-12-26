@@ -3,22 +3,27 @@ package cn.jzvd.demo.Tab_3_List.ListView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+
+import org.jzvd.jzvideo.UrlsKt;
+
 import java.util.ArrayList;
 import java.util.Collections;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.Tab_3_List.ListView.adapter.RecyclerViewLoadMoreAdapter;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Tab_3_List.ListView.entity.VideoEntity;
-import cn.jzvd.demo.Urls;
+import cn.jzvd.demo.utils.VideoEntity;
 
 /**
  * Created by yujunkui on 16/8/29.
@@ -28,6 +33,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     RecyclerViewLoadMoreAdapter adapterVideoList;
     SmartRefreshLayout refreshLayout;
     ArrayList<VideoEntity> videos;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +88,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
                 int lastPositon = linearLayoutManager.findLastVisibleItemPosition();
                 int count = recyclerView.getAdapter().getItemCount();
-                if(newState == RecyclerView.SCROLL_STATE_IDLE && count > 3 && lastPositon >= count - 3){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && count > 3 && lastPositon >= count - 3) {
                     loadMore();
                 }
             }
@@ -103,17 +109,17 @@ public class RecyclerViewActivity extends AppCompatActivity {
         videos = new ArrayList<>();
         addData();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapterVideoList = new RecyclerViewLoadMoreAdapter(this,videos);
+        adapterVideoList = new RecyclerViewLoadMoreAdapter(this, videos);
         recyclerView.setAdapter(adapterVideoList);
     }
 
     private void addData() {
         ArrayList<VideoEntity> tempList = new ArrayList<>();
-        for (int i = 0; i < Urls.videoUrls[0].length; i++) {
+        for (int i = 0; i < UrlsKt.getVl2().length; i++) {
             VideoEntity videoEntity = new VideoEntity();
-            videoEntity.setUrl(Urls.videoUrls[0][i]);
-            videoEntity.setTitle(Urls.videoTitles[0][i]);
-            videoEntity.setThumb(Urls.videoPosters[0][i]);
+            videoEntity.setUrl(UrlsKt.getVl2()[i]);
+            videoEntity.setTitle(UrlsKt.getTl2()[i]);
+            videoEntity.setThumb(UrlsKt.getPl2()[i]);
             tempList.add(videoEntity);
         }
         //随机打乱

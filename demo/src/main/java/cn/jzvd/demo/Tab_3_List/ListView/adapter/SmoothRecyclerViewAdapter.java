@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdRv;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 import cn.jzvd.demo.utils.AutoPlayUtils;
 import cn.jzvd.demo.utils.ViewAttr;
 
@@ -64,9 +65,10 @@ public class SmoothRecyclerViewAdapter extends RecyclerView.Adapter<SmoothRecycl
                 jzvdStdRv = (JzvdStdRv) holder.container.getChildAt(0);
             }
             jzvdStdRv.setUp(
-                    Urls.videoUrls[0][position],
-                    Urls.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-            Glide.with(holder.container.getContext()).load(Urls.videoPosters[0][position])
+                    UrlsKt.getVl1()[position],
+                    UrlsKt.getTl1()[position], Jzvd.SCREEN_NORMAL);
+            Glide.with(holder.container.getContext()).load(
+                    UrlsKt.getPl1()[position])
                     .into(jzvdStdRv.posterImageView);
         }
         jzvdStdRv.setId(R.id.jzvdplayer);

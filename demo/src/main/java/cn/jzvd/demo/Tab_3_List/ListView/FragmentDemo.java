@@ -10,10 +10,11 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.Tab_3_List.ListView.adapter.ListViewAdapter;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 2017/6/9.
@@ -38,9 +39,9 @@ public class FragmentDemo extends Fragment {
                              Bundle savedInastanceState) {
         listView = (ListView) inflater.inflate(R.layout.layout_list, container, false);
         listView.setAdapter(new ListViewAdapter(getActivity(),
-                Urls.videoUrls[index],
-                Urls.videoTitles[index],
-                Urls.videoPosters[index]));
+                UrlsKt.getVll()[index],
+                UrlsKt.getTll()[index],
+                UrlsKt.getPll()[index]));
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {

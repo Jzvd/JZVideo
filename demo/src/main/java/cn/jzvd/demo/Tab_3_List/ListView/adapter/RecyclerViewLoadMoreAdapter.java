@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Tab_3_List.ListView.entity.VideoEntity;
-import cn.jzvd.demo.Urls;
+import cn.jzvd.demo.utils.VideoEntity;
 
 public class RecyclerViewLoadMoreAdapter extends RecyclerView.Adapter<RecyclerViewLoadMoreAdapter.MyViewHolder> {
 

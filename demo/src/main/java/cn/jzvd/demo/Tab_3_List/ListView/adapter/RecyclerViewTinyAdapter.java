@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdTinyWindow;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 public class RecyclerViewTinyAdapter extends RecyclerView.Adapter<RecyclerViewTinyAdapter.MyViewHolder> {
 
@@ -41,9 +42,9 @@ public class RecyclerViewTinyAdapter extends RecyclerView.Adapter<RecyclerViewTi
         if (holder.jzvdStd.getTag() != null)
             holder.jzvdStd = ((View) holder.jzvdStd.getTag()).findViewById(R.id.videoplayer);
         holder.jzvdStd.setUp(
-                Urls.videoUrls[0][position],
-                Urls.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(Urls.videoPosters[0][position]).into(holder.jzvdStd.posterImageView);
+                UrlsKt.getVl1()[position],
+                UrlsKt.getVl1()[position], Jzvd.SCREEN_NORMAL);
+        Glide.with(holder.jzvdStd.getContext()).load(UrlsKt.getVl1()[position]).into(holder.jzvdStd.posterImageView);
     }
 
     @Override

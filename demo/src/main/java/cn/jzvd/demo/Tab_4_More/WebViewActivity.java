@@ -13,11 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.JZUtils;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 16/10/13.
@@ -73,11 +74,9 @@ public class WebViewActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 if (index == 0) {
                     JzvdStd jzvdStd = new JzvdStd(WebViewActivity.this);
-                    jzvdStd.setUp(Urls.videoUrlList[1], "饺子骑大马",
-                            Jzvd.SCREEN_NORMAL);
-                    Glide.with(WebViewActivity.this)
-                            .load(Urls.videoPosterList[1])
-                            .into(jzvdStd.posterImageView);
+                    jzvdStd.setUp(UrlsKt.getVideos()[16], UrlsKt.getTitles()[16], Jzvd.SCREEN_NORMAL);
+                    Glide.with(WebViewActivity.this).load(UrlsKt.getThumbnails()[16]).into(jzvdStd.posterImageView);
+
                     ViewGroup.LayoutParams ll = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(ll);
                     layoutParams.y = JZUtils.dip2px(WebViewActivity.this, top);
@@ -90,11 +89,9 @@ public class WebViewActivity extends AppCompatActivity {
                     mWebView.addView(linearLayout, layoutParams);
                 } else {
                     JzvdStd jzvdStd = new JzvdStd(WebViewActivity.this);
-                    jzvdStd.setUp(Urls.videoUrlList[2], "饺子失态了",
-                            Jzvd.SCREEN_NORMAL);
-                    Glide.with(WebViewActivity.this)
-                            .load(Urls.videoPosterList[2])
-                            .into(jzvdStd.posterImageView);
+                    jzvdStd.setUp(UrlsKt.getVideos()[16], UrlsKt.getTitles()[16], Jzvd.SCREEN_NORMAL);
+                    Glide.with(WebViewActivity.this).load(UrlsKt.getThumbnails()[16]).into(jzvdStd.posterImageView);
+
                     ViewGroup.LayoutParams ll = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     AbsoluteLayout.LayoutParams layoutParams = new AbsoluteLayout.LayoutParams(ll);
                     layoutParams.y = JZUtils.dip2px(WebViewActivity.this, top);

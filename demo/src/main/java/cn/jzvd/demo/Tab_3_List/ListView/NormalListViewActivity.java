@@ -10,10 +10,11 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.demo.Tab_3_List.ListView.adapter.ListViewAdapter;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 16/7/31.
@@ -36,9 +37,9 @@ public class NormalListViewActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
         listView.setAdapter(new ListViewAdapter(this,
-                Urls.videoUrls[0],
-                Urls.videoTitles[0],
-                Urls.videoPosters[0]));
+                UrlsKt.getVl2(),
+                UrlsKt.getTl2(),
+                UrlsKt.getPl2()));
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
