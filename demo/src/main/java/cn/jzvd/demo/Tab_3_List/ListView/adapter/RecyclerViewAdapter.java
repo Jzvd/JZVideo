@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     public static final String TAG = "AdapterRecyclerView";
-    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     private Context context;
 
     public RecyclerViewAdapter(Context context) {
@@ -40,9 +41,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         Log.i(TAG, "onBindViewHolder [" + holder.jzvdStd.hashCode() + "] position=" + position);
 
         holder.jzvdStd.setUp(
-                Urls.videoUrls[0][position],
-                Urls.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(Urls.videoPosters[0][position]).into(holder.jzvdStd.posterImageView);
+
+                UrlsKt.getVl1()[position],
+
+                UrlsKt.getTl1()[position], Jzvd.SCREEN_NORMAL);
+        Glide.with(holder.jzvdStd.getContext()).load(
+                UrlsKt.getPl1()[position]).into(holder.jzvdStd.posterImageView);
     }
 
     @Override

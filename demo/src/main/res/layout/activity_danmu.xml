@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cn.jzvd.demo.CustomJzvd.JzvdDanmu
+        android:id="@+id/jz_danmu_player"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+    <Button
+        android:id="@+id/show_danmu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/show_danmu" />
+
+    <Button
+        android:id="@+id/hide_danmu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hide_danmu" />
+
+    <Button
+        android:id="@+id/btn_add_danmu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_danmu" />
+
+    <Button
+        android:id="@+id/btn_diy_danmu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_diy_danmu" />
+
+
+</LinearLayout>

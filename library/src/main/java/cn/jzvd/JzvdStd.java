@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -100,9 +101,6 @@ public class JzvdStd extends Jzvd {
             }
         }
     };
-    //doublClick 这两个全局变量只在ontouch中使用，就近放置便于阅读
-    protected long lastClickTime = 0;
-    protected long doubleTime = 200;
     protected ArrayDeque<Runnable> delayTask = new ArrayDeque<>();
 
     public JzvdStd(Context context) {
@@ -267,6 +265,33 @@ public class JzvdStd extends Jzvd {
         registerWifiListener(getApplicationContext());
     }
 
+    /**
+     * 双击
+     */
+    protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+            if (state == STATE_PLAYING || state == STATE_PAUSE) {
+                Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
+                startButton.performClick();
+            }
+            return super.onDoubleTap(e);
+        }
+
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            if (!mChangePosition && !mChangeVolume) {
+                onClickUiToggle();
+            }
+            return super.onSingleTapConfirmed(e);
+        }
+
+        @Override
+        public void onLongPress(MotionEvent e) {
+            super.onLongPress(e);
+        }
+    });
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
@@ -282,32 +307,9 @@ public class JzvdStd extends Jzvd {
                         int progress = (int) (mSeekTimePosition * 100 / (duration == 0 ? 1 : duration));
                         bottomProgressBar.setProgress(progress);
                     }
-
-                    //加上延时是为了判断点击是否是双击之一，双击不执行这个逻辑
-                    Runnable task = () -> {
-                        if (!mChangePosition && !mChangeVolume) {
-                            onClickUiToggle();
-                        }
-                    };
-                    v.postDelayed(task, doubleTime + 20);
-                    delayTask.add(task);
-                    while (delayTask.size() > 2) {
-                        delayTask.pollFirst();
-                    }
-
-                    long currentTimeMillis = System.currentTimeMillis();
-                    if (currentTimeMillis - lastClickTime < doubleTime) {
-                        for (Runnable taskItem : delayTask) {
-                            v.removeCallbacks(taskItem);
-                        }
-                        if (state == STATE_PLAYING || state == STATE_PAUSE) {
-                            Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
-                            startButton.performClick();
-                        }
-                    }
-                    lastClickTime = currentTimeMillis;
                     break;
             }
+            gestureDetector.onTouchEvent(event);
         } else if (id == R.id.bottom_seek_progress) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:

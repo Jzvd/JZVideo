@@ -12,6 +12,8 @@
     <string name="preloading">Preloading</string>
     <string name="screen_rotate">Screen Rotate</string>
     <string name="get_gif">Get Gif</string>
+    <string name="jzvd_auto_orientation">JZVD auto orientation</string>
+    <string name="jzvd_round">JzvdStd Round</string>
     <string name="extend_jzvdstd_delete_view">extends JzvdStd and delete some parent views</string>
     <string name="jzvdstd_delete_view_add_lock">Standard ui but delete some parent views and add lock button</string>
     <string name="add_share_btn_after_fullscreen">Standard ui with share button, visible after fullscreen</string>
@@ -57,4 +59,11 @@
     <string name="local_video">LOCAL VIDEO</string>
     <string name="direct_play_fullscreen">Fullscreen</string>
     <string name="direct_play_tiny">TinyWindow</string>
+    <string name="danmu_show">bullet screen</string>
+    <string name="add_danmu">add bullet screen</string>
+    <string name="add_diy_danmu">diy bullet screen</string>
+    <string name="show_danmu">hide bullet screen</string>
+    <string name="hide_danmu">show bullet screen</string>
+    <string name="clear_danmu">clear bullet screen</string>
+    <string name="test_danmu">test bullet screen</string>
 </resources>

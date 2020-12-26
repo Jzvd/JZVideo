@@ -9,10 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 2016/12/30.
@@ -30,10 +31,10 @@ public class OrientationActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.orientation));
         setContentView(R.layout.activity_orientation);
         mJzvdStd = findViewById(R.id.jz_video);
-        mJzvdStd.setUp(Urls.videoUrlList[0], "饺子会旋转"
+        mJzvdStd.setUp(UrlsKt.getVideos()[25], UrlsKt.getTitles()[25]
                 , JzvdStd.SCREEN_NORMAL);
         Glide.with(this)
-                .load(Urls.videoPosterList[0])
+                .load(UrlsKt.getThumbnails()[25])
                 .into(mJzvdStd.posterImageView);
     }
 
@@ -41,7 +42,7 @@ public class OrientationActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Jzvd.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
-        Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+        Jzvd.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
     }
 
     @Override

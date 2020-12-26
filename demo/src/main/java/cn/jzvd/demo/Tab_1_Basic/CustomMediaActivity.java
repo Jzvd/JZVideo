@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.JZMediaSystem;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
@@ -37,11 +39,11 @@ public class CustomMediaActivity extends AppCompatActivity {
 
         jzvdStd = findViewById(R.id.videoplayer);
 
-        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子很保守", JzvdStd.SCREEN_NORMAL);
+        jzvdStd.setUp(UrlsKt.getVideos()[9]
+                , UrlsKt.getTitles()[9], JzvdStd.SCREEN_NORMAL);
 
         Glide.with(this)
-                .load("http://jzvd-pic.nathen.cn/jzvd-pic/1bb2ebbe-140d-4e2e-abd2-9e7e564f71ac.png")
+                .load(UrlsKt.getThumbnails()[9])
                 .into(jzvdStd.posterImageView);
 
     }
@@ -49,32 +51,31 @@ public class CustomMediaActivity extends AppCompatActivity {
 
     public void clickChangeToIjkplayer(View view) {
         Jzvd.releaseAllVideos();
-        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子变心", JzvdStd.SCREEN_NORMAL, JZMediaIjk.class);
+        jzvdStd.setUp(UrlsKt.getVideos()[1]
+                , UrlsKt.getTitles()[1], JzvdStd.SCREEN_NORMAL, JZMediaIjk.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to Ijkplayer", Toast.LENGTH_SHORT).show();
     }
 
     public void clickChangeToSystem(View view) {
         Jzvd.releaseAllVideos();
-        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子回来了", JzvdStd.SCREEN_NORMAL, JZMediaSystem.class);
+        jzvdStd.setUp(UrlsKt.getVideos()[1]
+                , UrlsKt.getTitles()[1], JzvdStd.SCREEN_NORMAL, JZMediaSystem.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to MediaPlayer", Toast.LENGTH_SHORT).show();
     }
 
     public void clickChangeToExo(View view) {
         Jzvd.releaseAllVideos();
-        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子追星", JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
+        jzvdStd.setUp(UrlsKt.getVideos()[1]
+                , UrlsKt.getTitles()[1], JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to ExoPlayer", Toast.LENGTH_SHORT).show();
     }
 
     public void clickChangeToAliyun(View view) {
         Jzvd.releaseAllVideos();
-        jzvdStd.setUp("http://jzvd.nathen.cn/342a5f7ef6124a4a8faf00e738b8bee4/cf6d9db0bd4d41f59d09ea0a81e918fd-5287d2089db37e62345123a1be272f8b.mp4"
-                , "饺子梭哈", JzvdStd.SCREEN_NORMAL, JZMediaAliyun.class);
+        jzvdStd.setMediaInterface(JZMediaAliyun.class);
         jzvdStd.startVideo();
         Toast.makeText(this, "Change to AliyunPlayer", Toast.LENGTH_SHORT).show();
     }

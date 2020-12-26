@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ScrollView
@@ -21,6 +22,28 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:text="@string/agplayer" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/jzvd_auto_orientation" />
+
+            <cn.jzvd.demo.CustomJzvd.JzvdStdAutoOrizental
+                android:id="@+id/jz_auto_oriental"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="@string/jzvd_round" />
+
+            <cn.jzvd.demo.CustomJzvd.JzvdStdRound
+                android:id="@+id/jz_round"
+                android:layout_width="match_parent"
+                app:radius="20dp"
+                android:layout_height="200dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -108,7 +131,7 @@
                 android:text="@string/play_with_1_1" />
 
 
-            <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
+            <cn.jzvd.JzvdStd
                 android:id="@+id/jz_videoplayer_1_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -122,7 +145,7 @@
                 android:text="@string/play_with_16_9" />
 
 
-            <cn.jzvd.demo.CustomJzvd.JzvdStdAutoCompleteAfterFullscreen
+            <cn.jzvd.JzvdStd
                 android:id="@+id/jz_videoplayer_16_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

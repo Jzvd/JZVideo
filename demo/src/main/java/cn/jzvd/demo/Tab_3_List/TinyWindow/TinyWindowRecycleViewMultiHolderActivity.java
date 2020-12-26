@@ -15,11 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import org.jzvd.jzvideo.UrlsKt;
+
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.CustomJzvd.JzvdStdTinyWindow;
 import cn.jzvd.demo.R;
-import cn.jzvd.demo.Urls;
 
 /**
  * Created by Nathen on 2017/11/1.
@@ -132,11 +133,9 @@ public class TinyWindowRecycleViewMultiHolderActivity extends AppCompatActivity 
                 TextHolder textHolder = (TextHolder) holder;
             } else {
                 VideoHolder videoHolder = (VideoHolder) holder;
-                videoHolder.jzvdStd.setUp(
-                        Urls.videoUrls[0][position],
-                        Urls.videoTitles[0][position], Jzvd.SCREEN_NORMAL);
+                videoHolder.jzvdStd.setUp(UrlsKt.getVl1()[position], UrlsKt.getTl1()[position], Jzvd.SCREEN_NORMAL);
                 videoHolder.jzvdStd.positionInList = position;
-                Glide.with(TinyWindowRecycleViewMultiHolderActivity.this).load(Urls.videoPosters[0][position]).into(videoHolder.jzvdStd.posterImageView);
+                Glide.with(TinyWindowRecycleViewMultiHolderActivity.this).load(UrlsKt.getPl1()[position]).into(videoHolder.jzvdStd.posterImageView);
             }
         }
 

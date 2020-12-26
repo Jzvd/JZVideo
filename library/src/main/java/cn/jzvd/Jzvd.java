@@ -66,6 +66,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static long lastAutoFullscreenTime = 0;
     public static int ON_PLAY_PAUSE_TMP_STATE = 0;//这个考虑不放到库里，去自定义
     public static int backUpBufferState = -1;
+    public static float PROGRESS_DRAG_RATE = 1f;//进度条滑动阻尼系数 越大播放进度条滑动越慢
     public static AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {//是否新建个class，代码更规矩，并且变量的位置也很尴尬
         @Override
         public void onAudioFocusChange(int focusChange) {
@@ -474,7 +475,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
         if (mChangePosition) {
             long totalTimeDuration = getDuration();
-            mSeekTimePosition = (int) (mGestureDownPosition + deltaX * totalTimeDuration / mScreenWidth);
+            if (PROGRESS_DRAG_RATE <= 0) {
+                Log.d(TAG, "error PROGRESS_DRAG_RATE value");
+                PROGRESS_DRAG_RATE = 1f;
+            }
+            mSeekTimePosition = (int) (mGestureDownPosition + deltaX * totalTimeDuration / (mScreenWidth * PROGRESS_DRAG_RATE));
             if (mSeekTimePosition > totalTimeDuration)
                 mSeekTimePosition = totalTimeDuration;
             String seekTime = JZUtils.stringForTime(mSeekTimePosition);

@@ -11,26 +11,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.jzvd.jzvideo.UrlsKt;
+import java.util.ArrayList;
 
 import cn.jzvd.Jzvd;
-import cn.jzvd.demo.CustomJzvd.JzvdStdTinyWindow;
+import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.utils.VideoEntity;
 
-public class RecyclerViewTinyAdapter extends RecyclerView.Adapter<RecyclerViewTinyAdapter.MyViewHolder> {
+public class RecyclerViewLoadMoreAdapter extends RecyclerView.Adapter<RecyclerViewLoadMoreAdapter.MyViewHolder> {
 
-    public static final String TAG = "AdapterRecyclerView";
-    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    public static final String TAG = "RecyclerViewLoadMoreAdapter";
+    ArrayList<VideoEntity> videos;
     private Context context;
 
-    public RecyclerViewTinyAdapter(Context context) {
+    public RecyclerViewLoadMoreAdapter(Context context, ArrayList<VideoEntity> videos) {
         this.context = context;
+        this.videos = videos;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                context).inflate(R.layout.item_videoview_tiny, parent,
+                context).inflate(R.layout.item_videoview, parent,
                 false));
         return holder;
     }
@@ -39,26 +41,22 @@ public class RecyclerViewTinyAdapter extends RecyclerView.Adapter<RecyclerViewTi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Log.i(TAG, "onBindViewHolder [" + holder.jzvdStd.hashCode() + "] position=" + position);
-        if (holder.jzvdStd.getTag() != null)
-            holder.jzvdStd = ((View) holder.jzvdStd.getTag()).findViewById(R.id.videoplayer);
-        holder.jzvdStd.setUp(
-                UrlsKt.getVl1()[position],
-                UrlsKt.getVl1()[position], Jzvd.SCREEN_NORMAL);
-        Glide.with(holder.jzvdStd.getContext()).load(UrlsKt.getVl1()[position]).into(holder.jzvdStd.posterImageView);
+        VideoEntity videoEntity = videos.get(position);
+        holder.jzvdStd.setUp(videoEntity.getUrl(), videoEntity.getTitle(), Jzvd.SCREEN_NORMAL);
+        Glide.with(holder.jzvdStd.getContext()).load(videoEntity.getThumb()).into(holder.jzvdStd.posterImageView);
     }
 
     @Override
     public int getItemCount() {
-        return videoIndexs.length;
+        return videos.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        JzvdStdTinyWindow jzvdStd;
+        JzvdStd jzvdStd;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             jzvdStd = itemView.findViewById(R.id.videoplayer);
-            jzvdStd.setTag(itemView);
         }
     }
 

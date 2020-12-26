@@ -1,15 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "cn.jzvd.demo"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 105
-        versionName "7.5.0"
+        versionCode 106
+        versionName "7.6.0"
+        multiDexEnabled true
         ndk {
             // add support lib
             abiFilters 'armeabi-v7a' //, 'arm64-v8a'//, "mips"  //,'armeabi''x86',, 'x86_64',
@@ -47,21 +49,26 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
     implementation project(':library')
-    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.danikula:videocache:2.7.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.12.1'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    implementation 'com.google.android.exoplayer:exoplayer:2.11.3'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-core:1.0.15'
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever-native:1.0.15'
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+    implementation 'com.github.ctiao:DanmakuFlameMaster:0.9.25'
+    implementation 'com.github.ctiao:ndkbitmap-armv7a:0.9.21'
+    implementation 'com.danikula:videocache:2.7.0'
     implementation 'com.aliyun.sdk.android:AliyunPlayer:4.5.0-full'
     implementation 'com.alivc.conan:AlivcConan:0.9.5'
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    implementation 'com.scwang.smart:refresh-header-material:2.0.1'
+    implementation 'com.scwang.smart:refresh-footer-classics:2.0.1'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.3'
+
 }

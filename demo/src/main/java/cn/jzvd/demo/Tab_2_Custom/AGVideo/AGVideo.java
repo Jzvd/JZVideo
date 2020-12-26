@@ -163,6 +163,7 @@ public class AGVideo extends JzvdStd {
                     onStatePause();
                 } else if (state == STATE_PAUSE) {
                     mediaInterface.start();
+                    onStatePlaying();
                 } else if (state == STATE_AUTO_COMPLETE) {
                     startVideo();
                 }
@@ -260,8 +261,10 @@ public class AGVideo extends JzvdStd {
                     //点击重播，取消下一集倒计时
                     dismissNextView();
                     cancelDismissNextViewTimer();
-                    resetProgressAndTime();
-                    mediaInterface.seekTo(0);
+
+                    //resetProgressAndTime();
+                    //mediaInterface.seekTo(0);
+                    changeUrl(jzDataSource, 0);
                 }
                 break;
             case R.id.next_set:
