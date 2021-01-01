@@ -22,7 +22,7 @@ import cn.jzvd.demo.utils.ViewAttr;
 public class SmoothRecyclerViewAdapter extends RecyclerView.Adapter<SmoothRecyclerViewAdapter.MyViewHolder> {
 
     public static final String TAG = "AdapterSmoothRecyclerView";
-    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int[] videoIndexs = {0, 1, 2, 3, 4, 5, 6, 7, 8};
     private Context context;
     private OnVideoClick onVideoClick;
 
