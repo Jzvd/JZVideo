@@ -44,6 +44,7 @@
     <string name="start_play_after_preloading">预加载完播放</string>
     <string name="listview">在列表中使用</string>
     <string name="tiny_window">小窗播放</string>
+    <string name="slide_zoom">滑动缩放</string>
     <string name="custom_ag">自定义AG播放器展示</string>
     <string name="normal_listview">普通ListView用法</string>
     <string name="list_fragment_viewpager">ListView Fragment ViewPager中使用</string>

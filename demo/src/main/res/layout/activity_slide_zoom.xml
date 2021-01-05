@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <cn.jzvd.JzvdStd
+        android:id="@+id/surface_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_behavior=".utils.JzvdSlideZoomBehavior"
+        app:min_height="200dp"
+        app:scrolling_id="@+id/rv_comment" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:depend="@+id/surface_container"
+        app:layout_behavior=".utils.JzvdDependBehavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
