@@ -20,7 +20,8 @@ import cn.jzvd.demo.R;
 ///**
 // * eg: 皮皮虾 视频列表高是不固定的  demo是固定的
 // * 要想实现皮皮虾一模一样的效果  请自行修改
-// * 这里应该传入视高 给 childOriginalHeight 就解决了
+//  皮皮虾效果后面在搞 这里只是简单列表缩放
+//   参考列子：皮皮虾
 // */
 public class JzvdSlideZoomBehavior extends CoordinatorLayout.Behavior<JzvdStd> {
 

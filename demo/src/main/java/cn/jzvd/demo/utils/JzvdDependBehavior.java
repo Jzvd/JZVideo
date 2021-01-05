@@ -41,11 +41,11 @@ public class JzvdDependBehavior extends CoordinatorLayout.Behavior<View> {
                                   int heightUsed) {
 
 
-        View anchorView = parent.findViewById(dependId);
-        if (anchorView == null) {
+        View dependView = parent.findViewById(dependId);
+        if (dependView == null) {
             return false;
         }
-        parent.onMeasureChild(child, parentWidthMeasureSpec, 0, parentHeightMeasureSpec,  anchorView.getBottom());
+        parent.onMeasureChild(child, parentWidthMeasureSpec, 0, parentHeightMeasureSpec,  dependView.getBottom());
         return true;
     }
 
@@ -59,7 +59,6 @@ public class JzvdDependBehavior extends CoordinatorLayout.Behavior<View> {
             return false;
         }
         parent.onLayoutChild(child, layoutDirection);
-        //偏移量
         child.offsetTopAndBottom(anchorView.getBottom());
         return true;
     }
