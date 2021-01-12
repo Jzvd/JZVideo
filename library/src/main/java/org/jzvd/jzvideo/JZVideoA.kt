@@ -3,8 +3,9 @@ package org.jzvd.jzvideo
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
-import androidx.core.view.get
 import cn.jzvd.R
+import kotlin.reflect.KClass
+import kotlin.reflect.full.createInstance
 
 const val TAG = "JZVideo"
 
@@ -20,8 +21,14 @@ enum class Screen {
 
 open class JZVideoA : RelativeLayout {
 
-
     var state: State = State.IDLE
+
+
+    lateinit var mediaInterfaceClass: KClass<*>
+    lateinit var surfaceInterfaceClass: KClass<*>
+    var surfaceInterface: JZSurfaceInterface? = null
+    var mediaInterface: JZMediaInterface? = null
+    lateinit var url: String
 
     constructor(ctx: Context) : super(ctx) {
         inflate(context, getLayout(), this)
@@ -31,10 +38,38 @@ open class JZVideoA : RelativeLayout {
         inflate(context, getLayout(), this)
     }
 
+    fun setUp(
+        url: String,
+        mediaInterfaceClass: KClass<*>,
+        surfaceInterfaceClass: KClass<*>
+    ) {
+        this.url = url
+        this.surfaceInterfaceClass = surfaceInterfaceClass
+        this.mediaInterfaceClass = mediaInterfaceClass
+    }
+
+    fun init() {
+        surfaceInterface = findViewById(R.id.surface)
+    }
+
     fun startVideo() {
+
+
         //TODO 添加surface，开始MediaPlayer播放。
 
+        val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
+        var ss = mediaRef.createInstance() as JZMediaInterface
 
+
+//        val constructor: Constructor<JZMediaInterface> =
+//            mediaInterfaceClass!!.getConstructor(JZVideoA::class.java)
+//        surfaceInterfaceClass!!
+//        mediaInterface = constructor.newInstance(this)
+//        val constructor: Constructor<cn.jzvd.JZMediaInterface> =
+//            mediaInterfaceClass!!.getConstructor(
+//                Jzvd::class.java
+//            )
+//        mediaInterface = constructor.newInstance(this)
     }
 
     fun addSurface() {
@@ -46,3 +81,6 @@ open class JZVideoA : RelativeLayout {
     }
 
 }
+
+
+
