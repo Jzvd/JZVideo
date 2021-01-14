@@ -49,17 +49,15 @@ open class JZVideoA : RelativeLayout {
     }
 
     fun init() {
-        surfaceInterface = findViewById(R.id.surface)
+//        surfaceInterface = findViewById(R.id.surface)
     }
 
-    fun startVideo() {
-
-
-        //TODO 添加surface，开始MediaPlayer播放。
-
+    //就是startVideo，和mediaPlayer的函数名一样,prepare表示开始
+    fun prepare() {
+        //TODO 开始MediaPlayer的播放。
         val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
         var ss = mediaRef.createInstance() as JZMediaInterface
-
+        ss.prepare()
 
 //        val constructor: Constructor<JZMediaInterface> =
 //            mediaInterfaceClass!!.getConstructor(JZVideoA::class.java)
@@ -70,6 +68,7 @@ open class JZVideoA : RelativeLayout {
 //                Jzvd::class.java
 //            )
 //        mediaInterface = constructor.newInstance(this)
+
     }
 
     fun addSurface() {

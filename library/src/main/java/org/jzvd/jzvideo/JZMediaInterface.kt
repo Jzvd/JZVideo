@@ -1,20 +1,14 @@
 package org.jzvd.jzvideo
 
-import android.graphics.SurfaceTexture
-import android.os.Handler
-import android.os.HandlerThread
-import android.view.Surface
-import android.view.TextureView.SurfaceTextureListener
-import cn.jzvd.Jzvd
-
-abstract class JZMediaInterface(var jzVideoA: JZVideoA) {
+abstract class JZMediaInterface {
 
 //    var mMediaHandlerThread: HandlerThread? = null
 //    var mMediaHandler: Handler? = null
 //    var handler: Handler? = null
 
-    abstract fun start()
     abstract fun prepare()
+
+    abstract fun start()
     abstract fun pause()
     abstract val isPlaying: Boolean
 

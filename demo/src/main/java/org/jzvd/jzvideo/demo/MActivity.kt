@@ -15,8 +15,13 @@ class mActivity : AppCompatActivity() {
 
         val jzVideoA: JZVideoA = findViewById(R.id.jz_video)
 
-        jzVideoA.setUp("", JZMediaSystem::class, JZSurfaceView::class)
-
+        //这个版本可以只用surfaceview
+        jzVideoA.setUp(
+            "http://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4",
+            JZMediaSystem::class,
+            JZSurfaceView::class
+        )
+        jzVideoA.prepare()
 
 
     }

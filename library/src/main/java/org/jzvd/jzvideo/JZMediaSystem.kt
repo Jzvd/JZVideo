@@ -1,16 +1,34 @@
 package org.jzvd.jzvideo
 
+import android.media.AudioManager
+import android.media.MediaPlayer
+import android.provider.MediaStore
+
 /**
  * Created by Nathen on 2021/1/13.
  */
-class JZMediaSystem(jzVideoA: JZVideoA) : JZMediaInterface(jzVideoA) {
-    override fun start() {
-        TODO("Not yet implemented")
+class JZMediaSystem : JZMediaInterface(),
+    MediaPlayer.OnPreparedListener {
 
-
-    }
+    var mediaPlayer: MediaPlayer? = null
 
     override fun prepare() {
+        mediaPlayer = MediaPlayer()
+        mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)//AudioAttributes代码复杂没有这个好。
+        mediaPlayer!!.isLooping = true
+        mediaPlayer!!.setOnPreparedListener(this@JZMediaSystem)
+        mediaPlayer!!.setDataSource("http://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4");
+        println("fdsafds 1 " + System.currentTimeMillis())
+        mediaPlayer!!.prepareAsync()
+        println("fdsafds 2 " + System.currentTimeMillis())
+    }
+
+    override fun onPrepared(mp: MediaPlayer?) {
+        println("fdsafds 31 " + System.currentTimeMillis())
+        mp!!.start()
+    }
+
+    override fun start() {
         TODO("Not yet implemented")
     }
 
