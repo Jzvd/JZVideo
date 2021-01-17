@@ -1,4 +1,4 @@
-package org.jzvd.jzvideo
+package org.jzvd.jzvideo.nouse
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,7 @@ import android.view.TextureView
 import android.view.View
 import cn.jzvd.Jzvd
 
-class JZTextureView : TextureView, JZSurfaceInterface {
+class JZTextureView : TextureView {
     var currentVideoWidth = 0
     var currentVideoHeight = 0
 
@@ -148,19 +148,4 @@ class JZTextureView : TextureView, JZSurfaceInterface {
         protected const val TAG = "JZResizeTextureView"
     }
 
-    override fun onSurfaceCreate() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSurfaceChange() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSurfaceDestroy() {
-        TODO("Not yet implemented")
-    }
-
-    override fun onSurfaceUpdate() {
-        TODO("Not yet implemented")
-    }
 }

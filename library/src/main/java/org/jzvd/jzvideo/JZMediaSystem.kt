@@ -3,6 +3,8 @@ package org.jzvd.jzvideo
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.provider.MediaStore
+import android.view.Surface
+import android.view.SurfaceHolder
 
 /**
  * Created by Nathen on 2021/1/13.
@@ -45,6 +47,10 @@ class JZMediaSystem : JZMediaInterface(),
 
     override fun release() {
         TODO("Not yet implemented")
+    }
+
+    override fun setSurface(surfaceHolder: SurfaceHolder) {
+        mediaPlayer!!.setDisplay(surfaceHolder)
     }
 
     override val currentPosition: Long

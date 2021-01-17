@@ -14,7 +14,7 @@
         android:networkSecurityConfig="@xml/jz_network_security_config"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity,MissingTranslation">
-        <activity android:name=".Tab_4_More.SlideZoomActivity"></activity>
+        <activity android:name=".Tab_4_More.SlideZoomActivity"/>
         <activity
             android:name="org.jzvd.jzvideo.demo.mActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

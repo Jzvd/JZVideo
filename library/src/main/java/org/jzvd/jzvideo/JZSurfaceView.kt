@@ -3,17 +3,21 @@ package org.jzvd.jzvideo
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
 import cn.jzvd.Jzvd
 
 
-class JZSurfaceView : SurfaceView, JZSurfaceInterface {
+class JZSurfaceView : SurfaceView, SurfaceHolder.Callback {
 
     val TAG = "JZSurfaceView"
 
     var currentVideoWidth = 0
     var currentVideoHeight = 0
+
+    lateinit var mediaInterface: JZMediaInterface
+
 
     constructor(context: Context?) : super(context!!) {
         currentVideoWidth = 0
@@ -25,6 +29,12 @@ class JZSurfaceView : SurfaceView, JZSurfaceInterface {
     ) {
         currentVideoWidth = 0
         currentVideoHeight = 0
+    }
+
+    //下面几个通用函数可以做成surfaceView和textureView的interface
+    fun surfacePrepare(mediaInterface: JZMediaInterface) {
+        holder.addCallback(this)
+        this.mediaInterface = mediaInterface;
     }
 
     fun setVideoSize(currentVideoWidth: Int, currentVideoHeight: Int) {
@@ -154,19 +164,14 @@ class JZSurfaceView : SurfaceView, JZSurfaceInterface {
         setMeasuredDimension(width, height)
     }
 
-    override fun onSurfaceCreate() {
-        TODO("Not yet implemented")
+    override fun surfaceCreated(holder: SurfaceHolder) {
+        mediaInterface.setSurface(holder)
     }
 
-    override fun onSurfaceChange() {
-        TODO("Not yet implemented")
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
     }
 
-    override fun onSurfaceDestroy() {
-        TODO("Not yet implemented")
+    override fun surfaceDestroyed(holder: SurfaceHolder) {
     }
 
-    override fun onSurfaceUpdate() {
-        TODO("Not yet implemented")
-    }
 }

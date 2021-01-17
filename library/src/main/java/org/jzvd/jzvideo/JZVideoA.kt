@@ -2,6 +2,8 @@ package org.jzvd.jzvideo
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.SurfaceHolder
+import android.view.SurfaceView
 import android.widget.RelativeLayout
 import cn.jzvd.R
 import kotlin.reflect.KClass
@@ -19,58 +21,58 @@ enum class Screen {
     NORMAL, FULLSCREEN, TINY
 }
 
-open class JZVideoA : RelativeLayout {
+class JZVideoA : RelativeLayout {
 
     var state: State = State.IDLE
 
 
     lateinit var mediaInterfaceClass: KClass<*>
-    lateinit var surfaceInterfaceClass: KClass<*>
-    var surfaceInterface: JZSurfaceInterface? = null
-    var mediaInterface: JZMediaInterface? = null
+
+    lateinit var surfaeView: JZSurfaceView
+    lateinit var mediaInterface: JZMediaInterface
+
     lateinit var url: String
 
     constructor(ctx: Context) : super(ctx) {
         inflate(context, getLayout(), this)
+        init()
     }
 
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs) {
         inflate(context, getLayout(), this)
+        init()
+    }
+
+    fun init() {
+        surfaeView = findViewById(R.id.surface)
+
+
     }
 
     fun setUp(
         url: String,
         mediaInterfaceClass: KClass<*>,
-        surfaceInterfaceClass: KClass<*>
     ) {
         this.url = url
-        this.surfaceInterfaceClass = surfaceInterfaceClass
         this.mediaInterfaceClass = mediaInterfaceClass
-    }
 
-    fun init() {
-//        surfaceInterface = findViewById(R.id.surface)
-    }
-
-    //就是startVideo，和mediaPlayer的函数名一样,prepare表示开始
-    fun prepare() {
-        //TODO 开始MediaPlayer的播放。
         val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
-        var ss = mediaRef.createInstance() as JZMediaInterface
-        ss.prepare()
-
-//        val constructor: Constructor<JZMediaInterface> =
-//            mediaInterfaceClass!!.getConstructor(JZVideoA::class.java)
-//        surfaceInterfaceClass!!
-//        mediaInterface = constructor.newInstance(this)
-//        val constructor: Constructor<cn.jzvd.JZMediaInterface> =
-//            mediaInterfaceClass!!.getConstructor(
-//                Jzvd::class.java
-//            )
-//        mediaInterface = constructor.newInstance(this)
+        mediaInterface = mediaRef.createInstance() as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
+        surfaeView.surfacePrepare(mediaInterface)
 
     }
 
+    /**
+     * 就是startVideo()，和mediaPlayer的函数名一样,prepare表示开始
+     */
+    fun prepare() {
+        mediaInterface.prepare()//MediaPlayer开始工作
+
+
+    }
+
+
+    //如果没有surface就自己添加surfaceview。
     fun addSurface() {
 
     }
@@ -78,6 +80,7 @@ open class JZVideoA : RelativeLayout {
     fun getLayout(): Int {
         return R.layout.jz_video_a
     }
+
 
 }
 

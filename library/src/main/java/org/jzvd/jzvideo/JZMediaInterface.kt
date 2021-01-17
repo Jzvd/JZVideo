@@ -1,5 +1,8 @@
 package org.jzvd.jzvideo
 
+import android.view.Surface
+import android.view.SurfaceHolder
+
 abstract class JZMediaInterface {
 
 //    var mMediaHandlerThread: HandlerThread? = null
@@ -14,8 +17,11 @@ abstract class JZMediaInterface {
 
     abstract fun seekTo(time: Long)
     abstract fun release()
+    abstract fun setSurface(surface: SurfaceHolder)
+
     abstract val currentPosition: Long
     abstract val duration: Long
+
 
     abstract fun setVolume(leftVolume: Float, rightVolume: Float)//这种函数应该在demo中自行添加
     abstract fun setSpeed(speed: Float)
