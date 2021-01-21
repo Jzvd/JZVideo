@@ -72,11 +72,11 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
             TrackSelection.Factory videoTrackSelectionFactory =
                     new AdaptiveTrackSelection.Factory();
             TrackSelector trackSelector =
-                    new DefaultTrackSelector(context,videoTrackSelectionFactory);
+                    new DefaultTrackSelector(context, videoTrackSelectionFactory);
 
             LoadControl loadControl = new DefaultLoadControl.Builder()
                     .setAllocator(new DefaultAllocator(true, C.DEFAULT_BUFFER_SEGMENT_SIZE))
-                    .setBufferDurationsMs( 360000, 600000, 1000, 5000)
+                    .setBufferDurationsMs(360000, 600000, 1000, 5000)
                     .setPrioritizeTimeOverSizeThresholds(false)
                     .setTargetBufferBytes(C.LENGTH_UNSET)
                     .createDefaultLoadControl();
@@ -90,7 +90,7 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
                     .setTrackSelector(trackSelector)
                     .setLoadControl(loadControl)
                     .setBandwidthMeter(bandwidthMeter)
-                    .build() ;
+                    .build();
             // Produces DataSource instances through which media data is loaded.
             DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
                     Util.getUserAgent(context, context.getResources().getString(R.string.app_name)));
@@ -135,7 +135,7 @@ public class JZMediaExo extends JZMediaInterface implements Player.EventListener
 
     @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
-        handler.post(() -> jzvd.onVideoSizeChanged(width, height));
+        handler.post(() -> jzvd.onVideoSizeChanged((int) (width * pixelWidthHeightRatio), height));
     }
 
     @Override
