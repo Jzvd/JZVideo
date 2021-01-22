@@ -1115,6 +1115,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         }
     }
 
+    /**
+     * 这个线程有原罪。为什么mediaplayer没有回调。
+     */
     public class ProgressTimerTask extends TimerTask {
         @Override
         public void run() {

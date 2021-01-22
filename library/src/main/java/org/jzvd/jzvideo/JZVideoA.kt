@@ -4,8 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.View
+import android.widget.ImageView
 import android.widget.RelativeLayout
 import cn.jzvd.R
+import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.full.createInstance
 
@@ -21,17 +24,16 @@ enum class Screen {
     NORMAL, FULLSCREEN, TINY
 }
 
-class JZVideoA : RelativeLayout {
+class JZVideoA : RelativeLayout, View.OnClickListener {
 
     var state: State = State.IDLE
 
-
+    lateinit var url: String
     lateinit var mediaInterfaceClass: KClass<*>
-
-    lateinit var surfaeView: JZSurfaceView
     lateinit var mediaInterface: JZMediaInterface
 
-    lateinit var url: String
+    lateinit var surfaeView: JZSurfaceView
+    var startBtn: ImageView? = null
 
     constructor(ctx: Context) : super(ctx) {
         inflate(context, getLayout(), this)
@@ -45,7 +47,17 @@ class JZVideoA : RelativeLayout {
 
     fun init() {
         surfaeView = findViewById(R.id.surface)
+        startBtn = findViewById(R.id.start)
+        startBtn!!.setOnClickListener(this)
 
+        startBtn!!.setOnClickListener {
+            //TODO 如果正在播放就暂停，如果暂停就播放
+            prepare()
+        }
+
+    }
+
+    override fun onClick(v: View?) {
 
     }
 
@@ -57,7 +69,8 @@ class JZVideoA : RelativeLayout {
         this.mediaInterfaceClass = mediaInterfaceClass
 
         val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
-        mediaInterface = mediaRef.createInstance() as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
+        mediaInterface =
+            mediaRef.createInstance() as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
         surfaeView.surfacePrepare(mediaInterface)
 
     }
@@ -72,8 +85,7 @@ class JZVideoA : RelativeLayout {
     }
 
 
-    //如果没有surface就自己添加surfaceview。
-    fun addSurface() {
+    fun onProgress(progress: Int, position: Long, duration: Long) {
 
     }
 
@@ -81,6 +93,12 @@ class JZVideoA : RelativeLayout {
         return R.layout.jz_video_a
     }
 
+
+    inline fun timerTask(
+        crossinline action: TimerTask.() -> Unit
+    ) {
+
+    }
 
 }
 
