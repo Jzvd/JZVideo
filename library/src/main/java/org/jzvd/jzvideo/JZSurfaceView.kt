@@ -16,7 +16,7 @@ class JZSurfaceView : SurfaceView, SurfaceHolder.Callback {
     var currentVideoWidth = 0
     var currentVideoHeight = 0
 
-    lateinit var mediaInterface: JZMediaInterface
+    var mediaInterface: JZMediaInterface? = null
 
 
     constructor(context: Context?) : super(context!!) {
@@ -32,9 +32,9 @@ class JZSurfaceView : SurfaceView, SurfaceHolder.Callback {
     }
 
     //下面几个通用函数可以做成surfaceView和textureView的interface
-    fun surfacePrepare(mediaInterface: JZMediaInterface) {
+    fun prepareSurface(mediaInterface: JZMediaInterface?) {
         holder.addCallback(this)
-        this.mediaInterface = mediaInterface;
+        this.mediaInterface = mediaInterface
     }
 
     fun setVideoSize(currentVideoWidth: Int, currentVideoHeight: Int) {
@@ -165,7 +165,7 @@ class JZSurfaceView : SurfaceView, SurfaceHolder.Callback {
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
-        mediaInterface.setSurface(holder)
+        mediaInterface?.setSurface(holder)
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {

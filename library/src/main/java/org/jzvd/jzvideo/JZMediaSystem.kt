@@ -27,7 +27,7 @@ class JZMediaSystem : JZMediaInterface(),
 
     override fun onPrepared(mp: MediaPlayer?) {
         println("fdsafds 31 " + System.currentTimeMillis())
-        mp!!.start()
+        mp?.start()
     }
 
     override fun start() {
@@ -50,7 +50,7 @@ class JZMediaSystem : JZMediaInterface(),
     }
 
     override fun setSurface(surfaceHolder: SurfaceHolder) {
-        mediaPlayer!!.setDisplay(surfaceHolder)
+        mediaPlayer?.setDisplay(surfaceHolder)
     }
 
     override val currentPosition: Long

@@ -2,8 +2,6 @@ package org.jzvd.jzvideo
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.SurfaceHolder
-import android.view.SurfaceView
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -30,10 +28,11 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
 
     lateinit var url: String
     lateinit var mediaInterfaceClass: KClass<*>
-    lateinit var mediaInterface: JZMediaInterface
+    var mediaInterface: JZMediaInterface? = null
 
     lateinit var surfaeView: JZSurfaceView
     var startBtn: ImageView? = null
+    var progressTimer: Timer? = null
 
     constructor(ctx: Context) : super(ctx) {
         inflate(context, getLayout(), this)
@@ -48,10 +47,9 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
     fun init() {
         surfaeView = findViewById(R.id.surface)
         startBtn = findViewById(R.id.start)
-        startBtn!!.setOnClickListener(this)
+        startBtn?.setOnClickListener(this)
 
-        startBtn!!.setOnClickListener {
-            //TODO 如果正在播放就暂停，如果暂停就播放
+        startBtn?.setOnClickListener {
             prepare()
         }
 
@@ -71,7 +69,8 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
         val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
         mediaInterface =
             mediaRef.createInstance() as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
-        surfaeView.surfacePrepare(mediaInterface)
+        surfaeView.prepareSurface(mediaInterface?)
+
 
     }
 
@@ -79,7 +78,7 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
      * 就是startVideo()，和mediaPlayer的函数名一样,prepare表示开始
      */
     fun prepare() {
-        mediaInterface.prepare()//MediaPlayer开始工作
+        mediaInterface?.prepare()//MediaPlayer开始工作
 
 
     }
@@ -93,11 +92,27 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
         return R.layout.jz_video_a
     }
 
-
-    inline fun timerTask(
-        crossinline action: TimerTask.() -> Unit
-    ) {
-
+    fun startGetProgressTimer() {
+        progressTimer?.cancel()
+        progressTimer = Timer()
+        progressTimer?.schedule(object : TimerTask() {
+            override fun run() {
+                //取得播放进度，总时间，当前时间
+                post {
+                    val position: Long? = mediaInterface?.currentPosition
+                    val duration: Long? = mediaInterface?.duration
+                    if (position != null && duration != null) {//算个加减乘除 这么复杂吗
+                        var pro: Int
+                        if (duration?.equals(0L)) {
+                            pro = 0
+                        } else {
+                            pro = position?.times(100)?.div(duration!!)?.toInt()!!
+                        }
+                        onProgress(pro, position, duration)
+                    }
+                }
+            }
+        }, 0, 300)
     }
 
 }
