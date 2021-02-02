@@ -42,7 +42,9 @@ public class JzvdStd extends Jzvd {
     public static long LAST_GET_BATTERYLEVEL_TIME = 0;
     public static int LAST_GET_BATTERYLEVEL_PERCENT = 70;
     protected static Timer DISMISS_CONTROL_VIEW_TIMER;
-
+    
+    public long forwardRewindIncrementMs = 0;
+    
     public ImageView backButton;
     public ProgressBar bottomProgressBar, loadingProgressBar;
     public TextView titleTextView;
@@ -271,9 +273,13 @@ public class JzvdStd extends Jzvd {
     protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            if (state == STATE_PLAYING || state == STATE_PAUSE) {
-                Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
-                startButton.performClick();
+            if (forwardRewindIncrementMs == 0) {
+                if (state == STATE_PLAYING || state == STATE_PAUSE) {
+                    Log.d(TAG, "doublClick [" + this.hashCode() + "] ");
+                    startButton.performClick();
+                }
+            } else {
+                onDoubleClick(e);
             }
             return super.onDoubleTap(e);
         }
@@ -291,6 +297,59 @@ public class JzvdStd extends Jzvd {
             super.onLongPress(e);
         }
     });
+    
+    /**
+     * 设置双击事件
+     *
+     * @param event 事件
+     */
+    private void onDoubleClick(MotionEvent event) {
+        float x = event.getX();
+        int screenWidth = mScreenHeight;
+        //竖屏
+        if (Jzvd.FULLSCREEN_ORIENTATION == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            screenWidth = mScreenWidth;
+        }
+
+        if (x <= screenWidth * 0.3) {
+            //快退
+            forwardOrRewind(forwardRewindIncrementMs * (-1));
+        }
+        if (x > screenWidth * 0.3 && x < screenWidth * 0.6) {
+            if (state == STATE_PLAYING || state == STATE_PAUSE) {
+                startButton.performClick();
+            }
+        }
+        if (x > screenWidth * 0.6) {
+            //快进
+            forwardOrRewind(forwardRewindIncrementMs);
+        }
+    }
+
+    /**
+     * 控制快进或倒退
+     *
+     * @param time 快进或倒退的时间
+     */
+    private void forwardOrRewind(long time) {
+        long totalTimeDuration = getDuration();
+        mSeekTimePosition = (int) (mediaInterface.getCurrentPosition() + time);
+        if (mSeekTimePosition > totalTimeDuration)
+            mSeekTimePosition = totalTimeDuration;
+        String seekTime = JZUtils.stringForTime(mSeekTimePosition);
+        String totalTime = JZUtils.stringForTime(totalTimeDuration);
+
+        mediaInterface.seekTo(mSeekTimePosition);
+
+        //showProgressDialog
+        new Handler().post(() -> {
+            showProgressDialog(time, seekTime, mSeekTimePosition, totalTime, totalTimeDuration);
+        });
+        new Handler().postDelayed(() -> {
+            mProgressDialog.dismiss();
+        }, 500);
+    }
+
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
