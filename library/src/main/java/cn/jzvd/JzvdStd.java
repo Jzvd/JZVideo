@@ -305,10 +305,10 @@ public class JzvdStd extends Jzvd {
      */
     public void onDoubleClick(MotionEvent event) {
         float x = event.getX();
-        int screenWidth = mScreenHeight;
+        int screenWidth = mScreenWidth;
         //竖屏
         if (Jzvd.FULLSCREEN_ORIENTATION == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-            screenWidth = mScreenWidth;
+            screenWidth = mScreenHeight;
         }
 
         if (x <= screenWidth * 0.3) {
@@ -337,9 +337,6 @@ public class JzvdStd extends Jzvd {
         if (currentSeekTimePosition > totalTimeDuration) {
             currentSeekTimePosition = totalTimeDuration;
         }
-        String seekTime = JZUtils.stringForTime(currentSeekTimePosition);
-        String totalTime = JZUtils.stringForTime(totalTimeDuration);
-
         mediaInterface.seekTo(currentSeekTimePosition);
 
         //showProgressDialog
