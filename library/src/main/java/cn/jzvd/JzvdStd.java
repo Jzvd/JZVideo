@@ -303,7 +303,7 @@ public class JzvdStd extends Jzvd {
      *
      * @param event 事件
      */
-    private void onDoubleClick(MotionEvent event) {
+    public void onDoubleClick(MotionEvent event) {
         float x = event.getX();
         int screenWidth = mScreenHeight;
         //竖屏
@@ -331,23 +331,18 @@ public class JzvdStd extends Jzvd {
      *
      * @param time 快进或倒退的时间
      */
-    private void forwardOrRewind(long time) {
+    public void forwardOrRewind(long time) {
         long totalTimeDuration = getDuration();
-        mSeekTimePosition = (int) (mediaInterface.getCurrentPosition() + time);
-        if (mSeekTimePosition > totalTimeDuration)
-            mSeekTimePosition = totalTimeDuration;
-        String seekTime = JZUtils.stringForTime(mSeekTimePosition);
+        long currentSeekTimePosition = mediaInterface.getCurrentPosition() + time;
+        if (currentSeekTimePosition > totalTimeDuration) {
+            currentSeekTimePosition = totalTimeDuration;
+        }
+        String seekTime = JZUtils.stringForTime(currentSeekTimePosition);
         String totalTime = JZUtils.stringForTime(totalTimeDuration);
 
-        mediaInterface.seekTo(mSeekTimePosition);
+        mediaInterface.seekTo(currentSeekTimePosition);
 
         //showProgressDialog
-        new Handler().post(() -> {
-            showProgressDialog(time, seekTime, mSeekTimePosition, totalTime, totalTimeDuration);
-        });
-        new Handler().postDelayed(() -> {
-            mProgressDialog.dismiss();
-        }, 500);
     }
 
 
