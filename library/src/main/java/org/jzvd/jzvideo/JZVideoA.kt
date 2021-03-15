@@ -50,7 +50,7 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
         startBtn?.setOnClickListener(this)
 
         startBtn?.setOnClickListener {
-            prepare()
+            start()
         }
 
     }
@@ -69,22 +69,41 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
         val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
         mediaInterface =
             mediaRef.createInstance() as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
-        surfaeView.prepareSurface(mediaInterface?)
+        surfaeView.prepareSurface(mediaInterface)
 
 
     }
 
     /**
-     * 就是startVideo()，和mediaPlayer的函数名一样,prepare表示开始
+     * setUp之后
      */
-    fun prepare() {
+    fun start() {
         mediaInterface?.prepare()//MediaPlayer开始工作
 
 
     }
 
+    fun onStatePreparing() {
 
-    fun onProgress(progress: Int, position: Long, duration: Long) {
+    }
+
+    fun onStatePlaying() {
+
+    }
+
+    fun onStatePause() {
+
+    }
+
+    fun onStateComplete() {
+
+    }
+
+    fun onStateError() {
+
+    }
+
+    fun onProgress(progress: Int, position: Int, duration: Int) {
 
     }
 
@@ -101,14 +120,14 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
                 post {
                     val position: Long? = mediaInterface?.currentPosition
                     val duration: Long? = mediaInterface?.duration
-                    if (position != null && duration != null) {//算个加减乘除 这么复杂吗
+                    if (position != null && duration != null) {
                         var pro: Int
-                        if (duration?.equals(0L)) {
+                        if (duration == 0L) {
                             pro = 0
                         } else {
-                            pro = position?.times(100)?.div(duration!!)?.toInt()!!
+                            pro = position.times(100).div(duration).toInt()//算个加减乘除 这么复杂吗
                         }
-                        onProgress(pro, position, duration)
+                        onProgress(pro, position.toInt(), duration.toInt())
                     }
                 }
             }

@@ -19,7 +19,7 @@ class mActivity : AppCompatActivity() {
             "http://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4",
             JZMediaSystem::class,
         )
-        jzVideoA.prepare()
+        jzVideoA.start()
 
 
     }
