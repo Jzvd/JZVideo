@@ -2,9 +2,11 @@ package org.jzvd.jzvideo
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import cn.jzvd.Jzvd
 import cn.jzvd.R
 import java.util.*
 import kotlin.reflect.KClass
@@ -22,7 +24,7 @@ enum class Screen {
     NORMAL, FULLSCREEN, TINY
 }
 
-class JZVideoA : RelativeLayout, View.OnClickListener {
+public class JZVideoA : RelativeLayout, View.OnClickListener {
 
     var state: State = State.IDLE
 
@@ -30,7 +32,7 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
     lateinit var mediaInterfaceClass: KClass<*>
     var mediaInterface: JZMediaInterface? = null
 
-    lateinit var surfaeView: JZSurfaceView
+    lateinit var surfaeView: JZSurfaceView//如果没有开始播放时自己添加，如果有直接使用。
     var startBtn: ImageView? = null
     var progressTimer: Timer? = null
 
@@ -109,6 +111,13 @@ class JZVideoA : RelativeLayout, View.OnClickListener {
 
     fun getLayout(): Int {
         return R.layout.jz_video_a
+    }
+
+    fun onVideoSizeChanged(width: Int, height: Int) {
+        Log.i(Jzvd.TAG, "onVideoSizeChanged " + " [" + this.hashCode() + "] ")
+
+        surfaeView.setVideoSize(width, height)
+
     }
 
     fun startGetProgressTimer() {

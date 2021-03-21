@@ -6,7 +6,7 @@ import cn.jzvd.demo.R
 import org.jzvd.jzvideo.JZMediaSystem
 import org.jzvd.jzvideo.JZVideoA
 
-class mActivity : AppCompatActivity() {
+class MActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

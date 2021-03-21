@@ -1,14 +1,13 @@
 package org.jzvd.jzvideo
 
-import android.view.Surface
 import android.view.SurfaceHolder
 
-abstract class JZMediaInterface {
+abstract class JZMediaInterface(var jzVideoA: JZVideoA?) {
 
 //    var mMediaHandlerThread: HandlerThread? = null
 //    var mMediaHandler: Handler? = null
 //    var handler: Handler? = null
-
+    
     abstract fun prepare()
 
     abstract fun start()

@@ -16,7 +16,7 @@
         tools:ignore="GoogleAppIndexingWarning,LockedOrientationActivity,MissingTranslation">
         <activity android:name=".Tab_4_More.SlideZoomActivity"/>
         <activity
-            android:name="org.jzvd.jzvideo.demo.mActivity"
+            android:name="org.jzvd.jzvideo.demo.MActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
