@@ -2,6 +2,7 @@ package org.jzvd.jzvideo
 
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.os.Build
 import android.view.SurfaceHolder
 
 /**
@@ -18,7 +19,7 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
         mediaPlayer = MediaPlayer()
         mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)//AudioAttributes代码复杂没有这个好。
         mediaPlayer!!.isLooping = true
-        mediaPlayer!!.setDataSource("http://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4");
+        mediaPlayer!!.setDataSource("http://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4")
         mediaPlayer!!.setOnPreparedListener(this@JZMediaSystem)
         mediaPlayer!!.setOnCompletionListener(this@JZMediaSystem)
         mediaPlayer!!.setOnBufferingUpdateListener(this@JZMediaSystem)
@@ -30,70 +31,106 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
         mediaPlayer!!.prepareAsync()
     }
 
-    override fun onPrepared(mp: MediaPlayer?) {
-        mp?.start()
-    }
-
     override fun start() {
-        TODO("Not yet implemented")
+        mMediaHandler?.post { mediaPlayer!!.start() }
     }
 
     override fun pause() {
-        TODO("Not yet implemented")
+        mMediaHandler?.post { mediaPlayer!!.pause() }
     }
 
     override val isPlaying: Boolean
-        get() = TODO("Not yet implemented")
+        get() = mediaPlayer!!.isPlaying
 
     override fun seekTo(time: Long) {
-        TODO("Not yet implemented")
+        mMediaHandler?.post {
+            try {
+                mediaPlayer!!.seekTo(time.toInt())
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
     }
 
-    override fun release() {
-        TODO("Not yet implemented")
-    }
-
-    override fun setSurface(surfaceHolder: SurfaceHolder) {
-        mediaPlayer?.setDisplay(surfaceHolder)
+    //这块不好有隐患。
+    override fun release() { //not perfect change you later
+        if (mMediaHandler != null && mMediaHandlerThread != null && mediaPlayer != null) { //不知道有没有妖孽
+            val tmpHandlerThread = mMediaHandlerThread
+            val tmpMediaPlayer: MediaPlayer = mediaPlayer as MediaPlayer
+//            cn.jzVideoA.JZMediaInterface.SAVED_SURFACE = null
+            mMediaHandler?.post {
+                tmpMediaPlayer.setSurface(null)
+                tmpMediaPlayer.release()
+                tmpHandlerThread?.quit()
+            }
+            mediaPlayer = null
+        }
     }
 
     override val currentPosition: Long
-        get() = TODO("Not yet implemented")
+        get() = if (mediaPlayer != null) {
+            mediaPlayer!!.currentPosition.toLong()
+        } else {
+            0
+        }
+
     override val duration: Long
-        get() = TODO("Not yet implemented")
+        get() = if (mediaPlayer != null) {
+            mediaPlayer!!.duration.toLong()
+        } else {
+            0
+        }
+
 
     override fun setVolume(leftVolume: Float, rightVolume: Float) {
-        TODO("Not yet implemented")
+        if (mMediaHandler == null) return
+        mMediaHandler?.post {
+            if (mediaPlayer != null) mediaPlayer!!.setVolume(
+                leftVolume,
+                rightVolume
+            )
+        }
     }
 
     override fun setSpeed(speed: Float) {
-        TODO("Not yet implemented")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val pp = mediaPlayer!!.playbackParams
+            pp.speed = speed
+            mediaPlayer!!.playbackParams = pp
+        }
     }
 
-    override fun onVideoSizeChanged(mp: MediaPlayer?, width: Int, height: Int) {
-        println("fdsfadsa width: ${width}, height: $height")//540, height: 952
-
-
+    override fun onPrepared(mediaPlayer: MediaPlayer) {
+        handler?.post { jzVideoA?.onPrepared() } //如果是mp3音频，走这里
     }
 
-    override fun onBufferingUpdate(mp: MediaPlayer?, percent: Int) {
-        TODO("Not yet implemented")
+    override fun onCompletion(mediaPlayer: MediaPlayer) {
+        handler?.post { jzVideoA?.onCompletion() }
     }
 
-    override fun onCompletion(mp: MediaPlayer?) {
-        TODO("Not yet implemented")
+    override fun onBufferingUpdate(mediaPlayer: MediaPlayer, percent: Int) {
+        handler?.post { jzVideoA?.setBufferProgress(percent) }
     }
 
-    override fun onSeekComplete(mp: MediaPlayer?) {
-        TODO("Not yet implemented")
+    override fun onSeekComplete(mediaPlayer: MediaPlayer) {
+        handler?.post { jzVideoA?.onSeekComplete() }
     }
 
-    override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
-        TODO("Not yet implemented")
+    override fun onError(mediaPlayer: MediaPlayer, what: Int, extra: Int): Boolean {
+        handler?.post { jzVideoA?.onError(what, extra) }
+        return true
     }
 
-    override fun onInfo(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
-        TODO("Not yet implemented")
+    override fun onInfo(mediaPlayer: MediaPlayer, what: Int, extra: Int): Boolean {
+        handler?.post { jzVideoA?.onInfo(what, extra) }
+        return false
     }
 
+    override fun onVideoSizeChanged(mediaPlayer: MediaPlayer, width: Int, height: Int) {
+        handler?.post { jzVideoA?.onVideoSizeChanged(width, height) }
+    }
+
+    override fun setSurface(surface: SurfaceHolder) {
+        mediaPlayer!!.setDisplay(surface)
+    }
 }

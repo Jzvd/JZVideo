@@ -20,9 +20,9 @@ enum class State {
     PREPARED, PLAYING, PAUSE, COMPLETE, ERROR
 }
 
-enum class Screen {
-    NORMAL, FULLSCREEN, TINY
-}
+//enum class Screen {//
+//    NORMAL, FULLSCREEN, TINY
+//}
 
 public class JZVideoA : RelativeLayout, View.OnClickListener {
 
@@ -102,6 +102,30 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     }
 
     fun onStateError() {
+
+    }
+
+    fun onPrepared() {
+
+    }
+
+    fun onCompletion() {
+
+    }
+
+    fun setBufferProgress(percent: Int) {
+
+    }
+
+    fun onSeekComplete() {
+
+    }
+
+    fun onError(what: Int, extra: Int) {
+
+    }
+
+    fun onInfo(what: Int, extra: Int) {
 
     }
 
