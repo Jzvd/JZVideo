@@ -3,6 +3,9 @@ package org.jzvd.jzvideo
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.Looper
 import android.util.Log
 import android.view.SurfaceHolder
 
@@ -17,9 +20,15 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
     var mediaPlayer: MediaPlayer? = null
 
     override fun prepare() {
+
+        mMediaHandlerThread = HandlerThread(TAG)
+        mMediaHandlerThread!!.start()
+        mMediaHandler = Handler(mMediaHandlerThread!!.looper) //主线程还是非主线程，就在这里
+        handler = Handler(Looper.getMainLooper())
+
         mediaPlayer = MediaPlayer()
         mediaPlayer!!.setAudioStreamType(AudioManager.STREAM_MUSIC)//AudioAttributes代码复杂没有这个好。
-        mediaPlayer!!.isLooping = true
+//        mediaPlayer!!.isLooping = true
         mediaPlayer!!.setDataSource("http://jzvd.nathen.cn/video/25ae1b1c-1767b2a5e44-0007-1823-c86-de200.mp4")
         mediaPlayer!!.setOnPreparedListener(this@JZMediaSystem)
         mediaPlayer!!.setOnCompletionListener(this@JZMediaSystem)
@@ -102,8 +111,6 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
     }
 
     override fun onPrepared(mediaPlayer: MediaPlayer) {
-        Log.d(TAG, "onPreparedhjkhjkhjk")
-        mediaPlayer.start()
         handler?.post { jzVideoA?.onPrepared() } //如果是mp3音频，走这里
     }
 

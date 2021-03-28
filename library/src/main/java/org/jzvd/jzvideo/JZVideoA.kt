@@ -47,9 +47,9 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
         startBtn = findViewById(R.id.start)
         startBtn?.setOnClickListener(this)
 
-        startBtn?.setOnClickListener {
-            start()
-        }
+//        startBtn?.setOnClickListener {
+//            start()
+//        }
 
     }
 
@@ -61,10 +61,10 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
                     start()
                 }
                 State.PAUSE -> {
-                    mediaInterface?.start()
+                    mediaInterface?.start()//
                     onStatePlaying()
                 }
-                State.PLAYING -> {
+                State.PLAYING -> {//TODO 暂停和开始是否需要一个函数触发这部分怎么搞
                     mediaInterface?.pause()
                     onStatePause()
                 }
@@ -114,7 +114,7 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     fun onPrepared() {
         Log.d(TAG, "onPrepared [" + this.hashCode() + "] ")
         mediaInterface!!.start()
-        state = State.PREPARED
+        state = State.PLAYING
     }
 
     fun onStatePause() {
@@ -132,12 +132,13 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
         state = State.ERROR
     }
 
+    //自动播放完毕
     fun onCompletion() {
-
+        Log.d(TAG, "onCompletion [" + this.hashCode() + "] ")
     }
 
     fun setBufferProgress(percent: Int) {
-
+        Log.d(TAG, "setBufferProgress $percent [" + this.hashCode() + "] ")
     }
 
     fun onSeekComplete() {
