@@ -3,6 +3,7 @@ package org.jzvd.jzvideo
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
+import android.util.Log
 import android.view.SurfaceHolder
 
 /**
@@ -29,6 +30,7 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
         mediaPlayer!!.setOnInfoListener(this@JZMediaSystem)
         mediaPlayer!!.setOnVideoSizeChangedListener(this@JZMediaSystem)
         mediaPlayer!!.prepareAsync()
+        Log.d(TAG, "prepareAsync ")
     }
 
     override fun start() {
@@ -57,7 +59,6 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
         if (mMediaHandler != null && mMediaHandlerThread != null && mediaPlayer != null) { //不知道有没有妖孽
             val tmpHandlerThread = mMediaHandlerThread
             val tmpMediaPlayer: MediaPlayer = mediaPlayer as MediaPlayer
-//            cn.jzVideoA.JZMediaInterface.SAVED_SURFACE = null
             mMediaHandler?.post {
                 tmpMediaPlayer.setSurface(null)
                 tmpMediaPlayer.release()
@@ -101,6 +102,8 @@ class JZMediaSystem(jzVideoA: JZVideoA?) : JZMediaInterface(jzVideoA),
     }
 
     override fun onPrepared(mediaPlayer: MediaPlayer) {
+        Log.d(TAG, "onPreparedhjkhjkhjk")
+        mediaPlayer.start()
         handler?.post { jzVideoA?.onPrepared() } //如果是mp3音频，走这里
     }
 

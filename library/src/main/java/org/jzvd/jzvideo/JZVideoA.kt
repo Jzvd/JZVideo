@@ -8,9 +8,9 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import cn.jzvd.Jzvd
 import cn.jzvd.R
+import java.lang.reflect.Constructor
 import java.util.*
 import kotlin.reflect.KClass
-import kotlin.reflect.full.createInstance
 
 const val TAG = "JZVideo"
 
@@ -19,10 +19,6 @@ enum class State {
     IDLE, NORMAL, PREPARING, PREPARING_CHANGE_URL, PREPARING_PLAYING,
     PREPARED, PLAYING, PAUSE, COMPLETE, ERROR
 }
-
-//enum class Screen {//
-//    NORMAL, FULLSCREEN, TINY
-//}
 
 public class JZVideoA : RelativeLayout, View.OnClickListener {
 
@@ -58,7 +54,22 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-
+        val i = v?.id
+        if (i == R.id.start) {
+            when (state) {
+                State.NORMAL -> {
+                    start()
+                }
+                State.PAUSE -> {
+                    mediaInterface?.start()
+                    onStatePlaying()
+                }
+                State.PLAYING -> {
+                    mediaInterface?.pause()
+                    onStatePause()
+                }
+            }
+        }
     }
 
     fun setUp(
@@ -68,45 +79,57 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
         this.url = url
         this.mediaInterfaceClass = mediaInterfaceClass
 
-        val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
+
+        val constructor: Constructor<JZMediaInterface> = mediaInterfaceClass!!.java.getConstructor(
+            JZVideoA::class.java
+        ) as Constructor<JZMediaInterface>
+
+//        val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
         mediaInterface =
-            mediaRef.createInstance() as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
-        surfaeView.prepareSurface(mediaInterface)
+            constructor.newInstance(this) as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
+        surfaeView.prepareSurface(mediaInterface)//这个可能在播放的时候做，setup就是设置数据，没有实际操作。
 
-
+        state = State.NORMAL
     }
 
     /**
      * setUp之后
      */
     fun start() {
+        Log.d(TAG, "start [" + this.hashCode() + "] ")
         mediaInterface?.prepare()//MediaPlayer开始工作
 
-
+        onStatePreparing()
     }
 
     fun onStatePreparing() {
-
+        Log.d(TAG, "onStatePreparing [" + this.hashCode() + "] ")
     }
 
     fun onStatePlaying() {
-
-    }
-
-    fun onStatePause() {
-
-    }
-
-    fun onStateComplete() {
-
-    }
-
-    fun onStateError() {
-
+        Log.d(TAG, "onStatePlaying [" + this.hashCode() + "] ")
+        state = State.PLAYING
     }
 
     fun onPrepared() {
+        Log.d(TAG, "onPrepared [" + this.hashCode() + "] ")
+        mediaInterface!!.start()
+        state = State.PREPARED
+    }
 
+    fun onStatePause() {
+        Log.d(TAG, "onStatePause [" + this.hashCode() + "] ")
+        state = State.PAUSE
+    }
+
+    fun onStateComplete() {
+        Log.d(TAG, "onStateComplete [" + this.hashCode() + "] ")
+        state = State.COMPLETE
+    }
+
+    fun onStateError() {
+        Log.d(TAG, "onStateError [" + this.hashCode() + "] ")
+        state = State.ERROR
     }
 
     fun onCompletion() {
@@ -122,10 +145,14 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     }
 
     fun onError(what: Int, extra: Int) {
+        Log.d(TAG, "onError [" + this.hashCode() + "] ")
 
+        state = State.ERROR
     }
 
     fun onInfo(what: Int, extra: Int) {
+        Log.d(TAG, "onInfo [${this.hashCode()}] what:$what extra:$extra")
+
 
     }
 

@@ -578,10 +578,10 @@ abstract class Jzvd : FrameLayout, View.OnClickListener, OnSeekBarChangeListener
         Log.d(Jzvd.TAG, "startVideo [" + this.hashCode() + "] ")
 //        Jzvd.setCurrentJzvd(this)
         try {
-//            val constructor: Constructor<JZMediaInterface> = mediaInterfaceClass!!.getConstructor(
-//                Jzvd::class.java
-//            )
-//            mediaInterface = constructor.newInstance(this)
+            val constructor: Constructor<JZMediaInterface> = mediaInterfaceClass!!.getConstructor(
+                Jzvd::class.java
+            ) as Constructor<JZMediaInterface>
+            mediaInterface = constructor.newInstance(this)
         } catch (e: NoSuchMethodException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {
@@ -1049,16 +1049,16 @@ abstract class Jzvd : FrameLayout, View.OnClickListener, OnSeekBarChangeListener
             JZUtils.hideSystemUI(context)
             val vp = JZUtils.scanForActivity(context).window.decorView as ViewGroup
             try {
-//                val constructor: Constructor<Jzvd> = _class.getConstructor(
-//                    Context::class.java
-//                )
-//                val jzvd = constructor.newInstance(context)
-//                val lp = LayoutParams(
-//                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-//                )
-//                vp.addView(jzvd, lp)
-//                jzvd.setUp(jzDataSource, JzvdStd.SCREEN_FULLSCREEN)
-//                jzvd.startVideo()
+                val constructor: Constructor<Jzvd> = _class.getConstructor(
+                    Context::class.java
+                ) as Constructor<Jzvd>
+                val jzvd = constructor.newInstance(context)
+                val lp = LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+                )
+                vp.addView(jzvd, lp)
+                jzvd.setUp(jzDataSource, JzvdStd.SCREEN_FULLSCREEN)
+                jzvd.startVideo()
             } catch (e: InstantiationException) {
                 e.printStackTrace()
             } catch (e: Exception) {
