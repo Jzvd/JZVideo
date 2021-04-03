@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.SeekBar
+import android.widget.TextView
+import cn.jzvd.JZUtils
 import cn.jzvd.Jzvd
 import cn.jzvd.R
 import java.lang.reflect.Constructor
@@ -20,7 +23,7 @@ enum class State {
     PREPARED, PLAYING, PAUSE, COMPLETE, ERROR
 }
 
-public class JZVideoA : RelativeLayout, View.OnClickListener {
+public class JZVideoA : RelativeLayout, View.OnClickListener, SeekBar.OnSeekBarChangeListener {
 
     var state: State = State.IDLE
 
@@ -31,6 +34,10 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     lateinit var surfaeView: JZSurfaceView//如果没有开始播放时自己添加，如果有直接使用。
     var startBtn: ImageView? = null
     var progressTimer: Timer? = null
+
+    var progressBar: SeekBar? = null
+    var currentTimeTextView: TextView? = null
+    var totalTimeTextView: TextView? = null
 
     constructor(ctx: Context) : super(ctx) {
         inflate(context, getLayout(), this)
@@ -45,12 +52,13 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     fun init() {
         surfaeView = findViewById(R.id.surface)
         startBtn = findViewById(R.id.start)
+        progressBar = findViewById(R.id.bottom_seek_progress)
+        currentTimeTextView = findViewById(R.id.current)
+        totalTimeTextView = findViewById(R.id.total)
+
+
         startBtn?.setOnClickListener(this)
-
-//        startBtn?.setOnClickListener {
-//            start()
-//        }
-
+        progressBar?.setOnSeekBarChangeListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -63,10 +71,12 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
                 State.PAUSE -> {
                     mediaInterface?.start()//
                     onStatePlaying()
+                    startProgressTimer()
                 }
                 State.PLAYING -> {//TODO 暂停和开始是否需要一个函数触发这部分怎么搞
                     mediaInterface?.pause()
                     onStatePause()
+                    startProgressTimer()
                 }
             }
         }
@@ -80,11 +90,10 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
         this.mediaInterfaceClass = mediaInterfaceClass
 
 
-        val constructor: Constructor<JZMediaInterface> = mediaInterfaceClass!!.java.getConstructor(
+        val constructor: Constructor<JZMediaInterface> = mediaInterfaceClass.java.getConstructor(
             JZVideoA::class.java
         ) as Constructor<JZMediaInterface>
 
-//        val mediaRef = Class.forName(mediaInterfaceClass.java.name).kotlin
         mediaInterface =
             constructor.newInstance(this) as JZMediaInterface//初始化和interface里面的MediaPlayer没有任何关系。
         surfaeView.prepareSurface(mediaInterface)//这个可能在播放的时候做，setup就是设置数据，没有实际操作。
@@ -104,17 +113,21 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
 
     fun onStatePreparing() {
         Log.d(TAG, "onStatePreparing [" + this.hashCode() + "] ")
+
     }
 
     fun onStatePlaying() {
         Log.d(TAG, "onStatePlaying [" + this.hashCode() + "] ")
         state = State.PLAYING
+        startProgressTimer()
     }
 
     fun onPrepared() {
         Log.d(TAG, "onPrepared [" + this.hashCode() + "] ")
         mediaInterface!!.start()
         state = State.PLAYING
+
+        onStatePlaying()
     }
 
     fun onStatePause() {
@@ -135,10 +148,12 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     //自动播放完毕
     fun onCompletion() {
         Log.d(TAG, "onCompletion [" + this.hashCode() + "] ")
+        progressTimer?.cancel()
     }
 
     fun setBufferProgress(percent: Int) {
         Log.d(TAG, "setBufferProgress $percent [" + this.hashCode() + "] ")
+        if (percent != 0) progressBar!!.secondaryProgress = percent
     }
 
     fun onSeekComplete() {
@@ -146,8 +161,7 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     }
 
     fun onError(what: Int, extra: Int) {
-        Log.d(TAG, "onError [" + this.hashCode() + "] ")
-
+        Log.d(TAG, "onError ${this.hashCode()}] what:$what extra:$extra ")
         state = State.ERROR
     }
 
@@ -158,7 +172,15 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     }
 
     fun onProgress(progress: Int, position: Int, duration: Int) {
+        Log.d(
+            TAG,//这点东西整三行，不喜欢。
+            "onError ${this.hashCode()}] progress:$progress position:$position duration$duration"
+        )
 
+        if (progress != 0) progressBar?.progress = progress
+
+        if (position != 0) currentTimeTextView?.text = JZUtils.stringForTime(position.toLong())
+        totalTimeTextView?.text = JZUtils.stringForTime(duration.toLong())
     }
 
     fun getLayout(): Int {
@@ -166,13 +188,12 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
     }
 
     fun onVideoSizeChanged(width: Int, height: Int) {
-        Log.i(Jzvd.TAG, "onVideoSizeChanged " + " [" + this.hashCode() + "] ")
-
+        Log.i(Jzvd.TAG, "onVideoSizeChanged " + " [${this.hashCode()}] ")
         surfaeView.setVideoSize(width, height)
 
     }
 
-    fun startGetProgressTimer() {
+    fun startProgressTimer() {
         progressTimer?.cancel()
         progressTimer = Timer()
         progressTimer?.schedule(object : TimerTask() {
@@ -193,6 +214,18 @@ public class JZVideoA : RelativeLayout, View.OnClickListener {
                 }
             }
         }, 0, 300)
+    }
+
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+//        TODO("Not yet implemented")
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+        TODO("Not yet implemented")
     }
 
 }
