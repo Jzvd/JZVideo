@@ -92,6 +92,12 @@ public class CustomMediaActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Jzvd.goOnPlayOnPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         Jzvd.releaseAllVideos();
     }
 

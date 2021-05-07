@@ -227,6 +227,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             CURRENT_JZVD.reset();
             CURRENT_JZVD = null;
         }
+        CONTAINER_LIST.clear();
     }
 
     public static boolean backPress() {
