@@ -609,13 +609,13 @@ public class JzvdStd extends Jzvd {
     @Override
     public void onProgress(int progress, long position, long duration) {
         super.onProgress(progress, position, duration);
-        if (progress != 0) bottomProgressBar.setProgress(progress);
+        bottomProgressBar.setProgress(progress);
     }
 
     @Override
     public void setBufferProgress(int bufferProgress) {
         super.setBufferProgress(bufferProgress);
-        if (bufferProgress != 0) bottomProgressBar.setSecondaryProgress(bufferProgress);
+        bottomProgressBar.setSecondaryProgress(bufferProgress);
     }
 
     @Override

@@ -875,7 +875,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     seekToManulPosition = -1;//这个关键帧有没有必要做
                 }
             } else {
-                if (progress != 0) progressBar.setProgress(progress);
+                progressBar.setProgress(progress);
             }
         }
         if (position != 0) currentTimeTextView.setText(JZUtils.stringForTime(position));
@@ -883,7 +883,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void setBufferProgress(int bufferProgress) {
-        if (bufferProgress != 0) progressBar.setSecondaryProgress(bufferProgress);
+        progressBar.setSecondaryProgress(bufferProgress);
     }
 
     public void resetProgressAndTime() {
