@@ -8,7 +8,7 @@
     >
 
     <cn.jzvd.JzvdStd
-        android:id="@+id/surface_container"
+        android:id="@+id/jzvd"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_behavior=".utils.JzvdSlideZoomBehavior"

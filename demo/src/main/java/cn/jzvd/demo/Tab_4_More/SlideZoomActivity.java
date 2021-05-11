@@ -29,7 +29,7 @@ public class SlideZoomActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(getString(R.string.slide_zoom));
         CommentAdapter commentAdapter = new CommentAdapter();
         setContentView(R.layout.activity_slide_zoom);
-        JzvdStd mJzvdStd = findViewById(R.id.surface_container);
+        JzvdStd mJzvdStd = findViewById(R.id.jzvd);
         mJzvdStd.setUp(UrlsKt.getVideos()[14], UrlsKt.getTitles()[14], JzvdStd.SCREEN_NORMAL);
         Glide.with(this).load(UrlsKt.getThumbnails()[14]).into(mJzvdStd.posterImageView);
         RecyclerView recyclerView = findViewById(R.id.rv_comment);
