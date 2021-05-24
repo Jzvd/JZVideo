@@ -911,7 +911,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         long duration = 0;
         try {
             duration = mediaInterface.getDuration();
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return duration;
         }
