@@ -8,7 +8,7 @@ signing {
 
 group = "cn.jzvd"
 archivesBaseName = "jiaozivideoplayer"
-version = "7.6.0"
+version = "7.7.0"
 
 uploadArchives {
     repositories {
