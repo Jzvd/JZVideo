@@ -24,21 +24,24 @@ public class AutoPlayUtils {
      * @param lastVisiblePosition  最后一个可见item位置
      */
     public static void onScrollPlayVideo(RecyclerView recyclerView, int jzvdId, int firstVisiblePosition, int lastVisiblePosition) {
-        if (JZUtils.isWifiConnected(recyclerView.getContext())) {
-            for (int i = 0; i <= lastVisiblePosition - firstVisiblePosition; i++) {
-                View child = recyclerView.getChildAt(i);
-                View view = child.findViewById(jzvdId);
-                if (view != null && view instanceof Jzvd) {
-                    Jzvd player = (Jzvd) view;
-                    if (getViewVisiblePercent(player) == 1f) {
-                        if (positionInList != i + firstVisiblePosition) {
-                            player.startButton.performClick();
-                        }
-                        break;
+        if (!JZUtils.isWifiConnected(recyclerView.getContext())) {
+            return;
+        }
+        for (int i = 0; i <= lastVisiblePosition - firstVisiblePosition; i++) {
+            View child = recyclerView.getChildAt(i);
+            View view = child.findViewById(jzvdId);
+            if (view != null && view instanceof Jzvd) {
+                Jzvd player = (Jzvd) view;
+                if (getViewVisiblePercent(player) == 1f) {
+                    if (positionInList != i + firstVisiblePosition) {
+                        if (player.state != Jzvd.STATE_PLAYING) player.startButton.performClick();
                     }
+                    break;
                 }
             }
         }
+
+
     }
 
     /**
