@@ -2,13 +2,13 @@
 
 [中文文档](http://jzvd.org)
 
-[下载Demo](https://github.com/Jzvd/JZVideo/releases/download/v7.6.0/jiaozivideoplayer-7.6.0.apk)
+[下载Demo](https://github.com/Jzvd/JZVideo/releases/download/v7.7.0/jiaozivideoplayer-7.7.0.apk)
 
 ## QuickStart
 
 1.添加类库
 ```gradle
-implementation 'cn.jzvd:jiaozivideoplayer:7.6.0'
+implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
 ```
 
 2.添加布局
