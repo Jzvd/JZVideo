@@ -30,7 +30,7 @@ public class PreloadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preloading);
         jzvdStd = findViewById(R.id.jz_video);
 
-        jzvdStd.setUp(UrlsKt.getTitles()[7]
+        jzvdStd.setUp(UrlsKt.getVideos()[7]
                 , UrlsKt.getTitles()[7], Jzvd.SCREEN_NORMAL, JZMediaIjk.class);
         
         Glide.with(this).load(UrlsKt.getTitles()[7]).into(jzvdStd.posterImageView);

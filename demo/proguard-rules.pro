@@ -15,11 +15,9 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
--keep public class cn.jzvd.JZMediaSystem {*; }
--keep public class cn.jzvd.demo.CustomMedia.CustomMedia {*; }
--keep public class cn.jzvd.demo.CustomMedia.JZMediaIjk {*; }
--keep public class cn.jzvd.demo.CustomMedia.JZMediaSystemAssertFolder {*; }
+-keep class cn.jzvd.**{*;}
+-keep public class * extends cn.jzvd.JZMediaInterface
+-keep public class * extends cn.jzvd.JzvdStd
 
 
 -keep class tv.danmaku.ijk.media.player.** {*; }

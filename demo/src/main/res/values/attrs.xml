@@ -9,4 +9,14 @@
         <attr name="right_bottom_radius" format="dimension" />
         <attr name="left_bottom_radius" format="dimension" />
     </declare-styleable>
+
+
+    <declare-styleable name="JzvdSlideZoomBehavior">
+        <attr name="min_height" format="dimension"/>
+        <attr name="scrolling_id" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="JzvdDependBehavior">
+        <attr name="depend" format="integer"/>
+    </declare-styleable>
 </resources>

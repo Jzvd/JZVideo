@@ -43,6 +43,7 @@
     <string name="start_play_after_preloading">start Video After Preloading</string>
     <string name="listview">ListView</string>
     <string name="tiny_window">Tiny Window</string>
+    <string name="slide_zoom">Slide zoom</string>
     <string name="custom_ag">## Custom Ag Video</string>
     <string name="normal_listview">Normal ListView</string>
     <string name="list_fragment_viewpager">ListView Fragment ViewPager</string>

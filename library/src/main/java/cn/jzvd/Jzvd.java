@@ -227,6 +227,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             CURRENT_JZVD.reset();
             CURRENT_JZVD = null;
         }
+        CONTAINER_LIST.clear();
     }
 
     public static boolean backPress() {
@@ -597,6 +598,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public void onStatePlaying() {
         Log.i(TAG, "onStatePlaying " + " [" + this.hashCode() + "] ");
         if (state == STATE_PREPARED) {//如果是准备完成视频后第一次播放，先判断是否需要跳转进度。
+            Log.d(TAG, "onStatePlaying:STATE_PREPARED ");
+            mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+            mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
             if (seekToInAdvance != 0) {
                 mediaInterface.seekTo(seekToInAdvance);
                 seekToInAdvance = 0;
@@ -782,11 +786,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             e.printStackTrace();
         }
         addTextureView();
-        mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         JZUtils.scanForActivity(getContext()).getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         onStatePreparing();
+
     }
 
     @Override
@@ -872,7 +875,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     seekToManulPosition = -1;//这个关键帧有没有必要做
                 }
             } else {
-                if (progress != 0) progressBar.setProgress(progress);
+                progressBar.setProgress(progress);
             }
         }
         if (position != 0) currentTimeTextView.setText(JZUtils.stringForTime(position));
@@ -880,7 +883,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void setBufferProgress(int bufferProgress) {
-        if (bufferProgress != 0) progressBar.setSecondaryProgress(bufferProgress);
+        progressBar.setSecondaryProgress(bufferProgress);
     }
 
     public void resetProgressAndTime() {
@@ -908,7 +911,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         long duration = 0;
         try {
             duration = mediaInterface.getDuration();
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return duration;
         }

@@ -19,6 +19,7 @@ import cn.jzvd.demo.Tab_3_List.TinyWindow.TinyWindowActivity;
 import cn.jzvd.demo.Tab_4_More.DanmuActivity;
 import cn.jzvd.demo.Tab_4_More.DirectPlayActivity;
 import cn.jzvd.demo.Tab_4_More.LocalVideoActivity;
+import cn.jzvd.demo.Tab_4_More.SlideZoomActivity;
 import cn.jzvd.demo.Tab_4_More.WebViewActivity;
 
 /**
@@ -27,7 +28,7 @@ import cn.jzvd.demo.Tab_4_More.WebViewActivity;
 public class Fragment_4_More extends Fragment implements View.OnClickListener {
 
     TextView versionTextView;
-    private Button mDirectPlay, mWebView, mLocalVideo, mTinyWindow, mGetGif,mDanmu;
+    private Button mDirectPlay, mWebView, mLocalVideo, mTinyWindow, mGetGif,mDanmu,mSlideZoom;
 
     public static String getAppVersionName(Context context) {
         String appVersionName = "";
@@ -54,8 +55,8 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
         mTinyWindow = view.findViewById(R.id.tiny_window);
         mGetGif = view.findViewById(R.id.get_gif);
         mDanmu = view.findViewById(R.id.danmu_view);
-
-
+        mSlideZoom= view.findViewById(R.id.slide_zoom);
+        mSlideZoom.setOnClickListener(this);
         mDirectPlay.setOnClickListener(this);
         mWebView.setOnClickListener(this);
         mLocalVideo.setOnClickListener(this);
@@ -92,6 +93,9 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
                 break;
             case R.id.danmu_view:
                 startActivity(new Intent(getContext(), DanmuActivity.class));
+                break;
+            case R.id.slide_zoom:
+                startActivity(new Intent(getContext(), SlideZoomActivity.class));
                 break;
         }
 
