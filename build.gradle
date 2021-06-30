@@ -17,7 +17,7 @@ allprojects {
         google()
         mavenCentral()
         //这里不再提供镜像链接，作为程序员默认应该可以熟练上网并且编译项目。镜像是有用的，有需要的请自行使用镜像，使用镜像的代码不应该出现在源码里。
-        //https://user-images.githubusercontent.com/2038071/123888850-f4bffd00-d986-11eb-8d97-a4ab273250af.png
+        //https://github.com/Jzvd/JZVideo/issues/371
     }
 }
 
