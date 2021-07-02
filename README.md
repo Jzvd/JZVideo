@@ -63,6 +63,8 @@ protected void onPause() {
 -keep interface tv.danmaku.ijk.media.player.** { *; }
 ```
 
+./gradlew build -x androidJavadocs
+
 ## 效果
 <p align="center">
 <img src="https://user-images.githubusercontent.com/2038071/94292970-3fdc5800-ff90-11ea-97df-7b9b7455fe7d.jpg" width="75%">

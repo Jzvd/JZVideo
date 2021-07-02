@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath 'com.android.tools.build:gradle:4.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -16,6 +16,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.aliyun.com/repository/public" } //jcenter & central
         //这里不再提供镜像链接，作为程序员默认应该可以熟练上网并且编译项目。镜像是有用的，有需要的请自行使用镜像，使用镜像的代码不应该出现在源码里。
         //https://github.com/Jzvd/JZVideo/issues/371
     }
