@@ -20,6 +20,7 @@ import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.CustomMedia.JZMediaExo;
 import cn.jzvd.demo.R;
+import cn.jzvd.demo.Tab_2_Custom.AGVideo.mediaplayer.MediaExo;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.popup.VideoEpisodePopup;
 import cn.jzvd.demo.Tab_2_Custom.AGVideo.popup.VideoSpeedPopup;
 import cn.jzvd.demo.utils.ScreenRotateUtils;
@@ -52,7 +53,7 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
         mPlayer.setJzVideoListener(this);
         mJzDataSource = new JZDataSource(episodeList.get(0).getVideoUrl(), episodeList.get(0).getVideoName());
         mPlayer.setUp(mJzDataSource
-                , JzvdStd.SCREEN_NORMAL, JZMediaExo.class);
+                , JzvdStd.SCREEN_NORMAL, MediaExo.class);
         mPlayer.startVideo();
     }
 

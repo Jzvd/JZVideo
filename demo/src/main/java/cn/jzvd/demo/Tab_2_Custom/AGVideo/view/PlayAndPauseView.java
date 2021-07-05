@@ -72,6 +72,14 @@ public class PlayAndPauseView extends View {
         init();
     }
 
+    public int getAnimationType() {
+        return animationType;
+    }
+
+    public void setAnimationType(int animationType) {
+        this.animationType = animationType;
+    }
+
     private void init() {
         leftPath = new Path();
         rightPath = new Path();
@@ -179,12 +187,12 @@ public class PlayAndPauseView extends View {
         reverseAnimatorSet.playSequentially(animatorSet, objectAnimator);
     }
 
-    private void pause() {
+    public void pause() {
         animationType = 2;
         reverseAnimatorSet.start();
     }
 
-    private void play() {
+    public void play() {
         animationType = 1;
         orderAnimatorSet.start();
     }

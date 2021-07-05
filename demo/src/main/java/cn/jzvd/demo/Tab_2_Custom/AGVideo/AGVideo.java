@@ -453,16 +453,27 @@ public class AGVideo extends JzvdStd {
 
     @Override
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
+
+        state = STATE_PREPARING_CHANGE_URL;
         next_set.setVisibility(GONE);
-        showProgress();
-        super.changeUrl(jzDataSource, seekToInAdvance);
-//        //切换播放地址之后继续以1倍速播放
+        videoPlayControlLayout.setVisibility(VISIBLE);
+        this.seekToInAdvance = seekToInAdvance;
+        this.jzDataSource = jzDataSource;
+        if (mediaInterface != null) {
+            mediaInterface.prepare();
+        }
+
+        titleTextView.setText(jzDataSource.title);
+        startButton.setVisibility(INVISIBLE);
+        replayTextView.setVisibility(View.GONE);
+        mRetryLayout.setVisibility(View.GONE);
         if (jzDataSource.objects == null) {
             Object[] object = {1};
             jzDataSource.objects = object;
         }
         speedChange(1.0f);
         resetProgressAndTime();
+        changeUiToPreparing();
     }
 
     @Override
@@ -522,9 +533,13 @@ public class AGVideo extends JzvdStd {
     @Override
     public void updateStartImage() {
         if (state == STATE_PLAYING) {
+            hideProgress();
             startButton.setVisibility(VISIBLE);
             startButton.setImageResource(R.mipmap.ag_btn_movie_suspend);
             start_bottom.setImageResource(R.mipmap.ag_btn_movie_stop_bottom);
+            if (playAndPauseView.getAnimationType()!=2){
+                playAndPauseView.pause();
+            }
             fastForward.setVisibility(VISIBLE);
             quickRetreat.setVisibility(VISIBLE);
             replayTextView.setVisibility(GONE);
@@ -547,6 +562,9 @@ public class AGVideo extends JzvdStd {
         } else {
             startButton.setImageResource(R.mipmap.ag_btn_movie_play);
             start_bottom.setImageResource(R.mipmap.ag_btn_movie_play_bottom);
+            if (playAndPauseView.getAnimationType()!=1){
+                playAndPauseView.play();
+            }
             replayTextView.setVisibility(GONE);
             fastForward.setVisibility(GONE);
             quickRetreat.setVisibility(GONE);
@@ -617,15 +635,10 @@ public class AGVideo extends JzvdStd {
         }
         state = STATE_PLAYING;
         startProgressTimer();
-        Log.e("AGVideo", "clickPlayOrPause:" + clickPlayOrPause);
-        updateStartImage();
-        if (clickPlayOrPause) {
-            startDismissControlViewTimer();
-        } else {
-            changeUiToPlayingClear();
-        }
-        titleTextView.setVisibility(VISIBLE);
         screenIV.setVisibility(VISIBLE);
+        titleTextView.setVisibility(VISIBLE);
+        changeUiToPlayingShow();
+        startDismissControlViewTimer();
     }
 
     @Override
@@ -951,6 +964,7 @@ public class AGVideo extends JzvdStd {
         replayTextView.setVisibility(GONE);
         next_set.setVisibility(View.GONE);
     }
+
 
     /**
      * 改变倍数之后
