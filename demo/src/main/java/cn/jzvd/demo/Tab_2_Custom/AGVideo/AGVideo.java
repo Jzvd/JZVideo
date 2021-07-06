@@ -386,7 +386,8 @@ public class AGVideo extends JzvdStd {
                     float deltaX = x - mDownX;
                     float deltaY = y - mDownY;
                     if (!isLock) {
-                        moveChange(event);
+                        touchActionMove(x,y);
+//                        moveChange(event);
                     }
                     if (mChangePosition) {
                         long totalTimeDuration = getDuration();
@@ -623,6 +624,8 @@ public class AGVideo extends JzvdStd {
 //        super.onStatePlaying();
         Log.i(TAG, "onStatePlaying " + " [" + this.hashCode() + "] ");
         if (state == STATE_PREPARED) {//如果是准备完成视频后第一次播放，先判断是否需要跳转进度。
+            mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+            mAudioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
             if (seekToInAdvance != 0) {
                 mediaInterface.seekTo(seekToInAdvance);
                 seekToInAdvance = 0;
