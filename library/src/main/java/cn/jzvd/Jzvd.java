@@ -2,6 +2,7 @@ package cn.jzvd;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -67,6 +68,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static int ON_PLAY_PAUSE_TMP_STATE = 0;//这个考虑不放到库里，去自定义
     public static int backUpBufferState = -1;
     public static float PROGRESS_DRAG_RATE = 1f;//进度条滑动阻尼系数 越大播放进度条滑动越慢
+    boolean isVideoLandscape = true;//视频方向
     public static AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {//是否新建个class，代码更规矩，并且变量的位置也很尴尬
         @Override
         public void onAudioFocusChange(int focusChange) {
@@ -856,6 +858,17 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             }
             textureView.setVideoSize(width, height);
         }
+        setFullScreenOrientation(isVideoLandscape = width > height);
+    }
+
+    private void setFullScreenOrientation(boolean isLandscape) {
+
+        if (screen == SCREEN_FULLSCREEN)
+            if (isLandscape) {
+                JZUtils.setRequestedOrientation(jzvdContext, ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            } else {
+                JZUtils.setRequestedOrientation(jzvdContext, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
     }
 
     public void startProgressTimer() {
@@ -1009,7 +1022,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
         setScreenFullscreen();
         JZUtils.hideStatusBar(jzvdContext);
-        JZUtils.setRequestedOrientation(jzvdContext, FULLSCREEN_ORIENTATION);
+//        JZUtils.setRequestedOrientation(jzvdContext, FULLSCREEN_ORIENTATION);
+        setFullScreenOrientation(isVideoLandscape);
         JZUtils.hideSystemUI(jzvdContext);//华为手机和有虚拟键的手机全屏时可隐藏虚拟键 issue:1326
 
     }
