@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: "com.vanniktech.maven.publish"
 
 android {
     compileSdkVersion 31
@@ -27,5 +28,3 @@ dependencies {
     implementation "androidx.core:core-ktx:1.6.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
-
-apply from: '../gradle/build_upload_new.gradle'
