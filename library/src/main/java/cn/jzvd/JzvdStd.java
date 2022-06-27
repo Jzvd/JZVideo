@@ -176,7 +176,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void setUp(JZDataSource jzDataSource, int screen, Class mediaInterfaceClass) {
-        if ((System.currentTimeMillis() - gobakFullscreenTime) < 200) {
+        if ((System.currentTimeMillis() - goNormalFullscreenTime) < 200) {
             return;
         }
 
