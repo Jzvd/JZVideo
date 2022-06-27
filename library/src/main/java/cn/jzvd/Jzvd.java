@@ -113,7 +113,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public ViewGroup topContainer, bottomContainer;
     public JZTextureView textureView;
     public boolean preloading = false;
-    protected long gobakFullscreenTime = 0;//这个应该重写一下，刷新列表，新增列表的刷新，不打断播放，应该是个flag
+    protected long goNormalFullscreenTime = 0;//这个应该重写一下，刷新列表，新增列表的刷新，不打断播放，应该是个flag
     protected long gotoFullscreenTime = 0;
     protected Timer UPDATE_PROGRESS_TIMER;
     protected int mScreenWidth;
@@ -687,7 +687,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void gotoNormalCompletion() {
-        gobakFullscreenTime = System.currentTimeMillis();//退出全屏
+        goNormalFullscreenTime = System.currentTimeMillis();//退出全屏
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
         textureViewContainer.removeView(textureView);
@@ -1004,7 +1004,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void gotoNormalScreen() {//goback本质上是goto
-        gobakFullscreenTime = System.currentTimeMillis();//退出全屏
+        goNormalFullscreenTime = System.currentTimeMillis();//退出全屏
         ViewGroup vg = (ViewGroup) (JZUtils.scanForActivity(jzvdContext)).getWindow().getDecorView();
         vg.removeView(this);
 //        CONTAINER_LIST.getLast().removeAllViews();
