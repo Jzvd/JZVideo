@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="click_to_restart">Klik untuk mencoba lagi</string>
+    <string name="no_url">Tidak ada url</string>
+    <string name="replay">Memutar ulang</string>
+    <string name="tips_not_wifi">Anda sedang menggunakan jaringan seluler, pemain akan terus konsumsi lalu lintas</string>
+    <string name="tips_not_wifi_cancel">Berhenti bermain</string>
+    <string name="tips_not_wifi_confirm">Melanjutkan</string>
+    <string name="video_loading_failed">Pemuatan video gagal</string>
+</resources>
