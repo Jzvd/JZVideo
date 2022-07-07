@@ -1,7 +1,6 @@
 package cn.jzvd;
 
 import android.graphics.SurfaceTexture;
-import android.media.AudioManager;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
