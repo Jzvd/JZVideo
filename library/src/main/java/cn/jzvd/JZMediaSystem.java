@@ -2,6 +2,7 @@ package cn.jzvd;
 
 import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
 import android.os.Handler;
@@ -34,7 +35,11 @@ public class JZMediaSystem extends JZMediaInterface implements MediaPlayer.OnPre
         mMediaHandler.post(() -> {
             try {
                 mediaPlayer = new MediaPlayer();
-                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mediaPlayer.setAudioAttributes(
+                                     new AudioAttributes
+                                        .Builder()
+                                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                        .build());
                 mediaPlayer.setLooping(jzvd.jzDataSource.looping);
                 mediaPlayer.setOnPreparedListener(JZMediaSystem.this);
                 mediaPlayer.setOnCompletionListener(JZMediaSystem.this);
