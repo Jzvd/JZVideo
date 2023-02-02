@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import org.jzvd.jzvideo.UrlsKt;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 
 import cn.jzvd.JZDataSource;
@@ -62,6 +63,20 @@ public class GetGifActivity extends AppCompatActivity {
         jzvdStdGetGif.setUp(jzDataSource, JzvdStd.SCREEN_NORMAL);
         Glide.with(this).load(UrlsKt.getThumbnails()[0]).into(jzvdStdGetGif.posterImageView);
 
+        //设置保存路径和文件名(可选)
+//        jzvdStdGetGif.setSaveGifPathName(Environment
+//                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaozi-" + System.currentTimeMillis() + ".gif");
+        //设置保存监听(可选)
+        jzvdStdGetGif.setGifListener(new JzvdStdGetGif.GifListener() {
+            @Override
+            public void result(boolean success, File file) {
+                if (success) {
+                    //保存成功
+                } else {
+                    //保存失败
+                }
+            }
+        });
     }
 
     @Override
