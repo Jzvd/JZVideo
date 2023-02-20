@@ -26,6 +26,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     TextView tv_hint;
     FrameLayout fl_hint_region;
     ImageView convert_to_gif;
+    FrameLayout gif_pannel;
 
     String saveGifPathName;
     long current;
@@ -45,9 +46,12 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         tv_hint = findViewById(R.id.tv_hint);
         fl_hint_region = findViewById(R.id.fl_hint_region);
         convert_to_gif = findViewById(R.id.convert_to_gif);
+        gif_pannel = findViewById(R.id.gif_pannel);
 
 
         convert_to_gif.setOnClickListener((v -> {
+//            gif_pannel.setVisibility(View.VISIBLE);
+//            return;
 
             tv_hint.setText("正在创建Gif...");
             fl_hint_region.setVisibility(View.VISIBLE);

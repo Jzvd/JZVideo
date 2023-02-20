@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@android:color/black"
     android:descendantFocusability="afterDescendants">
 
@@ -268,5 +269,124 @@
             android:layout_gravity="center"
             android:text="正在创建Gif..."
             android:textColor="#ffffff" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/gif_pannel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:paddingTop="30dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:padding="5dp"
+                android:src="@mipmap/ag_nav_return_1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="截Gif"
+                android:textColor="@color/exo_white"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@color/exo_gray_ripple"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@color/bottom_bg"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="350dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="center">
+
+            <FrameLayout
+                android:id="@+id/gif_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="14dp" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/left_top" />
+
+            <ImageView
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|bottom"
+                android:layout_marginBottom="10dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/left_bottm" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|bottom"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/right_bottm" />
+
+            <ImageView
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                android:src="@mipmap/right_top" />
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="100dp"
+            android:textColor="@color/exo_white"
+            android:text="已截取3秒，最多可截取5秒"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="40dp">
+
+            <LinearLayout
+                android:id="@+id/keyFrame_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/phone_focus" />
+
+        </FrameLayout>
     </FrameLayout>
 </RelativeLayout>
