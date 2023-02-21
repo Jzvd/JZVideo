@@ -289,6 +289,7 @@
             android:paddingRight="20dp">
 
             <ImageView
+                android:id="@+id/iv_gif_back"
                 android:layout_width="30dp"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
@@ -306,6 +307,7 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/tv_gif_next"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:background="@color/exo_gray_ripple"
@@ -364,24 +366,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="120dp"
             android:textColor="@color/exo_white"
-            android:text="已截取3秒，最多可截取5秒"/>
+            android:text="请选择截取范围"/>
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|center_horizontal"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="40dp">
 
             <LinearLayout
                 android:id="@+id/keyFrame_container"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal" />
 
             <ImageView
+                android:id="@+id/iv_phone_focus"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"

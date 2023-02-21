@@ -1,17 +1,24 @@
 package cn.jzvd.demo.CustomJzvd;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.File;
+import com.google.common.collect.Lists;
 
+import java.io.File;
+import java.util.List;
+
+import cn.jzvd.JZUtils;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.Tab_3_List.GifCreateHelper;
@@ -26,7 +33,13 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     TextView tv_hint;
     FrameLayout fl_hint_region;
     ImageView convert_to_gif;
+    //Gif panel region
     FrameLayout gif_pannel;
+    ImageView iv_gif_back;
+    TextView tv_gif_next;
+    FrameLayout gif_container;
+    LinearLayout keyFrame_container;
+    ImageView iv_phone_focus;
 
     String saveGifPathName;
     long current;
@@ -47,15 +60,20 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         fl_hint_region = findViewById(R.id.fl_hint_region);
         convert_to_gif = findViewById(R.id.convert_to_gif);
         gif_pannel = findViewById(R.id.gif_pannel);
-
+        iv_gif_back = findViewById(R.id.iv_gif_back);
+        tv_gif_next = findViewById(R.id.tv_gif_next);
+        gif_container = findViewById(R.id.gif_container);
+        keyFrame_container = findViewById(R.id.keyFrame_container);
+        iv_phone_focus = findViewById(R.id.iv_phone_focus);
 
         convert_to_gif.setOnClickListener((v -> {
 //            gif_pannel.setVisibility(View.VISIBLE);
+
 //            return;
 
             tv_hint.setText("正在创建Gif...");
             fl_hint_region.setVisibility(View.VISIBLE);
-
+//
             if (TextUtils.isEmpty(saveGifPathName)) {
                 saveGifPathName = Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaozi-" + System.currentTimeMillis() + ".gif";
@@ -63,6 +81,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 300, 200, 5000, saveGifPathName);
             current = System.currentTimeMillis();
             mGifCreateHelper.startGif();//这个函数里用了jzvd的两个参数。
+
+//            initGifPanelRegion();
             try {
                 mediaInterface.pause();
                 onStatePause();
@@ -74,6 +94,80 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
         topContainer.setOnTouchListener((v, event) -> true);
         fl_hint_region.setOnTouchListener((v, event) -> true);
+    }
+
+    //    private long canSelectStartTime = 0;//可供选择的开始时间（单位：毫秒）
+//    private long canSelectEndTime = 0;//可供选择的结束时间（单位：毫秒）
+    private long selectDuration = 3000;//选择的时长(一般直接固定为3s 单位：毫秒)
+    private float fingerStartX = -999; //底部截留框开始滑动的起始位置
+    private float phoneFocusStartX = 0f; //底部截留框开始滑动的起始位置
+
+    private void initGifPanelRegion() {
+//        FrameLayout gif_container;
+//        ImageView iv_phone_focus;
+        iv_gif_back.setOnClickListener((v -> {
+            gif_pannel.setVisibility(View.GONE);
+        }));
+        tv_gif_next.setOnClickListener((v -> {
+            gif_pannel.setVisibility(View.GONE);
+            //TODO: 生成gif
+        }));
+
+
+        //总体逻辑：先根据视频总时长，计算出可供选择的开始时间和结束时间，然后根据可供选择的开始时间和结束时间，计算出可供选择的关键帧的时间点，然后根据关键帧的时间点，获取关键帧的图片，然后展示出来，然后用户选择，然后生成gif
+        // 1. 计算出可供选择的开始时间和结束时间
+        //从当前播放时间的前一秒开始算，如果当前播放时间小于1秒，则从0开始算
+        long startTime = mediaInterface.getCurrentPosition() - 1000;
+        startTime = startTime < 0 ? 0 : startTime;
+        long endTime = startTime + selectDuration;
+        endTime = endTime > mediaInterface.getDuration() ? mediaInterface.getDuration() : endTime;
+        // 2. 计算出可供选择的关键帧的时间点
+        //固定取5张图片
+        int keyFrameCount = 5;
+        long realDuration = endTime - startTime;
+        long interval = realDuration / (keyFrameCount - 1);
+        int bitmapWidth = JZUtils.dip2px(getContext(), 125);
+        int bitmapHeight = JZUtils.dip2px(getContext(), 70);
+        List<Long> bitmapTime = Lists.newArrayList(startTime, startTime + interval, startTime + interval * 2, startTime + interval * 3, endTime);
+        List<Bitmap> keyFrameImages = mGifCreateHelper.getBitmaps(bitmapTime, bitmapWidth, bitmapHeight);
+        for (Bitmap keyFrameImage : keyFrameImages) {
+            ImageView imageView = new ImageView(getContext());
+            imageView.setImageBitmap(keyFrameImage);
+            keyFrame_container.addView(imageView, new LinearLayout.LayoutParams(bitmapWidth, bitmapHeight));
+        }
+
+        // iv_phone_focus随着手指滑动
+        float iv_phone_focus_width = JZUtils.dip2px(getContext(), 100);//和布局中的宽一致
+        float maxLeftMargin = keyFrameCount * bitmapWidth - iv_phone_focus_width;
+        iv_phone_focus.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    break;
+                case MotionEvent.ACTION_MOVE:
+//                    Log.e("Jzvd-gif", "getRawX:"+event.getRawX());
+                    if (fingerStartX == -999) {
+                        fingerStartX = event.getRawX();
+                        phoneFocusStartX = ((FrameLayout.LayoutParams) v.getLayoutParams()).leftMargin;
+                    }
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) v.getLayoutParams();
+                    layoutParams.leftMargin = (int) (phoneFocusStartX + event.getRawX() - fingerStartX);
+                    if (layoutParams.leftMargin < 0) {
+                        layoutParams.leftMargin = 0;
+                    }
+                    if (layoutParams.leftMargin > maxLeftMargin) {
+                        layoutParams.leftMargin = (int) maxLeftMargin;
+                    }
+                    v.setLayoutParams(layoutParams);
+//                    Log.e("Jzvd-gif", "leftMargin:"+((FrameLayout.LayoutParams)v.getLayoutParams()).leftMargin);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    fingerStartX = -999;
+                    break;
+            }
+            return true;
+        });
+
+
     }
 
 
