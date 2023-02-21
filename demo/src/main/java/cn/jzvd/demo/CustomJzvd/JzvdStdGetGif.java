@@ -1,5 +1,7 @@
 package cn.jzvd.demo.CustomJzvd;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
@@ -39,7 +41,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     TextView tv_gif_next;
     FrameLayout gif_container;
     LinearLayout keyFrame_container;
-    ImageView iv_phone_focus;
+    FrameLayout fl_phone_focus;
+    TextView tv_red_line;
 
     String saveGifPathName;
     long current;
@@ -64,7 +67,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         tv_gif_next = findViewById(R.id.tv_gif_next);
         gif_container = findViewById(R.id.gif_container);
         keyFrame_container = findViewById(R.id.keyFrame_container);
-        iv_phone_focus = findViewById(R.id.iv_phone_focus);
+        fl_phone_focus = findViewById(R.id.fl_phone_focus);
+        tv_red_line = findViewById(R.id.tv_red_line);
 
         convert_to_gif.setOnClickListener((v -> {
 //            gif_pannel.setVisibility(View.VISIBLE);
@@ -139,7 +143,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         // iv_phone_focus随着手指滑动
         float iv_phone_focus_width = JZUtils.dip2px(getContext(), 100);//和布局中的宽一致
         float maxLeftMargin = keyFrameCount * bitmapWidth - iv_phone_focus_width;
-        iv_phone_focus.setOnTouchListener((v, event) -> {
+        fl_phone_focus.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     break;
@@ -167,6 +171,13 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             return true;
         });
 
+
+        // 红线循环滑动
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(tv_red_line, "translationX", 0, iv_phone_focus_width);
+        objectAnimator.setDuration(3000);
+        objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        objectAnimator.setRepeatMode(ValueAnimator.RESTART);
+        objectAnimator.start();
 
     }
 

@@ -384,12 +384,23 @@
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal" />
 
-            <ImageView
-                android:id="@+id/iv_phone_focus"
+            <FrameLayout
+                android:id="@+id/fl_phone_focus"
                 android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/phone_focus" />
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/phone_focus" />
+
+                <TextView
+                    android:id="@+id/tv_red_line"
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_red_light"/>
+            </FrameLayout>
+
 
         </FrameLayout>
     </FrameLayout>
