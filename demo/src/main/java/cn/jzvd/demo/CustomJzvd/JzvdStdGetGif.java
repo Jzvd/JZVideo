@@ -201,7 +201,6 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         }
 
         jz_video_center.mediaInterface.seekTo(startTime);
-        jz_video_center.mediaInterface.start();
         timer = new Timer();
         // 每隔500毫秒检查一下当前播放时间，如果超过了endTime，则seek到startTime
         timer.schedule(new TimerTask() {
@@ -209,7 +208,6 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             public void run() {
                 if (jz_video_center.mediaInterface != null) {
                     long currentPosition = jz_video_center.mediaInterface.getCurrentPosition();
-//                    Log.e("Jzvd-gif", "currentPosition:" + currentPosition);
                     if (currentPosition >= endTime) {
                         jz_video_center.mediaInterface.seekTo(startTime);
                     }
