@@ -19,6 +19,8 @@ import com.google.common.collect.Lists;
 
 import java.io.File;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cn.jzvd.JZUtils;
 import cn.jzvd.JzvdStd;
@@ -35,11 +37,13 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     TextView tv_hint;
     FrameLayout fl_hint_region;
     ImageView convert_to_gif;
+
+
     //Gif panel region
     FrameLayout gif_pannel;
     ImageView iv_gif_back;
     TextView tv_gif_next;
-    FrameLayout gif_container;
+    JzvdStd jz_video_center;
     LinearLayout keyFrame_container;
     FrameLayout fl_phone_focus;
     TextView tv_red_line;
@@ -65,7 +69,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         gif_pannel = findViewById(R.id.gif_pannel);
         iv_gif_back = findViewById(R.id.iv_gif_back);
         tv_gif_next = findViewById(R.id.tv_gif_next);
-        gif_container = findViewById(R.id.gif_container);
+        jz_video_center = findViewById(R.id.jz_video_center);
         keyFrame_container = findViewById(R.id.keyFrame_container);
         fl_phone_focus = findViewById(R.id.fl_phone_focus);
         tv_red_line = findViewById(R.id.tv_red_line);
@@ -100,15 +104,11 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         fl_hint_region.setOnTouchListener((v, event) -> true);
     }
 
-    //    private long canSelectStartTime = 0;//可供选择的开始时间（单位：毫秒）
-//    private long canSelectEndTime = 0;//可供选择的结束时间（单位：毫秒）
-    private long selectDuration = 3000;//选择的时长(一般直接固定为3s 单位：毫秒)
+    private long selectDuration = 15000;//可供用户挑选的总时长(一般直接固定为15s 单位：毫秒)
     private float fingerStartX = -999; //底部截留框开始滑动的起始位置
     private float phoneFocusStartX = 0f; //底部截留框开始滑动的起始位置
 
     private void initGifPanelRegion() {
-//        FrameLayout gif_container;
-//        ImageView iv_phone_focus;
         iv_gif_back.setOnClickListener((v -> {
             gif_pannel.setVisibility(View.GONE);
         }));
@@ -143,6 +143,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         // iv_phone_focus随着手指滑动
         float iv_phone_focus_width = JZUtils.dip2px(getContext(), 100);//和布局中的宽一致
         float maxLeftMargin = keyFrameCount * bitmapWidth - iv_phone_focus_width;
+        long finalStartTime = startTime;
         fl_phone_focus.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -166,6 +167,9 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
                     break;
                 case MotionEvent.ACTION_UP:
                     fingerStartX = -999;
+                    int leftMargin = ((FrameLayout.LayoutParams) v.getLayoutParams()).leftMargin;
+                    float selectStartTime = finalStartTime + (leftMargin / (bitmapWidth * keyFrameCount * 1.0f)) * realDuration;
+                    startCenterVideo((long) selectStartTime, (long) selectStartTime + interval);
                     break;
             }
             return true;
@@ -174,11 +178,44 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
         // 红线循环滑动
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(tv_red_line, "translationX", 0, iv_phone_focus_width);
-        objectAnimator.setDuration(3000);
+        objectAnimator.setDuration(interval);
         objectAnimator.setRepeatCount(ValueAnimator.INFINITE);
         objectAnimator.setRepeatMode(ValueAnimator.RESTART);
-        objectAnimator.start();
 
+
+        // 中间区域的视频播放
+        jz_video_center.setUp((String) jzDataSource.getCurrentUrl(), "");
+        jz_video_center.startVideo();
+        jz_video_center.postDelayed(() -> {
+            startCenterVideo(finalStartTime, finalStartTime + interval);
+            objectAnimator.start();
+        }, 500);
+    }
+
+    Timer timer;//这个timer是为了循环播放视频而设置的
+
+    private void startCenterVideo(long startTime, long endTime) {
+        Log.e("Jzvd-gif", "startTime:" + startTime + ",endTime:" + endTime);
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        jz_video_center.mediaInterface.seekTo(startTime);
+        jz_video_center.mediaInterface.start();
+        timer = new Timer();
+        // 每隔500毫秒检查一下当前播放时间，如果超过了endTime，则seek到startTime
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (jz_video_center.mediaInterface != null) {
+                    long currentPosition = jz_video_center.mediaInterface.getCurrentPosition();
+//                    Log.e("Jzvd-gif", "currentPosition:" + currentPosition);
+                    if (currentPosition >= endTime) {
+                        jz_video_center.mediaInterface.seekTo(startTime);
+                    }
+                }
+            }
+        }, 0, 500);
     }
 
 

@@ -153,7 +153,7 @@ public class GifCreateHelper {
         for (int i = 0; i < bitmapTime.size(); i++) {
             // 给的时间可能会超过视频总时长，所以要try catch
             try {
-                Bitmap bitmap = mmr.getScaledFrameAtTime(bitmapTime.get(i), FFmpegMediaMetadataRetriever.OPTION_CLOSEST, bitmapWidth, bitmapHeight);
+                Bitmap bitmap = mmr.getScaledFrameAtTime(bitmapTime.get(i)*1000, FFmpegMediaMetadataRetriever.OPTION_CLOSEST, bitmapWidth, bitmapHeight);
                 bitmaps.add(bitmap);
             }catch (Exception e){
                 e.printStackTrace();

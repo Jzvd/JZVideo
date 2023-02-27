@@ -52,10 +52,10 @@ public class GetGifActivity extends AppCompatActivity {
         jzvdStdGetGif = findViewById(R.id.jz_video);
 
         LinkedHashMap map = new LinkedHashMap();
-        String proxyUrl = ApplicationDemo.getProxy(getBaseContext()).getProxyUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+        String proxyUrl = ApplicationDemo.getProxy(getBaseContext()).getProxyUrl("http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4");
         map.put("高清", proxyUrl);
-        map.put("标清", "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-        map.put("普清", "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+        map.put("标清", "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4");
+        map.put("普清", "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4");
         JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
