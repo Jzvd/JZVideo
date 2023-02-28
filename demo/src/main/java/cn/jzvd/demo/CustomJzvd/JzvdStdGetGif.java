@@ -76,12 +76,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         tv_red_line = findViewById(R.id.tv_red_line);
 
         convert_to_gif.setOnClickListener((v -> {
-//            gif_pannel.setVisibility(View.VISIBLE);
-
-//            return;
-
-            tv_hint.setText("正在创建Gif...");
-            fl_hint_region.setVisibility(View.VISIBLE);
+            gif_pannel.setVisibility(View.VISIBLE);
 //
             if (TextUtils.isEmpty(saveGifPathName)) {
                 saveGifPathName = Environment
@@ -89,9 +84,9 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             }
             mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 300, 200, 5000, saveGifPathName);
             current = System.currentTimeMillis();
-            mGifCreateHelper.startGif();//这个函数里用了jzvd的两个参数。
+//            mGifCreateHelper.startGif();//这个函数里用了jzvd的两个参数。
 
-//            initGifPanelRegion();
+            initGifPanelRegion();
             try {
                 mediaInterface.pause();
                 onStatePause();
@@ -124,6 +119,9 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         }));
         tv_gif_next.setOnClickListener((v -> {
             gif_pannel.setVisibility(View.GONE);
+            tv_hint.setText("正在创建Gif...");
+            fl_hint_region.setVisibility(View.VISIBLE);
+
             mGifCreateHelper.getPeriodGif(gifStartTime, gifEndTime, bitmapWidth, bitmapHeight);
         }));
 
@@ -142,6 +140,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         long interval = realDuration / (keyFrameCount - 1);
         List<Long> bitmapTime = Lists.newArrayList(startTime, startTime + interval, startTime + interval * 2, startTime + interval * 3, endTime);
         List<Bitmap> keyFrameImages = mGifCreateHelper.getBitmaps(bitmapTime, bitmapWidth, bitmapHeight);
+        keyFrame_container.removeAllViews();
         for (Bitmap keyFrameImage : keyFrameImages) {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageBitmap(keyFrameImage);
@@ -152,6 +151,9 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         float iv_phone_focus_width = JZUtils.dip2px(getContext(), 100);//和布局中的宽一致
         float maxLeftMargin = keyFrameCount * bitmapWidth - iv_phone_focus_width;
         long finalStartTime = startTime;
+        FrameLayout.LayoutParams layoutParamsTemp = (FrameLayout.LayoutParams) fl_phone_focus.getLayoutParams();
+        layoutParamsTemp.leftMargin=0;
+        fl_phone_focus.setLayoutParams(layoutParamsTemp);
         fl_phone_focus.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -231,13 +233,14 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
     @Override
     public void process(int curPosition, int total, String status) {
-        Log.e("Jzvd-gif", status + "  " + curPosition + "/" + total + "  time: " + (System.currentTimeMillis() - current));
-        post(() -> tv_hint.setText(curPosition + "/" + total + " " + status));
+        Log.e("Jzvd-gif", status + "  " + curPosition + "/" + total + "  time: " + (System.currentTimeMillis() - current)+" thread： "+Thread.currentThread().getName());
+        tv_hint.post(() -> tv_hint.setText(curPosition + "/" + total + " " + status));
     }
 
     @Override
     public void result(boolean success, File file) {
         fl_hint_region.setVisibility(View.GONE);
+        iv_gif_back.performClick();
         if (gifListener != null) {
             gifListener.result(success, file);
         }
