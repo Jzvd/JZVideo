@@ -145,6 +145,37 @@ public class GifCreateHelper {
         return mmr;
     }
 
+    public void getPeriodGif(long gifStartTime,long gifEndTime,int bitmapWidth,int bitmapHeight){
+        String vedioUrl=(String) mPlayer.jzDataSource.getCurrentUrl();
+        int bitmapCount = (int)((gifEndTime-gifStartTime) / mDelay);
+        String[] picList = new String[bitmapCount];
+        isDownloadComplete = false;
+        FFmpegMediaMetadataRetriever mmr = prepareFFmpegMediaMetadataRetriever(vedioUrl);
+        for (int i = 0; i < bitmapCount; i++) {
+            final int index = i;
+            executorService.submit(new Runnable() {
+                @Override
+                public void run() {
+                    //先缓存到本地，全放入内存占用空间太大
+                    String path = saveBitmap(mmr.getScaledFrameAtTime((gifStartTime + index * mDelay) * 1000, FFmpegMediaMetadataRetriever.OPTION_CLOSEST, bitmapWidth, bitmapHeight),
+                            cacheImageDir + "/" + System.currentTimeMillis() + "index-" + index + ".png");
+                    boolean isCurrentSuccess = true;
+                    if (!TextUtils.isEmpty(path)) {
+                        picList[index] = path;
+                    } else {
+                        picList[index] = completeButNoImageTag;
+                        isCurrentSuccess = false;
+                    }
+
+                    checkCompleteAndDoNext(picList, isCurrentSuccess);
+                    if (isDownloadComplete) {
+                        mmr.release();
+                    }
+                }
+            });
+        }
+    }
+
     public List<Bitmap> getBitmaps(List<Long> bitmapTime, int bitmapWidth,int bitmapHeight) {
         String vedioUrl=(String) mPlayer.jzDataSource.getCurrentUrl();
         List<Bitmap> bitmaps = new ArrayList<>();

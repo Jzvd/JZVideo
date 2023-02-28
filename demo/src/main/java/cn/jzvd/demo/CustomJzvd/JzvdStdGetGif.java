@@ -23,6 +23,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.jzvd.JZUtils;
+import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.Tab_3_List.GifCreateHelper;
@@ -94,6 +95,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             try {
                 mediaInterface.pause();
                 onStatePause();
+                JZUtils.saveProgress(getContext(), Jzvd.CURRENT_JZVD.jzDataSource.getCurrentUrl(), getCurrentPositionWhenPlaying());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -109,12 +111,20 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     private float phoneFocusStartX = 0f; //底部截留框开始滑动的起始位置
 
     private void initGifPanelRegion() {
+        int bitmapWidth = JZUtils.dip2px(getContext(), 125);
+        int bitmapHeight = JZUtils.dip2px(getContext(), 70);
         iv_gif_back.setOnClickListener((v -> {
             gif_pannel.setVisibility(View.GONE);
+            // 妥协产物，需要重构
+            startVideo();
+            iv_gif_back.postDelayed(() -> {
+                mediaInterface.seekTo(JZUtils.getSavedProgress(getContext(), Jzvd.CURRENT_JZVD.jzDataSource.getCurrentUrl()));
+            }, 500);
+
         }));
         tv_gif_next.setOnClickListener((v -> {
             gif_pannel.setVisibility(View.GONE);
-            //TODO: 生成gif
+            mGifCreateHelper.getPeriodGif(gifStartTime, gifEndTime, bitmapWidth, bitmapHeight);
         }));
 
 
@@ -130,8 +140,6 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         int keyFrameCount = 5;
         long realDuration = endTime - startTime;
         long interval = realDuration / (keyFrameCount - 1);
-        int bitmapWidth = JZUtils.dip2px(getContext(), 125);
-        int bitmapHeight = JZUtils.dip2px(getContext(), 70);
         List<Long> bitmapTime = Lists.newArrayList(startTime, startTime + interval, startTime + interval * 2, startTime + interval * 3, endTime);
         List<Bitmap> keyFrameImages = mGifCreateHelper.getBitmaps(bitmapTime, bitmapWidth, bitmapHeight);
         for (Bitmap keyFrameImage : keyFrameImages) {
@@ -193,6 +201,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     }
 
     Timer timer;//这个timer是为了循环播放视频而设置的
+    private long gifStartTime = 0;//gif的开始时间
+    private long gifEndTime = 0;//gif的结束时间
 
     private void startCenterVideo(long startTime, long endTime) {
         Log.e("Jzvd-gif", "startTime:" + startTime + ",endTime:" + endTime);
@@ -200,6 +210,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             timer.cancel();
         }
 
+        gifStartTime = startTime;
+        gifEndTime = endTime;
         jz_video_center.mediaInterface.seekTo(startTime);
         timer = new Timer();
         // 每隔500毫秒检查一下当前播放时间，如果超过了endTime，则seek到startTime

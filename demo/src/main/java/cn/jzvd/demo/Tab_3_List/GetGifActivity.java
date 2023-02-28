@@ -56,7 +56,7 @@ public class GetGifActivity extends AppCompatActivity {
         map.put("高清", proxyUrl);
         map.put("标清", "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4");
         map.put("普清", "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4");
-        JZDataSource jzDataSource = new JZDataSource(map, "饺子不信");
+        JZDataSource jzDataSource = new JZDataSource(map, "饺子Gif");
         jzDataSource.looping = true;
         jzDataSource.currentUrlIndex = 2;
         jzDataSource.headerMap.put("key", "value");//header
