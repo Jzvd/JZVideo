@@ -215,17 +215,15 @@ public class GifCreateHelper {
 
             if (emptyCount == 0) {
                 isDownloadComplete = true;
-                mPlayer.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        combinePicToGif(picList);
-                    }
-                });
+                combinePicToGif(picList);
             }
         }
     }
 
     private void combinePicToGif(String[] picList) {
+        if(picList==null){
+            picList=new String[0];
+        }
         File gifFile = ensureFile(new File(mGifPath));
         ArrayList<String> rightPic = new ArrayList<>();
         for (String picItem : picList) {

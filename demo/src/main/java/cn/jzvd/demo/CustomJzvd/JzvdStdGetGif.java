@@ -118,7 +118,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
         }));
         tv_gif_next.setOnClickListener((v -> {
-            gif_pannel.setVisibility(View.GONE);
+//            gif_pannel.setVisibility(View.GONE);
             tv_hint.setText("正在创建Gif...");
             fl_hint_region.setVisibility(View.VISIBLE);
 
@@ -239,11 +239,13 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
     @Override
     public void result(boolean success, File file) {
-        fl_hint_region.setVisibility(View.GONE);
-        iv_gif_back.performClick();
-        if (gifListener != null) {
-            gifListener.result(success, file);
-        }
+        fl_hint_region.post(() -> {
+            fl_hint_region.setVisibility(View.GONE);
+            iv_gif_back.performClick();
+            if (gifListener != null) {
+                gifListener.result(success, file);
+            }
+        });
     }
 
     @Override
