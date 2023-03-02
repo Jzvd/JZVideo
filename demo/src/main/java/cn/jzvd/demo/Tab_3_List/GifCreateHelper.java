@@ -26,16 +26,6 @@ import wseemann.media.FFmpegMediaMetadataRetriever;
 
 public class GifCreateHelper {
 
-    /**
-     * 获取某一时刻视频图片
-     *
-     * @param url
-     * @param type 链接类型：NETWORK 网络，LOCAL 本地
-     * @param time 视频的时间点（单位：毫秒）
-     * @return
-     */
-    public static final int NETWORK = 0;
-    public static final int LOCAL = 1;
     private final String completeButNoImageTag = "completeButError";
     public JzvdStd mPlayer;
     //最后生成的gif的默认存储路径
@@ -44,37 +34,27 @@ public class GifCreateHelper {
     String cacheImageDir = Environment
             .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaoziTemp";
     boolean isDownloadComplete = false;
+    //缩小比例
+    @Deprecated
+    private int mSmallScale = 1;
     private JzGifListener mJzGifListener;
     //gif的帧之间延时
     private int mDelay = 50;
     //采样率
     private int mSampleSize = 1;
-    //缩小比例
-    @Deprecated
-    private int mSmallScale = 1;
-    private int gifWidth = 300; //gif宽
-    private int gifHeight = 300;//gif高
-    //gif时长，毫秒
-    private int mGifPeriod = 5000;
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
     /**
      * @param delay        每一帧之间的延时
      * @param inSampleSize 采样率，最小值1 即：每隔inSampleSize个像素点，取一个读入到内存。越大处理越快
-     * @param width        gif宽
-     * @param height       gif高
-     * @param gifPeriod    gif时长，毫秒
      * @param gifPath      gif文件的存储路径
      */
     public GifCreateHelper(JzvdStd jzvdStd, JzGifListener jzGifListener,
-                           int delay, int inSampleSize, int width, int height, int gifPeriod, String gifPath) {
+                           int delay, int inSampleSize, String gifPath) {
         mPlayer = jzvdStd;
         mJzGifListener = jzGifListener;
         mDelay = delay;
         mSampleSize = inSampleSize;
-        gifWidth = width;
-        gifHeight = height;
-        mGifPeriod = gifPeriod;
         mGifPath = TextUtils.isEmpty(gifPath) ? mGifPath : gifPath;
     }
 
@@ -93,47 +73,6 @@ public class GifCreateHelper {
                 deleteDirWihtFile(file); // 递规的方式删除文件夹
         }
         dir.delete();// 删除目录本身
-    }
-
-    /**
-     * 开始gif截图
-     */
-    public void startGif() {
-        startGif(mPlayer.getCurrentPositionWhenPlaying(), (String) mPlayer.jzDataSource.getCurrentUrl());
-    }
-
-    /**
-     * @param bitmapFromTime gif图在视频中的开始时间
-     * @param vedioUrl       视频链接
-     */
-    public void startGif(long bitmapFromTime, String vedioUrl) {
-        int bitmapCount = mGifPeriod / mDelay;
-        String[] picList = new String[bitmapCount];
-        isDownloadComplete = false;
-        FFmpegMediaMetadataRetriever mmr = prepareFFmpegMediaMetadataRetriever(vedioUrl);
-        for (int i = 0; i < bitmapCount; i++) {
-            final int index = i;
-            executorService.submit(new Runnable() {
-                @Override
-                public void run() {
-                    //先缓存到本地，全放入内存占用空间太大
-                    String path = saveBitmap(mmr.getScaledFrameAtTime((bitmapFromTime + index * mDelay) * 1000, FFmpegMediaMetadataRetriever.OPTION_CLOSEST, gifWidth, gifHeight),
-                            cacheImageDir + "/" + System.currentTimeMillis() + "index-" + index + ".png");
-                    boolean isCurrentSuccess = true;
-                    if (!TextUtils.isEmpty(path)) {
-                        picList[index] = path;
-                    } else {
-                        picList[index] = completeButNoImageTag;
-                        isCurrentSuccess = false;
-                    }
-
-                    checkCompleteAndDoNext(picList, isCurrentSuccess);
-                    if (isDownloadComplete) {
-                        mmr.release();
-                    }
-                }
-            });
-        }
     }
 
     private FFmpegMediaMetadataRetriever prepareFFmpegMediaMetadataRetriever(String vedioUrl) {

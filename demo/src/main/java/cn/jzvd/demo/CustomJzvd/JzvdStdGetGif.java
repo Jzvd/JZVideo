@@ -2,6 +2,7 @@ package cn.jzvd.demo.CustomJzvd;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
@@ -82,9 +83,8 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
                 saveGifPathName = Environment
                         .getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/jiaozi-" + System.currentTimeMillis() + ".gif";
             }
-            mGifCreateHelper = new GifCreateHelper(this, this, 200, 1, 300, 200, 5000, saveGifPathName);
+            mGifCreateHelper = new GifCreateHelper(this, this, 200, 1,  saveGifPathName);
             current = System.currentTimeMillis();
-//            mGifCreateHelper.startGif();//这个函数里用了jzvd的两个参数。
 
             initGifPanelRegion();
             try {
@@ -104,7 +104,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     private long selectDuration = 15000;//可供用户挑选的总时长(一般直接固定为15s 单位：毫秒)
     private float fingerStartX = -999; //底部截留框开始滑动的起始位置
     private float phoneFocusStartX = 0f; //底部截留框开始滑动的起始位置
-
+    @SuppressLint("ClickableViewAccessibility")
     private void initGifPanelRegion() {
         int bitmapWidth = JZUtils.dip2px(getContext(), 125);
         int bitmapHeight = JZUtils.dip2px(getContext(), 70);
@@ -118,7 +118,6 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
 
         }));
         tv_gif_next.setOnClickListener((v -> {
-//            gif_pannel.setVisibility(View.GONE);
             tv_hint.setText("正在创建Gif...");
             fl_hint_region.setVisibility(View.VISIBLE);
 
@@ -126,20 +125,21 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
         }));
 
 
-        //总体逻辑：先根据视频总时长，计算出可供选择的开始时间和结束时间，然后根据可供选择的开始时间和结束时间，计算出可供选择的关键帧的时间点，然后根据关键帧的时间点，获取关键帧的图片，然后展示出来，然后用户选择，然后生成gif
-        // 1. 计算出可供选择的开始时间和结束时间
-        //从当前播放时间的前一秒开始算，如果当前播放时间小于1秒，则从0开始算
+        //总体逻辑：先根据视频总时长，计算出可供选择的开始时间和结束时间，然后根据可供选择的开始时间和结束时间，计算出可供选择的关键帧的时间点，
+        // 然后根据关键帧的时间点，获取关键帧的图片，然后展示出来，然后用户选择，然后生成gif
+
+        // 计算出可供选择的开始时间和结束时间，从当前播放时间的前一秒开始算，如果当前播放时间小于1秒，则从0开始算
         long startTime = mediaInterface.getCurrentPosition() - 1000;
         startTime = startTime < 0 ? 0 : startTime;
         long endTime = startTime + selectDuration;
         endTime = endTime > mediaInterface.getDuration() ? mediaInterface.getDuration() : endTime;
-        // 2. 计算出可供选择的关键帧的时间点
-        //固定取5张图片
+        //固定取5张图片,计算出5张图片的时间点
         int keyFrameCount = 5;
         long realDuration = endTime - startTime;
         long interval = realDuration / (keyFrameCount - 1);
         List<Long> bitmapTime = Lists.newArrayList(startTime, startTime + interval, startTime + interval * 2, startTime + interval * 3, endTime);
         List<Bitmap> keyFrameImages = mGifCreateHelper.getBitmaps(bitmapTime, bitmapWidth, bitmapHeight);
+        //在底部展示5张图片
         keyFrame_container.removeAllViews();
         for (Bitmap keyFrameImage : keyFrameImages) {
             ImageView imageView = new ImageView(getContext());
@@ -147,7 +147,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
             keyFrame_container.addView(imageView, new LinearLayout.LayoutParams(bitmapWidth, bitmapHeight));
         }
 
-        // iv_phone_focus随着手指滑动
+        // 实现底部白框随着手指滑动
         float iv_phone_focus_width = JZUtils.dip2px(getContext(), 100);//和布局中的宽一致
         float maxLeftMargin = keyFrameCount * bitmapWidth - iv_phone_focus_width;
         long finalStartTime = startTime;
@@ -182,6 +182,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
                     startCenterVideo((long) selectStartTime, (long) selectStartTime + interval);
                     break;
             }
+            v.performClick();//返回true时，v的clicke事件会被吃掉，所以手动触发下，不给后面挖坑
             return true;
         });
 
@@ -206,6 +207,12 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
     private long gifStartTime = 0;//gif的开始时间
     private long gifEndTime = 0;//gif的结束时间
 
+    /**
+     * 中间区域：指定时间段视频的循环播放
+     *
+     * @param startTime
+     * @param endTime
+     */
     private void startCenterVideo(long startTime, long endTime) {
         Log.e("Jzvd-gif", "startTime:" + startTime + ",endTime:" + endTime);
         if (timer != null) {
@@ -227,7 +234,7 @@ public class JzvdStdGetGif extends JzvdStd implements GifCreateHelper.JzGifListe
                     }
                 }
             }
-        }, 0, 500);
+        }, 0, 300);
     }
 
 
