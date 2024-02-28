@@ -468,6 +468,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                             }
                         } else {//右侧改变声音
                             mChangeVolume = true;
+                            mAudioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
                             mGestureDownVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                         }
                     }
