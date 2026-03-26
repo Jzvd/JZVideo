@@ -1,6 +1,6 @@
 高度自定义的安卓视频框架
 
-[中文文档](http://jzvd.org)
+[中文文档](http://jzvd.io)
 
 [下载Demo](https://github.com/Jzvd/JZVideo/releases/download/v7.7.0/jiaozivideoplayer-7.7.0.apk)
 
@@ -75,7 +75,7 @@ protected void onPause() {
 
 ## License MIT
 
-Copyright (c) 2015-2021 jzvd.org
+Copyright (c) 2015-2021 jzvd.io
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
