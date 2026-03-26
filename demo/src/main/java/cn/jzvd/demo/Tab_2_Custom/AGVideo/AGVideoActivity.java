@@ -239,7 +239,7 @@ public class AGVideoActivity extends AppCompatActivity implements AGVideo.JzVide
         mPlayer.mediaInterface.setSpeed(speed);
         mJzDataSource.objects[0] = object;
         Toast.makeText(this, "正在以" + speed + "X倍速播放", Toast.LENGTH_SHORT).show();
-        mPlayer.speedChange(speed);
+//        mPlayer.speedChange(speed);
     }
 
     @Override

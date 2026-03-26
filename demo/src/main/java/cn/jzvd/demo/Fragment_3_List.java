@@ -51,28 +51,21 @@ public class Fragment_3_List extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.normal:
-                startActivity(new Intent(getContext(), NormalListViewActivity.class));
-                break;
-            case R.id.listview_fragment_viewpager:
-                startActivity(new Intent(getContext(), ListViewFragmentViewPagerActivity.class));
-                break;
-            case R.id.multiholder:
-                startActivity(new Intent(getContext(), ListViewMultiHolderActivity.class));
-                break;
-            case R.id.recyleview:
-                startActivity(new Intent(getContext(), RecyclerViewActivity.class));
-                break;
-            case R.id.list_to_detail:
-                startActivity(new Intent(getContext(), ListViewToDetailActivity.class));
-                break;
-            case R.id.list_auto_play:
-                startActivity(new Intent(getContext(), AutoPlayListViewActivity.class));
-                break;
-            case R.id.btn_tiktok:
-                startActivity(new Intent(getContext(), ActivityTikTok.class));
-                break;
+        int id = view.getId();
+        if (id == R.id.normal) {
+            startActivity(new Intent(getContext(), NormalListViewActivity.class));
+        } else if (id == R.id.listview_fragment_viewpager) {
+            startActivity(new Intent(getContext(), ListViewFragmentViewPagerActivity.class));
+        } else if (id == R.id.multiholder) {
+            startActivity(new Intent(getContext(), ListViewMultiHolderActivity.class));
+        } else if (id == R.id.recyleview) {
+            startActivity(new Intent(getContext(), RecyclerViewActivity.class));
+        } else if (id == R.id.list_to_detail) {
+            startActivity(new Intent(getContext(), ListViewToDetailActivity.class));
+        } else if (id == R.id.list_auto_play) {
+            startActivity(new Intent(getContext(), AutoPlayListViewActivity.class));
+        } else if (id == R.id.btn_tiktok) {
+            startActivity(new Intent(getContext(), ActivityTikTok.class));
         }
     }
 }

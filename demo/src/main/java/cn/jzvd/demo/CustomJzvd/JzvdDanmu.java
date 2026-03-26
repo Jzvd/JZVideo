@@ -15,7 +15,7 @@ import android.util.Log;
 import androidx.core.content.ContextCompat;
 
 import cn.jzvd.JzvdStd;
-import cn.jzvd.demo.BuildConfig;
+//import cn.jzvd.demo.BuildConfig;
 import cn.jzvd.demo.R;
 import cn.jzvd.demo.utils.DipAndPx;
 import master.flame.danmaku.controller.DrawHandler;
@@ -94,7 +94,7 @@ public class JzvdDanmu extends JzvdStd {
 
             }
         });
-        danmakuView.showFPS(BuildConfig.DEBUG);
+//        danmakuView.showFPS(BuildConfig.DEBUG);
         danmakuView.enableDanmakuDrawingCache(true);
     }
 

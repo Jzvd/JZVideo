@@ -3,14 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: "com.vanniktech.maven.publish"
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion = '32.1.0-rc1'
+    namespace 'cn.jzvd'
+    compileSdk = 34
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 32
-        versionCode 107
-        versionName "7.7.0"
+        minSdkVersion 24
     }
 
     compileOptions {
@@ -18,9 +15,18 @@ android {
         targetCompatibility 1.8
     }
 
-    lintOptions {
-        abortOnError false
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
+
+    lint {
+        abortOnError false
+        targetSdk 34
+    }
+    testOptions {
+        targetSdk 34
+    }
+
 }
 
 dependencies {

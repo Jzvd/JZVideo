@@ -28,7 +28,7 @@ import cn.jzvd.demo.Tab_4_More.WebViewActivity;
 public class Fragment_4_More extends Fragment implements View.OnClickListener {
 
     TextView versionTextView;
-    private Button mDirectPlay, mWebView, mLocalVideo, mTinyWindow, mGetGif,mDanmu,mSlideZoom;
+    private Button mDirectPlay, mWebView, mLocalVideo, mTinyWindow, mGetGif, mDanmu, mSlideZoom;
 
     public static String getAppVersionName(Context context) {
         String appVersionName = "";
@@ -55,7 +55,7 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
         mTinyWindow = view.findViewById(R.id.tiny_window);
         mGetGif = view.findViewById(R.id.get_gif);
         mDanmu = view.findViewById(R.id.danmu_view);
-        mSlideZoom= view.findViewById(R.id.slide_zoom);
+        mSlideZoom = view.findViewById(R.id.slide_zoom);
         mSlideZoom.setOnClickListener(this);
         mDirectPlay.setOnClickListener(this);
         mWebView.setOnClickListener(this);
@@ -75,29 +75,21 @@ public class Fragment_4_More extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.direct_play:
-                startActivity(new Intent(getContext(), DirectPlayActivity.class));
-                break;
-            case R.id.web_view:
-                startActivity(new Intent(getContext(), WebViewActivity.class));
-                break;
-            case R.id.local_video:
-                startActivity(new Intent(getContext(), LocalVideoActivity.class));
-                break;
-            case R.id.tiny_window:
-                startActivity(new Intent(getContext(), TinyWindowActivity.class));
-                break;
-            case R.id.get_gif:
-                startActivity(new Intent(getContext(), GetGifActivity.class));
-                break;
-            case R.id.danmu_view:
-                startActivity(new Intent(getContext(), DanmuActivity.class));
-                break;
-            case R.id.slide_zoom:
-                startActivity(new Intent(getContext(), SlideZoomActivity.class));
-                break;
+        int id = view.getId();
+        if (id == R.id.direct_play) {
+            startActivity(new Intent(getContext(), DirectPlayActivity.class));
+        } else if (id == R.id.web_view) {
+            startActivity(new Intent(getContext(), WebViewActivity.class));
+        } else if (id == R.id.local_video) {
+            startActivity(new Intent(getContext(), LocalVideoActivity.class));
+        } else if (id == R.id.tiny_window) {
+            startActivity(new Intent(getContext(), TinyWindowActivity.class));
+        } else if (id == R.id.get_gif) {
+            startActivity(new Intent(getContext(), GetGifActivity.class));
+        } else if (id == R.id.danmu_view) {
+            startActivity(new Intent(getContext(), DanmuActivity.class));
+        } else if (id == R.id.slide_zoom) {
+            startActivity(new Intent(getContext(), SlideZoomActivity.class));
         }
-
     }
 }

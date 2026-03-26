@@ -86,29 +86,25 @@ public class DanmuActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                break;
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.show_danmu:
-                jzvdDanmu.showDanmmu();
-                break;
-            case R.id.hide_danmu:
-                jzvdDanmu.hideDanmmu();
-                break;
-            case R.id.btn_add_danmu:
-                jzvdDanmu.addDanmaku("骚还是各位骚呀", true);
-                break;
-            case R.id.btn_diy_danmu:
-                jzvdDanmu.addDanmakuWithDrawable();
-                break;
+        int id = view.getId();
+        if (id == R.id.show_danmu) {
+            jzvdDanmu.showDanmmu();
+        } else if (id == R.id.hide_danmu) {
+            jzvdDanmu.hideDanmmu();
+        } else if (id == R.id.btn_add_danmu) {
+            jzvdDanmu.addDanmaku("骚还是各位骚呀", true);
+        } else if (id == R.id.btn_diy_danmu) {
+            jzvdDanmu.addDanmakuWithDrawable();
         }
     }
 

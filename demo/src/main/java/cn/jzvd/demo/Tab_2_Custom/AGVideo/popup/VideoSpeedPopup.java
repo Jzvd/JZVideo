@@ -61,47 +61,42 @@ public class VideoSpeedPopup extends PopupWindow implements View.OnClickListener
     @Override
     public void onClick(View v) {
         if (speedChangeListener != null) {
-            switch (v.getId()) {
-                case R.id.pop_speed_1:
-                    speedOne.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
-                    speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedChangeListener.speedChange(1f);
-                    break;
-                case R.id.pop_speed_1_25:
-                    speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedTwo.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
-                    speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedChangeListener.speedChange(1.25f);
-                    break;
-                case R.id.pop_speed_1_5:
-                    speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedThree.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
-                    speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedChangeListener.speedChange(1.5f);
-                    break;
-                case R.id.pop_speed_1_75:
-                    speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFour.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
-                    speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedChangeListener.speedChange(1.75f);
-                    break;
-                case R.id.pop_speed_2:
-                    speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
-                    speedFive.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
-                    speedChangeListener.speedChange(2f);
-                    break;
+            int id = v.getId();
+            if (id == R.id.pop_speed_1) {
+                speedOne.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
+                speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedChangeListener.speedChange(1f);
+            } else if (id == R.id.pop_speed_1_25) {
+                speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedTwo.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
+                speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedChangeListener.speedChange(1.25f);
+            } else if (id == R.id.pop_speed_1_5) {
+                speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedThree.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
+                speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedChangeListener.speedChange(1.5f);
+            } else if (id == R.id.pop_speed_1_75) {
+                speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFour.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
+                speedFive.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedChangeListener.speedChange(1.75f);
+            } else if (id == R.id.pop_speed_2) {
+                speedOne.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedTwo.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedThree.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFour.setTextColor(mC.getResources().getColor(R.color.colorWhite));
+                speedFive.setTextColor(mC.getResources().getColor(R.color.ThemeColor));
+                speedChangeListener.speedChange(2f);
             }
         }
     }

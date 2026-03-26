@@ -2,19 +2,19 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "32.1.0-rc1"
+    namespace 'cn.jzvd.demo'
+    compileSdk = 34
 
     defaultConfig {
         applicationId "cn.jzvd.demo"
-        minSdkVersion 16
-        targetSdkVersion 32
+        minSdk 24
+        targetSdk 34
         versionCode 107
         versionName "7.7.0"
         multiDexEnabled true
         ndk {
             // add support lib
-            abiFilters 'armeabi-v7a' //, 'arm64-v8a'//, "mips"  //,'armeabi''x86',, 'x86_64',
+            abiFilters 'armeabi-v7a', 'arm64-v8a' //, "mips"  //,'armeabi''x86',, 'x86_64',
         }
     }
     signingConfigs {
@@ -28,12 +28,12 @@ android {
     buildTypes {
 //        debug {//测试时会用到
 //            minifyEnabled true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.releaseConfig
 //        }
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseConfig
         }
     }
@@ -41,7 +41,12 @@ android {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
-    lintOptions {
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    lint {
         abortOnError false
     }
 

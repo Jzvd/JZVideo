@@ -111,30 +111,23 @@ public class Fragment_1_Base extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.orientation:
-                startActivity(new Intent(getContext(), OrientationActivity.class));
-                break;
-            case R.id.rotation_and_videosize:
-                startActivity(new Intent(getContext(), RotationVideoSizeActivity.class));
-                break;
-            case R.id.custom_mediaplayer:
-                startActivity(new Intent(getContext(), CustomMediaActivity.class));
-                break;
-            case R.id.preloading:
-                startActivity(new Intent(getContext(), PreloadingActivity.class));
-                break;
-            case R.id.screen_rotate:
-                startActivity(new Intent(getContext(), ScreenRotateActivity.class));
-                break;
-            case R.id.server_cn:
-                UrlsKt.setServer_name(UrlsKt.getCn());
-                Toast.makeText(getContext(), "change server to: " + UrlsKt.getCn(), Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.server_us:
-                UrlsKt.setServer_name(UrlsKt.getUs());
-                Toast.makeText(getContext(), "change server to: " + UrlsKt.getUs(), Toast.LENGTH_SHORT).show();
-                break;
+        int id = view.getId();
+        if (id == R.id.orientation) {
+            startActivity(new Intent(getContext(), OrientationActivity.class));
+        } else if (id == R.id.rotation_and_videosize) {
+            startActivity(new Intent(getContext(), RotationVideoSizeActivity.class));
+        } else if (id == R.id.custom_mediaplayer) {
+            startActivity(new Intent(getContext(), CustomMediaActivity.class));
+        } else if (id == R.id.preloading) {
+            startActivity(new Intent(getContext(), PreloadingActivity.class));
+        } else if (id == R.id.screen_rotate) {
+            startActivity(new Intent(getContext(), ScreenRotateActivity.class));
+        } else if (id == R.id.server_cn) {
+            UrlsKt.setServer_name(UrlsKt.getCn());
+            Toast.makeText(getContext(), "change server to: " + UrlsKt.getCn(), Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.server_us) {
+            UrlsKt.setServer_name(UrlsKt.getUs());
+            Toast.makeText(getContext(), "change server to: " + UrlsKt.getUs(), Toast.LENGTH_SHORT).show();
         }
     }
 }

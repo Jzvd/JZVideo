@@ -162,26 +162,25 @@ public class JzvdStdLockScreen extends JzvdStd {
     @Override
     public void onClick(View v) {
         super.onClick(v);
-        switch (v.getId()) {
-            case R.id.lock:
-                if (screen == SCREEN_FULLSCREEN) {
-                    lockIv.setTag(1);
-                    if (!isLockScreen) {
-                        isLockScreen = true;
-                        JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                        lockIv.setBackgroundResource(R.mipmap.lock);
-                        dissmissControlView();
-                    } else {
-                        JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-                        isLockScreen = false;
-                        lockIv.setBackgroundResource(R.mipmap.unlock);
-                        bottomContainer.setVisibility(VISIBLE);
-                        bottomProgressBar.setVisibility(GONE);
-                        topContainer.setVisibility(VISIBLE);
-                        startButton.setVisibility(VISIBLE);
-                    }
+        int id = v.getId();
+        if (id == R.id.lock) {
+            if (screen == SCREEN_FULLSCREEN) {
+                lockIv.setTag(1);
+                if (!isLockScreen) {
+                    isLockScreen = true;
+                    JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    lockIv.setBackgroundResource(R.mipmap.lock);
+                    dissmissControlView();
+                } else {
+                    JZUtils.setRequestedOrientation(getContext(), ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+                    isLockScreen = false;
+                    lockIv.setBackgroundResource(R.mipmap.unlock);
+                    bottomContainer.setVisibility(VISIBLE);
+                    bottomProgressBar.setVisibility(GONE);
+                    topContainer.setVisibility(VISIBLE);
+                    startButton.setVisibility(VISIBLE);
                 }
-                break;
+            }
         }
     }
 }

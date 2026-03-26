@@ -48,7 +48,7 @@ public class StatusBarUtil {
             decorView.setSystemUiVisibility(option);
             //根据上面设置是否对状态栏单独设置颜色
             if (useThemestatusBarColor) {
-                activity.getWindow().setStatusBarColor(activity.getResources().getColor(R.color.exo_edit_mode_background_color));
+                activity.getWindow().setStatusBarColor(Color.BLACK);
             } else {
                 activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
             }
